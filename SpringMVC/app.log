@@ -1,0 +1,57 @@
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:33:55 EST 2018]; root of context hierarchy
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Registering annotated classes: [class com.team62.spring.config.WebConfig,class com.team62.spring.config.SocketConfig]
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/view2],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.view2()
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/welcome],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.team62.spring.controller.ViewController.helloWorld()
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.index(org.springframework.ui.ModelMap)
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/images/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:33:55 EST 2018]; root of context hierarchy
+2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.web.socket.server.support.WebSocketHandlerMapping - Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 1088 ms
+2018-Mar-05 18:33:57 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:33:57 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player #5ab62c41 connected
+2018-Mar-05 18:34:11 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p1 is enrolled in the quest
+2018-Mar-05 18:34:14 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:34:14 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player #3afd6db9 connected
+2018-Mar-05 18:34:16 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p2 is enrolled in the quest
+2018-Mar-05 18:34:18 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:34:18 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player #150cb965 connected
+2018-Mar-05 18:34:20 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p3 is enrolled in the quest
+2018-Mar-05 18:34:22 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:34:22 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player #2e4d375f connected
+2018-Mar-05 18:34:24 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p4 is enrolled in the quest
+2018-Mar-05 18:34:24 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - All 4 players connected, starting game -> flipping first story card
+2018-Mar-05 18:34:31 PM [qtp1517677623-18] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:34:31 PM [qtp1517677623-18] INFO  com.team62.spring.websocket.SocketHandler - Player #2abbcf14 connected
+2018-Mar-05 18:34:31 PM [qtp1517677623-18] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
+2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:35:14 EST 2018]; root of context hierarchy
+2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Registering annotated classes: [class com.team62.spring.config.WebConfig,class com.team62.spring.config.SocketConfig]
+2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-Mar-05 18:35:15 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/welcome],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.team62.spring.controller.ViewController.helloWorld()
+2018-Mar-05 18:35:15 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/view2],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.view2()
+2018-Mar-05 18:35:15 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.index(org.springframework.ui.ModelMap)
+2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/images/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:35:14 EST 2018]; root of context hierarchy
+2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.socket.server.support.WebSocketHandlerMapping - Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-Mar-05 18:35:17 PM [main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2018-Mar-05 18:35:17 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 2492 ms
+2018-Mar-05 18:35:30 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:35:30 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player #40dec988 connected
+2018-Mar-05 18:35:36 PM [qtp738590621-18] INFO  com.team62.spring.websocket.SocketHandler - Player p1 is enrolled in the quest
+2018-Mar-05 18:35:49 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:35:49 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player #46126062 connected
+2018-Mar-05 18:35:51 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player p2 is enrolled in the quest
+2018-Mar-05 18:35:53 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:35:53 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player #45370d24 connected
+2018-Mar-05 18:35:55 PM [qtp738590621-18] INFO  com.team62.spring.websocket.SocketHandler - Player p3 is enrolled in the quest
+2018-Mar-05 18:35:58 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:35:58 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player #498a2d97 connected
+2018-Mar-05 18:36:00 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player p4 is enrolled in the quest
+2018-Mar-05 18:36:00 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - All 4 players connected, starting game -> flipping first story card
+2018-Mar-05 18:36:07 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 18:36:07 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
