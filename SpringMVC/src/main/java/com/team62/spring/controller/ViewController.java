@@ -15,4 +15,5 @@ public class ViewController {
    public String view2() {
       return "view2";
    }
+
 }

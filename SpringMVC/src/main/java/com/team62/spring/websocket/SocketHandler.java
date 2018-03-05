@@ -41,8 +41,12 @@ public class SocketHandler extends TextWebSocketHandler {
 				Client clientObject = new Client(session.getId(), Name, session, sessionTracker);
 				gameEngine.clients.add(clientObject);
 				sessionTracker++;
-				session.sendMessage(new TextMessage("You are all set up"));
-
+				session.sendMessage(new TextMessage("You are all set up, waiting for other players to connect.."));
+				if(gameEngine.clients.size()==4) {
+					for(Client c:gameEngine.clients) {
+						c.session.sendMessage(new TextMessage("All players have joined, starting game..."));
+					}
+				}
 			}
 
 			//print all gameEngine.clients

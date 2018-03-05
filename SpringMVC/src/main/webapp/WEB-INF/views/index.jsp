@@ -1,57 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Web Socket Ex</title>
-<script type="text/javascript">
-	//Open the web socket connection to the server
-	var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
-	
-	socketConn.onopen = function (event) {
-		  socketConn.send("Client attempting to connect"); 
-	};
-	//send name to server
-	function send() {
-		var clientMsg = document.getElementById('clientMsg');
-		if (clientMsg.value) {
-			socketConn.send("Name:" + clientMsg.value);
-			document.getElementById('name').innerHTML = clientMsg.value + "'s View";
-			clientMsg.value = '';
-		}
-	}
-	
-	//print all clients connected
-	function print() {
-		socketConn.send("Print");
-	}
-	
-	//proof of connection
-	function proof() {
-		socketConn.send("Proof");
-	}
-	
-	// print server message to console
-	socketConn.onmessage = function(event) {
-		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value = event.data;
-	}
-</script>
+<title>COMP3004</title>
+
+<link href='<spring:url value="/resources/css/style.css"/>' rel="stylesheet" />
+<script type="text/javascript" src='<spring:url value="/resources/js/app.js"/>'></script>
+
 </head>
 <body>
-   <h1>Spring MVC WebSocket</h1>
+   <h1 id="title" class="color1">Welcome to Quest of the Round Table</h1>
+   <button onclick="changeColor()">Change Color</button>
    <hr />
    <label id="name">Enter name</label>
    <br>
-   <textarea rows="8" cols="50" id="clientMsg"></textarea>
+   <textarea rows="1" cols="50" id="clientMsg"></textarea>
    <br>
-   <button onclick="send()">Send</button>
-   <button onclick="print()">Print</button>
+   <button id="send" onclick="send()">Send</button>
+   <button onclick="print()">Print all players</button>
    <button onclick="proof()">Proof</button>
-   <button onclick="window.location.href='/view2'">View2</button>
+   <button onclick="window.location.href='/view2'">Testing View2</button>
    <br>
    <label>Dealer</label>
    <br>
-   <textarea rows="8" cols="50" id="serverMsg" readonly="readonly"></textarea>
+   <p><textarea rows="1" cols="50" id="serverMsg" readonly="readonly"></textarea></p>
+   <img alt="image" src="<spring:url value="/images/E Pox.jpg"/>" height="300" width="200">
+   <img alt="image" src="<spring:url value="/images/T1.jpg"/>" height="300" width="200">
 </body>
 </html>
