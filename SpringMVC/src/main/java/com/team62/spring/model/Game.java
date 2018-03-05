@@ -15,6 +15,8 @@ public class Game {
 		players = new ArrayList<Player>();
 		adventureDeck = new AdventureDeck();
 		adventureDeck.initAdventureDeck();
+		storyDeck = new StoryDeck();
+		storyDeck.initStoryDeck();
 	}
 }
 

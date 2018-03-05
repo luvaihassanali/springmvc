@@ -1,7 +1,6 @@
 package com.team62.spring.config;
 
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
@@ -29,5 +28,6 @@ public class WebConfig implements WebMvcConfigurer {
       registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/images/")
             .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
    }
+
 }
 

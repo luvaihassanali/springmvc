@@ -2,7 +2,11 @@ package com.team62.spring.model;
 
 import org.springframework.web.socket.WebSocketSession;
 import com.team62.spring.model.storyCards.*;
+import com.team62.spring.model.AI.AI;
+import com.team62.spring.model.AI.Strategy2;
 import com.team62.spring.model.adventureCards.*;
+import com.team62.spring.model.decks.AdventureDeck;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -10,17 +14,6 @@ public class Player {
 	public String name;
 	public WebSocketSession session;
 	public int sessionTracker;
-
-	public Player(String id, String name, WebSocketSession session, int sessionTracker) {
-		this.id = id;
-		this.name = name;
-		this.session = session;
-		this.sessionTracker = sessionTracker;
-	}
-}
-
-/*
-	String name;
 	private ArrayList<AdventureCard> hand;
 	ArrayList<WeaponCard> weapons;
 	ArrayList<AllyCard> allies;
@@ -31,28 +24,19 @@ public class Player {
 	public int tieCheck;
     AI ai;
     
-	public Player() {
-		name = null;
-		hand = new ArrayList<AdventureCard>();
-		weapons = new ArrayList<WeaponCard>();
-		rank = CardList.Squire;
-		battlePoints = 5;
-		shields = 0;
-		amour = null;
-		allies = new ArrayList<AllyCard>();
-		tieCheck = 0;
-	}
-
-	public Player(String n) {
-		name = n;
-		hand = new ArrayList<AdventureCard>();
-		weapons = new ArrayList<WeaponCard>();
-		rank = CardList.Squire;
-		battlePoints = 5;
-		shields = 0;
-		amour = null;
-		allies = null;
-		tieCheck = 0;
+	public Player(String id, String name, WebSocketSession session, int sessionTracker) {
+		this.id = id;
+		this.name = name;
+		this.session = session;
+		this.sessionTracker = sessionTracker;
+		this.hand = new ArrayList<AdventureCard>();
+		this.weapons = new ArrayList<WeaponCard>();
+		this.rank = CardList.Squire;
+		this.battlePoints = 5;
+		this.shields = 0;
+		this.amour = null;
+		this.allies = new ArrayList<AllyCard>();
+		this.tieCheck = 0;
 	}
 
 	public int getHandSize() {
@@ -75,12 +59,12 @@ public class Player {
 	public void giveShields(int numShields) {
 
 		this.addShields(numShields);
-		if(Controller.isRigged) {
+		/*if(Controller.isRigged) {
 			if(this.shields>=game.getWinCondition()) {
 				System.out.println("RIGGED GAME OVER, player acheived win condition");
 				System.exit(0);
-			}
-		}
+			} 
+		} */
 		if (this.shields >= 5) {
 			this.rank = CardList.Knight;
 		}
@@ -147,7 +131,7 @@ public class Player {
 		for (int i = 0; i < 12; i++) {
 			this.getHand().add(a.cards.pop());
 			if (a.cards.isEmpty()) {
-				a.initAdventureDeck(a);
+				a.initAdventureDeck();
 			}
 		}
 	}
@@ -175,4 +159,4 @@ public class Player {
                 break;
         }
     } 
-} */
+} 

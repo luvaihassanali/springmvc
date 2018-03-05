@@ -53,8 +53,8 @@ public class CardList {
         exclusionList.add(Event1);
         exclusionList.add(Quest5);
 	}
-
-	public static String back = "/images/card-back.png";
+	//   "<spring:url value="/images/T1.jpg"/>"
+	public static String back = "'/images/card-back.png'";
 	public static String horseImage = "/images/W Horse.jpg";
 	public static String swordImage = "/images/W Sword.jpg";
 	public static String daggerImage = "/images/W Dagger.jpg";
@@ -89,7 +89,7 @@ public class CardList {
 	public static String callToArmsImage = "/images/E King's Call to Arms.jpg";
 	public static String recognitionImage = "/images/E King's Recognition.jpg";
 	public static String plagueImage = "/images/E Plague.jpg";
-	public static String poxImage = "/imags/E Pox.jpg";
+	public static String poxImage = "/images/E Pox.jpg";
 	public static String prosperityImage = "/images/E Prosperity Throughout the Realm.jpg";
 	public static String queensFavorImage = "/images/E Queen's Favor.jpg";
 	public static String testMorganImage = "/images/T Test of Morgan Le Fey.jpg";
@@ -113,6 +113,7 @@ public class CardList {
 	public static String orkneyImage = "/images/T2.jpg";
 	public static String tintagelImage = "/images/T3.jpg";
 	public static String yorkImage = "/images/T4.jpg";
+	
 	public static WeaponCard Horse = new WeaponCard("Horse", horseImage, 10);
 	public static WeaponCard Sword = new WeaponCard("Sword", swordImage, 10);
 	public static WeaponCard Dagger = new WeaponCard("Dagger", daggerImage, 5);

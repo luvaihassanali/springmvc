@@ -30,10 +30,10 @@ public class StoryDeck extends Decks {
 	}
 	public void fillEmptyDeck() {
 		System.out.println("Reshuffling story deck...");
-		initStoryDeck(this);
+		this.initStoryDeck();
 	}
 	
-	public StoryDeck initStoryDeck(StoryDeck s) {
+	public StoryDeck initStoryDeck() {
 		StoryCard[] s_arr = new StoryCard[28];
 	    //mimic story array for freq/randomization
 	    s_arr[0] = CardList.Quest9; s_arr[1] = CardList.Quest10; s_arr[2] = CardList.Quest2; s_arr[3] = CardList.Quest4; s_arr[4] = CardList.Quest8;
@@ -44,8 +44,8 @@ public class StoryDeck extends Decks {
 	    s_arr[24] = CardList.Event5; s_arr[25] = CardList.Event1; s_arr[26] = CardList.Event8; s_arr[27] = CardList.Event6;  
 	    //randomise then populate stack 
 	    Collections.shuffle(Arrays.asList(s_arr));
-        s.fillDeck(s_arr); //final story deck set here
-		return s;
+        this.fillDeck(s_arr); //final story deck set here
+		return this;
 	}
 	
 	public StoryDeck initRiggedStoryDeck(StoryDeck s, int deckId) {

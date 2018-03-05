@@ -1,9 +1,29 @@
 //static resources test
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
 
+//print server message to console
+socketConn.onmessage = function(event) {
+	
+	var serverMsg = document.getElementById('serverMsg');
+	
+	//flip story deck
+    if(event.data.startsWith("flipStoryDeck")) {
+    	serverMsg.value = "intercepted data";
+    	var card = event.data.replace('flipStoryDeck','');
+    	console.log(card);
+    	$("#storyCard").attr("src",card);
+    	return;
+    }
+	serverMsg.value = event.data;
+}
+
 socketConn.onopen = function (event) {
 	  socketConn.send("Player attempting to connect"); 
 };
+
+function flipStoryDeck() {
+	socketConn.send("flipStoryDeck");
+}
 
 function changeColor() {
    var title = document.getElementById('title');
@@ -32,10 +52,4 @@ function print() {
 //proof of connection
 function proof() {
 	socketConn.send("Proof");
-}
-
-// print server message to console
-socketConn.onmessage = function(event) {
-	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = event.data;
 }
