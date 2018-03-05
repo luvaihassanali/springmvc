@@ -6,7 +6,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.team62.spring.model.Client;
+import com.team62.spring.model.Player;
+import com.team62.spring.model.adventureCards.AdventureCard;
 import com.team62.spring.model.Game;
 
 @Component
@@ -22,10 +23,10 @@ public class SocketHandler extends TextWebSocketHandler {
 			String clientMessage = message.getPayload();
 
 			// first time connection
-			if (clientMessage.equals("Client attempting to connect")) {
+			if (clientMessage.equals("Player attempting to connect")) {
 				System.out.println(clientMessage);
-				System.out.println("Client #" + session.getId() + " connected");
-                if(gameEngine.clients.size() == 4) {
+				System.out.println("Player #" + session.getId() + " connected");
+                if(gameEngine.players.size() == 4) {
                 	session.sendMessage(new TextMessage("Too many players, sorry. Being disconnected."));
                 	session.close();
                 	return;
@@ -38,33 +39,36 @@ public class SocketHandler extends TextWebSocketHandler {
 			// initialize client
 			if (clientMessage.startsWith("Name")) {
 				String Name = clientMessage.substring(clientMessage.indexOf(':')+1);
-				Client clientObject = new Client(session.getId(), Name, session, sessionTracker);
-				gameEngine.clients.add(clientObject);
+				Player clientObject = new Player(session.getId(), Name, session, sessionTracker);
+				gameEngine.players.add(clientObject);
 				sessionTracker++;
 				session.sendMessage(new TextMessage("You are all set up, waiting for other players to connect.."));
-				if(gameEngine.clients.size()==4) {
-					for(Client c:gameEngine.clients) {
-						c.session.sendMessage(new TextMessage("All players have joined, starting game..."));
+				if(gameEngine.players.size()==4) {
+					for(Player p:gameEngine.players) {
+						p.session.sendMessage(new TextMessage("All players have joined, starting game..."));
 					}
 				}
 			}
 
-			//print all gameEngine.clients
+			//print all gameEngine.players
 			if(clientMessage.equals("Print")) {
 				session.sendMessage(new TextMessage("All players:\n"));
 				String clientsString = "";
-				for(Client c:gameEngine.clients) {
-					clientsString += "ID: " + c.id + " Name: " + c.name + "\n";
+				for(Player p:gameEngine.players) {
+					clientsString += "ID: " + p.id + " Name: " + p.name + "\n";
 				}
 				session.sendMessage(new TextMessage(clientsString));
 			}
 			
 			//validation 
 			if(clientMessage.startsWith("Proof")) {
-				for(int i=0; i<gameEngine.clients.size(); i++) {
-					if(session.getId().equals(gameEngine.clients.get(i).session.getId())) {
-						gameEngine.clients.get(i).session.sendMessage(new TextMessage("You are " + gameEngine.clients.get(i).name));
+				for(int i=0; i<gameEngine.players.size(); i++) {
+					if(session.getId().equals(gameEngine.players.get(i).session.getId())) {
+						gameEngine.players.get(i).session.sendMessage(new TextMessage("You are " + gameEngine.players.get(i).name));
 					}
+				}
+				for(AdventureCard a: gameEngine.adventureDeck.cards) {
+					System.out.println(a.name);					
 				}
 			}
 			

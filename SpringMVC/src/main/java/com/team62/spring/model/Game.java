@@ -2,12 +2,19 @@ package com.team62.spring.model;
 
 import java.util.ArrayList;
 
+import com.team62.spring.model.decks.AdventureDeck;
+import com.team62.spring.model.decks.StoryDeck;
+
 public class Game {
 	
-	public ArrayList<Client> clients;
+	public ArrayList<Player> players;
+	public StoryDeck storyDeck;
+    public AdventureDeck adventureDeck;
 	
 	public Game() {
-		clients = new ArrayList<Client>();
+		players = new ArrayList<Player>();
+		adventureDeck = new AdventureDeck();
+		adventureDeck.initAdventureDeck();
 	}
 }
 

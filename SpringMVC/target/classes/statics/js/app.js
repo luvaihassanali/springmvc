@@ -2,7 +2,7 @@
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
 
 socketConn.onopen = function (event) {
-	  socketConn.send("Client attempting to connect"); 
+	  socketConn.send("Player attempting to connect"); 
 };
 
 function changeColor() {
