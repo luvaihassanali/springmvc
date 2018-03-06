@@ -1,11 +1,18 @@
 //static resources test
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
-
+var roundOver = false;
+var turnTracker = 0;
 //print server message to console
 socketConn.onmessage = function(event) {
 	
 	var serverMsg = document.getElementById('serverMsg');
 	
+	//increment turn tracker
+	if(event.data.startsWith("turnTracker")) {
+		var num = event.data.replace('turnTracker','');
+		turnTracker = num; 
+		return;
+	}
 	//flip story deck
     if(event.data.startsWith("flipStoryDeck")) {
     	serverMsg.value = "Flipping card from Story Deck";
@@ -32,6 +39,13 @@ socketConn.onmessage = function(event) {
         $("#card12").attr("src",handStringArray[11]);
 		return;
     }
+    //ask to sponsor quest
+    if(event.data==="sponsorQuest") {
+    	document.getElementById('sponsorQuest').style.display = 'block';
+    	serverMsg.value = "Click to answer below"
+    	return;
+    }
+
 	serverMsg.value = event.data;
 }
 
@@ -39,10 +53,35 @@ socketConn.onopen = function (event) {
 	  socketConn.send("Player attempting to connect"); 
 };
 
+//accept to sponsor quest
+function acceptSponsorQuest() {
+	var serverMsg = document.getElementById('serverMsg');
+	document.getElementById('sponsorQuest').style.display = 'none';
+	serverMsg.value = "You are sponsor, setting up quest...";
+}
+//deny to sponsor quest
+function denySponsorQuest() {
+	var serverMsg = document.getElementById('serverMsg');
+	socketConn.send("incTurn");
+	document.getElementById('sponsorQuest').style.display = 'none';
+	serverMsg.value = "Waiting on other players...";
+	console.log(turnTracker);
+	if(turnTracker==3) roundOver = true;
+	console.log(roundOver);
+	if(roundOver==false) {
+	socketConn.send("askNextPlayerToSponsor");
+	} else {
+		console.log("in end of round");
+		roundOver = false;
+		socketConn.send("flipStoryDeck");
+		return;
+	}
+}
+//flip story card
 function flipStoryDeck() {
 	socketConn.send("flipStoryDeck");
 }
-
+//static resource test, changes title back and forth from red and black
 function changeColor() {
    var title = document.getElementById('title');
    if (title.className == 'color1') {
@@ -51,7 +90,8 @@ function changeColor() {
    	title.className = 'color1';
    }
 }
-//send name to server
+
+//send name to server -> adds client to player list
 function send() {
 	var clientMsg = document.getElementById('clientMsg');
 	if (clientMsg.value) {
@@ -67,7 +107,7 @@ function print() {
 	socketConn.send("Print");
 }
 
-//proof of connection
+//proof of connection - prints deck proof also 
 function proof() {
 	socketConn.send("Proof");
 }

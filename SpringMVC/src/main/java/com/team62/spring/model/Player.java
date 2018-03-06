@@ -12,7 +12,6 @@ public class Player {
 	public String id;
 	public String name;
 	public WebSocketSession session;
-	public int sessionTracker;
 	private ArrayList<AdventureCard> hand;
 	ArrayList<WeaponCard> weapons;
 	ArrayList<AllyCard> allies;
@@ -23,11 +22,10 @@ public class Player {
 	public int tieCheck;
     AI ai;
     
-	public Player(String id, String name, WebSocketSession session, int sessionTracker) {
+	public Player(String id, String name, WebSocketSession session) {
 		this.id = id;
 		this.name = name;
 		this.session = session;
-		this.sessionTracker = sessionTracker;
 		this.hand = new ArrayList<AdventureCard>();
 		this.weapons = new ArrayList<WeaponCard>();
 		this.rank = CardList.Squire;

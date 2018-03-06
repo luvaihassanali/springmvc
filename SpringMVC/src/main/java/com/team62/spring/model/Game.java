@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.team62.spring.model.adventureCards.AdventureCard;
 import com.team62.spring.model.decks.AdventureDeck;
 import com.team62.spring.model.decks.StoryDeck;
+import com.team62.spring.websocket.SocketHandler;
 
 public class Game {
 	private static final Logger logger = LogManager.getLogger(Game.class);
@@ -107,10 +108,13 @@ public class Game {
 		p.setName(s);
 	}
 
-	public void getActivePlayer() {
-//		return players.get(Controller.numTurns % playerList.size());
+	public Player getActivePlayer() {
+		return players.get(SocketHandler.numTurns % players.size());
 	}
 
+	public Player getPrevPlayer() {
+		return players.get((SocketHandler.numTurns % players.size())-1);
+	}
 	
     //convenience method because I think this will get called a lot
     public void isActiveAI(){

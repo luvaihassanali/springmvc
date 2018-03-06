@@ -31,7 +31,7 @@
 	<button onclick="print()">Print all players</button>
 	<button onclick="proof()">Proof</button>
 	<button onclick="window.location.href='/view2'">Testing View2</button>
-	<button onclick="flipStoryDeck()">Flip story deck</button>
+	<button type="button" disabled onclick="flipStoryDeck()">Flip story deck</button>
 	<br>
 	<label>Console</label>
 	<br>
@@ -63,6 +63,8 @@
 		<img id="storyCard" alt="image" src="/images/all.png" height="300"
 			width="200"> <img alt="image" src="/images/all.png"
 			height="300" width="200">
+	<div id="sponsorQuest" style="display:none"><label><strong>Do you want to sponsor quest?</strong></label> <button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button> <button id="denySponsorQuest" onclick="denySponsorQuest()">No</button></div>
+ 
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Story
 	Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S.
