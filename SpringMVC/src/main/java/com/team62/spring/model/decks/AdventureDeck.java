@@ -5,16 +5,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.team62.spring.model.CardList;
 import com.team62.spring.model.adventureCards.AdventureCard;
 
 public class AdventureDeck extends Decks {
-	
+	private static final Logger logger = LogManager.getLogger(AdventureDeck.class);
 	public Stack<AdventureCard> cards = new Stack<AdventureCard>();
 	public AdventureCard faceUp; 
 	public ArrayList<AdventureCard> discardPile = new ArrayList<AdventureCard>(); 
 	public  AdventureDeck() { 
-		
+		this.initAdventureDeck();
+		logger.info("Shuffling adventure deck...");
 	}
 	
 	public void fillDeck(AdventureCard[] a) {
@@ -36,6 +40,7 @@ public class AdventureDeck extends Decks {
 	}
 	
 	public void fillEmptyDeck() {
+		logger.info("Reshuffling story deck...");
 		this.initAdventureDeck();
 	}
 	

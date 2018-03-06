@@ -3,7 +3,6 @@ package com.team62.spring.model.storyCards;
 import com.team62.spring.model.adventureCards.*;
 
 public class QuestCard extends StoryCard{
-	String name;
 	FoeCard foe; 
 	FoeCard foe2;
 	int stages;

@@ -10,8 +10,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.team62.spring.model.Player;
-import com.team62.spring.model.AI.AI;
+//import com.team62.spring.model.AI.AI;
 import com.team62.spring.model.adventureCards.AdventureCard;
+import com.team62.spring.model.storyCards.StoryCard;
 import com.team62.spring.model.Game;
 
 @Component
@@ -49,6 +50,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				session.sendMessage(new TextMessage("flipStoryDeck" + gameEngine.storyDeck.faceUp.StringFile));
 				logger.info("Flipping card from story deck");
 			}
+			
 			// initialize client
 			if (clientMessage.startsWith("Name")) {
 				String Name = clientMessage.substring(clientMessage.indexOf(':')+1);
@@ -84,17 +86,15 @@ public class SocketHandler extends TextWebSocketHandler {
 					}
 				}
 				
-				logger.info("ADVENTURE DECK PROOF:");
+				logger.info("ADVENTURE DECK PROOF:"); int i=1;
 				for(AdventureCard a: gameEngine.adventureDeck.cards) {
-					int i=0;
 					logger.info("{}. {}",i,a.name);
 					i++;
 				}
-				logger.info("STORY DECK PROOF:");
-				for(AdventureCard a: gameEngine.adventureDeck.cards) {
-					int i=0;
-					logger.info("{}. {}",i,a.name);
-					i++;				
+				logger.info("STORY DECK PROOF:"); int j=1;
+				for(StoryCard s: gameEngine.storyDeck.cards) {
+					logger.info("{}. {}",j,s.name);
+					j++;				
 				}
 			}
 			

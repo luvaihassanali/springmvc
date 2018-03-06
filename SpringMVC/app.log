@@ -1,57 +1,208 @@
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:33:55 EST 2018]; root of context hierarchy
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Registering annotated classes: [class com.team62.spring.config.WebConfig,class com.team62.spring.config.SocketConfig]
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/view2],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.view2()
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/welcome],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.team62.spring.controller.ViewController.helloWorld()
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.index(org.springframework.ui.ModelMap)
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-Mar-05 18:33:55 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/images/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:33:55 EST 2018]; root of context hierarchy
-2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.web.socket.server.support.WebSocketHandlerMapping - Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
-2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
-2018-Mar-05 18:33:56 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 1088 ms
-2018-Mar-05 18:33:57 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:33:57 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player #5ab62c41 connected
-2018-Mar-05 18:34:11 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p1 is enrolled in the quest
-2018-Mar-05 18:34:14 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:34:14 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player #3afd6db9 connected
-2018-Mar-05 18:34:16 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p2 is enrolled in the quest
-2018-Mar-05 18:34:18 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:34:18 PM [qtp1517677623-15] INFO  com.team62.spring.websocket.SocketHandler - Player #150cb965 connected
-2018-Mar-05 18:34:20 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p3 is enrolled in the quest
-2018-Mar-05 18:34:22 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:34:22 PM [qtp1517677623-16] INFO  com.team62.spring.websocket.SocketHandler - Player #2e4d375f connected
-2018-Mar-05 18:34:24 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - Player p4 is enrolled in the quest
-2018-Mar-05 18:34:24 PM [qtp1517677623-19] INFO  com.team62.spring.websocket.SocketHandler - All 4 players connected, starting game -> flipping first story card
-2018-Mar-05 18:34:31 PM [qtp1517677623-18] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:34:31 PM [qtp1517677623-18] INFO  com.team62.spring.websocket.SocketHandler - Player #2abbcf14 connected
-2018-Mar-05 18:34:31 PM [qtp1517677623-18] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
-2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
-2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:35:14 EST 2018]; root of context hierarchy
-2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Registering annotated classes: [class com.team62.spring.config.WebConfig,class com.team62.spring.config.SocketConfig]
-2018-Mar-05 18:35:14 PM [main] INFO  org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-Mar-05 18:35:15 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/welcome],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.team62.spring.controller.ViewController.helloWorld()
-2018-Mar-05 18:35:15 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/view2],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.view2()
-2018-Mar-05 18:35:15 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.index(org.springframework.ui.ModelMap)
-2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/images/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 18:35:14 EST 2018]; root of context hierarchy
-2018-Mar-05 18:35:16 PM [main] INFO  org.springframework.web.socket.server.support.WebSocketHandlerMapping - Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
-2018-Mar-05 18:35:17 PM [main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
-2018-Mar-05 18:35:17 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 2492 ms
-2018-Mar-05 18:35:30 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:35:30 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player #40dec988 connected
-2018-Mar-05 18:35:36 PM [qtp738590621-18] INFO  com.team62.spring.websocket.SocketHandler - Player p1 is enrolled in the quest
-2018-Mar-05 18:35:49 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:35:49 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player #46126062 connected
-2018-Mar-05 18:35:51 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player p2 is enrolled in the quest
-2018-Mar-05 18:35:53 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:35:53 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player #45370d24 connected
-2018-Mar-05 18:35:55 PM [qtp738590621-18] INFO  com.team62.spring.websocket.SocketHandler - Player p3 is enrolled in the quest
-2018-Mar-05 18:35:58 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:35:58 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player #498a2d97 connected
-2018-Mar-05 18:36:00 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player p4 is enrolled in the quest
-2018-Mar-05 18:36:00 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - All 4 players connected, starting game -> flipping first story card
-2018-Mar-05 18:36:07 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
-2018-Mar-05 18:36:07 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
+2018-Mar-05 20:45:33 PM [qtp738590621-20] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:45:33 PM [qtp738590621-20] INFO  com.team62.spring.websocket.SocketHandler - Player #7aebc016 connected
+2018-Mar-05 20:45:36 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player p1 is enrolled in the quest
+2018-Mar-05 20:45:39 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:45:39 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - Player #6b61fc17 connected
+2018-Mar-05 20:45:41 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player p2 is enrolled in the quest
+2018-Mar-05 20:45:43 PM [qtp738590621-20] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:45:43 PM [qtp738590621-20] INFO  com.team62.spring.websocket.SocketHandler - Player #4e7d8d72 connected
+2018-Mar-05 20:45:46 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player p3 is enrolled in the quest
+2018-Mar-05 20:45:47 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:45:47 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - Player #6dd2739a connected
+2018-Mar-05 20:45:50 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player p4 is enrolled in the quest
+2018-Mar-05 20:45:50 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - All 4 players connected, starting game -> flipping first story card
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - ADVENTURE DECK PROOF:
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 1. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 2. King Pellinore
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 3. Black Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 4. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 5. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 6. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 7. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 8. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 9. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 10. Mordred
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 11. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 12. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 13. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 14. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 15. Test of Morgan Le Fey
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 16. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 17. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 18. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 19. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 20. Evil Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 21. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 22. Test of Valor
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 23. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 24. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 25. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 26. Evil Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 27. Giant
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 28. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 29. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 30. Dragon
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 31. Test of Temptation
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 32. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 33. Queen Guinevere
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 34. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 35. Saxons
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 36. Evil Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 37. Saxons
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 38. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 39. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 40. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 41. Black Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 42. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 43. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 44. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 45. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 46. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 47. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 48. Excalibur
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 49. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 50. Sir Tristan
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 51. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 52. Test of Valor
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 53. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 54. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 55. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 56. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 57. Mordred
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 58. Evil Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 59. Robber Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 60. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 61. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 62. Black Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 63. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 64. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 65. Mordred
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 66. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 67. Test of the Questing Beast
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 68. Lance
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 69. King Arthur
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 70. Saxons
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 71. Test of Morgan Le Fey
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 72. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 73. Excalibur
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 74. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 75. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 76. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 77. Lance
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 78. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 79. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 80. Sir Galahad
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 81. Mordred
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 82. Sir Lancelot
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 83. Lance
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 84. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 85. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 86. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 87. Sir Percival
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 88. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 89. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 90. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 91. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 92. Lance
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 93. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 94. Test of the Questing Beast
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 95. Sir Gawain
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 96. Evil Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 97. Saxons
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 98. QueenIseult
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 99. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 100. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 101. Test of Temptation
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 102. Mordred
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 103. Lance
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 104. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 105. Thieves
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 106. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 107. Black Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 108. Giant
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 109. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 110. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 111. Evil Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 112. Saxons
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 113. Saxons
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 114. Merlin
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 115. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 116. Lance
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 117. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 118. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 119. Horse
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 120. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 121. Battle-ax
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 122. Sword
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 123. Saxon Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 124. Amour
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 125. Green Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 126. Dagger
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - STORY DECK PROOF:
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 1. Defend the Queen's Honor
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 2. King's Recognition
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 3. King's Recognition
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 4. Repel the Saxon Raiders
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 5. At Tintagel
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 6. King's Call to Arms
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 7. Search for the Holy Grail
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 8. Court Called to Camelot
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 9. At Camelot
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 10. Search for the Questing Beast
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 11. Boar Hunt
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 12. Court Called to Camelot
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 13. Test of the Green Knight
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 14. Boar Hunt
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 15. Repel the Saxon Raiders
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 16. Journey through the Enchanted Forest
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 17. Chivalrous Deed
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 18. Queen's Favor
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 19. Vanquish King Arthur's Enemies
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 20. Prosperity Throughout the Realm
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 21. Slay the Dragon
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 22. Vanquish King Arthur's Enemies
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 23. At Ornkey
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 24. Plague
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 25. At York
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 26. Rescue the Fair Maiden
+2018-Mar-05 20:45:59 PM [qtp738590621-21] INFO  com.team62.spring.websocket.SocketHandler - 27. Pox
+2018-Mar-05 20:46:03 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:46:03 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
+2018-Mar-05 20:46:08 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:46:08 PM [qtp738590621-14] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
+2018-Mar-05 20:55:33 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+2018-Mar-05 20:55:33 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 20:55:33 EST 2018]; root of context hierarchy
+2018-Mar-05 20:55:33 PM [main] INFO  org.springframework.web.context.support.AnnotationConfigWebApplicationContext - Registering annotated classes: [class com.team62.spring.config.WebConfig,class com.team62.spring.config.SocketConfig]
+2018-Mar-05 20:55:33 PM [main] INFO  org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-Mar-05 20:55:33 PM [main] INFO  com.team62.spring.model.Game - Initialising new game
+2018-Mar-05 20:55:33 PM [main] INFO  com.team62.spring.model.decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-05 20:55:33 PM [main] INFO  com.team62.spring.model.decks.StoryDeck - Shuffling story deck...
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.index(org.springframework.ui.ModelMap)
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/view2],methods=[GET]}" onto public java.lang.String com.team62.spring.controller.ViewController.view2()
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/welcome],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.team62.spring.controller.ViewController.helloWorld()
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/images/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Mon Mar 05 20:55:33 EST 2018]; root of context hierarchy
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.socket.server.support.WebSocketHandlerMapping - Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.context.support.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+2018-Mar-05 20:55:34 PM [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 1060 ms
+2018-Mar-05 20:55:56 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:55:56 PM [qtp738590621-17] INFO  com.team62.spring.websocket.SocketHandler - Player #458944ac connected
+2018-Mar-05 20:56:12 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - Player p1 is enrolled in the quest
+2018-Mar-05 20:56:15 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:56:15 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - Player #6bfe9016 connected
+2018-Mar-05 20:56:17 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - Player p2 is enrolled in the quest
+2018-Mar-05 20:56:19 PM [qtp738590621-16] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:56:19 PM [qtp738590621-16] INFO  com.team62.spring.websocket.SocketHandler - Player #35e5b4d3 connected
+2018-Mar-05 20:56:21 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - Player p3 is enrolled in the quest
+2018-Mar-05 20:56:23 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:56:23 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - Player #6f17172e connected
+2018-Mar-05 20:56:25 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - Player p4 is enrolled in the quest
+2018-Mar-05 20:56:25 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - All 4 players connected, starting game -> flipping first story card
+2018-Mar-05 20:56:27 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - Flipping card from story deck
+2018-Mar-05 20:56:27 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - Flipping card from story deck
+2018-Mar-05 20:56:28 PM [qtp738590621-27] INFO  com.team62.spring.websocket.SocketHandler - Flipping card from story deck
+2018-Mar-05 20:57:52 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:57:52 PM [qtp738590621-25] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full
+2018-Mar-05 20:59:08 PM [qtp738590621-24] INFO  com.team62.spring.websocket.SocketHandler - Player attempting to connect...
+2018-Mar-05 20:59:08 PM [qtp738590621-24] INFO  com.team62.spring.websocket.SocketHandler - A player got denied entry to game, already full

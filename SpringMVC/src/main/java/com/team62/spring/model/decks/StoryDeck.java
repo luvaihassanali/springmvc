@@ -4,16 +4,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.team62.spring.model.CardList;
 import com.team62.spring.model.storyCards.StoryCard;
 
 public class StoryDeck extends Decks {
-
+	private static final Logger logger = LogManager.getLogger(StoryDeck.class);
 	public Stack<StoryCard> cards = new Stack<StoryCard>();
 	public StoryCard faceUp;
 	public ArrayList<StoryCard> discardPile = new ArrayList<StoryCard>();
 	public  StoryDeck() { 
-		
+		logger.info("Shuffling story deck...");
+		this.initStoryDeck();
 	}
 	
 	public void fillRiggedDeck(StoryCard[] s) {
@@ -29,7 +33,7 @@ public class StoryDeck extends Decks {
 		}
 	}
 	public void fillEmptyDeck() {
-		System.out.println("Reshuffling story deck...");
+		logger.info("Reshuffling story deck...");
 		this.initStoryDeck();
 	}
 	
