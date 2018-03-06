@@ -61,10 +61,18 @@ public class SocketHandler extends TextWebSocketHandler {
 				session.sendMessage(new TextMessage("You are all set up, waiting for other players to connect.."));
 				//all clients have joined
 				if(gameEngine.players.size()==4) {
-					logger.info("All 4 players connected, starting game -> flipping first story card");
+					logger.info("All 4 players connected, starting game -> setting player hands + flipping first story card");
 					sendToAllSessions(gameEngine.players,"All players have joined, starting game...");
 					gameEngine.storyDeck.flipCard();
 					sendToAllSessions(gameEngine.players,"flipStoryDeck" + gameEngine.storyDeck.faceUp.StringFile);
+					gameEngine.players.get(0).setHand(gameEngine.mockHand1); //pickUpNewHand()
+					gameEngine.players.get(1).setHand(gameEngine.mockHand2);
+					gameEngine.players.get(2).setHand(gameEngine.mockHand3);
+					gameEngine.players.get(3).setHand(gameEngine.mockHand4);
+					gameEngine.players.get(0).session.sendMessage(new TextMessage("setHand"+gameEngine.players.get(0).getHandString()));
+					gameEngine.players.get(1).session.sendMessage(new TextMessage("setHand"+gameEngine.players.get(1).getHandString()));
+					gameEngine.players.get(2).session.sendMessage(new TextMessage("setHand"+gameEngine.players.get(2).getHandString()));
+					gameEngine.players.get(3).session.sendMessage(new TextMessage("setHand"+gameEngine.players.get(3).getHandString()));
 				}
 			}
 
@@ -78,30 +86,32 @@ public class SocketHandler extends TextWebSocketHandler {
 				session.sendMessage(new TextMessage(clientsString));
 			}
 			
-			//validation of connection
+			//validation of connection and decks - will segfault if players list not init
 			if(clientMessage.startsWith("Proof")) {
-				for(int i=0; i<gameEngine.players.size(); i++) {
-					if(session.getId().equals(gameEngine.players.get(i).session.getId())) {
-						gameEngine.players.get(i).session.sendMessage(new TextMessage("You are " + gameEngine.players.get(i).name));
-					}
-				}
-				
+				//
 				logger.info("ADVENTURE DECK PROOF:"); int i=1;
 				for(AdventureCard a: gameEngine.adventureDeck.cards) {
 					logger.info("{}. {}",i,a.name);
 					i++;
 				}
+				//
 				logger.info("STORY DECK PROOF:"); int j=1;
 				for(StoryCard s: gameEngine.storyDeck.cards) {
 					logger.info("{}. {}",j,s.name);
 					j++;				
 				}
+				//output player name in messageconsole
+				if(getCurrentPlayer(session) ==null) {} else {
+					getCurrentPlayer(session).session.sendMessage(new TextMessage("You are " + getCurrentPlayer(session).name));
+				}
+				
 			}
 			
 			
 		} // if session open
 	} // handler end
 	
+	//send message to all players
 	public void sendToAllSessions(ArrayList<Player> players, String message) throws IOException {
 
 		for(Player p:gameEngine.players) {
@@ -109,6 +119,21 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 
 	}
+	
+	//get current player 
+	public Player getCurrentPlayer(WebSocketSession s) {
+		for(int i=0; i<gameEngine.players.size(); i++) {
+			if(s.getId().equals(gameEngine.players.get(i).session.getId())) {
+				return gameEngine.players.get(i);
+			}
+		}
+		return null;
+	}
+	
+
+	
+	
+	
 } // class end
 
 

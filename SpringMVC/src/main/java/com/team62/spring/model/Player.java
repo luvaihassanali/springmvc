@@ -1,7 +1,6 @@
 package com.team62.spring.model;
 
 import org.springframework.web.socket.WebSocketSession;
-import com.team62.spring.model.storyCards.*;
 import com.team62.spring.model.AI.AI;
 import com.team62.spring.model.AI.Strategy2;
 import com.team62.spring.model.adventureCards.*;
@@ -39,6 +38,9 @@ public class Player {
 		this.tieCheck = 0;
 	}
 
+	public Player(String name) {
+		this.name = name;
+	}
 	public int getHandSize() {
 
 		return hand.size();
@@ -48,14 +50,15 @@ public class Player {
 		name = n;
 	}
 
-	public void checkCards() {
-		if (this.getHand().size() > 11) {
-			System.out.println("DO SOMETHING");
-		} else {
-			System.out.println("YOU GOOD");
+	public String getHandString( ) {
+		String handString = "";
+		for(AdventureCard a: this.hand) {
+			handString += (a.StringFile+":");
 		}
-	}
+		return handString;
 
+	}
+	
 	public void giveShields(int numShields) {
 
 		this.addShields(numShields);

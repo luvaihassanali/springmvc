@@ -8,11 +8,29 @@ socketConn.onmessage = function(event) {
 	
 	//flip story deck
     if(event.data.startsWith("flipStoryDeck")) {
-    	serverMsg.value = "intercepted data";
+    	serverMsg.value = "Flipping card from Story Deck";
     	var card = event.data.replace('flipStoryDeck','');
-    	console.log(card);
     	$("#storyCard").attr("src",card);
     	return;
+    }
+    //set hand
+    if(event.data.startsWith("setHand")) {
+    	serverMsg.value = "Setting player hand, flipping story deck";
+    	var handString = event.data.replace('setHand','');
+        var handStringArray = handString.split(":");
+        $("#card1").attr("src",handStringArray[0]);
+        $("#card2").attr("src",handStringArray[1]);
+        $("#card3").attr("src",handStringArray[2]);
+        $("#card4").attr("src",handStringArray[3]);
+        $("#card5").attr("src",handStringArray[4]);
+        $("#card6").attr("src",handStringArray[5]);
+        $("#card7").attr("src",handStringArray[6]);
+        $("#card8").attr("src",handStringArray[7]);
+        $("#card9").attr("src",handStringArray[8]);
+        $("#card10").attr("src",handStringArray[9]);
+        $("#card11").attr("src",handStringArray[10]);
+        $("#card12").attr("src",handStringArray[11]);
+		return;
     }
 	serverMsg.value = event.data;
 }
