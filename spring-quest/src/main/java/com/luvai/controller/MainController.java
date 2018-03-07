@@ -5,8 +5,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.luvai.model.Message;
-import com.luvai.model.OutputMessage;
+import com.luvai.model.Data;
+import com.luvai.model.OutputData;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,10 +24,10 @@ public class MainController {
 	
     @MessageMapping("/info")
     @SendTo("/topic/gameInfo")
-    public OutputMessage send(final Message message) throws Exception {
+    public OutputData send(final Data data) throws Exception {
 
         final String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new OutputMessage(message.getFrom(), message.getText(), time);
+        return new OutputData(data.getFrom(), data.getText(), time);
     }
 
 }

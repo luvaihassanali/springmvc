@@ -4,7 +4,7 @@ var stompClient = null;
 
 function setConnected(connected) {
 	document.getElementById('connect').disabled = connected;
-	document.getElementById('disconnect').disabled = !connected;
+	//document.getElementById('disconnect').disabled = !connected;
 	document.getElementById('conversationDiv').style.visibility = connected ? 'visible'
 			: 'hidden';
 	document.getElementById('response').innerHTML = '';
@@ -14,12 +14,19 @@ function connect() {
 	var socket = new SockJS('/info');
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
+		var from = document.getElementById('from').value;
+		var text = "joined game";
+		stompClient.send("/data/info", {}, JSON.stringify({
+			'from' : from,
+			'text' : text
+		}));
 		setConnected(true);
-		console.log('Connected: ' + frame);
-		stompClient.subscribe('/topic/gameInfo', function(messageOutput) {
-			showMessageOutput(JSON.parse(messageOutput.body));
+		console.log('Connected: ' + frame);	
+		stompClient.subscribe('/topic/gameInfo', function(dataOutput) {
+			showDataOutput(JSON.parse(dataOutput.body));
 		});
 	});
+	document.getElementById('serverMsg').value = "Waiting for other players"
 }
 
 function disconnect() {
@@ -30,7 +37,7 @@ function disconnect() {
 	console.log("Disconnected");
 }
 
-function sendMessage() {
+function sendData() {
 	var from = document.getElementById('from').value;
 	var text = document.getElementById('text').value;
 	stompClient.send("/data/info", {}, JSON.stringify({
@@ -39,12 +46,12 @@ function sendMessage() {
 	}));
 }
 
-function showMessageOutput(messageOutput) {
+function showDataOutput(dataOutput) {
 	var response = document.getElementById('response');
 	var p = document.createElement('p');
 	p.style.wordWrap = 'break-word';
-	p.appendChild(document.createTextNode(messageOutput.from + ": "
-			+ messageOutput.text + " (" + messageOutput.time + ")"));
+	p.appendChild(document.createTextNode(dataOutput.from + ": "
+			+ dataOutput.text + " (" + dataOutput.time + ")"));
 	response.appendChild(p);
 }
 
