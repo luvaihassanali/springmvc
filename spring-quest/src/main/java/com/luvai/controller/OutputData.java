@@ -1,20 +1,20 @@
-package com.luvai.model;
+package com.luvai.controller;
 
 public class OutputData {
 
     private String from;
-    private String text;
+    private String data;
     private String time;
 
-    public OutputData(final String from, final String text, final String time) {
+    public OutputData(final String from, final String data, final String time) {
 
         this.from = from;
-        this.text = text;
+        this.data = data;
         this.time = time;
     }
 
-    public String getText() {
-        return text;
+    public String getData() {
+        return data;
     }
 
     public String getTime() {

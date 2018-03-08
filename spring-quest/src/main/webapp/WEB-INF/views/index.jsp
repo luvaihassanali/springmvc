@@ -41,14 +41,8 @@
 			<button disabled="disabled" onclick="proof()">Proof</button>
 			<button type="button" disabled onclick="flipStoryDeck()">Flip story deck</button>
 		</div>
-		<br />
-		<div id="conversationDiv">
-			<input type="text" id="text" placeholder="Write a message..." />
-			<button id="sendMessage" onclick="sendData();">Send</button>
-			<p id="response"></p>
-		</div>
 	</div>
-	<label>Console</label>
+	<label>Console</label><br>
 	<textarea rows="2" cols="50" id="serverMsg" readonly="readonly"></textarea>
 	<div style="float: right" id="playerHand">
 		<div>

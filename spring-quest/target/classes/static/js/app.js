@@ -4,10 +4,6 @@ var stompClient = null;
 
 function setConnected(connected) {
 	document.getElementById('connect').disabled = connected;
-	//document.getElementById('disconnect').disabled = !connected;
-	document.getElementById('conversationDiv').style.visibility = connected ? 'visible'
-			: 'hidden';
-	document.getElementById('response').innerHTML = '';
 }
 
 function connect() {
@@ -15,12 +11,13 @@ function connect() {
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
 		var from = document.getElementById('from').value;
-		var text = "joined game";
+		var data = "joined game";
 		stompClient.send("/data/info", {}, JSON.stringify({
 			'from' : from,
-			'text' : text
+			'data' : data
 		}));
 		setConnected(true);
+		document.getElementById('title').innerHTML = "Welcome to Quest of The Round Table - " + document.getElementById('from').value + "'s View";
 		console.log('Connected: ' + frame);	
 		stompClient.subscribe('/topic/gameInfo', function(dataOutput) {
 			showDataOutput(JSON.parse(dataOutput.body));
@@ -39,20 +36,15 @@ function disconnect() {
 
 function sendData() {
 	var from = document.getElementById('from').value;
-	var text = document.getElementById('text').value;
+	var data = document.getElementById('data').value;
 	stompClient.send("/data/info", {}, JSON.stringify({
 		'from' : from,
-		'text' : text
+		'data' : data
 	}));
 }
 
 function showDataOutput(dataOutput) {
-	var response = document.getElementById('response');
-	var p = document.createElement('p');
-	p.style.wordWrap = 'break-word';
-	p.appendChild(document.createTextNode(dataOutput.from + ": "
-			+ dataOutput.text + " (" + dataOutput.time + ")"));
-	response.appendChild(p);
+	console.log("Data recieved: <" + dataOutput.data + "> from <" + dataOutput.from + ">");
 }
 
 

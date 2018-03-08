@@ -41,3 +41,29 @@
 2018-Mar-07 15:27:49 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.MainController - Rendering game screen
 2018-Mar-07 15:28:41 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.MainController - Rendering game screen
 2018-Mar-07 15:29:17 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.MainController - Rendering game screen
+2018-Mar-07 19:05:05 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.MainController - test
+2018-Mar-07 19:05:10 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.MainController - test
+2018-Mar-07 19:08:30 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <1>
+2018-Mar-07 19:08:40 PM [clientInboundChannel-6] INFO  com.luvai.controller.MainController - Received data: <joined game> from <2>
+2018-Mar-07 19:11:58 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <Bra>
+2018-Mar-07 19:13:21 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:14:28 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:15:54 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:17:49 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:17:56 PM [clientInboundChannel-6] INFO  com.luvai.controller.MainController - Received data: <joined game> from <be>
+2018-Mar-07 19:19:18 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:19:27 PM [clientInboundChannel-7] INFO  com.luvai.controller.MainController - Received data: <joined game> from <fresh>
+2018-Mar-07 19:20:10 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:22:20 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:22:32 PM [clientInboundChannel-5] INFO  com.luvai.controller.MainController - Received data: <joined game> from <werd>
+2018-Mar-07 19:25:11 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:25:57 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:26:06 PM [clientInboundChannel-6] INFO  com.luvai.controller.MainController - Received data: <joined game> from <fer>
+2018-Mar-07 19:32:07 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:32:43 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:32:47 PM [clientInboundChannel-7] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:33:43 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:35:05 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:36:35 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:37:49 PM [clientInboundChannel-4] INFO  com.luvai.controller.MainController - Received data: <joined game> from <red>
+2018-Mar-07 19:38:04 PM [clientInboundChannel-5] INFO  com.luvai.controller.MainController - Received data: <joined game> from <blue>
