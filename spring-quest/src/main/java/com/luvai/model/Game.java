@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.luvai.config.SocketHandler;
+import com.luvai.controller.SocketHandler;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.Decks.AdventureDeck;
 import com.luvai.model.Decks.StoryDeck;
@@ -113,7 +113,7 @@ public class Game {
 	}
 
 	public Player getPrevPlayer() {
-		return players.get((SocketHandler.numTurns % players.size()) - 1);
+		return players.get((SocketHandler.numTurns % players.size() - 1));
 	}
 
 	// convenience method because I think this will get called a lot

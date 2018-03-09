@@ -19,22 +19,21 @@
 </head>
 <body>
 
-	<h1 id="title" class="color1">Welcome to Quest of the Round Table</h1>
+	<h1 id="title" class="color1">Welcome to Quest of The Round Table</h1>
 	${message}
-	<button onclick="changeColor()">Change Color</button>
 	<hr />
+	<p id="enterName">
 	<label id="name">Enter name</label>
-	<br>
 	<textarea rows="1" cols="50" id="clientMsg"></textarea>
-	<br>
+	</p>
+	
 	<button id="send" onclick="send()">Send</button>
 	<button onclick="print()">Print all players</button>
 	<button onclick="proof()">Proof</button>
-	<button onclick="window.location.href='/view2'">Testing View2</button>
 	<button type="button" disabled onclick="flipStoryDeck()">Flip story deck</button>
-	<br>
+	<br> <br>
 	<label>Console</label>
-	<br>
+
 	<p>
 		<textarea rows="2" cols="50" id="serverMsg" readonly="readonly"></textarea>
 	</p>
@@ -58,13 +57,11 @@
 
 		</div>
 	</div>
-
-	<div>
+    <div id="sponsorQuest" style="display:none"><label><strong>Do you want to sponsor quest?</strong></label> <button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button> <button id="denySponsorQuest" onclick="denySponsorQuest()">No</button></div>
+ 	<div>
 		<img id="storyCard" alt="image" src="/resources/images/all.png" height="300"
 			width="200"> <img alt="image" src="/resources/images/all.png"
 			height="300" width="200">
-	<div id="sponsorQuest" style="display:none"><label><strong>Do you want to sponsor quest?</strong></label> <button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button> <button id="denySponsorQuest" onclick="denySponsorQuest()">No</button></div>
- 
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Story
 	Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S.

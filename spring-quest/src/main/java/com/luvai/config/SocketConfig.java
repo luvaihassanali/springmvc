@@ -7,17 +7,19 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+import com.luvai.controller.SocketHandler;
+
 @Configuration
 @EnableWebSocket
-@ComponentScan("com.luvai.config")
+@ComponentScan("com.luvai.controller")
 public class SocketConfig implements WebSocketConfigurer {
 
 	@Autowired
-	private SocketHandler myWebSocketHandler;
+	private SocketHandler GameSocketHandler;
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(myWebSocketHandler, "/socketHandler");
+		registry.addHandler(GameSocketHandler, "/socketHandler");
 	}
 
 }

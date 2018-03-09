@@ -58,6 +58,8 @@ function acceptSponsorQuest() {
 	var serverMsg = document.getElementById('serverMsg');
 	document.getElementById('sponsorQuest').style.display = 'none';
 	serverMsg.value = "You are sponsor, setting up quest...";
+	socketConn.send("acceptSponsorQuest");
+	
 }
 //deny to sponsor quest
 function denySponsorQuest() {
@@ -71,10 +73,9 @@ function denySponsorQuest() {
 	if(roundOver==false) {
 	socketConn.send("askNextPlayerToSponsor");
 	} else {
-		console.log("in end of round");
 		roundOver = false;
-		socketConn.send("flipStoryDeck");
-		return;
+		socketConn.send("askNextPlayerToSponsorFinishLog");
+		
 	}
 }
 //flip story card
@@ -96,8 +97,9 @@ function send() {
 	var clientMsg = document.getElementById('clientMsg');
 	if (clientMsg.value) {
 		socketConn.send("Name:" + clientMsg.value);
-		document.getElementById('name').innerHTML = clientMsg.value + "'s View";
-		clientMsg.value = '';
+		document.getElementById('title').innerHTML = "Welcome to the Quest of The Round Table - " + clientMsg.value + "'s View";
+		changeColor();
+		document.getElementById('enterName').style.display = "none";
 		document.getElementById('send').style.display = "none";
 	}
 }
