@@ -2,17 +2,21 @@ package com.luvai.model;
 
 import java.util.ArrayList;
 
-import com.luvai.model.Card;
-import com.luvai.model.RankCard;
-import com.luvai.model.AdventureCards.*;
-import com.luvai.model.StoryCards.*;
+import com.luvai.model.AdventureCards.AllyCard;
+import com.luvai.model.AdventureCards.AmourCard;
+import com.luvai.model.AdventureCards.FoeCard;
+import com.luvai.model.AdventureCards.TestCard;
+import com.luvai.model.AdventureCards.WeaponCard;
+import com.luvai.model.StoryCards.EventCard;
+import com.luvai.model.StoryCards.QuestCard;
+import com.luvai.model.StoryCards.TournamentCard;
 
 public class CardList {
 
 	public static ArrayList<Card> adventureTypes;
 
-    public static ArrayList<Card> exclusionList;
-    
+	public static ArrayList<Card> exclusionList;
+
 	public CardList() {
 
 		adventureTypes = new ArrayList<Card>();
@@ -48,74 +52,75 @@ public class CardList {
 		adventureTypes.add(TemptationTest);
 		adventureTypes.add(ValorTest);
 		adventureTypes.add(MorganTest);
-		
+
 		exclusionList = new ArrayList<Card>();
-        exclusionList.add(Quest6);
-        exclusionList.add(Event8);
-        exclusionList.add(Event1);
-        exclusionList.add(Quest5);
+		exclusionList.add(Quest6);
+		exclusionList.add(Event8);
+		exclusionList.add(Event1);
+		exclusionList.add(Quest5);
 	}
-	//   "<spring:url value="/images/T1.jpg"/>"
-	public static String back = "'/images/card-back.png'";
-	public static String horseImage = "/images/W Horse.jpg";
-	public static String swordImage = "/images/W Sword.jpg";
-	public static String daggerImage = "/images/W Dagger.jpg";
-	public static String lanceImage = "/images/W Lance.jpg";
-	public static String battleAxImage = "/images/W Battle-ax.jpg";
-	public static String excaliburImage = "/images/W Excalibur.jpg";
-	public static String robberKnightImage = "/images/F Robber Knight.jpg";
-	public static String saxonsImage = "/images/F Saxons.jpg";
-	public static String boarImage = "/images/F Boar.jpg";
-	public static String thievesImage = "/images/F Thieves.jpg";
-	public static String greenKnightImage = "/images/F Green Knight.jpg";
-	public static String blackKnightImage = "/images/F Black Knight.jpg";
-	public static String evilKnightImage = "/images/F Evil Knight.jpg";
-	public static String saxonKnightImage = "/images/F Saxon Knight.jpg";
-	public static String dragonImage = "/images/F Dragon.jpg";
-	public static String giantImage = "/images/F Giant.jpg";
-	public static String mordredImage = "/images/F Mordred.jpg";
-	public static String allImage = "/images/all.png";
-	public static String sirGImage = "/images/A Sir Gawain.jpg";
-	public static String sirPeImage = "/images/A King Pellinore.jpg";
-	public static String sirPImage = "/images/A Sir Percival.jpg";
-	public static String sirTImage = "/images/A Sir Tristan.jpg";
-	public static String sirLImage = "/images/A Sir Lancelot.jpg";
-	public static String sirGaImage = "/images/A Sir Galahad.jpg";
-	public static String queenGImage = "/images/A Queen Guinevere.jpg";
-	public static String queenIImage = "/images/A Queen Iseult.jpg";
-	public static String arthurImage = "/images/A King Arthur.jpg";
-	public static String merlinImage = "/images/A Merlin.jpg";
-	public static String amourImage = "/images/Amour.jpg";
-	public static String chivalrousDeedImage = "/images/E Chivalrous Deed.jpg";
-	public static String courtCamelotImage = "/images/E Court Called Camelot.jpg";
-	public static String callToArmsImage = "/images/E King's Call to Arms.jpg";
-	public static String recognitionImage = "/images/E King's Recognition.jpg";
-	public static String plagueImage = "/images/E Plague.jpg";
-	public static String poxImage = "/images/E Pox.jpg";
-	public static String prosperityImage = "/images/E Prosperity Throughout the Realm.jpg";
-	public static String queensFavorImage = "/images/E Queen's Favor.jpg";
-	public static String testMorganImage = "/images/T Test of Morgan Le Fey.jpg";
-	public static String testTempImage = "/images/T Test of the Questing Beast.jpg";
-	public static String testBeastImage = "/images/T Test of the Questing Beast.jpg";
-	public static String testValorImage = "/images/T Test of Valor.jpg";
-	public static String arthurQuestImage = "/images/Q Arthur.jpg";
-	public static String beastQuestImage = "/images/Q Beast.jpg";
-	public static String boarQuestImage = "/images/Q Boar.jpg";
-	public static String dragonQuestImage = "/images/Q Dragon.jpg";
-	public static String forestQuestImage = "/images/Q Forest.jpg";
-	public static String grailQuestImage = "/images/Q Grail.jpg";
-	public static String gkQuestImage = "/images/Q Green.jpg";
-	public static String honorQuestImage = "/images/Q Honor.jpg";
-	public static String maidenQuestImage = "/images/Q Maiden.jpg";
-	public static String saxonQuestImage = "/images/Q Saxon.jpg";
-	public static String squireImage = "/images/R Squire.jpg";
-	public static String knightImage = "/images/R Knight.jpg";
-	public static String cKnightImage = "/images/R Champion Knight.jpg";
-	public static String camelotImage = "/images/T1.jpg";
-	public static String orkneyImage = "/images/T2.jpg";
-	public static String tintagelImage = "/images/T3.jpg";
-	public static String yorkImage = "/images/T4.jpg";
-	
+
+	// "<spring:url value="/resources/images/T1.jpg"/>"
+	public static String back = "'/resources/images/card-back.png'";
+	public static String horseImage = "/resources/images/W Horse.jpg";
+	public static String swordImage = "/resources/images/W Sword.jpg";
+	public static String daggerImage = "/resources/images/W Dagger.jpg";
+	public static String lanceImage = "/resources/images/W Lance.jpg";
+	public static String battleAxImage = "/resources/images/W Battle-ax.jpg";
+	public static String excaliburImage = "/resources/images/W Excalibur.jpg";
+	public static String robberKnightImage = "/resources/images/F Robber Knight.jpg";
+	public static String saxonsImage = "/resources/images/F Saxons.jpg";
+	public static String boarImage = "/resources/images/F Boar.jpg";
+	public static String thievesImage = "/resources/images/F Thieves.jpg";
+	public static String greenKnightImage = "/resources/images/F Green Knight.jpg";
+	public static String blackKnightImage = "/resources/images/F Black Knight.jpg";
+	public static String evilKnightImage = "/resources/images/F Evil Knight.jpg";
+	public static String saxonKnightImage = "/resources/images/F Saxon Knight.jpg";
+	public static String dragonImage = "/resources/images/F Dragon.jpg";
+	public static String giantImage = "/resources/images/F Giant.jpg";
+	public static String mordredImage = "/resources/images/F Mordred.jpg";
+	public static String allImage = "/resources/images/all.png";
+	public static String sirGImage = "/resources/images/A Sir Gawain.jpg";
+	public static String sirPeImage = "/resources/images/A King Pellinore.jpg";
+	public static String sirPImage = "/resources/images/A Sir Percival.jpg";
+	public static String sirTImage = "/resources/images/A Sir Tristan.jpg";
+	public static String sirLImage = "/resources/images/A Sir Lancelot.jpg";
+	public static String sirGaImage = "/resources/images/A Sir Galahad.jpg";
+	public static String queenGImage = "/resources/images/A Queen Guinevere.jpg";
+	public static String queenIImage = "/resources/images/A Queen Iseult.jpg";
+	public static String arthurImage = "/resources/images/A King Arthur.jpg";
+	public static String merlinImage = "/resources/images/A Merlin.jpg";
+	public static String amourImage = "/resources/images/Amour.jpg";
+	public static String chivalrousDeedImage = "/resources/images/E Chivalrous Deed.jpg";
+	public static String courtCamelotImage = "/resources/images/E Court Called Camelot.jpg";
+	public static String callToArmsImage = "/resources/images/E King's Call to Arms.jpg";
+	public static String recognitionImage = "/resources/images/E King's Recognition.jpg";
+	public static String plagueImage = "/resources/images/E Plague.jpg";
+	public static String poxImage = "/resources/images/E Pox.jpg";
+	public static String prosperityImage = "/resources/images/E Prosperity Throughout the Realm.jpg";
+	public static String queensFavorImage = "/resources/images/E Queen's Favor.jpg";
+	public static String testMorganImage = "/resources/images/T Test of Morgan Le Fey.jpg";
+	public static String testTempImage = "/resources/images/T Test of the Questing Beast.jpg";
+	public static String testBeastImage = "/resources/images/T Test of the Questing Beast.jpg";
+	public static String testValorImage = "/resources/images/T Test of Valor.jpg";
+	public static String arthurQuestImage = "/resources/images/Q Arthur.jpg";
+	public static String beastQuestImage = "/resources/images/Q Beast.jpg";
+	public static String boarQuestImage = "/resources/images/Q Boar.jpg";
+	public static String dragonQuestImage = "/resources/images/Q Dragon.jpg";
+	public static String forestQuestImage = "/resources/images/Q Forest.jpg";
+	public static String grailQuestImage = "/resources/images/Q Grail.jpg";
+	public static String gkQuestImage = "/resources/images/Q Green.jpg";
+	public static String honorQuestImage = "/resources/images/Q Honor.jpg";
+	public static String maidenQuestImage = "/resources/images/Q Maiden.jpg";
+	public static String saxonQuestImage = "/resources/images/Q Saxon.jpg";
+	public static String squireImage = "/resources/images/R Squire.jpg";
+	public static String knightImage = "/resources/images/R Knight.jpg";
+	public static String cKnightImage = "/resources/images/R Champion Knight.jpg";
+	public static String camelotImage = "/resources/images/T1.jpg";
+	public static String orkneyImage = "/resources/images/T2.jpg";
+	public static String tintagelImage = "/resources/images/T3.jpg";
+	public static String yorkImage = "/resources/images/T4.jpg";
+
 	public static WeaponCard Horse = new WeaponCard("Horse", horseImage, 10);
 	public static WeaponCard Sword = new WeaponCard("Sword", swordImage, 10);
 	public static WeaponCard Dagger = new WeaponCard("Dagger", daggerImage, 5);
@@ -135,7 +140,8 @@ public class CardList {
 	public static FoeCard Mordred = new FoeCard("Mordred", mordredImage, 30, 0, null); // special
 	public static FoeCard All = new FoeCard("All", allImage, 0, 0, null); // todo: work on implementation of all foes
 	public static AllyCard SirGawain = new AllyCard("Sir Gawain", sirGImage, 10, 20, 0, 0);
-	public static AllyCard SirPellinore = new AllyCard("King Pellinore", sirPeImage, 10, 0, 0, 4); // card says king,																								// rules say sir
+	public static AllyCard SirPellinore = new AllyCard("King Pellinore", sirPeImage, 10, 0, 0, 4); // card says king, //
+																									// rules say sir
 	public static AllyCard SirPercival = new AllyCard("Sir Percival", sirPImage, 5, 20, 0, 0);
 	public static AllyCard SirTristan = new AllyCard("Sir Tristan", sirTImage, 10, 20, 0, 0);
 	public static AllyCard KingArthur = new AllyCard("King Arthur", arthurImage, 10, 0, 2, 0);
@@ -182,5 +188,4 @@ public class CardList {
 	public static RankCard Knight = new RankCard("Knight", knightImage, 10);
 	public static RankCard ChampionKnight = new RankCard("Champion Knight", cKnightImage, 20);
 
-    
 }

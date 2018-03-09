@@ -1,35 +1,32 @@
 package com.luvai.controller;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.luvai.model.Data;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.luvai.model.CardList;
 
 @Controller
 public class MainController {
-	private static final Logger logger = LogManager.getLogger(MainController.class);
 
 	@GetMapping("/")
 	public String index(ModelMap model) {
-		
 		String message = "message from ViewController";
 		model.addAttribute("message", message);
 		return "index";
 	}
-	
-    @MessageMapping("/info")
-    @SendTo("/topic/gameInfo")
-    public OutputData send(final Data data) throws Exception {
-    	logger.info("Received data: <{}> from <{}>", data.getData(), data.getFrom());
-        final String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new OutputData(data.getFrom(), data.getData(), time);
-    }
+
+	@GetMapping("/view2")
+	public String view2() {
+		return "view2";
+	}
+
+	@GetMapping("/welcome")
+	public ModelAndView helloWorld() {
+
+		String message = CardList.amourImage;
+		return new ModelAndView("welcome", "message", message);
+	}
 
 }

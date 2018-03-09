@@ -1,15 +1,16 @@
 package com.luvai.model;
 
+import java.util.ArrayList;
+
 import org.springframework.web.socket.WebSocketSession;
 
-import com.luvai.model.CardList;
-import com.luvai.model.RankCard;
 import com.luvai.model.AI.AI;
 import com.luvai.model.AI.Strategy2;
-import com.luvai.model.AdventureCards.*;
+import com.luvai.model.AdventureCards.AdventureCard;
+import com.luvai.model.AdventureCards.AllyCard;
+import com.luvai.model.AdventureCards.AmourCard;
+import com.luvai.model.AdventureCards.WeaponCard;
 import com.luvai.model.Decks.AdventureDeck;
-
-import java.util.ArrayList;
 
 public class Player {
 	public String id;
@@ -23,8 +24,8 @@ public class Player {
 	int shields;
 	int battlePoints;
 	public int tieCheck;
-    AI ai;
-    
+	AI ai;
+
 	public Player(String id, String name, WebSocketSession session) {
 		this.id = id;
 		this.name = name;
@@ -42,6 +43,7 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 	}
+
 	public int getHandSize() {
 
 		return hand.size();
@@ -51,24 +53,23 @@ public class Player {
 		name = n;
 	}
 
-	public String getHandString( ) {
+	public String getHandString() {
 		String handString = "";
-		for(AdventureCard a: this.hand) {
-			handString += (a.StringFile+":");
+		for (AdventureCard a : this.hand) {
+			handString += (a.StringFile + ":");
 		}
 		return handString;
 
 	}
-	
+
 	public void giveShields(int numShields) {
 
 		this.addShields(numShields);
-		/*if(Controller.isRigged) {
-			if(this.shields>=game.getWinCondition()) {
-				System.out.println("RIGGED GAME OVER, player acheived win condition");
-				System.exit(0);
-			} 
-		} */
+		/*
+		 * if(Controller.isRigged) { if(this.shields>=game.getWinCondition()) {
+		 * System.out.println("RIGGED GAME OVER, player acheived win condition");
+		 * System.exit(0); } }
+		 */
 		if (this.shields >= 5) {
 			this.rank = CardList.Knight;
 		}
@@ -117,7 +118,7 @@ public class Player {
 	public void clearAmourCard() {
 		amour = null;
 	}
-	
+
 	public ArrayList<AllyCard> getAllies() {
 		return allies;
 	}
@@ -147,20 +148,20 @@ public class Player {
 	public ArrayList<AdventureCard> getHand() {
 		return hand;
 	}
-	
-	public boolean isAI(){
+
+	public boolean isAI() {
 		return !(this.ai == null);
 	}
-	
-	public AI getAI(){
+
+	public AI getAI() {
 		return this.ai;
 	}
-	
-	public void setAI(int type){
-	    switch(type){
-            case 2:
-                this.ai = new Strategy2();
-                break;
-        }
-    } 
-} 
+
+	public void setAI(int type) {
+		switch (type) {
+		case 2:
+			this.ai = new Strategy2();
+			break;
+		}
+	}
+}
