@@ -28,14 +28,14 @@
 	</p>
 	
 	<button id="send" onclick="send()">Send</button>
-	<button onclick="print()">Print all players</button>
+	<button id="print" disabled onclick="print()">Print all players</button>
 	<button onclick="proof()">Proof</button>
 	<button type="button" disabled onclick="flipStoryDeck()">Flip story deck</button>
 	<br> <br>
 	<label>Console</label>
 
 	<p>
-		<textarea rows="2" cols="50" id="serverMsg" readonly="readonly"></textarea>
+		<textarea rows="2" cols="50" id="serverMsg"></textarea>
 	</p>
 	<div style="float: right" id="playerHand">
 		<div>

@@ -1,14 +1,17 @@
 package com.luvai.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.FoeCard;
+import com.luvai.model.StoryCards.QuestCard;
 
 public class QuestController extends SocketHandler {
 	private static final Logger logger = LogManager.getLogger(QuestController.class);
@@ -30,10 +33,40 @@ public class QuestController extends SocketHandler {
 
 	}
 
-	public void setupQuest(Game gameEngine, WebSocketSession session) {
-		logger.info("Setting up quest");
-		for (Player p : gameEngine.players) {
-			System.out.println(p.name);
+	public void setupQuest(Game gameEngine, WebSocketSession session) throws IOException {
+		String name = getNameFromSession(gameEngine, session);
+		System.out.println(name);
+		logger.info("{} is setting up quest", name);
+		QuestCard currentQuest = (QuestCard) gameEngine.storyDeck.faceUp;
+		String QuestString = currentQuest.getName() + ";" + currentQuest.getStages() + ";"
+				+ currentQuest.getFoe().getName() + ";" + currentQuest.getStringFile();
+		session.sendMessage(new TextMessage("QuestInfo" + QuestString));
+		sendToAllSessionsExceptCurrent(gameEngine, session, "QuestBeingSetup");
+	}
+
+	public String getNameFromSession(Game gameEngine, WebSocketSession s) {
+		String name = "";
+		for (int i = 0; i < gameEngine.players.size(); i++) {
+			if (gameEngine.players.get(i).id == s.getId()) {
+				System.out.println("in if");
+				name = gameEngine.players.get(i).getName();
+			}
+		}
+		return name;
+	}
+
+	public void sendToAllSessionsExceptCurrent(Game gameEngine, WebSocketSession session, String message)
+			throws IOException {
+		ArrayList<Player> tempList = new ArrayList<Player>();
+		for (int i = 0; i < gameEngine.players.size(); i++) {
+			if (gameEngine.players.get(i).id == session.getId()) {
+
+			} else {
+				tempList.add(gameEngine.players.get(i));
+			}
+		}
+		for (Player p : tempList) {
+			p.session.sendMessage(new TextMessage(message));
 		}
 	}
 }

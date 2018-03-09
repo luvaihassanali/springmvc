@@ -1,4 +1,5 @@
 //static resources test
+var serverMsg = document.getElementById('serverMsg');
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
 var roundOver = false;
 var turnTracker = 0;
@@ -6,6 +7,32 @@ var turnTracker = 0;
 socketConn.onmessage = function(event) {
 	
 	var serverMsg = document.getElementById('serverMsg');
+	
+	
+    //alert player of quest setup
+	if(event.data==("QuestBeingSetup")) {
+		serverMsg.value = "Quest is being setup, please wait";
+	}
+	//accept quest sponsor
+	if(event.data.startsWith("QuestInfo")) {
+		var numClick = 0;
+		var questInfo = event.data.replace('QuestInfo','');
+		questInfo = questInfo.split(";");
+		console.log(questInfo);
+        var questName = questInfo[0];
+        var questStages = questInfo[1];
+		var foeName = questInfo[2];
+		var foeImage = questInfo[3];
+		serverMsg.value += "\nChoose " + questStages + " foe cards for stage"; 
+	     	$('body').on('click','#playerHand',function(){
+	     		var cardID = $(this).attr('src');
+	     		console.log(cardID);
+	     		numClick++;
+	     		console.log(numClick);
+	     		if(numClick==questStages) { $('body').off('click', '#playerHand'); }
+	     	})
+		}
+		
 	
 	//increment turn tracker
 	if(event.data.startsWith("turnTracker")) {
@@ -45,8 +72,32 @@ socketConn.onmessage = function(event) {
     	serverMsg.value = "Click to answer below"
     	return;
     }
+    
+    //if game is full - deny message
+    if(event.data.startsWith("Too many players")) {
+    	serverMsg.value = event.data;
+    }
+    //welcome
+    if(event.data.startsWith("Welcome")) {
+    	serverMsg.value = event.data;
+    }
 
-	serverMsg.value = event.data;
+    //player enrollment
+    if(event.data.startsWith("You are all set up")) {
+    	serverMsg.value = event.data;
+    }
+    
+    //game started
+    if(event.data.startsWith("All players have joined, starting game...")) {
+        document.getElementById('print').disabled = false;
+    	serverMsg.value = event.data;
+    }
+    //get all player names
+    if(event.data.startsWith("clientsString")) {
+    	var clientString = event.data.replace('clientsString', '');
+    	serverMsg.value = clientString;
+    }
+
 }
 
 socketConn.onopen = function (event) {

@@ -31,6 +31,12 @@ public class SocketHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
 		if (session.isOpen()) {
+
+			// String QuestString = CardList.Quest6.getName() + ";" +
+			// CardList.Quest6.getStages() + ";"
+			// + CardList.Quest6.getFoe().getName() + ";" + CardList.Quest6.getStringFile();
+			// session.sendMessage(new TextMessage("QuestInfo" + QuestString));
+
 			String clientMessage = message.getPayload();
 
 			// accept sponsor quest
@@ -89,9 +95,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				session.sendMessage(new TextMessage("You are all set up, waiting for other players to connect.."));
 				// all clients have joined
 				if (gameEngine.players.size() == 4) {
-					logger.info("All 4 players connected, starting game....");
 
-					sendToAllSessions(gameEngine.players, "All players have joined, starting game...");
 					gameEngine.storyDeck.faceUp = CardList.Quest6;// gameEngine.storyDeck.flipCard();
 					logger.info("Flipping first card from story deck: {}", gameEngine.storyDeck.faceUp.name);
 					sendToAllSessions(gameEngine.players, "flipStoryDeck" + gameEngine.storyDeck.faceUp.StringFile);
@@ -107,6 +111,8 @@ public class SocketHandler extends TextWebSocketHandler {
 							.sendMessage(new TextMessage("setHand" + gameEngine.players.get(2).getHandString()));
 					gameEngine.players.get(3).session
 							.sendMessage(new TextMessage("setHand" + gameEngine.players.get(3).getHandString()));
+					logger.info("All 4 players connected, starting game....");
+					sendToAllSessions(gameEngine.players, "All players have joined, starting game...");
 					if (gameEngine.storyDeck.faceUp instanceof QuestCard) {
 						gameEngine.players.get(0).session.sendMessage(new TextMessage("sponsorQuest"));
 					}
@@ -117,10 +123,10 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 			}
 
-			// print all gameEngine.players for requested client
+			// print all gameEngine players for requested client
 			if (clientMessage.equals("Print")) {
 				session.sendMessage(new TextMessage("All players:\n"));
-				String clientsString = "";
+				String clientsString = "clientsString";
 				for (Player p : gameEngine.players) {
 					clientsString += "ID: " + p.id + " Name: " + p.name + "\n";
 				}
@@ -143,15 +149,14 @@ public class SocketHandler extends TextWebSocketHandler {
 					logger.info("{}. {}", j, s.name);
 					j++;
 				}
+
 				// output player name in console
 				if (getCurrentPlayer(session) == null) {
 				} else {
 					getCurrentPlayer(session).session
 							.sendMessage(new TextMessage("You are " + getCurrentPlayer(session).name));
 				}
-
-			}
-
+			} //validation of decks
 		} // if session open
 	} // handler end
 
@@ -166,7 +171,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	// get current player
