@@ -6,9 +6,11 @@ var turnTracker = 0;
 var numFoeClick;
 var numWeaponClick;
 var questName, questStages, foeName, foeImage;
+var player;
 var foe1, foe2;
-var f1_weapon1, f1_weapon2, f1_weapon3, f1_weapon4;
-var f2_weapon1, f2_weapon2, f2_weapon3, f2_weapon4;
+var p_equip = [];
+var f1_weapons = [];
+var f2_weapons = [];
 var playerPoints, enemyPoints;
 
 var choosingWeapons = false;
@@ -19,10 +21,9 @@ socketConn.onmessage = function(event) {
 	
 	//get battle info
 	if(event.data.startsWith("Battle info")) {
-		console.log(event.data);
 		var BattleInfo = event.data.replace('Battle info', '');
 		var BattleInfoArray = BattleInfo.split(";");
-		console.log(BattleInfoArray);
+		parseBattleInfo(BattleInfoArray);
 		
 	}
 	//its your turn to play
@@ -135,6 +136,37 @@ socketConn.onopen = function (event) {
 	  numFoeClick = 0;
 };
 
+//parse battle info
+function parseBattleInfo(BattleInfoArray) { //need 2 fix
+	var cardCheck = true;
+	console.log(BattleInfoArray);
+	foe1 = BattleInfoArray[0];
+	foe2 = BattleInfoArray[1];
+	for(var i=2; i<BattleInfoArray.length; i++) {
+		console.log(i);
+		if(BattleInfoArray[i].includes("1quest_weapon")) {
+			f1_weapons.push(BattleInfoArray[i]);
+		}
+		if(BattleInfoArray[i].includes("2quest_weapon")) {
+			f2_weapons.push(BattleInfoArray[i]);
+		}
+		if(BattleInfoArray[i].includes("player_rank")) {
+			player = BattleInfoArray[i];
+		}
+		if(BattleInfoArray[i].includes("equipmentID")) {
+			p_equip.push(BattleInfoArray[i]);
+		}
+	}
+	console.log("FOE1: " + foe1);
+	console.log("FOE2: " + foe2);
+	console.log("FOE1 WEAPS:");
+	console.log(f1_weapons);
+	console.log("FOE2 WEAPS:");
+	console.log(f2_weapons);
+	console.log("PLAYER RANK" + player);
+	console.log("P_EQUIP:");
+	console.log(p_equip);
+}
 //deny participation in quest
 function denyQuestParticipate() {
 	document.getElementById('acceptQuest').style.display = "none";

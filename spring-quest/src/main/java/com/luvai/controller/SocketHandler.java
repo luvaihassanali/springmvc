@@ -33,6 +33,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public int foeTracker = 1;
 	public int weaponTracker = 0;
 	public String currentFoe = "";
+	public boolean rankSet = true;
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -43,10 +44,12 @@ public class SocketHandler extends TextWebSocketHandler {
 
 			// get participants battle equipment
 			if (clientMessage.startsWith("equipmentID")) {
-				BattleInformation += "player_rank" + getPlayerFromSession(session).getRank().getStringFile() + ";";
-				System.out.println("EQUIPMENT LINK:" + clientMessage);
-				// logger.info("{} chose {} for stage {}",
-				// getPlayerFromSession(session).getName(), getCardFromLink(), foeTracker);
+				if (rankSet)
+					BattleInformation += "player_rank" + getPlayerFromSession(session).getRank().getStringFile() + ";";
+				rankSet = false;
+				Card card = getCardFromLink(clientMessage);
+				logger.info("{} chose {} for stage {}", getPlayerFromSession(session).getName(), card.getName(),
+						weaponTracker - 1);
 				BattleInformation += clientMessage + ";";
 			}
 			// get quest setup foes
@@ -69,7 +72,9 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 			// show battle
 			if (clientMessage.equals("Show battle")) {
-				System.out.println(BattleInformation);
+				// System.out.println(BattleInformation);
+				logger.info("{} is going into stage {} battle for quest {}", gameEngine.getActivePlayer().getName(),
+						weaponTracker - 1, gameEngine.storyDeck.faceUp.getName());
 				session.sendMessage(new TextMessage("Battle info" + BattleInformation));
 				BattleInformation = "";
 
@@ -96,8 +101,8 @@ public class SocketHandler extends TextWebSocketHandler {
 							gameEngine.storyDeck.faceUp.getName(), getPlayerFromSession(sponsorSession).getName());
 					sendTurnNotification(gameEngine.getNextPlayer().session);
 				}
-				System.out.println(turnTracker);
-				System.out.println(gameEngine.getNextPlayer().getName());
+				// System.out.println(turnTracker);
+				// System.out.println(gameEngine.getNextPlayer().getName());
 
 			}
 
@@ -132,7 +137,6 @@ public class SocketHandler extends TextWebSocketHandler {
 			// flip story deck
 			if (clientMessage.equals("flipStoryDeck")) {
 				gameEngine.storyDeck.flipCard();
-				System.out.println(gameEngine.storyDeck.faceUp.getName());
 				logger.info("Flipped card from Story Deck: {}", gameEngine.storyDeck.faceUp.getName());
 				sendToAllSessions(gameEngine.players, "flipStoryDeck" + gameEngine.storyDeck.faceUp.getStringFile());
 			}
@@ -257,6 +261,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	}
 
 	public Card getCardFromLink(String ImageLink) {
+
 		CardList cardList = new CardList();
 		String cleanLink = "";
 		if (ImageLink.contains("quest_foe")) {
@@ -265,8 +270,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		if (ImageLink.contains("quest_weapon")) {
 			cleanLink = ImageLink.replace("quest_weaponIDhttp://localhost:8080", "");
 		}
-		if (ImageLink.contains("epuipmentID")) {
-			cleanLink = ImageLink.replace("quest_weaponIDhttp://localhost:8080", "");
+		if (ImageLink.contains("equipmentID")) {
+			cleanLink = ImageLink.replace("equipmentIDhttp://localhost:8080", "");
 		}
 
 		cleanLink = cleanLink.replaceAll("%20", " ");
