@@ -154,7 +154,7 @@ function acceptQuestParticipate() {
  		console.log(cardId);
  		if(checkForEquipment(cardId)) {
  			console.log("equipmentID: " + this.id);
- 			socketConn.send("equipmentID: " + this.src);
+ 			socketConn.send("equipmentID" + this.src);
 	 		var changeImageId = "#" + this.id;
 	 		console.log(changeImageId);
 	 		$(changeImageId).attr("src","/resources/images/all.png");

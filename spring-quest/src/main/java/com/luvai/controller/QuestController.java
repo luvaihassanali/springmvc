@@ -21,6 +21,7 @@ public class QuestController extends SocketHandler {
 	public static ArrayList<StageController> stageArray = new ArrayList<StageController>();
 	ArrayList<Boolean> stageSet = new ArrayList<Boolean>();
 	ArrayList<Boolean> stageWeapons = new ArrayList<Boolean>();
+
 	FoeCard foe;
 	static public int num_stages;
 

@@ -14,7 +14,8 @@ import com.luvai.model.StoryCards.TournamentCard;
 public class CardList {
 
 	public ArrayList<Card> adventureTypes;
-	public static ArrayList<Card> exclusionList;
+	public ArrayList<Card> allTypes;
+	public ArrayList<Card> exclusionList;
 
 	public CardList() {
 
@@ -57,6 +58,61 @@ public class CardList {
 		exclusionList.add(Event8);
 		exclusionList.add(Event1);
 		exclusionList.add(Quest5);
+
+		allTypes = new ArrayList<Card>();
+		allTypes.add(Horse);
+		allTypes.add(Sword);
+		allTypes.add(Dagger);
+		allTypes.add(Lance);
+		allTypes.add(Battleax);
+		allTypes.add(Excalibur);
+		allTypes.add(RobberKnight);
+		allTypes.add(Boar);
+		allTypes.add(Thieves);
+		allTypes.add(Saxons);
+		allTypes.add(SaxonKnight);
+		allTypes.add(EvilKnight);
+		allTypes.add(GreenKnight);
+		allTypes.add(BlackKnight);
+		allTypes.add(Dragon);
+		allTypes.add(Giant);
+		allTypes.add(Mordred);
+		allTypes.add(SirGawain);
+		allTypes.add(SirPellinore);
+		allTypes.add(SirPercival);
+		allTypes.add(SirTristan);
+		allTypes.add(KingArthur);
+		allTypes.add(QueenGuinevere);
+		allTypes.add(Merlin);
+		allTypes.add(QueenIseult);
+		allTypes.add(SirLancelot);
+		allTypes.add(SirGalahad);
+		allTypes.add(Amour);
+		allTypes.add(BeastTest);
+		allTypes.add(TemptationTest);
+		allTypes.add(ValorTest);
+		allTypes.add(MorganTest);
+		allTypes.add(Quest1);
+		allTypes.add(Quest2);
+		allTypes.add(Quest3);
+		allTypes.add(Quest4);
+		allTypes.add(Quest5);
+		allTypes.add(Quest6);
+		allTypes.add(Quest7);
+		allTypes.add(Quest8);
+		allTypes.add(Quest9);
+		allTypes.add(Quest10);
+		allTypes.add(Tournament1);
+		allTypes.add(Tournament2);
+		allTypes.add(Tournament3);
+		allTypes.add(Tournament4);
+		allTypes.add(Event1);
+		allTypes.add(Event2);
+		allTypes.add(Event3);
+		allTypes.add(Event5);
+		allTypes.add(Event6);
+		allTypes.add(Event7);
+		allTypes.add(Event8);
 	}
 
 	// "<spring:url value="/resources/images/T1.jpg"/>"

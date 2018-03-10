@@ -32,6 +32,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public String BattleInformation = "";
 	public int foeTracker = 1;
 	public int weaponTracker = 0;
+	public String currentFoe = "";
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -41,14 +42,19 @@ public class SocketHandler extends TextWebSocketHandler {
 			String clientMessage = message.getPayload();
 
 			// get participants battle equipment
-			if (clientMessage.startsWith("equipmentID:")) {
+			if (clientMessage.startsWith("equipmentID")) {
 				BattleInformation += "player_rank" + getPlayerFromSession(session).getRank().getStringFile() + ";";
 				System.out.println("EQUIPMENT LINK:" + clientMessage);
+				// logger.info("{} chose {} for stage {}",
+				// getPlayerFromSession(session).getName(), getCardFromLink(), foeTracker);
 				BattleInformation += clientMessage + ";";
 			}
 			// get quest setup foes
+
 			if (clientMessage.startsWith("quest_foeID")) {
-				System.out.println("QUEST FOE: " + clientMessage);
+				currentFoe = getCardFromLink(clientMessage).name;
+				logger.info("{} chose {} for stage {}", gameEngine.getActivePlayer().getName(),
+						getCardFromLink(clientMessage).getName(), foeTracker);
 				BattleInformation += foeTracker + clientMessage + ";";
 				foeTracker++;
 				weaponTracker++;
@@ -56,8 +62,9 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 			// get quest setup weapons
 			if (clientMessage.startsWith("quest_weaponID")) {
-				System.out.println("QUEST WEAPON: " + clientMessage);
 				BattleInformation += weaponTracker + clientMessage + ";";
+				logger.info("{} equipped {} for {} on stage {}", gameEngine.getActivePlayer().getName(),
+						getCardFromLink(clientMessage).name, currentFoe, foeTracker - 1);
 
 			}
 			// show battle
@@ -69,16 +76,24 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 			// accept to participate quest
 			if (clientMessage.equals("Accept participation")) {
+				logger.info("{} chose to participate in quest: {}, sponsored by: {}",
+						getPlayerFromSession(session).getName(), gameEngine.storyDeck.faceUp.getName(),
+						getPlayerFromSession(sponsorSession).getName());
 				session.sendMessage(new TextMessage("Choose equipment"));
 				gameEngine.participants.add(getPlayerFromSession(session));
 			}
 
 			// deny to participate quest
 			if (clientMessage.equals("Deny participation")) {
+				logger.info("{} chose to decline to participate in quest: {}, sponsored by: {}",
+						getPlayerFromSession(session).getName(), gameEngine.storyDeck.faceUp.getName(),
+						getPlayerFromSession(sponsorSession).getName());
 				turnTracker++;
 				if (turnTracker == 3) {
 					turnTracker = 0;
 					sponsorSession.sendMessage(new TextMessage("No participants"));
+					logger.info("No one chose to participate in current quest: {}, sponsored by: {}",
+							gameEngine.storyDeck.faceUp.getName(), getPlayerFromSession(sponsorSession).getName());
 					sendTurnNotification(gameEngine.getNextPlayer().session);
 				}
 				System.out.println(turnTracker);
@@ -89,6 +104,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			// invitation to participate quest
 			if (clientMessage.equals(("Ask to participate"))) {
 				newQuest.sendToAllSessionsExceptCurrent(gameEngine, session, "Ask to participate");
+				logger.info("{} has completed setting up quest: {}", gameEngine.getActivePlayer().getName(),
+						gameEngine.storyDeck.faceUp.getName());
 			}
 			// accept sponsor quest
 			if (clientMessage.equals("acceptSponsorQuest")) {
@@ -241,12 +258,21 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	public Card getCardFromLink(String ImageLink) {
 		CardList cardList = new CardList();
-		String cleanLink = ImageLink.replace("quest_foeIDhttp://localhost:8080", "");
+		String cleanLink = "";
+		if (ImageLink.contains("quest_foe")) {
+			cleanLink = ImageLink.replace("quest_foeIDhttp://localhost:8080", "");
+		}
+		if (ImageLink.contains("quest_weapon")) {
+			cleanLink = ImageLink.replace("quest_weaponIDhttp://localhost:8080", "");
+		}
+		if (ImageLink.contains("epuipmentID")) {
+			cleanLink = ImageLink.replace("quest_weaponIDhttp://localhost:8080", "");
+		}
+
 		cleanLink = cleanLink.replaceAll("%20", " ");
-		System.out.println("CLEAN LINK:" + cleanLink);
-		for (int i = 0; i < cardList.adventureTypes.size(); i++) {
-			if (cardList.adventureTypes.get(i).StringFile.equals(cleanLink)) {
-				return cardList.adventureTypes.get(i);
+		for (int i = 0; i < cardList.allTypes.size(); i++) {
+			if (cardList.allTypes.get(i).StringFile.equals(cleanLink)) {
+				return cardList.allTypes.get(i);
 			}
 		}
 		return null;
