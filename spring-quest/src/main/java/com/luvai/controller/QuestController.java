@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.luvai.model.Card;
+import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.FoeCard;
@@ -19,13 +21,6 @@ public class QuestController extends SocketHandler {
 	public static ArrayList<StageController> stageArray = new ArrayList<StageController>();
 	ArrayList<Boolean> stageSet = new ArrayList<Boolean>();
 	ArrayList<Boolean> stageWeapons = new ArrayList<Boolean>();
-	public static StageController stage_1;
-	public static StageController stage_2;
-	public Player sponsor;
-	boolean stage1set = false;
-	boolean stage2set = false;
-	boolean stage1weapons = false;
-	boolean stage2weapons = false;
 	FoeCard foe;
 	static public int num_stages;
 
@@ -33,9 +28,24 @@ public class QuestController extends SocketHandler {
 
 	}
 
+	public boolean checkForFoe(String imageLink) {
+		boolean cardOk = false;
+		CardList cardList = new CardList();
+
+		for (Card card : cardList.adventureTypes) {
+
+			if (card.getStringFile().equals(imageLink)) {
+				if (card instanceof FoeCard) {
+					cardOk = true;
+					return cardOk;
+				}
+			}
+		}
+		return cardOk;
+	}
+
 	public void setupQuest(Game gameEngine, WebSocketSession session) throws IOException {
 		String name = getNameFromSession(gameEngine, session);
-		System.out.println(name);
 		logger.info("{} is setting up quest", name);
 		QuestCard currentQuest = (QuestCard) gameEngine.storyDeck.faceUp;
 		String QuestString = currentQuest.getName() + ";" + currentQuest.getStages() + ";"
@@ -48,7 +58,6 @@ public class QuestController extends SocketHandler {
 		String name = "";
 		for (int i = 0; i < gameEngine.players.size(); i++) {
 			if (gameEngine.players.get(i).id == s.getId()) {
-				System.out.println("in if");
 				name = gameEngine.players.get(i).getName();
 			}
 		}

@@ -13,8 +13,7 @@ import com.luvai.model.StoryCards.TournamentCard;
 
 public class CardList {
 
-	public static ArrayList<Card> adventureTypes;
-
+	public ArrayList<Card> adventureTypes;
 	public static ArrayList<Card> exclusionList;
 
 	public CardList() {

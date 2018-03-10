@@ -22,7 +22,7 @@ public class Game {
 	public Game() {
 		logger.info("Initialising new game");
 		players = new ArrayList<Player>();
-
+		participants = new ArrayList<Player>();
 		adventureDeck = new AdventureDeck();
 		storyDeck = new StoryDeck();
 	}
@@ -106,6 +106,10 @@ public class Game {
 
 	public void setName(Player p, String s) {
 		p.setName(s);
+	}
+
+	public Player getNextPlayer() {
+		return players.get(SocketHandler.numTurns % players.size() + 1);
 	}
 
 	public Player getActivePlayer() {
