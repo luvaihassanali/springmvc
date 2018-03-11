@@ -150,7 +150,6 @@ function parseBattleInfo(BattleInfoArray) {
 	var cardCheck = true;
 	console.log(BattleInfoArray);
 	foe1 = BattleInfoArray[i];
-	console.log('I:' + i);
 	for(i=1; i<BattleInfoArray.length; i++) {
 		if(BattleInfoArray[i].includes("1quest_weapon")) {
 			f1_weapons.push(BattleInfoArray[i]);
@@ -182,6 +181,13 @@ function parseBattleInfo(BattleInfoArray) {
 
 //display battle on screen
 function displayBattle(stage) {
+	console.log("current stage: " + stage);
+	console.log("player rank: " + player);
+	console.log("player weapons: " + p_equip);
+	console.log("stage 1 foe: " + foe1);
+	console.log("1 weapons: " + f1_weapons);
+	console.log("stage 2 foe: " + foe2);
+	console.log("2 weapons: " + f2_weapons);
 	var playerLink = player.replace('player_rank', 'http://localhost:8080');
 	var foe1Link = foe1.replace('1quest_foeID', '');
 	var foe2Link = foe2.replace('2quest_foeID', '');
