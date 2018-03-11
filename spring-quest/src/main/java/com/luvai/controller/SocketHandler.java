@@ -33,7 +33,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public int foeTracker = 1;
 	public int weaponTracker = 0;
 	public String currentFoe = "";
-	public boolean rankSet = true;
+	public static boolean rankSet = true;
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -73,10 +73,12 @@ public class SocketHandler extends TextWebSocketHandler {
 			// show battle
 			if (clientMessage.equals("Show battle")) {
 				// System.out.println(BattleInformation);
+				if (rankSet)
+					BattleInformation += "player_rank" + getPlayerFromSession(session).getRank().getStringFile() + ";";
 				logger.info("{} is going into stage {} battle for quest {}", gameEngine.getActivePlayer().getName(),
 						weaponTracker - 1, gameEngine.storyDeck.faceUp.getName());
 				session.sendMessage(new TextMessage("Battle info" + BattleInformation));
-				BattleInformation = "";
+				// BattleInformation = "";
 
 			}
 			// accept to participate quest
@@ -86,6 +88,8 @@ public class SocketHandler extends TextWebSocketHandler {
 						getPlayerFromSession(sponsorSession).getName());
 				session.sendMessage(new TextMessage("Choose equipment"));
 				gameEngine.participants.add(getPlayerFromSession(session));
+				newQuest.sendToAllSessionsExceptCurrent(gameEngine, session,
+						"Player: " + getPlayerFromSession(session).getName() + " is going through quest");
 			}
 
 			// deny to participate quest
@@ -108,7 +112,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 			// invitation to participate quest
 			if (clientMessage.equals(("Ask to participate"))) {
-				newQuest.sendToAllSessionsExceptCurrent(gameEngine, session, "Ask to participate");
+				newQuest.sendToNextPlayer(gameEngine, "Ask to participate");
 				logger.info("{} has completed setting up quest: {}", gameEngine.getActivePlayer().getName(),
 						gameEngine.storyDeck.faceUp.getName());
 			}

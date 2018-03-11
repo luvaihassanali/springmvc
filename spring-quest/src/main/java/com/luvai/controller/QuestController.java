@@ -65,6 +65,12 @@ public class QuestController extends SocketHandler {
 		return name;
 	}
 
+	// send message to next player
+	public void sendToNextPlayer(Game gameEngine, String message) throws IOException {
+		Player player = gameEngine.getNextPlayer();
+		player.session.sendMessage(new TextMessage(message));
+	}
+
 	public void sendToAllSessionsExceptCurrent(Game gameEngine, WebSocketSession session, String message)
 			throws IOException {
 		ArrayList<Player> tempList = new ArrayList<Player>();

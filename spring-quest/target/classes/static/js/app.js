@@ -12,12 +12,18 @@ var p_equip = [];
 var f1_weapons = [];
 var f2_weapons = [];
 var playerPoints, enemyPoints;
-
+var currentStage = 1;
 var choosingWeapons = false;
 //print server message to console
 socketConn.onmessage = function(event) {
 
 	var serverMsg = document.getElementById('serverMsg');
+	
+	
+	//player watching quest
+	if(event.data.includes("is going through quest")) {
+		serverMsg.value = event.data + " please wait";
+	}
 	
 	//get battle info
 	if(event.data.startsWith("Battle info")) {
@@ -44,6 +50,7 @@ socketConn.onmessage = function(event) {
 	//ask to participate
 	if(event.data==("Ask to participate")) {
 		document.getElementById("acceptQuest").style.display = "inline";
+		serverMsg.value = "Please accept/decline quest by clicking below"
 	}
     //alert player of quest setup
 	if(event.data==("QuestBeingSetup")) {
@@ -137,35 +144,57 @@ socketConn.onopen = function (event) {
 };
 
 //parse battle info
-function parseBattleInfo(BattleInfoArray) { //need 2 fix
+function parseBattleInfo(BattleInfoArray) { 
+	var i = 0;
+	console.log('I:' + i);
 	var cardCheck = true;
 	console.log(BattleInfoArray);
-	foe1 = BattleInfoArray[0];
-	foe2 = BattleInfoArray[1];
-	for(var i=2; i<BattleInfoArray.length; i++) {
-		console.log(i);
+	foe1 = BattleInfoArray[i];
+	console.log('I:' + i);
+	for(i=1; i<BattleInfoArray.length; i++) {
 		if(BattleInfoArray[i].includes("1quest_weapon")) {
 			f1_weapons.push(BattleInfoArray[i]);
-		}
+		} else { break; }
+	}
+	foe2 = BattleInfoArray[i];
+	i++;
+	for(var i=i; i<BattleInfoArray.length; i++) {
 		if(BattleInfoArray[i].includes("2quest_weapon")) {
-			f2_weapons.push(BattleInfoArray[i]);
-		}
-		if(BattleInfoArray[i].includes("player_rank")) {
+			f2_weapons.push(BattleInfoArray[i]); 
+		} else { break; }
+	}
+	if(BattleInfoArray[i] == "") { 
+		player = BattleInfoArray[i]; 
+	
+		return; } else {
 			player = BattleInfoArray[i];
 		}
+	
+	for(var i=i; i<BattleInfoArray.length; i++) {
+		
 		if(BattleInfoArray[i].includes("equipmentID")) {
 			p_equip.push(BattleInfoArray[i]);
 		}
 	}
-	console.log("FOE1: " + foe1);
-	console.log("FOE2: " + foe2);
-	console.log("FOE1 WEAPS:");
-	console.log(f1_weapons);
-	console.log("FOE2 WEAPS:");
-	console.log(f2_weapons);
-	console.log("PLAYER RANK" + player);
-	console.log("P_EQUIP:");
-	console.log(p_equip);
+	
+	displayBattle(currentStage);
+}
+
+//display battle on screen
+function displayBattle(stage) {
+	var playerLink = player.replace('player_rank', 'http://localhost:8080');
+	var foe1Link = foe1.replace('1quest_foeID', '');
+	var foe2Link = foe2.replace('2quest_foeID', '');
+
+	if(stage == 1) {
+		
+	}
+	
+	if(stage == 2) {
+		
+	}
+	
+	currentStage++;
 }
 //deny participation in quest
 function denyQuestParticipate() {
