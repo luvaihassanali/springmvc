@@ -77,7 +77,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					BattleInformation += "player_rank" + getPlayerFromSession(session).getRank().getStringFile() + ";";
 				logger.info("{} is going into stage {} battle for quest {}", gameEngine.getActivePlayer().getName(),
 						weaponTracker - 1, gameEngine.storyDeck.faceUp.getName());
-				session.sendMessage(new TextMessage("Battle info" + BattleInformation));
+				sendToAllSessions(gameEngine.players, "Battle info" + BattleInformation);
 				// BattleInformation = "";
 
 			}
@@ -133,7 +133,9 @@ public class SocketHandler extends TextWebSocketHandler {
 					return;
 				} else {
 					logger.info("Player from session#{} connected", session.getId());
-					session.sendMessage(new TextMessage("Welcome, enter your name"));
+					String BattleInfo = "Battle info1quest_foeIDhttp://localhost:8080/resources/images/F%20Boar.jpg;1quest_weaponIDhttp://localhost:8080/resources/images/W%20Sword.jpg;1quest_weaponIDhttp://localhost:8080/resources/images/W%20Dagger.jpg;2quest_foeIDhttp://localhost:8080/resources/images/F%20Black%20Knight.jpg;2quest_weaponIDhttp://localhost:8080/resources/images/W%20Sword.jpg;2quest_weaponIDhttp://localhost:8080/resources/images/W%20Horse.jpg;player_rank/resources/images/R Squire.jpg;equipmentIDhttp://localhost:8080/resources/images/A%20Sir%20Tristan.jpg;";
+					session.sendMessage(new TextMessage(BattleInfo));
+					// session.sendMessage(new TextMessage("Welcome, enter your name"));
 				}
 
 			}
@@ -236,6 +238,11 @@ public class SocketHandler extends TextWebSocketHandler {
 			} // validation of decks
 		} // if session open
 	} // handler end
+
+	public String calculateBattlePoints(String BattleInformation) {
+		String points = "";
+		return points;
+	}
 
 	public void sendTurnNotification(WebSocketSession session) throws IOException {
 		// send card info

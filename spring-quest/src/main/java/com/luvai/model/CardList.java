@@ -115,7 +115,6 @@ public class CardList {
 		allTypes.add(Event8);
 	}
 
-	// "<spring:url value="/resources/images/T1.jpg"/>"
 	public static String back = "'/resources/images/card-back.png'";
 	public static String horseImage = "/resources/images/W Horse.jpg";
 	public static String swordImage = "/resources/images/W Sword.jpg";
