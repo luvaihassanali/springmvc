@@ -115,6 +115,7 @@ public class CardList {
 		allTypes.add(Event8);
 	}
 
+	public static String allImage = "/resources/images/all.png";
 	public static String back = "'/resources/images/card-back.png'";
 	public static String horseImage = "/resources/images/W Horse.jpg";
 	public static String swordImage = "/resources/images/W Sword.jpg";
@@ -133,7 +134,6 @@ public class CardList {
 	public static String dragonImage = "/resources/images/F Dragon.jpg";
 	public static String giantImage = "/resources/images/F Giant.jpg";
 	public static String mordredImage = "/resources/images/F Mordred.jpg";
-	public static String allImage = "/resources/images/all.png";
 	public static String sirGImage = "/resources/images/A Sir Gawain.jpg";
 	public static String sirPeImage = "/resources/images/A King Pellinore.jpg";
 	public static String sirPImage = "/resources/images/A Sir Percival.jpg";

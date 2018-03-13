@@ -85,7 +85,7 @@
 	</div>
 	<p>
 		<textarea rows="2" cols="50" id="serverMsg"></textarea>
-		<button id="doneQuest" onclick="doneWeapons()" style="display: none">Done</button>
+		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()" style="display: none">Done</button>
 		<button id="doneEquipment" onclick="doneEquipment()"
 			style="display: none">Done</button>
 	</p>

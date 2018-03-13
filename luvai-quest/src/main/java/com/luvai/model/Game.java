@@ -1,29 +1,31 @@
 package com.luvai.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.luvai.controller.QuestController;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.Decks.AdventureDeck;
 import com.luvai.model.Decks.StoryDeck;
+import com.luvai.model.StoryCards.QuestCard;
 
 public class Game {
 	private static final Logger logger = LogManager.getLogger(Game.class);
 	public ArrayList<Player> players;
 	public StoryDeck storyDeck;
 	public AdventureDeck adventureDeck;
-	public ArrayList<Player> participants;
 	public Player sponsor;
 	private int winCondition;
 	public int numTurns = 0;
 	public Player temp_roundInitiater;
+	public QuestController current_quest;
 
 	public Game() {
 		logger.info("\n\n\n\n ****************************** Initialising new game ********************************");
 		players = new ArrayList<Player>();
-		participants = new ArrayList<Player>();
 		adventureDeck = new AdventureDeck();
 		storyDeck = new StoryDeck();
 	}
@@ -97,16 +99,12 @@ public class Game {
 		}
 	};
 
+	public void newQuest(Game g, Player s, QuestCard q) throws IOException {
+		current_quest = new QuestController(g, s, q);
+	}
+
 	public void incTurn() {
 		this.numTurns++;
-	}
-
-	public ArrayList<Player> getParticipants() {
-		return participants;
-	}
-
-	public void addParticipant(Player player) {
-		this.participants.add(player);
 	}
 
 	public void setName(Player p, String s) {
