@@ -79,9 +79,20 @@ socketConn.onmessage = function(event) {
 	
 	var serverMsg = document.getElementById('serverMsg');
 	
+	// no participants for sponsor
+	if (event.data == "No participants") {
+		serverMsg.value = "No one wanted to participate, receiving shields/cards, going to next turn";
+		//socketConn.send("flipStoryDeck");
+	}
+	//set name for testing purposes
+	if(event.data.startsWith("SetName")) {
+		var name = event.data.replace("SetName", "");
+		PlayerName = name;
+	}
 	//participation 
 	if(event.data=="AskToParticipate") {
-		console.log(event.data);
+		document.getElementById("acceptQuest").style.display = "inline";
+		serverMsg.value = "Please accept/decline quest by clicking below"
 	}
 	//get current quest info
 	if(event.data.startsWith("currentQuestInfo")) {
@@ -91,7 +102,7 @@ socketConn.onmessage = function(event) {
 	}
 	// flip story deck
 	if (event.data.startsWith("flipStoryDeck")) {
-		serverMsg.value = "Flipping card from Story Deck";
+		serverMsg.value += "\nFlipping card from Story Deck";
 		var card = event.data.replace('flipStoryDeck', '');
 		card = JSON.parse(card);
 		storyCardFaceUp = card;
@@ -128,7 +139,10 @@ socketConn.onmessage = function(event) {
 		document.getElementById('sponsorQuest').style.display = 'block';
 		serverMsg.value = "Click to answer below"
 	}
-
+	//no participants in quest
+	if (event.data == ("EmptyQuest")) {
+		serverMsg.value = "No one participated in the quest";
+	}
 	// if game is full - deny message
 	if (event.data.startsWith("Too many players")) {
 		serverMsg.value = event.data;
@@ -144,7 +158,7 @@ socketConn.onmessage = function(event) {
 	}
 
 	// game started
-	if (event.data.startsWith("All players have joined, starting game...")) {
+	if (event.data.startsWith("All players have joined, starting game, wait for your turn...")) {
 		document.getElementById('print').disabled = false;
 		serverMsg.value = event.data;
 	}
@@ -181,12 +195,18 @@ function setupQuestRound() {
 		})
 	}
 }
+//deny participation in quest
+function denyQuestParticipate() {
+	document.getElementById('acceptQuest').style.display = "none";
+	var data = JSON.stringify({'name': PlayerName, 'participate_quest': false});
+	socketConn.send(data);
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = ("Waiting for other players to finish quest...");
+}
 
-//
+//finished setting up quest for sponsor
 function doneWeaponsQuestSponsor() {
 
-	// var data = JSON.stringify({'name': PlayerName, 'sponsor_quest': false});
-	
 	var serverMsg = document.getElementById('serverMsg');
 	document.getElementById('doneQuest').style.display = "none";
 

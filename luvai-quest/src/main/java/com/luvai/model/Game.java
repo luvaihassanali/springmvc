@@ -112,7 +112,7 @@ public class Game {
 	}
 
 	public Player getNextPlayer() {
-		return players.get(numTurns % players.size() + 1);
+		return players.get((numTurns + 1) % players.size());
 	}
 
 	public Player getActivePlayer() {
@@ -120,7 +120,7 @@ public class Game {
 	}
 
 	public Player getPrevPlayer() {
-		return players.get((numTurns % players.size() - 1));
+		return players.get(((numTurns - 1) % players.size()));
 	}
 
 	public Player getPlayerFromName(String name) {

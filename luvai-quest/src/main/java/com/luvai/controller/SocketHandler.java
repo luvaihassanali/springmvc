@@ -40,14 +40,37 @@ public class SocketHandler extends TextWebSocketHandler {
 		@SuppressWarnings("unchecked")
 		Map<String, String> clientMessage = new Gson().fromJson(message.getPayload(), Map.class);
 
+		// json for accepting/decline participating in quest
+		if (jsonObject.has("participate_quest")) {
+			JsonElement participate_quest_answer = jsonObject.get("participate_quest");
+			JsonElement name = jsonObject.get("name");
+			if (participate_quest_answer.getAsBoolean()) {
+				return;
+			} else {
+				gameEngine.incTurn();
+
+				logger.info("Player {} declined to participate in {} quest", name.getAsString(),
+						gameEngine.storyDeck.faceUp.getName());
+				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
+					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("No participants"));
+					logger.info("No players accepted to participate in quest {} sponsored by {}",
+							gameEngine.storyDeck.faceUp.getName(), gameEngine.getActivePlayer().getName());
+					sendToAllPlayersExcept(gameEngine, gameEngine.getActivePlayer(), "EmptyQuest");
+					flipStoryCard();
+					return;
+				}
+				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
+				return;
+			}
+		}
 		// json for quest setup info from sponsor
 		if (jsonObject.has("foes")) {
 
 			String jsonOutput = "currentQuestInfo" + jsonObject.toString();
-			System.out.println(jsonOutput);
 			sendToAllSessions(gameEngine.players, jsonOutput);
 			sendToNextPlayer(gameEngine, "AskToParticipate");
 			gameEngine.incTurn();
+			return;
 		}
 		// check json for sponsor quest field
 		if (jsonObject.has("sponsor_quest")) {
@@ -129,20 +152,21 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-
-		gameEngine.storyDeck.faceUp = CardList.Quest6;
-		Player clientObject = new Player("Bob", session);
-		gameEngine.players.add(clientObject);
-		gameEngine.players.get(0).setHand(gameEngine.mockHand1);
-		session.sendMessage(new TextMessage("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
-		gameEngine.players.get(0).session
-				.sendMessage(new TextMessage("setHand" + gameEngine.players.get(0).getHandString()));
-		String x = "currentQuestInfo{" + "\"foes\"" + ":[" + "\"Boar\"" + "," + "\"Black Knight\"" + "],"
-				+ "\"weapons\"" + ":[[" + "\"Dagger\"" + "],[" + "\"Sword\"" + "," + "\"Horse\"" + "]]}";
-		System.out.println(x);
-		session.sendMessage(new TextMessage(x));
-		session.sendMessage(new TextMessage("AskToParticipate"));
 		/*
+				gameEngine.storyDeck.faceUp = CardList.Quest6;
+				Player clientObject = new Player("Bob", session);
+				gameEngine.players.add(clientObject);
+				gameEngine.players.get(0).setHand(gameEngine.mockHand1);
+				session.sendMessage(new TextMessage("SetNameBob"));
+				session.sendMessage(new TextMessage("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
+				gameEngine.players.get(0).session
+						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(0).getHandString()));
+				String x = "currentQuestInfo{" + "\"foes\"" + ":[" + "\"Boar\"" + "," + "\"Black Knight\"" + "],"
+						+ "\"weapons\"" + ":[[" + "\"Dagger\"" + "],[" + "\"Sword\"" + "," + "\"Horse\"" + "]]}";
+				System.out.println(x);
+				session.sendMessage(new TextMessage(x));
+				session.sendMessage(new TextMessage("AskToParticipate"));
+				*/
 		logger.info("New player attempting to connect...");
 		if (gameEngine.players.size() == 4) {
 			session.sendMessage(new TextMessage("Too many players, sorry. Being disconnected."));
@@ -153,8 +177,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			logger.info("Player from session#{} connected", session.getId());
 			session.sendMessage(new TextMessage("Welcome, enter your nickname - then press send."));
 			sessions.add(session);
-		
-		} */
+
+		}
 	}
 
 	// send message to all players
@@ -182,6 +206,19 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void sendToNextPlayer(Game gameEngine, String message) throws IOException {
 		Player player = gameEngine.getNextPlayer();
 		player.session.sendMessage(new TextMessage(message));
+	}
+
+	public void sendToAllPlayersExcept(Game gameEngine, Player p, String message) throws IOException {
+		ArrayList<Player> tempList = new ArrayList<Player>();
+		for (int i = 0; i < gameEngine.players.size(); i++) {
+			if (gameEngine.players.get(i).equals(p)) {
+			} else {
+				tempList.add(gameEngine.players.get(i));
+			}
+		}
+		for (Player player : tempList) {
+			player.session.sendMessage(new TextMessage(message));
+		}
 	}
 
 	// send to all players except that in current turn
