@@ -2,16 +2,15 @@ package com.luvai.model.AdventureCards;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
 import com.luvai.model.StoryCards.QuestCard;
 
-
-public class FoeCard extends AdventureCard { 
+public class FoeCard extends AdventureCard {
 	int battlePoints, bonusBp;
 	public ArrayList<WeaponCard> weapons;
 	public QuestCard questCard;
-	
-	public FoeCard() {
-    }
+
+	// Boar = new FoeCard("Boar", boarImage, 5, 15, CardList.Quest6);
 	public FoeCard(String name, String StringFile, int battlePoints, int bonusBp, QuestCard q) {
 		this.name = name;
 		this.weapons = new ArrayList<WeaponCard>();
@@ -20,7 +19,7 @@ public class FoeCard extends AdventureCard {
 		this.bonusBp = bonusBp;
 		questCard = q;
 	}
-	
+
 	public FoeCard(String name, String StringFile, int battlePoints, QuestCard q) {
 		this.name = name;
 		this.weapons = new ArrayList<WeaponCard>();
@@ -29,24 +28,23 @@ public class FoeCard extends AdventureCard {
 		this.bonusBp = 0;
 		questCard = q;
 	}
-	
-	public QuestCard getQuest() {
-		return this.questCard;
+
+	public void equipWeapons(JsonObject json) {
+
 	}
-	
-    public int getBattlePoints() {
+
+	public int getBattlePoints() {
 		return battlePoints;
 	}
-	
+
 	public int getBonusBattlePoints() {
 		return bonusBp;
 	}
 
-	
 	public QuestCard getQuestCard() {
 		return questCard;
 	}
-	
+
 	public ArrayList<WeaponCard> getWeapons() {
 		return weapons;
 	}

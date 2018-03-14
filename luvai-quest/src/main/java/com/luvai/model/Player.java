@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.socket.WebSocketSession;
 
+import com.google.gson.JsonObject;
 import com.luvai.model.AI.AI;
 import com.luvai.model.AI.Strategy2;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -42,6 +43,10 @@ public class Player {
 
 	public Player(String name) {
 		this.name = name;
+	}
+
+	public void equipCards(JsonObject json) {
+
 	}
 
 	public int getHandSize() {

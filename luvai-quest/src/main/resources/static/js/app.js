@@ -58,7 +58,7 @@ var camelot = { name: "At Camelot", type: "tournament", link: "/resources/images
 var orkney = { name: "At Ornkey", type: "tournament", link: "/resources/images/T2.jpg" };
 var tintagel = { name: "At Tintagel", type: "tournament", link: "/resources/images/T3.jpg" };
 var york = { name: "At York", type: "tournament", link: "/resources/images/T4.jpg" };
-var cardTypeList = [ back, horse, sword, dagger, battleAx, excalibur, robberKnight, saxons, boar, thieves, greenKnight, blackKnight, evilKnight, saxonKnight, dragon, giant, mordred, sirG, sirPe, sirP, sirT, sirL, sirGa, queenG, queenI, arthur, merlin, amour, chivalrousDeed, courtCamelot, callToArms, recognition, plague, pox, prosperity, queensFavor, testMorgan, testTemp, testBeast, testValor, arthurQuest, beastQuest, dragonQuest, forestQuest, grailQuest, gkQuest, honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot, orkney, tintagel, york];
+var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur, robberKnight, saxons, boar, thieves, greenKnight, blackKnight, evilKnight, saxonKnight, dragon, giant, mordred, sirG, sirPe, sirP, sirT, sirL, sirGa, queenG, queenI, arthur, merlin, amour, chivalrousDeed, courtCamelot, callToArms, recognition, plague, pox, prosperity, queensFavor, testMorgan, testTemp, testBeast, testValor, arthurQuest, beastQuest, dragonQuest, forestQuest, grailQuest, gkQuest, honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot, orkney, tintagel, york];
 
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
@@ -69,6 +69,9 @@ var stageTracker = 0;
 var foes = [];
 var weapons = [];
 var tempWeaponArr = [];
+var tempWeaponArr2 = [];
+var questInfo;
+var participantInfo;
 // when connection is initiated
 socketConn.onopen = function(event) {
 
@@ -79,6 +82,11 @@ socketConn.onmessage = function(event) {
 	
 	var serverMsg = document.getElementById('serverMsg');
 	
+	//quest in progress
+	if (event.data.startsWith("questInProgress")) {
+		var name = event.data.replace("questInProgress", "");
+		serverMsg.value = "Player " + name + " is entering quest, wait for battle...";
+	}
 	// no participants for sponsor
 	if (event.data == "No participants") {
 		serverMsg.value = "No one wanted to participate, receiving shields/cards, going to next turn";
@@ -94,9 +102,20 @@ socketConn.onmessage = function(event) {
 		document.getElementById("acceptQuest").style.display = "inline";
 		serverMsg.value = "Please accept/decline quest by clicking below"
 	}
+	//get current participant info
+	if(event.data.startsWith("currentParticipantInfo")) {
+		participantInfo = event.data.replace("currentParticipantInfo", "");
+		console.log(participantInfo);
+		document.getElementById('battleScreen').style.display = "block";
+	}
+	
+	//get point info for current battle
+	if(event.data.startsWith("pointInfo")) { 
+		
+	}
 	//get current quest info
 	if(event.data.startsWith("currentQuestInfo")) {
-		var questInfo = event.data.replace("currentQuestInfo", "");
+		questInfo = event.data.replace("currentQuestInfo", "");
 		questInfo = JSON.parse(questInfo);
 		console.log(questInfo);
 	}
@@ -195,6 +214,50 @@ function setupQuestRound() {
 		})
 	}
 }
+
+//accept to participate in quest
+function acceptQuestParticipate() {
+	document.getElementById('acceptQuest').style.display = "none";
+	var data = JSON.stringify({'name': PlayerName, 'participate_quest': true});
+	socketConn.send(data);
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = ("Click on the equipment you wish to use for battle");
+	document.getElementById('doneEquipment').style.display = "inline";
+	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {
+		var cardSrc = this.src.replace('http://localhost:8080','');
+		cardSrc = cardSrc.split('%20').join(' ');
+		var allyCardName = checkForCardType(cardSrc, "ally");
+		var weaponCardName = checkForCardType(cardSrc, "weapon");
+		var amourCardName = checkForCardType(cardSrc, "amour");
+	
+		if(allyCardName!="card not found") {
+			tempWeaponArr2.push(allyCardName)
+			var changeImageId = "#"+ this.id;
+			$(changeImageId).attr("src","/resources/images/all.png");
+		}
+		if(weaponCardName!="card not found") {
+			tempWeaponArr2.push(weaponCardName)
+			var changeImageId = "#"+ this.id;
+			$(changeImageId).attr("src","/resources/images/all.png");
+		}
+		if(amourCardName!="card not found") {
+			tempWeaponArr2.push(amourCardName)
+			var changeImageId = "#"+ this.id;
+			$(changeImageId).attr("src","/resources/images/all.png");
+		}
+	})
+}
+
+//send weapon info - done choosing
+function doneEquipment() {
+	document.getElementById('doneEquipment').style.display = "none";
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Going into battle";
+	$('body').off('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12');
+	var data = JSON.stringify({'name': PlayerName, 'stages': stageCounter, 'equipment_info': tempWeaponArr2});
+	socketConn.send(data);
+}
+
 //deny participation in quest
 function denyQuestParticipate() {
 	document.getElementById('acceptQuest').style.display = "none";

@@ -40,17 +40,32 @@ public class SocketHandler extends TextWebSocketHandler {
 		@SuppressWarnings("unchecked")
 		Map<String, String> clientMessage = new Gson().fromJson(message.getPayload(), Map.class);
 
+		// json for equipment
+		if (jsonObject.has("equipment_info")) {
+			System.out.println(jsonObject.toString());
+			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
+			sendToAllSessions(gameEngine.players, jsonOutput);
+			logger.info("Player {} chose {} to equip for stage {} battle of {} quest", jsonObject.get("name"),
+					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
+
+			return;
+		}
+
 		// json for accepting/decline participating in quest
 		if (jsonObject.has("participate_quest")) {
 			JsonElement participate_quest_answer = jsonObject.get("participate_quest");
 			JsonElement name = jsonObject.get("name");
+
 			if (participate_quest_answer.getAsBoolean()) {
+				logger.info("Player {} accepted to participate in {} quest sponsored by {}", name.getAsString(),
+						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
+				sendToAllSessionsExceptCurrent(gameEngine, session, "questInProgress" + name.getAsString());
 				return;
 			} else {
 				gameEngine.incTurn();
 
-				logger.info("Player {} declined to participate in {} quest", name.getAsString(),
-						gameEngine.storyDeck.faceUp.getName());
+				logger.info("Player {} declined to participate in {} quest sponsored by {}", name.getAsString(),
+						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
 					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("No participants"));
 					logger.info("No players accepted to participate in quest {} sponsored by {}",
@@ -65,11 +80,16 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		// json for quest setup info from sponsor
 		if (jsonObject.has("foes")) {
-
+			gameEngine.current_quest.initiateFoes(jsonObject);
+			// System.out.println(jsonObject.toString());
+			logger.info("Player {} has setup {} quest with foes: {} and weapons: {}",
+					gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(),
+					jsonObject.get("foes"), jsonObject.get("weapons"));
 			String jsonOutput = "currentQuestInfo" + jsonObject.toString();
 			sendToAllSessions(gameEngine.players, jsonOutput);
 			sendToNextPlayer(gameEngine, "AskToParticipate");
 			gameEngine.incTurn();
+
 			return;
 		}
 		// check json for sponsor quest field
