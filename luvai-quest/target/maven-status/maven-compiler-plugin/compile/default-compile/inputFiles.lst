@@ -28,5 +28,6 @@
 /home/luvai/GitHub/springmvc/luvai-quest/src/main/java/com/luvai/controller/QuestController.java
 /home/luvai/GitHub/springmvc/luvai-quest/src/main/java/com/luvai/model/AdventureCards/AdventureCard.java
 /home/luvai/GitHub/springmvc/luvai-quest/src/main/java/com/luvai/model/AdventureCards/AllyCard.java
+/home/luvai/GitHub/springmvc/luvai-quest/src/main/java/com/luvai/model/PointArray.java
 /home/luvai/GitHub/springmvc/luvai-quest/src/main/java/com/luvai/model/AdventureCards/AmourCard.java
 /home/luvai/GitHub/springmvc/luvai-quest/src/main/java/com/luvai/config/Initializer.java

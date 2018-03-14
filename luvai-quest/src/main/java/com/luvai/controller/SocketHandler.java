@@ -40,14 +40,33 @@ public class SocketHandler extends TextWebSocketHandler {
 		@SuppressWarnings("unchecked")
 		Map<String, String> clientMessage = new Gson().fromJson(message.getPayload(), Map.class);
 
+		// json for quest round over
+		if (jsonObject.has("roundOver")) {
+
+			JsonElement roundDone = jsonObject.get("roundOver");
+			JsonElement name = jsonObject.get("name");
+			if (roundDone.getAsBoolean()) {
+				logger.info("Player {} won first battle", name);
+				sendToAllSessionsExceptCurrent(gameEngine, session, "NextRound");
+				session.sendMessage(new TextMessage("RoundWon"));
+
+				return;
+			} else {
+				logger.info("Player {} lost first battle", name);
+				sendToAllSessionsExceptCurrent(gameEngine, session, "BattleOver");
+				session.sendMessage(new TextMessage("RoundLost"));
+
+				return;
+			}
+
+		}
 		// json for equipment
 		if (jsonObject.has("equipment_info")) {
-			System.out.println(jsonObject.toString());
 			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
 			sendToAllSessions(gameEngine.players, jsonOutput);
 			logger.info("Player {} chose {} to equip for stage {} battle of {} quest", jsonObject.get("name"),
 					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
-
+			gameEngine.current_quest.equipPlayer(jsonObject);
 			return;
 		}
 
@@ -60,6 +79,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				logger.info("Player {} accepted to participate in {} quest sponsored by {}", name.getAsString(),
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				sendToAllSessionsExceptCurrent(gameEngine, session, "questInProgress" + name.getAsString());
+				gameEngine.current_quest.participants.add(gameEngine.getActivePlayer());
 				return;
 			} else {
 				gameEngine.incTurn();
@@ -148,8 +168,10 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.players.get(0).session.sendMessage(new TextMessage("sponsorQuest"));
 				}
 				if (gameEngine.storyDeck.faceUp instanceof TournamentCard) {
+
 				}
 				if (gameEngine.storyDeck.faceUp instanceof EventCard) {
+
 				}
 			}
 		}
@@ -172,21 +194,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		/*
-				gameEngine.storyDeck.faceUp = CardList.Quest6;
-				Player clientObject = new Player("Bob", session);
-				gameEngine.players.add(clientObject);
-				gameEngine.players.get(0).setHand(gameEngine.mockHand1);
-				session.sendMessage(new TextMessage("SetNameBob"));
-				session.sendMessage(new TextMessage("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
-				gameEngine.players.get(0).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(0).getHandString()));
-				String x = "currentQuestInfo{" + "\"foes\"" + ":[" + "\"Boar\"" + "," + "\"Black Knight\"" + "],"
-						+ "\"weapons\"" + ":[[" + "\"Dagger\"" + "],[" + "\"Sword\"" + "," + "\"Horse\"" + "]]}";
-				System.out.println(x);
-				session.sendMessage(new TextMessage(x));
-				session.sendMessage(new TextMessage("AskToParticipate"));
-				*/
+
 		logger.info("New player attempting to connect...");
 		if (gameEngine.players.size() == 4) {
 			session.sendMessage(new TextMessage("Too many players, sorry. Being disconnected."));

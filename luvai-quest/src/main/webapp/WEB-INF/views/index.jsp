@@ -37,55 +37,62 @@
 
 	<div id="battleScreen"
 		style="display: none; margin: 0 auto; font-size: 24px; border-style: dashed; background-color: white; width: 600px; height: 600px; z-index: 2; text-align: center;">
-		<strong>Battle Screen</strong> <br>
+		<strong>Battle Screen</strong>&nbsp;<br />
 		<div id="enemyDisplay" style="float: right;">
 			<div>
-				<img id="enemyPic" src="/resources/images/all.png" height="250"
-					width="180">
+				<img id="enemyPic" src="/resources/images/all.png" width="180"
+					height="250" />
 			</div>
-
 			<div>
 				<img id="enemyWeaponSpot1" src="/resources/images/all.png"
-					height="120" width="80"> <img id="enemyWeaponSpot2"
-					src="/resources/images/all.png" height="120" width="80"> <img
-					id="enemyWeaponSpot4" src="/resources/images/all.png" height="120"
-					width="80">
+					width="80" height="120" /> <img id="enemyWeaponSpot2"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="enemyWeaponSpot4" src="/resources/images/all.png" width="80"
+					height="120" />
 			</div>
 			<div>
 				<img id="enemyWeaponSpot4" src="/resources/images/all.png"
-					height="120" width="80"> <img id="enemyWeaponSpot5"
-					src="/resources/images/all.png" height="120" width="80"> <img
-					id="enemyWeaponSpot6" src="/resources/images/all.png" height="120"
-					width="80">
+					width="80" height="120" /> <img id="enemyWeaponSpot5"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="enemyWeaponSpot6" src="/resources/images/all.png" width="80"
+					height="120" />
 			</div>
-
+			<label id="f_win" style="color: green; display: none;"> <strong>
+					WINNER </strong>
+			</label> <label id="f_lose" style="color: red; display: none;"> <strong>
+					LOSER </strong>
+			</label>
 		</div>
-
 		<div id="playerDisplay" style="float: left;">
 			<div>
-				<img id="playerPic" src="/resources/images/all.png" height="250"
-					width="180">
+				<img id="playerPic" src="/resources/images/all.png" width="180"
+					height="250" />
 			</div>
-
 			<div>
 				<img id="playerWeaponSpot1" src="/resources/images/all.png"
-					height="120" width="80"> <img id="playerWeaponSpot2"
-					src="/resources/images/all.png" height="120" width="80"> <img
-					id="playerWeaponSpot3" src="/resources/images/all.png" height="120"
-					width="80">
+					width="80" height="120" /> <img id="playerWeaponSpot2"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="playerWeaponSpot3" src="/resources/images/all.png" width="80"
+					height="120" />
 			</div>
 			<div>
 				<img id="playerWeaponSpot4" src="/resources/images/all.png"
-					height="120" width="80"> <img id="playerWeaponSpot5"
-					src="/resources/images/all.png" height="120" width="80"> <img
-					id="playerWeaponSpot6" src="/resources/images/all.png" height="120"
-					width="80">
+					width="80" height="120" /> <img id="playerWeaponSpot5"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="playerWeaponSpot6" src="/resources/images/all.png" width="80"
+					height="120" />
 			</div>
+			<label id="p_win" style="color: green; display: none;"> <strong>
+					WINNER </strong>
+			</label> <label id="p_lose" style="color: red; display: none;"> <strong>
+					LOSER </strong>
+			</label>
 		</div>
 	</div>
 	<p>
 		<textarea rows="2" cols="50" id="serverMsg"></textarea>
-		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()" style="display: none">Done</button>
+		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()"
+			style="display: none">Done</button>
 		<button id="doneEquipment" onclick="doneEquipment()"
 			style="display: none">Done</button>
 	</p>

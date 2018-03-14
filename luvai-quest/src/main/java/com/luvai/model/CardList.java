@@ -174,7 +174,7 @@ public class CardList {
 	public static String orkneyImage = "/resources/images/T2.jpg";
 	public static String tintagelImage = "/resources/images/T3.jpg";
 	public static String yorkImage = "/resources/images/T4.jpg";
-
+	public static String CTRImage = "/resources/images/RoundTableKnight.png";
 	public static WeaponCard Horse = new WeaponCard("Horse", horseImage, 10);
 	public static WeaponCard Sword = new WeaponCard("Sword", swordImage, 10);
 	public static WeaponCard Dagger = new WeaponCard("Dagger", daggerImage, 5);
@@ -241,5 +241,5 @@ public class CardList {
 	public static RankCard Squire = new RankCard("Squire", squireImage, 5);
 	public static RankCard Knight = new RankCard("Knight", knightImage, 10);
 	public static RankCard ChampionKnight = new RankCard("Champion Knight", cKnightImage, 20);
-
+	public static RankCard RoundTableKnight = new RankCard("Champion Knight of The Round Table", CTRImage, 100);
 }

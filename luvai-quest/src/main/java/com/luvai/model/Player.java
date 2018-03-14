@@ -77,13 +77,16 @@ public class Player {
 		 */
 		if (this.shields >= 5) {
 			this.rank = CardList.Knight;
+			this.battlePoints = 10;
 		}
 		if (this.shields >= 7) {
-			this.rank = CardList.Knight;
+			this.rank = CardList.ChampionKnight;
+			this.battlePoints = 20;
 		}
 		if (this.shields >= 10) {
-			this.rank = CardList.ChampionKnight;
+			this.rank = CardList.RoundTableKnight;
 			this.tieCheck = 1;
+			this.battlePoints = 100;
 		}
 
 	}
