@@ -96,7 +96,18 @@
 		<button id="doneEquipment" onclick="doneEquipment()"
 			style="display: none">Done</button>
 	</p>
-	<div style="float: right" id="playerHand">
+	<div oncontextmenu="discard();return false;" style="float: right" id="playerHand">
+	 <div style="float:right">
+<img id="extra1" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra2" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra3" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra4" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra5" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra6" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra7" src="/resources/images/all.png" height="190" width="133"> 
+<img id="extra8" src="/resources/images/all.png" height="190" width="133"> 
+				
+               </div>
 		<div>
 			<img id="card1" src="/resources/images/all.png" height="250"
 				width="180"> <img id="card2" alt="image"
@@ -133,16 +144,16 @@
 		<button id="denyQuestParticipate" onclick="denyQuestParticipate()">No</button>
 	</div>
 	<div>
-		<img id="storyCard" alt="image" src="/resources/images/all.png"
-			height="300" width="200"> <img alt="image"
+		<img id="storyCard" alt="image" src="/resources/images/card-back.png"
+			height="300" width="200"> <img id="storyCardDiscard"
 			src="/resources/images/all.png" height="300" width="200">
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Story
 	Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S.
 	Discard Pile
 	<div>
-		<img alt="image" src="/resources/images/all.png" height="300"
-			width="200"> <img alt="image" src="/resources/images/all.png"
+		<img id="adventureCard" src="/resources/images/card-back.png" height="300"
+			width="200"> <img id="adventureCardDiscard" src="/resources/images/all.png"
 			height="300" width="200">
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adventure

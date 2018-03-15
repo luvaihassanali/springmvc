@@ -132,6 +132,12 @@ public class Game {
 		return null;
 	}
 
+	public Player getCurrentParticipant() {
+		if (current_quest.participants.size() == 1)
+			return current_quest.participants.get(0);
+		return current_quest.participants.get(current_quest.participantTurns % current_quest.participants.size());
+	}
+
 	// convenience method because I think this will get called a lot
 	public boolean isActiveAI() {
 		return (this.getActivePlayer().isAI());

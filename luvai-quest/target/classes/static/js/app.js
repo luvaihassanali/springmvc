@@ -320,7 +320,7 @@ var FoeInfo = "";
 var currentPlayerInfo = "";
 var currentPlayerPts = 0;
 var sponsor = "";
-
+var numCards =0;
 // when connection is initiated
 socketConn.onopen = function(event) {
 
@@ -330,7 +330,55 @@ socketConn.onopen = function(event) {
 socketConn.onmessage = function(event) {
 
 	var serverMsg = document.getElementById('serverMsg');
-
+	
+	//sponsor pickup
+	if(event.data.startsWith("SponsorPickUp")) {
+		console.log("sponsor pick up time");
+	}
+	// get card pick up on starting stage
+	if (event.data.startsWith("pickupBeforeStage")) {
+		var pickUpLink = event.data.replace("pickupBeforeStage", "");
+		$("#extra1").attr("src", "http://localhost:8080" + pickUpLink);
+		var card1 = document.getElementById("card1").src;
+		var card2 = document.getElementById("card2").src;
+		var card3 = document.getElementById("card3").src;
+		var card4 = document.getElementById("card4").src;
+		var card5 = document.getElementById("card5").src;
+		var card6 = document.getElementById("card6").src;
+		var card7 = document.getElementById("card7").src;
+		var card8 = document.getElementById("card8").src;
+		var card9 = document.getElementById("card9").src;
+		var card10 = document.getElementById("card10").src;
+		var card11 = document.getElementById("card11").src;
+		var card12 = document.getElementById("card12").src;
+		var extra1 = document.getElementById("extra1").src;
+		var extra2 = document.getElementById("extra2").src;
+		var extra3 = document.getElementById("extra3").src;
+		var extra4 = document.getElementById("extra4").src;
+		var extra5 = document.getElementById("extra5").src;
+		var extra6 = document.getElementById("extra6").src;
+		var extra7 = document.getElementById("extra7").src;
+		var extra8 = document.getElementById("extra8").src;
+		var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, extra1, extra2, extra3, extra4, extra5, extra6, extra7, extra8 ];
+		var cardTracker = 0;
+		for(var i=0; i<imageArray.length; i++) {
+			var tempCardLink = imageArray[i].replace("http://localhost:8080","");
+			tempCardLink = tempCardLink.split('%20').join(' ');
+			console.log(tempCardLink);
+			if(tempCardLink!="/resources/images/all.png") cardTracker++;
+		}
+		console.log(cardTracker);
+		numCards = cardTracker;
+		if(cardTracker > 12) {
+			document.getElementById("doneEquipment").disabled = true;
+			serverMsg.value += " You must choose a card to continue (or right-click to discard) ";
+		}
+	}
+	
+	// no winners in quest
+	if (event.data.startsWith("Quest over, no winners")) {
+		serverMsg.value = event.data;
+	}
 	//get round info for participant
 	if (event.data == "RoundWon") {
 		console.log("You won");
@@ -369,7 +417,7 @@ socketConn.onmessage = function(event) {
 	}
 	// no participants for sponsor
 	if (event.data == "No participants") {
-		serverMsg.value = "No one wanted to participate, receiving shields/cards, going to next turn";
+		serverMsg.value = "No one won/participated, receiving shields/cards for setup, going to next turn";
 		// socketConn.send("flipStoryDeck");
 	}
 	// set name for testing purposes
@@ -438,7 +486,7 @@ socketConn.onmessage = function(event) {
 	}
 	// no participants in quest
 	if (event.data == ("EmptyQuest")) {
-		serverMsg.value = "No one participated in the quest";
+		serverMsg.value = "No one participated/won in the quest - wait for next turn";
 	}
 	// if game is full - deny message
 	if (event.data.startsWith("Too many players")) {
@@ -561,6 +609,15 @@ function displayBattle(stage) {
 	} else {
 		document.getElementById("p_lose").style.display = "block";
 		document.getElementById("f_win").style.display = "block";
+		setTimeout(function(){ 
+			var serverMsg = document.getElementById('serverMsg');
+			if(serverMsg.value=="Going into battle") { 
+				var data = JSON.stringify({ 'nextQuestTurn' : 0});
+				socketConn.send(data);}
+			serverMsg.value = "Round lost, going to next turn... ";
+			document.getElementById('battleScreen').style.display = "none";
+			}, 4000);
+		
 	}
 	
 	var data = JSON.stringify({
@@ -627,6 +684,24 @@ function setupQuestRound() {
 	}
 }
 
+//discard function
+function discard(){
+	$('body')
+	.on(
+			'contextmenu',
+			'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8',
+			function() {
+				
+				if(this.src!="http://localhost:8080/resources/images/all.png") {
+					if(numCards>12) {
+						$(this).attr("src", "/resources/images/all.png");
+						numCards--;
+						if(numCards>=12) { document.getElementById("doneEquipment").disabled = false; }
+					}
+				}
+			})
+	return false;
+}
 // accept to participate in quest
 function acceptQuestParticipate() {
 	document.getElementById('acceptQuest').style.display = "none";
@@ -636,13 +711,18 @@ function acceptQuestParticipate() {
 	});
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = ("Click on the equipment you wish to use for battle");
+	serverMsg.value = ("Click on the equipment you wish to use for battle\nReceiving 1 card");
 	document.getElementById('doneEquipment').style.display = "inline";
 	$('body')
 			.on(
 					'click',
-					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12',
+					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8',
 					function() {
+
+						if(numCards>=12) { 
+							document.getElementById("doneEquipment").disabled = false;
+							}
+						
 						var cardSrc = this.src.replace('http://localhost:8080',
 								'');
 						cardSrc = cardSrc.split('%20').join(' ');
@@ -653,21 +733,25 @@ function acceptQuestParticipate() {
 						if (allyCardName != "card not found") {
 							tempWeaponArr2.push(allyCardName)
 							var changeImageId = "#" + this.id;
+							numCards--;
 							$(changeImageId).attr("src",
 									"/resources/images/all.png");
 						}
 						if (weaponCardName != "card not found") {
 							tempWeaponArr2.push(weaponCardName)
 							var changeImageId = "#" + this.id;
+							numCards--;
 							$(changeImageId).attr("src",
 									"/resources/images/all.png");
 						}
 						if (amourCardName != "card not found") {
 							tempWeaponArr2.push(amourCardName)
 							var changeImageId = "#" + this.id;
+							numCards--;
 							$(changeImageId).attr("src",
 									"/resources/images/all.png");
 						}
+						
 					})
 }
 
@@ -679,7 +763,7 @@ function doneEquipment() {
 	$('body')
 			.off(
 					'click',
-					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12');
+					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8');
 	var data = JSON.stringify({
 		'name' : PlayerName,
 		'stages' : stageCounter,

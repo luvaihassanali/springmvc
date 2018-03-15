@@ -40,23 +40,51 @@ public class SocketHandler extends TextWebSocketHandler {
 		@SuppressWarnings("unchecked")
 		Map<String, String> clientMessage = new Gson().fromJson(message.getPayload(), Map.class);
 
+		// go to next turn in quest participants
+		if (jsonObject.has("nextQuestTurn")) {
+			setTimeout(() -> {
+				try {
+					if (gameEngine.getNextPlayer().equals(gameEngine.current_quest.sponsor)) {
+						sendToAllSessions(gameEngine.players,
+								"Quest over, no winners, wait for sponsor to pickup cards");
+						gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("SponsorPickUp"));
+					} else {
+						sendToNextPlayer(gameEngine, "AskToParticipate");
+					}
+					gameEngine.incTurn();
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}, 2000);
+		}
 		// json for quest round over
 		if (jsonObject.has("roundOver")) {
-
+			gameEngine.current_quest.incTurn();
 			JsonElement roundDone = jsonObject.get("roundOver");
 			JsonElement name = jsonObject.get("name");
 			if (roundDone.getAsBoolean()) {
-				logger.info("Player {} won first battle", name);
-				sendToAllSessionsExceptCurrent(gameEngine, session, "NextRound");
-				session.sendMessage(new TextMessage("RoundWon"));
-
-				return;
+				if (gameEngine.getActivePlayer().getName().equals(name.getAsString())) {
+					logger.info("Player {} won first battle", name);
+					sendToAllSessionsExceptCurrent(gameEngine, session, "NextRound");
+					session.sendMessage(new TextMessage("RoundWon"));
+					if (gameEngine.getNextPlayer().equals(gameEngine.current_quest.sponsor)) {
+						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickUp"));
+					}
+					return;
+				}
 			} else {
-				logger.info("Player {} lost first battle", name);
-				sendToAllSessionsExceptCurrent(gameEngine, session, "BattleOver");
-				session.sendMessage(new TextMessage("RoundLost"));
-
-				return;
+				gameEngine.current_quest.removeParticipant(name.getAsString());
+				if (gameEngine.getActivePlayer().getName().equals(name.getAsString())) {
+					logger.info("Player {} lost first battle", name);
+					sendToAllSessionsExceptCurrent(gameEngine, session, "BattleOver");
+					session.sendMessage(new TextMessage("RoundLost"));
+					if (gameEngine.getNextPlayer().equals(gameEngine.current_quest.sponsor)) {
+						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickUp"));
+					}
+					return;
+				}
 			}
 
 		}
@@ -80,6 +108,9 @@ public class SocketHandler extends TextWebSocketHandler {
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				sendToAllSessionsExceptCurrent(gameEngine, session, "questInProgress" + name.getAsString());
 				gameEngine.current_quest.participants.add(gameEngine.getActivePlayer());
+				gameEngine.adventureDeck.flipCard();
+				String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+				session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 				return;
 			} else {
 				gameEngine.incTurn();
@@ -87,11 +118,13 @@ public class SocketHandler extends TextWebSocketHandler {
 				logger.info("Player {} declined to participate in {} quest sponsored by {}", name.getAsString(),
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
+					System.out.println("line 115 socket handler " + gameEngine.current_quest.participants.size());
 					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("No participants"));
-					logger.info("No players accepted to participate in quest {} sponsored by {}",
-							gameEngine.storyDeck.faceUp.getName(), gameEngine.getActivePlayer().getName());
+					logger.info("No one won/accepted quest {} sponsored by {}", gameEngine.storyDeck.faceUp.getName(),
+							gameEngine.getActivePlayer().getName());
 					sendToAllPlayersExcept(gameEngine, gameEngine.getActivePlayer(), "EmptyQuest");
-					flipStoryCard();
+					// need to give sponsor cards here
+					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickUp"));
 					return;
 				}
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
@@ -230,6 +263,12 @@ public class SocketHandler extends TextWebSocketHandler {
 		return null;
 	}
 
+	// send to next participant
+	public void sendToNextParticipant(Game gameEngine, String message) throws IOException {
+		Player player = gameEngine.current_quest.getNextParticipant();
+		player.session.sendMessage(new TextMessage(message));
+	}
+
 	// send message to next player
 	public void sendToNextPlayer(Game gameEngine, String message) throws IOException {
 		Player player = gameEngine.getNextPlayer();
@@ -263,5 +302,16 @@ public class SocketHandler extends TextWebSocketHandler {
 		for (Player p : tempList) {
 			p.session.sendMessage(new TextMessage(message));
 		}
+	}
+
+	public static void setTimeout(Runnable runnable, int delay) {
+		new Thread(() -> {
+			try {
+				Thread.sleep(delay);
+				runnable.run();
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}).start();
 	}
 }// end of class

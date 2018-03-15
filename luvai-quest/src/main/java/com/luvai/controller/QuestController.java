@@ -33,6 +33,7 @@ public class QuestController extends SocketHandler {
 	QuestCard currentQuest;
 	public ArrayList<FoeCard> QuestFoes;
 	public FoeCard currentFoe;
+	public int participantTurns = 0;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -150,6 +151,30 @@ public class QuestController extends SocketHandler {
 
 	}
 
+	public Player getCurrentParticipant() {
+		if (participants.size() == 1)
+			return participants.get(0);
+		return participants.get(participantTurns % participants.size());
+	}
+
+	public void removeParticipant(String name) {
+		for (int i = 0; i < participants.size(); i++) {
+			if (participants.get(i).getName().equals(name)) {
+				participants.remove(i);
+			}
+		}
+	}
+
+	public Player getNextParticipant() {
+		if (participants.size() == 1)
+			return participants.get(0);
+		return participants.get((participantTurns + 1) % participants.size());
+	}
+
+	public void incTurn() {
+		this.participantTurns++;
+	}
+
 	public void setupQuest() throws IOException {
 		logger.info("{} is setting up stages for {} quest", this.sponsor.getName(), this.currentQuest.getName());
 		sendToAllSessionsExceptCurrent(gameEngine, sponsor.session, "QuestBeingSetup");
@@ -157,10 +182,6 @@ public class QuestController extends SocketHandler {
 
 	public ArrayList<Player> getParticipants() {
 		return this.participants;
-	}
-
-	public void addParticipant(Player player) {
-		this.participants.add(player);
 	}
 
 }
