@@ -364,7 +364,7 @@ socketConn.onmessage = function(event) {
 		for(var i=0; i<imageArray.length; i++) {
 			var tempCardLink = imageArray[i].replace("http://localhost:8080","");
 			tempCardLink = tempCardLink.split('%20').join(' ');
-			console.log(tempCardLink);
+			//console.log(tempCardLink);
 			if(tempCardLink!="/resources/images/all.png") cardTracker++;
 		}
 		console.log(cardTracker);
@@ -375,6 +375,9 @@ socketConn.onmessage = function(event) {
 		}
 	}
 	
+	if (event.data == ("AskToParticipate2")) {
+		console.log("SECOND QUEST ROUND");
+	}
 	// no winners in quest
 	if (event.data.startsWith("Quest over, no winners")) {
 		serverMsg.value = event.data;
@@ -389,18 +392,18 @@ socketConn.onmessage = function(event) {
 	
 	//round info for viewers
 	if (event.data=="NextRound") {
-		console.log("battle won, next round");
+		//console.log("battle won, next round");
 	}
 	if (event.data == "BattleOver") {
-		console.log("battle lost, next turn");
+		//console.log("battle lost, next turn");
 	}
 	
 	// get current player pts
 	if (event.data.startsWith("currentPlayerPoints")) {
 		var pts = event.data.replace("currentPlayerPoints", "");
 		currentPlayerInfo = pts;
-		console.log(PlayerName);
-		console.log(sponsor);
+		//console.log(PlayerName);
+		//console.log(sponsor);
 		if(PlayerName == sponsor) { stageCounter = 1;}
 		displayBattle(stageCounter);
 	}
@@ -584,9 +587,9 @@ function displayBattle(stage) {
 	console.log(tempPPoints); console.log(tempFPoints);
 	if(tempPPoints >= tempFPoints) {
 		playerWin = true; 
-		console.log("here");
-		console.log(tempPPoints);
-		console.log(tempFPoints);
+		//console.log("here");
+		//console.log(tempPPoints);
+		//console.log(tempFPoints);
 		} else { 
 			playerWin = false; }
 	console.log(playerWin);
@@ -596,12 +599,25 @@ function displayBattle(stage) {
 		document.getElementById("f_lose").style.display = "block";
 		var serverMsg = document.getElementById('serverMsg');
 		if(serverMsg.value.startsWith("Player")) {
-			serverMsg.value = "This battle was won...please wait for next round to complete";
+			setTimeout(function(){
+				serverMsg.value = "This battle was won...please wait for next round to complete";
+				document.getElementById('battleScreen').style.display = "none";
+				document.getElementById("p_win").style.display = "none";
+				document.getElementById("f_lose").style.display = "none";
+				document.getElementById("p_lose").style.display = "none";
+				document.getElementById("f_win").style.display = "none";
+			}, 4000);
 		} else {
 			setTimeout(function(){ 
 				var serverMsg = document.getElementById('serverMsg');
-				serverMsg.value = "Round won...equip for next round";
+				serverMsg.value = "Round won...going to next player turn";
 				document.getElementById('battleScreen').style.display = "none";
+				document.getElementById("p_win").style.display = "none";
+				document.getElementById("f_lose").style.display = "none";
+				document.getElementById("p_lose").style.display = "none";
+				document.getElementById("f_win").style.display = "none";
+				var data = JSON.stringify({ 'nextQuestTurn' : 0});
+				socketConn.send(data);
 				}, 4000);
 			
 		}

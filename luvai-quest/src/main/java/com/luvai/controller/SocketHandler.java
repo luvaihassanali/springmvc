@@ -45,6 +45,12 @@ public class SocketHandler extends TextWebSocketHandler {
 			setTimeout(() -> {
 				try {
 					if (gameEngine.getNextPlayer().equals(gameEngine.current_quest.sponsor)) {
+						if (gameEngine.current_quest.participants.size() != 0) {
+							System.out.println("line 49" + gameEngine.current_quest.getCurrentParticipant().getName());
+							// gameEngine.current_quest.sendToCurrentParticipant(gameEngine,
+							// "AskToParticipate2");
+							return;
+						}
 						sendToAllSessions(gameEngine.players,
 								"Quest over, no winners, wait for sponsor to pickup cards");
 						gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("SponsorPickUp"));
@@ -70,6 +76,11 @@ public class SocketHandler extends TextWebSocketHandler {
 					sendToAllSessionsExceptCurrent(gameEngine, session, "NextRound");
 					session.sendMessage(new TextMessage("RoundWon"));
 					if (gameEngine.getNextPlayer().equals(gameEngine.current_quest.sponsor)) {
+						if (gameEngine.current_quest.participants.size() != 0) {
+							System.out.println("line 78" + gameEngine.current_quest.getCurrentParticipant().getName());
+							gameEngine.current_quest.sendToCurrentParticipant(gameEngine, "AskToParticipate2");
+							return;
+						}
 						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickUp"));
 					}
 					return;
@@ -81,6 +92,11 @@ public class SocketHandler extends TextWebSocketHandler {
 					sendToAllSessionsExceptCurrent(gameEngine, session, "BattleOver");
 					session.sendMessage(new TextMessage("RoundLost"));
 					if (gameEngine.getNextPlayer().equals(gameEngine.current_quest.sponsor)) {
+						if (gameEngine.current_quest.participants.size() != 0) {
+							System.out.println("line 93" + gameEngine.current_quest.getCurrentParticipant().getName());
+							gameEngine.current_quest.sendToCurrentParticipant(gameEngine, "AskToParticipate2");
+							return;
+						}
 						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickUp"));
 					}
 					return;
@@ -118,7 +134,11 @@ public class SocketHandler extends TextWebSocketHandler {
 				logger.info("Player {} declined to participate in {} quest sponsored by {}", name.getAsString(),
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
-					System.out.println("line 115 socket handler " + gameEngine.current_quest.participants.size());
+					if (gameEngine.current_quest.participants.size() != 0) {
+						System.out.println("line 134" + gameEngine.current_quest.getCurrentParticipant().getName());
+						gameEngine.current_quest.sendToNextParticipant(gameEngine, "AskToParticipate2");
+						return;
+					}
 					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("No participants"));
 					logger.info("No one won/accepted quest {} sponsored by {}", gameEngine.storyDeck.faceUp.getName(),
 							gameEngine.getActivePlayer().getName());
@@ -261,6 +281,12 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 		}
 		return null;
+	}
+
+	// send to current participant
+	public void sendToCurrentParticipant(Game gameEngine, String message) throws IOException {
+		Player player = gameEngine.current_quest.getCurrentParticipant();
+		player.session.sendMessage((new TextMessage(message)));
 	}
 
 	// send to next participant
