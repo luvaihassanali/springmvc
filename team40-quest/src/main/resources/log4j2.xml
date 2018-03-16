@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE LoggerConfig>
+<Configuration status="INFO">
+  <Appenders>
+
+    <!-- Console Appender -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout
+        pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+    </Console>
+
+    <!-- File Appender -->
+    <File name="File" fileName="app.log">
+      <PatternLayout
+        pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+        <Filters>
+
+        <!-- First deny warn, error and fatal messages -->
+        <ThresholdFilter level="warn"  onMatch="DENY" onMismatch="NEUTRAL"/>
+        <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+        <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"/>
+
+        <!-- Then accept info, warn, error, fatal and deny debug/trace -->
+        <ThresholdFilter level="info"  onMatch="ACCEPT" onMismatch="DENY"/>
+    </Filters>
+    </File>
+
+  </Appenders>
+  <Loggers>
+ 
+    <Root level="info">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Root>
+  </Loggers>
+</Configuration>
