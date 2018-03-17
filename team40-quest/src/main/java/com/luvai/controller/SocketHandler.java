@@ -213,22 +213,23 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// go to next participant turn
 		if (jsonObject.has("nextQuestTurn")) {
-			setTimeout(() -> {
-				try {
-					if (jsonObject.get("nextQuestTurn").getAsBoolean() == false) {
-						gameEngine.current_quest.removeParticipant(gameEngine.getCurrentParticipant().getName());
-					}
-					if (gameEngine.current_quest.participants.size() == 0) {
-						gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("test"));
-						return;
-					}
+
+			if (jsonObject.get("nextQuestTurn").getAsBoolean() == false) {
+				gameEngine.current_quest.removeParticipant(gameEngine.getCurrentParticipant().getName());
+				if (gameEngine.current_quest.participants.size() == 0) {
+					gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("test"));
+					return;
+				} else {
 					gameEngine.current_quest.incTurn();
 					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("test"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					return;
 				}
-			}, 2000);
+			}
+
+			gameEngine.current_quest.incTurn();
+			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("test"));
+
+			return;
 		}
 
 	}

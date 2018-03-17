@@ -317,6 +317,7 @@ var tempWeaponArr2 = [];
 var questInfo;
 var participantInfo;
 var FoeInfo = "";
+var currentPlayerName = "";
 var currentPlayerInfo = "";
 var currentPlayerPts = 0;
 var sponsor = "";
@@ -425,6 +426,7 @@ socketConn.onmessage = function(event) {
 	// get current participant info
 	if (event.data.startsWith("currentParticipantInfo")) {
 		participantInfo = event.data.replace("currentParticipantInfo", "");
+		participantInfo = JSON.parse(participantInfo);
 		console.log(participantInfo);
 	}
 	
@@ -665,7 +667,7 @@ function displayBattle(stage) {
 				document.getElementById("f_lose").style.display = "none";
 				document.getElementById("p_lose").style.display = "none";
 				document.getElementById("f_win").style.display = "none";
-			}, 4000);
+			}, 5000);
 		} else {
 			setTimeout(function(){ 
 				var serverMsg = document.getElementById('serverMsg');
@@ -675,9 +677,10 @@ function displayBattle(stage) {
 				document.getElementById("f_lose").style.display = "none";
 				document.getElementById("p_lose").style.display = "none";
 				document.getElementById("f_win").style.display = "none";
-				var data = JSON.stringify({ 'nextQuestTurn' : playerWin});
-				socketConn.send(data);
-				}, 4000);
+				var data = JSON.stringify({ 'nextQuestTurn' : true});
+				if(PlayerName == participantInfo.name) {
+				socketConn.send(data); }
+				}, 5000);
 			
 		}
 
@@ -687,11 +690,12 @@ function displayBattle(stage) {
 		setTimeout(function(){ 
 			var serverMsg = document.getElementById('serverMsg');
 			if(serverMsg.value=="Going into battle") { 
-				var data = JSON.stringify({ 'nextQuestTurn' : 0});
-				socketConn.send(data);}
+				var data = JSON.stringify({ 'nextQuestTurn' : false});
+				if(PlayerName == participantInfo.name) {
+				socketConn.send(data);} }
 			serverMsg.value = "Round lost, going to next turn... ";
 			document.getElementById('battleScreen').style.display = "none";
-			}, 4000);
+			}, 5000);
 		
 	}
 	
