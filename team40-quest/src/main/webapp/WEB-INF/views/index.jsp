@@ -47,7 +47,7 @@
 				<img id="enemyWeaponSpot1" src="/resources/images/all.png"
 					width="80" height="120" /> <img id="enemyWeaponSpot2"
 					src="/resources/images/all.png" width="80" height="120" /> <img
-					id="enemyWeaponSpot4" src="/resources/images/all.png" width="80"
+					id="enemyWeaponSpot3" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
 			<div>

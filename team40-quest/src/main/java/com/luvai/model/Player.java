@@ -94,8 +94,7 @@ public class Player {
 	public void discard(ArrayList<String> cards) {
 		ArrayList<String> names1 = new ArrayList<String>();
 		ArrayList<String> names2 = new ArrayList<String>();
-		System.out.println(cards);
-		System.out.println(cards.size());
+
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).endsWith(Integer.toString(0))) {
 
@@ -108,19 +107,19 @@ public class Player {
 				names2.add(removeLastChar(cards.get(i)));
 			}
 		}
-		for (String a : names1) {
+		// for (String a : names1) {
 
-			System.out.println(a);
-		}
-		for (String a : names2) {
+		// System.out.println(a);
+		// }
+		// for (String a : names2) {
 
-			System.out.println(a);
-		}
+		// System.out.println(a);
+		// }
 
 		for (int i = 0; i < this.getHandSize(); i++) {
 			for (int j = 0; j < names1.size(); j++) {
 				if (this.hand.get(i).getName().equals(names1.get(j))) {
-					System.out.println("discarding");
+
 					this.hand.remove(i);
 				}
 			}

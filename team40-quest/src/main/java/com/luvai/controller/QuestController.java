@@ -51,16 +51,18 @@ public class QuestController extends SocketHandler {
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
 		List<String> equipmentList = new Gson().fromJson(player_equipment, listType);
+		System.out.println(equipmentList);
 		for (int i = 0; i < equipmentList.size(); i++) {
 			AdventureCard tempCard = getCardFromName(equipmentList.get(i));
 			if (tempCard instanceof AllyCard) {
-				gameEngine.getActivePlayer().getAllies().add((AllyCard) tempCard);
+
+				gameEngine.getCurrentParticipant().getAllies().add((AllyCard) tempCard);
 			}
 			if (tempCard instanceof WeaponCard) {
-				gameEngine.getActivePlayer().getWeapons().add((WeaponCard) tempCard);
+				gameEngine.getCurrentParticipant().getWeapons().add((WeaponCard) tempCard);
 			}
 			if (tempCard instanceof AmourCard) {
-				gameEngine.getActivePlayer().setAmourCard(tempCard);
+				gameEngine.getCurrentParticipant().setAmourCard(tempCard);
 			}
 		}
 		calculatePlayerPoints();
@@ -88,6 +90,7 @@ public class QuestController extends SocketHandler {
 				QuestFoes.get(i).weapons.add((WeaponCard) tempCard);
 			}
 		}
+
 		/*		for (FoeCard f : QuestFoes) {
 					System.out.println(f.getName());
 					for (WeaponCard w : f.getWeapons()) {
@@ -98,7 +101,7 @@ public class QuestController extends SocketHandler {
 	}
 
 	public void calculatePlayerPoints() {
-		Player currentPlayer = gameEngine.getActivePlayer();
+		Player currentPlayer = gameEngine.getCurrentParticipant();
 		int tempPts = currentPlayer.getBattlePoints();
 		String cardNames = "";
 		if (currentPlayer.getAmourCard() != null) {

@@ -304,7 +304,6 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot,
 		orkney, tintagel, york ];
 
-
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
@@ -347,10 +346,10 @@ socketConn.onmessage = function(event) {
 		for(var i=0; i<imageArray.length; i++) {
 			var tempCardLink = imageArray[i].replace("http://localhost:8080","");
 			tempCardLink = tempCardLink.split('%20').join(' ');
-			//console.log(tempCardLink);
+			// console.log(tempCardLink);
 			if(tempCardLink!="/resources/images/all.png") cardTracker++;
 		}
-		//console.log(cardTracker);
+		// console.log(cardTracker);
 		numCards = cardTracker;
 		if(cardTracker > 12) {
 			document.getElementById("doneEquipment").disabled = true;
@@ -383,21 +382,67 @@ socketConn.onmessage = function(event) {
 		console.log("READY TO START QUEST");
 	}
 	
-	//no participants
+	// no participants
 	if (event.data == "NoParticipants") {
 		serverMsg.value = "No one chose to play in quest, wait for sponsor to pick up cards...";
 	}
 	
-	//no sponsors
+	// no sponsors
 	if (event.data == "NoSponsors") {
 		serverMsg.value = "No one sponsored quest, flipping next card - ";
 	}
 	
-	//pick up cards used for sponsor 
+	// pick up cards used for sponsor
 	if (event.data.startsWith("SponsorPickup")) {
 		serverMsg.value = "Replacing cards used to sponsor quest";
 		var temp = event.data.replace("SponsorPickup","");
 		sponsorPickup(temp);
+	}
+	
+	// choosing equipment for battle
+	if (event.data == "Choose equipment") {
+		document.getElementById('doneEquipment').style.display = "inline";
+		serverMsg.value = "Please click on the equipment you want to choose for battle";
+		$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12',
+				function() {
+					if(numCards>=12) { 
+						document.getElementById("doneEquipment").disabled = false;
+					}
+					var cardId = this.src.replace('http://localhost:8080',
+							'');
+					cardId = cardId.split('%20').join(' ');
+					if (checkForEquipment(this.src) != "card not found") {
+						tempWeaponArr2.push(checkForEquipment(this.src))
+						var changeImageId = "#" + this.id;
+						numCards--;
+						$(changeImageId).attr("src",
+								"/resources/images/all.png");
+					}
+
+				})
+	}
+	
+	// get current participant info
+	if (event.data.startsWith("currentParticipantInfo")) {
+		participantInfo = event.data.replace("currentParticipantInfo", "");
+		console.log(participantInfo);
+	}
+	
+
+	// get current player pts
+	if (event.data.startsWith("currentPlayerPoints")) {
+		var pts = event.data.replace("currentPlayerPoints", "");
+		currentPlayerInfo = pts;
+		//console.log(PlayerName);
+		//console.log(sponsor);
+		if(PlayerName == sponsor) { stageCounter = 1;}
+		displayBattle(stageCounter);
+	}
+	
+	// get foe info
+	if (event.data.startsWith("FoeInfo")) {
+		var temp = event.data.replace("FoeInfo", "");
+		FoeInfo = temp;
 	}
 	
 	// flip story deck
@@ -436,6 +481,11 @@ socketConn.onmessage = function(event) {
 		document.getElementById("proof").disabled = true;
 		
 	}
+	
+	//test
+	if(event.data == "test") {
+		console.log("testing");
+	}
 	// welcome message
 	if (event.data.startsWith("Welcome")) {
 		serverMsg.value = event.data;
@@ -448,7 +498,7 @@ socketConn.onmessage = function(event) {
 	}
 }
 
-//sponsor pickup
+// sponsor pickup
 function sponsorPickup(cards) {
 	
 	var card1id = document.getElementById("card1").id;
@@ -494,11 +544,10 @@ function sponsorPickup(cards) {
 	var extra8 = document.getElementById("extra8").src;
 	var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, extra1, extra2, extra3, extra4, extra5, extra6, extra7, extra8 ];
 	var pickUpLinks = event.data.replace("SponsorPickup", "");
-	console.log(pickUpLinks);
+
 	var pickUpLinksArr = pickUpLinks.split(";");
-	console.log(pickUpLinksArr);
+
 	pickUpLinksArr.pop();
-	console.log(pickUpLinksArr);
 	var numNewCards = pickUpLinksArr.length;
 
 	for(var i=0; i<imageArrayID.length; i++) {
@@ -513,7 +562,7 @@ function sponsorPickup(cards) {
 		for(var i=0; i<imageArray.length; i++) {
 			var tempCardLink = imageArray[i].replace("http://localhost:8080","");
 			tempCardLink = tempCardLink.split('%20').join(' ');
-			//console.log(tempCardLink);
+			// console.log(tempCardLink);
 			if(tempCardLink!="/resources/images/all.png") cardTracker++;
 		}
 		console.log(numNewCards);
@@ -531,37 +580,36 @@ function displayBattle(stage) {
 	
 	document.getElementById('battleScreen').style.display = "block";
 	var playerInfo = currentPlayerInfo.split(";");
+	//console.log(playerInfo);
 	currentPlayerPts = playerInfo[0];
 	var playerCardLink = getLinkFromName(playerInfo[1]);
-	var weaponArr = playerInfo[2].split("#");
-
+	var weaponArr = tempWeaponArr2;
+	//console.log(weaponArr);
 	var weaponLinks = [];
 	for (var j = 0; j < weaponArr.length; j++) {
 		weaponLinks.push(getLinkFromName(weaponArr[j]));
 	}
 
-	weaponLinks.pop(); //popping empty character 
-
 	var foeLinks = [];
-	var foeWeaponNames = questInfo.weapons;
+	var foeWeaponNames = questInfo.weapons[0];
+	//console.log(foeWeaponNames);
 	var foeWeaponLinks = [];
-
-	for (var i = 0; i < foeWeaponNames.length; i++) {
-		var currentStageWeps = [];
-		for (var j = 0; j < foeWeaponNames[i].length; j++) {
-			currentStageWeps.push(getLinkFromName(foeWeaponNames[i][j]));
+	var currentStageWeps = [];
+			
+		for (var i = 0; i < foeWeaponNames.length; i++) {
+			currentStageWeps.push(getLinkFromName(foeWeaponNames[i]));
 
 		}
-		foeWeaponLinks.push(currentStageWeps);
-	}
-
+		
+	//console.log(currentStageWeps);
+	//console.log(FoeInfo);
 	var foesInfo = FoeInfo.split(";");
 	for (var i = 0; i < foesInfo.length; i++) {
 		foesInfo[i] = foesInfo[i].split("#");
 		foeLinks.push(getLinkFromName(foesInfo[i][0]));
 	}
-
-	foeLinks.pop(); // might cause issues
+	foeLinks.pop();
+	//console.log(foeLinks);
 
 	var pequip = [];
 	var fequip = [];
@@ -575,11 +623,11 @@ function displayBattle(stage) {
 		pequip.unshift(weaponLinks[i]);
 	}
 
-	for (var i = 0; i < foeWeaponLinks[stage - 1].length; i++) {
+	for (var i = 0; i < currentStageWeps.length; i++) {
 		fequip.pop();
-		fequip.unshift(foeWeaponLinks[stage - 1][i]);
+		fequip.unshift(currentStageWeps[i]);
 	}
-	
+	//console.log(fequip);
 	$("#playerPic").attr("src", playerCardLink);
 	$("#playerWeaponSpot1").attr("src", pequip[0]);
 	$("#playerWeaponSpot2").attr("src", pequip[1]);
@@ -597,15 +645,13 @@ function displayBattle(stage) {
 	var playerWin;
 	var tempPPoints = (Number)(currentPlayerPts);
 	var tempFPoints = (Number)(foesInfo[stage-1][1]);
-	console.log(tempPPoints); console.log(tempFPoints);
+	 //console.log(tempPPoints);
+	 //console.log(tempFPoints);
 	if(tempPPoints >= tempFPoints) {
 		playerWin = true; 
-		//console.log("here");
-		//console.log(tempPPoints);
-		//console.log(tempFPoints);
 		} else { 
 			playerWin = false; }
-	console.log(playerWin);
+	console.log("player won battle: " + playerWin);
 
 	if(playerWin) {
 		document.getElementById("p_win").style.display = "block";
@@ -629,7 +675,7 @@ function displayBattle(stage) {
 				document.getElementById("f_lose").style.display = "none";
 				document.getElementById("p_lose").style.display = "none";
 				document.getElementById("f_win").style.display = "none";
-				var data = JSON.stringify({ 'nextQuestTurn' : 0});
+				var data = JSON.stringify({ 'nextQuestTurn' : playerWin});
 				socketConn.send(data);
 				}, 4000);
 			
@@ -713,7 +759,7 @@ function setupQuestRound() {
 	}
 }
 
-//discard function
+// discard function
 function discard(){
 	$('body')
 	.on(
@@ -738,6 +784,7 @@ function discard(){
 			})
 	return false;
 }
+
 // accept to participate in quest
 function acceptQuestParticipate() {
 	document.getElementById('acceptQuest').style.display = "none";
@@ -801,15 +848,13 @@ function doneEquipment() {
 	document.getElementById('doneEquipment').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Going into battle";
-	$('body')
-			.off(
-					'click',
-					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8');
+	$('body').off('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8');
 	var data = JSON.stringify({
 		'name' : PlayerName,
 		'stages' : stageCounter,
 		'equipment_info' : tempWeaponArr2
 	});
+	//console.log(tempWeaponArr2);
 	socketConn.send(data);
 }
 
@@ -862,7 +907,9 @@ function doneWeaponsQuestSponsor() {
 // get link from name
 function getLinkFromName(name) {
 	for (var i = 0; i < cardTypeList.length; i++) {
-		if (cardTypeList[i].name == name)
+		//console.log(cardTypeList[i]);
+		//console.log(name);
+		if (cardTypeList[i].name === name)
 			return cardTypeList[i].link;
 	}
 	return "card not found";
@@ -947,3 +994,22 @@ function print() {
 function proof() {
 	// socketConn.send("Proof");
 }
+
+function checkForEquipment(ImageLink) {
+	// console.log(ImageLink);
+	var cardSrc = ImageLink.replace('http://localhost:8080','');
+	cardSrc = cardSrc.split('%20').join(' ');
+	// console.log(cardSrc);
+	// console.log("checking for equipment");
+	for (var i = 0; i < cardTypeList.length; i++) {
+		if (cardTypeList[i].link == cardSrc) {
+	// console.log("is in list");
+			if(cardTypeList[i].type == "ally") return cardTypeList[i].name; 
+			if(cardTypeList[i].type == "weapon") return cardTypeList[i].name; 
+			if(cardTypeList[i].type == "amour") return cardTypeList[i].name; 
+		}
+
+	}
+	return "card not found";
+}
+

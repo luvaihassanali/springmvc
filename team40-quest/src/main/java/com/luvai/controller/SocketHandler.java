@@ -33,6 +33,8 @@ public class SocketHandler extends TextWebSocketHandler {
 	List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 	private static final Logger logger = LogManager.getLogger(SocketHandler.class);
 	static Game gameEngine = new Game();
+	public static boolean rankSet = true;
+	public String BattleInformation = "";
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
@@ -142,7 +144,8 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.incTurn();
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
 					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("ReadyToStartQuest"));
-					System.out.println("its " + gameEngine.getActivePlayer().getName() + "'s turn");
+					System.out.println("its " + gameEngine.getCurrentParticipant().getName() + "'s turn");
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 					for (Player p : gameEngine.current_quest.participants) {
 						System.out.println(p.getName());
 					}
@@ -170,8 +173,8 @@ public class SocketHandler extends TextWebSocketHandler {
 								gameEngine.getActivePlayer(), gameEngine.storyDeck.faceUp.getName());
 						return;
 					}
-					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("ReadyToStartQuest"));
-					System.out.println("its " + gameEngine.getActivePlayer().getName() + "'s turn");
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+					System.out.println("its " + gameEngine.getCurrentParticipant().getName() + "'s turn");
 					for (Player p : gameEngine.current_quest.participants) {
 						System.out.println(p.getName());
 					}
@@ -188,15 +191,46 @@ public class SocketHandler extends TextWebSocketHandler {
 				return;
 			}
 			*/
-
 		}
 
+		// flip story deck
 		if (jsonObject.has("flipStoryCard")) {
 			gameEngine.incTurn();
 			flipStoryCard();
 		}
 
-		// flip story deck
+		// get participants battle equipment
+		// json for equipment
+		if (jsonObject.has("equipment_info")) {
+			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
+			sendToAllSessions(gameEngine, jsonOutput);
+			logger.info("Player {} chose {} to equip for stage {} battle of {} quest", jsonObject.get("name"),
+					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
+			gameEngine.current_quest.equipPlayer(jsonObject);
+			System.out.println("line 210 " + gameEngine.getCurrentParticipant().getName());
+			return;
+		}
+
+		// go to next participant turn
+		if (jsonObject.has("nextQuestTurn")) {
+			setTimeout(() -> {
+				try {
+					if (jsonObject.get("nextQuestTurn").getAsBoolean() == false) {
+						gameEngine.current_quest.removeParticipant(gameEngine.getCurrentParticipant().getName());
+					}
+					if (gameEngine.current_quest.participants.size() == 0) {
+						gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("test"));
+						return;
+					}
+					gameEngine.current_quest.incTurn();
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("test"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}, 2000);
+		}
+
 	}
 
 	// flip story deck
