@@ -108,17 +108,23 @@ public class SocketHandler extends TextWebSocketHandler {
 			Type listType = new TypeToken<List<String>>() {
 			}.getType();
 			List<String> foeList = new Gson().fromJson(Foes, listType);
+			int tracker = 0;
 			for (String i : foeList) {
-				cardToRemove.add(i);
+				cardToRemove.add(i + tracker);
+				tracker++;
 			}
+			tracker = 0;
+			System.out.println(cardToRemove);
 			JsonArray foeWeapons = (JsonArray) jsonObject.get("weapons");
 			for (int i = 0; i < foeWeapons.size(); i++) {
 				JsonArray temp = (JsonArray) foeWeapons.get(i);
 				for (int j = 0; j < temp.size(); j++) {
-					cardToRemove.add(temp.get(j).getAsString());
+					cardToRemove.add(temp.get(j).getAsString() + i);
+					System.out.println(temp.get(j).getAsString());
 				}
 
 			}
+			System.out.println(cardToRemove);
 			gameEngine.current_quest.sponsor.discard(cardToRemove);
 
 			return;

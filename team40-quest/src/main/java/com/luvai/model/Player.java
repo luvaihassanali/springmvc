@@ -92,17 +92,60 @@ public class Player {
 	}
 
 	public void discard(ArrayList<String> cards) {
+		ArrayList<String> names1 = new ArrayList<String>();
+		ArrayList<String> names2 = new ArrayList<String>();
+		System.out.println(cards);
+		System.out.println(cards.size());
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i).endsWith(Integer.toString(0))) {
+
+				names1.add(removeLastChar(cards.get(i)));
+			}
+		}
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i).endsWith(Integer.toString(1))) {
+
+				names2.add(removeLastChar(cards.get(i)));
+			}
+		}
+		for (String a : names1) {
+
+			System.out.println(a);
+		}
+		for (String a : names2) {
+
+			System.out.println(a);
+		}
+
 		for (int i = 0; i < this.getHandSize(); i++) {
-			for (int j = 0; j < cards.size(); j++) {
-				if (this.hand.get(i).getName().equals(cards.get(j))) {
+			for (int j = 0; j < names1.size(); j++) {
+				if (this.hand.get(i).getName().equals(names1.get(j))) {
 					System.out.println("discarding");
 					this.hand.remove(i);
 				}
 			}
 		}
+
+		for (int i = 0; i < this.getHandSize(); i++) {
+			for (int j = 0; j < names2.size(); j++) {
+				if (this.hand.get(i).getName().equals(names2.get(j))) {
+					System.out.println("discarding");
+					this.hand.remove(i);
+				}
+			}
+		}
+
 		for (AdventureCard a : this.hand) {
 			System.out.println(a.getName());
 		}
+
+	}
+
+	public String removeLastChar(String s) {
+		if (s == null || s.length() == 0) {
+			return s;
+		}
+		return s.substring(0, s.length() - 1);
 	}
 
 	public void addShields(int s) {

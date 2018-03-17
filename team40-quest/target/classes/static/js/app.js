@@ -494,8 +494,11 @@ function sponsorPickup(cards) {
 	var extra8 = document.getElementById("extra8").src;
 	var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, extra1, extra2, extra3, extra4, extra5, extra6, extra7, extra8 ];
 	var pickUpLinks = event.data.replace("SponsorPickup", "");
+	console.log(pickUpLinks);
 	var pickUpLinksArr = pickUpLinks.split(";");
+	console.log(pickUpLinksArr);
 	pickUpLinksArr.pop();
+	console.log(pickUpLinksArr);
 	var numNewCards = pickUpLinksArr.length;
 
 	for(var i=0; i<imageArrayID.length; i++) {
@@ -513,6 +516,7 @@ function sponsorPickup(cards) {
 			//console.log(tempCardLink);
 			if(tempCardLink!="/resources/images/all.png") cardTracker++;
 		}
+		console.log(numNewCards);
 		cardTracker += numNewCards;
 		numCards = cardTracker;
 		console.log(cardTracker);
