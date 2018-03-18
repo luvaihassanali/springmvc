@@ -218,6 +218,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
 			sendToAllSessions(gameEngine, jsonOutput);
+			System.out.println("line 222" + gameEngine.current_quest.currentStage);
 			logger.info("Player {} chose {} to equip for stage {} battle of {} quest", jsonObject.get("name"),
 					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
 			gameEngine.current_quest.equipPlayer(jsonObject);
@@ -233,6 +234,9 @@ public class SocketHandler extends TextWebSocketHandler {
 			boolean BattleResult = jsonObject.get("nextQuestTurn").getAsBoolean();
 			System.out.println(BattleResult);
 			if (BattleResult == false) {
+				logger.info("Player {} was defeated in {} quest battle",
+						gameEngine.current_quest.getCurrentParticipant().getName(),
+						gameEngine.storyDeck.faceUp.getName());
 
 				if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)) {
 					gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
@@ -250,6 +254,11 @@ public class SocketHandler extends TextWebSocketHandler {
 				return;
 			}
 			if (BattleResult == true) {
+
+				logger.info("Player {} was victorious in {} quest battle",
+						gameEngine.current_quest.getCurrentParticipant().getName(),
+						gameEngine.current_quest.QuestFoes.get(gameEngine.current_quest.currentStage - 1).getName(),
+						gameEngine.storyDeck.faceUp.getName());
 				if (gameEngine.current_quest.participants.size() == 1) {
 					sendToAllSessions(gameEngine, "incStage");
 					gameEngine.current_quest.currentStage++;

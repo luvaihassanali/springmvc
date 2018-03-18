@@ -32,7 +32,7 @@ public class QuestController extends SocketHandler {
 	public ArrayList<Player> participants;
 	QuestCard currentQuest;
 	public ArrayList<FoeCard> QuestFoes;
-	public FoeCard currentFoe;
+
 	public int participantTurns = 0;
 	public int currentStage = 1;
 	public int initialPSize = 0;
