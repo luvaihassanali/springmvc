@@ -1,4 +1,5 @@
 package com.luvai.model.Decks;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,76 +16,129 @@ public class StoryDeck extends Decks {
 	public Stack<StoryCard> cards = new Stack<StoryCard>();
 	public StoryCard faceUp;
 	public ArrayList<StoryCard> discardPile = new ArrayList<StoryCard>();
-	public  StoryDeck() { 
-		logger.info("Shuffling story deck...");
+
+	public StoryDeck() {
+		logger.info(
+				"\\n\\n\\n\\n ******************************Shuffling story deck... ******************************\\\\n\\\\n\\\\n\\\\n");
 		this.initStoryDeck();
 	}
-	
+
 	public void fillRiggedDeck(StoryCard[] s) {
 		cardsLeft = 28;
-		for(int i=4; i<s.length; i++) {
+		for (int i = 4; i < s.length; i++) {
 			cards.push(s[i]);
 		}
 	}
+
 	public void fillDeck(StoryCard[] s) {
 		cardsLeft = 28;
-		for(int i=0; i<s.length; i++) {
+		for (int i = 0; i < s.length; i++) {
 			cards.push(s[i]);
 		}
 	}
+
 	public void fillEmptyDeck() {
 		logger.info("Reshuffling story deck...");
 		this.initStoryDeck();
 	}
-	
+
 	public StoryDeck initStoryDeck() {
 		StoryCard[] s_arr = new StoryCard[28];
-	    //mimic story array for freq/randomization
-	    s_arr[0] = CardList.Quest9; s_arr[1] = CardList.Quest10; s_arr[2] = CardList.Quest2; s_arr[3] = CardList.Quest4; s_arr[4] = CardList.Quest8;
-	    s_arr[5] = CardList.Quest1; s_arr[6] = CardList.Quest3; s_arr[7] = CardList.Quest3; s_arr[8] = CardList.Quest7; s_arr[9] = CardList.Quest6;
-	    s_arr[10] = CardList.Quest6; s_arr[11] = CardList.Quest5; s_arr[12] = CardList.Quest5; s_arr[13] = CardList.Tournament1; s_arr[14] = CardList.Tournament2;
-	    s_arr[15] = CardList.Tournament3; s_arr[16] = CardList.Tournament4; s_arr[17] = CardList.Event7; s_arr[18] = CardList.Event7;
-	    s_arr[19] = CardList.Event3; s_arr[20] = CardList.Event3; s_arr[21] = CardList.Event2; s_arr[22] = CardList.Event2; s_arr[23] = CardList.Event4;
-	    s_arr[24] = CardList.Event5; s_arr[25] = CardList.Event1; s_arr[26] = CardList.Event8; s_arr[27] = CardList.Event6;  
-	    //randomise then populate stack 
-	    Collections.shuffle(Arrays.asList(s_arr));
-        this.fillDeck(s_arr); //final story deck set here
+		// mimic story array for freq/randomization
+		s_arr[0] = CardList.Quest9;
+		s_arr[1] = CardList.Quest10;
+		s_arr[2] = CardList.Quest2;
+		s_arr[3] = CardList.Quest4;
+		s_arr[4] = CardList.Quest8;
+		s_arr[5] = CardList.Quest1;
+		s_arr[6] = CardList.Quest3;
+		s_arr[7] = CardList.Quest3;
+		s_arr[8] = CardList.Quest7;
+		s_arr[9] = CardList.Quest6;
+		s_arr[10] = CardList.Quest6;
+		s_arr[11] = CardList.Quest5;
+		s_arr[12] = CardList.Quest5;
+		s_arr[13] = CardList.Tournament1;
+		s_arr[14] = CardList.Tournament2;
+		s_arr[15] = CardList.Tournament3;
+		s_arr[16] = CardList.Tournament4;
+		s_arr[17] = CardList.Event7;
+		s_arr[18] = CardList.Event7;
+		s_arr[19] = CardList.Event3;
+		s_arr[20] = CardList.Event3;
+		s_arr[21] = CardList.Event2;
+		s_arr[22] = CardList.Event2;
+		s_arr[23] = CardList.Event4;
+		s_arr[24] = CardList.Event5;
+		s_arr[25] = CardList.Event1;
+		s_arr[26] = CardList.Event8;
+		s_arr[27] = CardList.Event6;
+		// randomise then populate stack
+		Collections.shuffle(Arrays.asList(s_arr));
+		this.fillDeck(s_arr); // final story deck set here
 		return this;
 	}
-	
+
 	public StoryDeck initRiggedStoryDeck(StoryDeck s, int deckId) {
 		StoryCard[] s_arr = new StoryCard[24];
-		if(deckId == 1) {
+		if (deckId == 1) {
 
-			
-		    s_arr[0] = CardList.Quest9; s_arr[1] = CardList.Quest10; s_arr[2] = CardList.Quest2; s_arr[3] = CardList.Quest4; s_arr[4] = CardList.Quest8;
-		    s_arr[5] = CardList.Quest1; s_arr[6] = CardList.Quest3; s_arr[7] = CardList.Quest3; s_arr[8] = CardList.Quest7; s_arr[9] = CardList.Quest5; s_arr[10] = CardList.Tournament1; s_arr[11] = CardList.Tournament2;
-		    s_arr[12] = CardList.Tournament3; s_arr[13] = CardList.Tournament4; s_arr[14] = CardList.Event7; s_arr[15] = CardList.Event7;
-		    s_arr[17] = CardList.Event3; s_arr[18] = CardList.Event3; s_arr[19] = CardList.Event2; s_arr[20] = CardList.Event2; s_arr[21] = CardList.Event4;
-		    s_arr[22] = CardList.Event5; s_arr[23] = CardList.Event6;
-		    Collections.shuffle(Arrays.asList(s_arr));
-		    s.fillRiggedDeck(s_arr);
-		    s_arr[0] = CardList.Quest6; s_arr[1] = CardList.Event8; s_arr[2] = CardList.Event1; s_arr[3] = CardList.Quest5;
-			cards.push(s_arr[3]); cards.push(s_arr[2]); cards.push(s_arr[1]); cards.push(s_arr[0]);
-			
-		}	
-		
-		if(deckId == 2) {
-			
+			s_arr[0] = CardList.Quest9;
+			s_arr[1] = CardList.Quest10;
+			s_arr[2] = CardList.Quest2;
+			s_arr[3] = CardList.Quest4;
+			s_arr[4] = CardList.Quest8;
+			s_arr[5] = CardList.Quest1;
+			s_arr[6] = CardList.Quest3;
+			s_arr[7] = CardList.Quest3;
+			s_arr[8] = CardList.Quest7;
+			s_arr[9] = CardList.Quest5;
+			s_arr[10] = CardList.Tournament1;
+			s_arr[11] = CardList.Tournament2;
+			s_arr[12] = CardList.Tournament3;
+			s_arr[13] = CardList.Tournament4;
+			s_arr[14] = CardList.Event7;
+			s_arr[15] = CardList.Event7;
+			s_arr[17] = CardList.Event3;
+			s_arr[18] = CardList.Event3;
+			s_arr[19] = CardList.Event2;
+			s_arr[20] = CardList.Event2;
+			s_arr[21] = CardList.Event4;
+			s_arr[22] = CardList.Event5;
+			s_arr[23] = CardList.Event6;
+			Collections.shuffle(Arrays.asList(s_arr));
+			s.fillRiggedDeck(s_arr);
+			s_arr[0] = CardList.Quest6;
+			s_arr[1] = CardList.Event8;
+			s_arr[2] = CardList.Event1;
+			s_arr[3] = CardList.Quest5;
+			cards.push(s_arr[3]);
+			cards.push(s_arr[2]);
+			cards.push(s_arr[1]);
+			cards.push(s_arr[0]);
 
-			s_arr[0] = CardList.Quest5; s_arr[1] = CardList.Event1; s_arr[2] = CardList.Quest6;
-			cards.push(s_arr[2]); cards.push(s_arr[1]); cards.push(s_arr[0]);
+		}
+
+		if (deckId == 2) {
+
+			s_arr[0] = CardList.Quest5;
+			s_arr[1] = CardList.Event1;
+			s_arr[2] = CardList.Quest6;
+			cards.push(s_arr[2]);
+			cards.push(s_arr[1]);
+			cards.push(s_arr[0]);
 		}
 		return s;
 	}
-	
+
 	public void flipCard() {
-		if(this.cards.isEmpty()) this.fillEmptyDeck();
-		if(this.faceUp==null) {
-		this.faceUp = this.cards.pop();
-		} else { 
+		if (this.cards.isEmpty())
+			this.fillEmptyDeck();
+		if (this.faceUp == null) {
+			this.faceUp = this.cards.pop();
+		} else {
 			discardPile.add(faceUp);
-			faceUp = this.cards.pop();			
+			faceUp = this.cards.pop();
 		}
 	}
 
