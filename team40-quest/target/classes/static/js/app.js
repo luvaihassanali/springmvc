@@ -324,7 +324,6 @@ var currentPlayerPts = 0;
 var currentStage = 0;
 var sponsor = "";
 var numCards =0;
-var numWins = 0;
 
 // when connection is initiated
 socketConn.onopen = function(event) {
@@ -710,8 +709,7 @@ function displayBattle(stage) {
 				document.getElementById("f_lose").style.display = "none";
 				document.getElementById("p_lose").style.display = "none";
 				document.getElementById("f_win").style.display = "none";
-				numWins++;
-				var data = JSON.stringify({ 'nextQuestTurn' : true, 'numWins': numWins});
+				var data = JSON.stringify({ 'nextQuestTurn' : true});
 				if(PlayerName == participantInfo.name) {
 				socketConn.send(data); }
 				}, 5000);

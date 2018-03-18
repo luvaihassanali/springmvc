@@ -236,10 +236,12 @@ public class SocketHandler extends TextWebSocketHandler {
 						gameEngine.storyDeck.faceUp.getName());
 
 				if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)) {
+					System.out.println("line 239");
 					gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
 					sendToAllSessions(gameEngine, "incStage");
 					gameEngine.current_quest.currentStage++;
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+						gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
 						System.out.println("WINNER");
 						String winners = "";
 						for (Player p : gameEngine.current_quest.participants) {
@@ -251,7 +253,28 @@ public class SocketHandler extends TextWebSocketHandler {
 						return;
 					}
 				}
+				if (gameEngine.current_quest.getCurrentParticipant()
+						.equals(gameEngine.current_quest.firstQuestPlayer)) {
+					gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
+					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+					gameEngine.current_quest.incTurn();
+
+					gameEngine.adventureDeck.flipCard();
+					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
+					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+					gameEngine.getCurrentParticipant().session
+							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+
+					return;
+
+				}
 				gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+				System.out.print("in just lost:\n");
+				System.out
+						.println("current participant: " + gameEngine.current_quest.getCurrentParticipant().getName());
+				System.out.println("next participant: " + gameEngine.current_quest.getNextParticipant().getName());
+				System.out.println("first quest player: " + gameEngine.current_quest.firstQuestPlayer.getName());
 			}
 			if (gameEngine.current_quest.participants.size() == 0) {
 				logger.info("All players defeated in {} quest sponsored by {}", gameEngine.storyDeck.faceUp.getName(),
@@ -259,6 +282,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 				return;
 			}
+
 			if (BattleResult == true) {
 
 				logger.info("Player {} was victorious in {} quest battle",
@@ -288,11 +312,13 @@ public class SocketHandler extends TextWebSocketHandler {
 
 					return;
 				}
-				// System.out.print("in battle result\n");
-				// System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
-				// System.out.println(gameEngine.current_quest.getNextParticipant().getName());
-				// System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
+				System.out.print("in battle result\n");
+				System.out
+						.println("current participant: " + gameEngine.current_quest.getCurrentParticipant().getName());
+				System.out.println("next participant: " + gameEngine.current_quest.getNextParticipant().getName());
+				System.out.println("first quest player: " + gameEngine.current_quest.firstQuestPlayer.getName());
 				if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)) {
+					System.out.println("line 298");
 					sendToAllSessions(gameEngine, "incStage");
 					gameEngine.current_quest.currentStage++;
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
@@ -306,6 +332,8 @@ public class SocketHandler extends TextWebSocketHandler {
 						return;
 					}
 				}
+				System.out.println("line 313");
+				System.out.println("current stage: " + gameEngine.current_quest.currentStage);
 				gameEngine.current_quest.incTurn();
 
 			}
