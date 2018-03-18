@@ -238,6 +238,10 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
 					sendToAllSessions(gameEngine, "incStage");
 					gameEngine.current_quest.currentStage++;
+					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+						System.out.println("WINNER");
+						return;
+					}
 				}
 				gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
 			}
