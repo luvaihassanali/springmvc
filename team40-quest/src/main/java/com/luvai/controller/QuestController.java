@@ -34,6 +34,9 @@ public class QuestController extends SocketHandler {
 	public ArrayList<FoeCard> QuestFoes;
 	public FoeCard currentFoe;
 	public int participantTurns = 0;
+	public int currentStage = 1;
+	public int initialPSize = 0;
+	public Player firstQuestPlayer;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -51,7 +54,7 @@ public class QuestController extends SocketHandler {
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
 		List<String> equipmentList = new Gson().fromJson(player_equipment, listType);
-		System.out.println(equipmentList);
+
 		for (int i = 0; i < equipmentList.size(); i++) {
 			AdventureCard tempCard = getCardFromName(equipmentList.get(i));
 			if (tempCard instanceof AllyCard) {
@@ -65,6 +68,9 @@ public class QuestController extends SocketHandler {
 				gameEngine.getCurrentParticipant().setAmourCard(tempCard);
 			}
 		}
+		ArrayList<String> remove = new ArrayList<String>(equipmentList);
+		// System.out.println("remove list");
+		gameEngine.getCurrentParticipant().discardPlayer(remove);
 		calculatePlayerPoints();
 	}
 
@@ -138,6 +144,7 @@ public class QuestController extends SocketHandler {
 			foePoints.points.add(tempPts);
 		}
 		String temp = foePoints.toString();
+		// System.out.println("145 questcontroller " + temp);
 		sendToAllSessions(gameEngine, "FoeInfo" + temp);
 	}
 

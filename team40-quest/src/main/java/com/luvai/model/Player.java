@@ -91,7 +91,34 @@ public class Player {
 
 	}
 
-	public void discard(ArrayList<String> cards) {
+	public void discardPlayer(ArrayList<String> toRemove) {
+		// System.out.println(toRemove);
+		for (int i = 0; i < toRemove.size(); i++) {
+			for (int j = 0; j < this.getHandSize(); j++) {
+				if (toRemove.get(i).equals(this.getHand().get(j).getName())) {
+					this.getHand().remove(j);
+
+					break;
+				}
+			}
+		}
+
+	}
+
+	public AdventureCard getCardFromName(String name) {
+		AdventureCard card = null;
+		CardList cardList = new CardList();
+		for (Card a : cardList.adventureTypes) {
+			if (a.getName().equals(name)) {
+				card = (AdventureCard) a;
+				break;
+			}
+		}
+		return card;
+
+	}
+
+	public void discardSponsor(ArrayList<String> cards) { // adjust for more stages
 		ArrayList<String> names1 = new ArrayList<String>();
 		ArrayList<String> names2 = new ArrayList<String>();
 
@@ -128,14 +155,10 @@ public class Player {
 		for (int i = 0; i < this.getHandSize(); i++) {
 			for (int j = 0; j < names2.size(); j++) {
 				if (this.hand.get(i).getName().equals(names2.get(j))) {
-					System.out.println("discarding");
+
 					this.hand.remove(i);
 				}
 			}
-		}
-
-		for (AdventureCard a : this.hand) {
-			System.out.println(a.getName());
 		}
 
 	}

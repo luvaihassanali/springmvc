@@ -116,18 +116,18 @@ public class SocketHandler extends TextWebSocketHandler {
 				tracker++;
 			}
 			tracker = 0;
-			System.out.println(cardToRemove);
+			// System.out.println(cardToRemove);
 			JsonArray foeWeapons = (JsonArray) jsonObject.get("weapons");
 			for (int i = 0; i < foeWeapons.size(); i++) {
 				JsonArray temp = (JsonArray) foeWeapons.get(i);
 				for (int j = 0; j < temp.size(); j++) {
 					cardToRemove.add(temp.get(j).getAsString() + i);
-					System.out.println(temp.get(j).getAsString());
+					// System.out.println(temp.get(j).getAsString());
 				}
 
 			}
-			System.out.println(cardToRemove);
-			gameEngine.current_quest.sponsor.discard(cardToRemove);
+			// System.out.println(cardToRemove);
+			gameEngine.current_quest.sponsor.discardSponsor(cardToRemove);
 
 			return;
 		}
@@ -141,14 +141,19 @@ public class SocketHandler extends TextWebSocketHandler {
 				logger.info("Player {} accepted to participate in {} quest sponsored by {}", name.getAsString(),
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				gameEngine.current_quest.participants.add(gameEngine.getActivePlayer());
+				if (gameEngine.current_quest.participants.size() == 1) {
+					gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
+				}
 				gameEngine.incTurn();
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
+					gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
 					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("ReadyToStartQuest"));
-					System.out.println("its " + gameEngine.getCurrentParticipant().getName() + "'s turn");
+					gameEngine.adventureDeck.flipCard();
+					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
 					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-					for (Player p : gameEngine.current_quest.participants) {
-						System.out.println(p.getName());
-					}
+					gameEngine.getCurrentParticipant().session
+							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+
 					return;
 				}
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
@@ -157,9 +162,12 @@ public class SocketHandler extends TextWebSocketHandler {
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 				gameEngine.incTurn();
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
+					gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
 					if (gameEngine.current_quest.participants.size() == 0) {
+
 						sendToAllSessions(gameEngine, "NoParticipants");
-						System.out.println("HAND SIZE: " + gameEngine.getActivePlayer().getHandSize());
+						// System.out.println("HAND SIZE: " +
+						// gameEngine.getActivePlayer().getHandSize());
 						String temp = "";
 						for (int i = gameEngine.getActivePlayer().getHandSize(); i < 12
 								+ gameEngine.current_quest.currentQuest.getStages(); i++) {
@@ -173,13 +181,18 @@ public class SocketHandler extends TextWebSocketHandler {
 								gameEngine.getActivePlayer(), gameEngine.storyDeck.faceUp.getName());
 						return;
 					}
+					gameEngine.adventureDeck.flipCard();
+					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
 					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+					gameEngine.getCurrentParticipant().session
+							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 					System.out.println("its " + gameEngine.getCurrentParticipant().getName() + "'s turn");
+					gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
 					for (Player p : gameEngine.current_quest.participants) {
 						System.out.println(p.getName());
 					}
 					return;
-				}
+				} // player 3 declines, first Quest player not set?
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 			}
 
@@ -202,35 +215,161 @@ public class SocketHandler extends TextWebSocketHandler {
 		// get participants battle equipment
 		// json for equipment
 		if (jsonObject.has("equipment_info")) {
+
 			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
 			sendToAllSessions(gameEngine, jsonOutput);
 			logger.info("Player {} chose {} to equip for stage {} battle of {} quest", jsonObject.get("name"),
 					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
 			gameEngine.current_quest.equipPlayer(jsonObject);
-			System.out.println("line 210 " + gameEngine.getCurrentParticipant().getName());
 			return;
 		}
-
-		// go to next participant turn
+		// String temp = "";
 		if (jsonObject.has("nextQuestTurn")) {
+			gameEngine.getCurrentParticipant().getWeapons().clear();
+			System.out.println("nextQuestTurn");
+			for (Player p : gameEngine.current_quest.participants) {
+				System.out.println(p.getName());
+			}
+			boolean BattleResult = jsonObject.get("nextQuestTurn").getAsBoolean();
+			System.out.println(BattleResult);
+			if (BattleResult == false) {
 
+				if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)) {
+					gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
+					sendToAllSessions(gameEngine, "incStage");
+					gameEngine.current_quest.currentStage++;
+				}
+				gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+			}
+			if (gameEngine.current_quest.participants.size() == 0) {
+				System.out.println("no participants");
+				return;
+			}
+			if (BattleResult == true) {
+				if (gameEngine.current_quest.participants.size() == 1) {
+					sendToAllSessions(gameEngine, "incStage");
+					gameEngine.current_quest.currentStage++;
+					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+						System.out.println("WINNER");
+						return;
+					}
+					gameEngine.adventureDeck.flipCard();
+					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
+					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+					gameEngine.getCurrentParticipant().session
+							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+
+					return;
+				}
+				System.out.print("in battle result\n");
+				System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+				System.out.println(gameEngine.current_quest.getNextParticipant().getName());
+				System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
+				if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)) {
+					sendToAllSessions(gameEngine, "incStage");
+					gameEngine.current_quest.currentStage++;
+					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+						System.out.println("WINNER");
+						return;
+					}
+				}
+				gameEngine.current_quest.incTurn();
+
+			}
+
+			gameEngine.adventureDeck.flipCard();
+			gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
+			String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+
+		}
+		// go to next participant turn
+		/*if (jsonObject.has("nextQuestTurn")) {
+		
 			if (jsonObject.get("nextQuestTurn").getAsBoolean() == false) {
 				gameEngine.current_quest.removeParticipant(gameEngine.getCurrentParticipant().getName());
 				if (gameEngine.current_quest.participants.size() == 0) {
-					gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("test"));
-					return;
-				} else {
-					gameEngine.current_quest.incTurn();
-					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("test"));
+					for (int i = gameEngine.current_quest.sponsor.getHandSize(); i < 12
+							+ gameEngine.current_quest.currentQuest.getStages(); i++) {
+						AdventureCard newCard = gameEngine.adventureDeck.flipCard();
+						temp += newCard.getStringFile() + ";";
+						gameEngine.getActivePlayer().getHand().add(newCard);
+					}
+					gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("SponsorPickup" + temp));
 					return;
 				}
+				gameEngine.current_quest.incTurn();
+				gameEngine.adventureDeck.flipCard();
+				gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
+				String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+		
+				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+				gameEngine.getCurrentParticipant().session
+						.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		
+				return;
 			}
-
+		
+			Player nextPlayer = gameEngine.current_quest.getNextParticipant();
+			System.out.println("next quest turn");
+			System.out.println(jsonObject.get("nextQuestTurn").getAsBoolean());
+			System.out.println("current participant size: " + gameEngine.current_quest.participants.size());
+			System.out.println("initial participant size: " + gameEngine.current_quest.initialPSize);
+			System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
+			System.out.println(gameEngine.current_quest.getNextParticipant().getName());
+			if (gameEngine.current_quest.firstQuestPlayer.equals(nextPlayer)) {
+				System.out.println("increasing stage counter");
+				sendToAllSessions(gameEngine, "incStage");
+				gameEngine.current_quest.currentStage++;
+				System.out.println("262 current stage: " + gameEngine.current_quest.currentStage);
+				if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+					System.out.println("winners");
+					// reset stage count
+					return;
+				}
+			} else {
+				if (gameEngine.getCurrentParticipant().equals(gameEngine.current_quest.getNextParticipant())) {
+					if (gameEngine.current_quest.participants.size() == 1) {
+						System.out.println("increasing stage counter");
+						sendToAllSessions(gameEngine, "incStage");
+						gameEngine.current_quest.currentStage++;
+						System.out.println("262 current stage: " + gameEngine.current_quest.currentStage);
+						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+							System.out.println("winners");
+							// reset stage count
+							return;
+						}
+					} else {
+						gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
+						if (gameEngine.current_quest.firstQuestPlayer
+								.equals(gameEngine.current_quest.getNextParticipant())) {
+							System.out.println("increasing stage counter");
+							sendToAllSessions(gameEngine, "incStage");
+							gameEngine.current_quest.currentStage++;
+							System.out.println("262 current stage: " + gameEngine.current_quest.currentStage);
+							if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest
+									.getStages()) {
+								System.out.println("winners");
+								// reset stage count
+								return;
+							}
+						}
+					}
+		
+				}
+			}
+		
 			gameEngine.current_quest.incTurn();
-			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("test"));
-
+			gameEngine.adventureDeck.flipCard();
+			gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
+			String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		
 			return;
-		}
+		}*/
 
 	}
 
