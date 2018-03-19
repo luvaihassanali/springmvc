@@ -369,9 +369,17 @@ socketConn.onmessage = function(event) {
 		serverMsg.value = "No one sponsored quest, flipping next card - ";
 	}
 	
+	//when quest over
+	if (event.data == "QuestOverWaitForSponsor") {
+		serverMsg.value += "\nQuest over, wait for sponsor to pick up cards - ";
+	}
+	//getting shields
+	if (event.data.startsWith("Getting")) {
+		serverMsg.value = event.data;
+	}
 	// pick up cards used for sponsor
 	if (event.data.startsWith("SponsorPickup")) {
-		serverMsg.value = "Replacing cards used to sponsor quest";
+		serverMsg.value = "Replacing cards used to sponsor quest RIGHT CLICK TO DISCARD EXTRA to move on\n";
 		var temp = event.data.replace("SponsorPickup","");
 		sponsorPickup(temp);
 	}
@@ -703,7 +711,7 @@ function displayBattle(stage) {
 		} else {
 			setTimeout(function(){ 
 				var serverMsg = document.getElementById('serverMsg');
-				serverMsg.value += " Round won...going to next player turn";
+				serverMsg.value += " Round won, going to next player turn";
 				document.getElementById('battleScreen').style.display = "none";
 				document.getElementById("p_win").style.display = "none";
 				document.getElementById("f_lose").style.display = "none";
@@ -721,7 +729,7 @@ function displayBattle(stage) {
 		document.getElementById("f_win").style.display = "block";
 		setTimeout(function(){ 
 			var serverMsg = document.getElementById('serverMsg');
-			if(serverMsg.value=="Going into battle") { 
+			if(serverMsg.value=="Going into battle - ") { 
 				var data = JSON.stringify({ 'nextQuestTurn' : false});
 				if(PlayerName == participantInfo.name) {
 				socketConn.send(data);} }
@@ -882,7 +890,7 @@ function pickWeapons() {
 function doneEquipment() {
 	document.getElementById('doneEquipment').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Going into battle";
+	serverMsg.value = "Going into battle - ";
 	$('body').off('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8');
 	var data = JSON.stringify({
 		'name' : PlayerName,
