@@ -91,8 +91,17 @@ public class Player {
 
 	}
 
+	public void discard(String name) {
+		name = name.replaceAll("\"", "");
+		for (int i = 0; i < this.getHandSize(); i++) {
+			if (this.getHand().get(i).getName().equals(name)) {
+				this.getHand().remove(i);
+				break;
+			}
+		}
+	}
+
 	public void discardPlayer(ArrayList<String> toRemove) {
-		// System.out.println(toRemove);
 		for (int i = 0; i < toRemove.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (toRemove.get(i).equals(this.getHand().get(j).getName())) {

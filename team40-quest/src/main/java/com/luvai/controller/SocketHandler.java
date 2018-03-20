@@ -132,7 +132,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 			// System.out.println(cardToRemove);
 			gameEngine.current_quest.sponsor.discardSponsor(cardToRemove);
-
+			String update = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + update);
 			return;
 		}
 
@@ -208,6 +209,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			logger.info("Player {} chose {} to equip for stage {} battle of {} quest", jsonObject.get("name"),
 					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
 			gameEngine.current_quest.equipPlayer(jsonObject);
+			String update = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + update);
 			return;
 		}
 
@@ -216,6 +219,8 @@ public class SocketHandler extends TextWebSocketHandler {
 
 			boolean BattleResult = jsonObject.get("nextQuestTurn").getAsBoolean();
 			if (BattleResult == false) {
+				String update = gameEngine.getPlayerStats();
+				sendToAllSessions(gameEngine, "updateStats" + update);
 				logger.info("Player {} was defeated in {} quest battle",
 						gameEngine.current_quest.getCurrentParticipant().getName(),
 						gameEngine.storyDeck.faceUp.getName());
@@ -260,7 +265,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 
 			if (BattleResult == true) {
-
+				String update = gameEngine.getPlayerStats();
+				sendToAllSessions(gameEngine, "updateStats" + update);
 				logger.info("Player {} was victorious in {} quest battle",
 						gameEngine.current_quest.getCurrentParticipant().getName(),
 						gameEngine.current_quest.QuestFoes.get(gameEngine.current_quest.currentStage - 1).getName(),
@@ -310,7 +316,14 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 			session.sendMessage(new TextMessage(clientsString));
 		}
-
+		// discard
+		if (jsonObject.has("discard")) {
+			String discard = jsonObject.get("discard").toString();
+			Player p = getPlayerFromSession(session);
+			p.discard(discard);
+			String update = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + update);
+		}
 		// validation of connection and decks
 		if (jsonObject.has("proof")) {
 			//
@@ -361,6 +374,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
 							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
 					logger.info("Giving shields to {}", gameEngine.current_quest.participants.get(j).getName());
+
 				} else {
 					gameEngine.players.get(i).session.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
 					if (gameEngine.players.get(i).equals(gameEngine.current_quest.sponsor)) {
@@ -383,6 +397,7 @@ public class SocketHandler extends TextWebSocketHandler {
 									.sendMessage(new TextMessage("SponsorPickup" + temp));
 							cardTracker = 0;
 							sendOnce = false;
+
 						}
 
 					}
@@ -390,6 +405,8 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 			}
 		}
+		String update = gameEngine.getPlayerStats();
+		sendToAllSessions(gameEngine, "updateStats" + update);
 		sendOnce = true;
 		return;
 	}
@@ -411,13 +428,16 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(), cardTracker);
 		gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("SponsorPickup" + temp));
 		cardTracker = 0;
+		String update = gameEngine.getPlayerStats();
+		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
 
 	// flip story deck
 	int tracker = 0;
 
 	public void flipStoryCard() throws IOException {
-
+		String update = gameEngine.getPlayerStats();
+		sendToAllSessions(gameEngine, "updateStats" + update);
 		if (tracker == 0)
 			gameEngine.storyDeck.faceUp = CardList.Quest6;
 		if (tracker == 1)

@@ -72,6 +72,8 @@ public class QuestController extends SocketHandler {
 		// System.out.println("remove list");
 		gameEngine.getCurrentParticipant().discardPlayer(remove);
 		calculatePlayerPoints();
+		String update = gameEngine.getPlayerStats();
+		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
 
 	// initiate foes for current quest
@@ -104,6 +106,8 @@ public class QuestController extends SocketHandler {
 					}
 				} */
 		calculateFoeBattlePoints();
+		String update = gameEngine.getPlayerStats();
+		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
 
 	public void calculatePlayerPoints() {
@@ -144,7 +148,6 @@ public class QuestController extends SocketHandler {
 			foePoints.points.add(tempPts);
 		}
 		String temp = foePoints.toString();
-		System.out.println("145 questcontroller " + temp);
 		sendToAllSessions(gameEngine, "FoeInfo" + temp);
 	}
 

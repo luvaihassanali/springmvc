@@ -55,8 +55,7 @@ Shields:<label id="p1shields">0</label>
 	<button id="print" disabled onclick="print()">Print all
 		players</button>
 	<button id="proof" onclick="proof()">Proof</button>
-	<button type="button" disabled onclick="flipStoryDeck()">Flip
-		story deck</button>
+	<button type="button" onclick="arrangeHand()">Re arrange</button>
 	<br>
 	<br>
 	<label>Console</label>

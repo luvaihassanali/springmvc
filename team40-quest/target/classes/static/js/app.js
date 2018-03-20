@@ -491,12 +491,13 @@ socketConn.onmessage = function(event) {
 	}
 	// flip story deck
 	if (event.data.startsWith("flipStoryDeck")) {
-		serverMsg.value += " Flipping card from Story Deck";
+		serverMsg.value = "Flipping card from Story Deck";
 		var card = event.data.replace('flipStoryDeck', '');
 		card = JSON.parse(card);
 		storyCardFaceUp = card;
 		stageTracker = storyCardFaceUp.stages;
 		$("#storyCard").attr("src", "http://localhost:8080" + card.stringFile);
+		arrangeHand();
 
 	}
 	// set hand
@@ -543,7 +544,7 @@ socketConn.onmessage = function(event) {
 		for(var i=0; i<temp.length; i++) {
 			temp[i] = temp[i].split(";");
 		}
-		console.log(temp);
+	//	console.log(temp);
 		document.getElementById('p1name').innerText = temp[0][0];
 		document.getElementById('p2name').innerText = temp[1][0];
 		document.getElementById('p3name').innerText = temp[2][0];
@@ -654,6 +655,7 @@ function sponsorPickup(cards) {
 			var serverMsg = document.getElementById('serverMsg');
 			serverMsg.value += " You must choose a card to continue (or right-click to discard) ";
 			discard();
+			
 		}
 }
 // display current battle
@@ -845,7 +847,14 @@ function discard(){
 			'contextmenu',
 			'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8',
 			function() {
-				
+				var cardSrc = this.src.replace('http://localhost:8080','');
+				if(cardSrc == "/resources/images/all.png") {} else {
+					cardSrc = cardSrc.split('%20').join(' ');
+					console.log(cardSrc);
+					var discardName = getNameFromLink(cardSrc);
+					var data = JSON.stringify({ 'discard': discardName});
+					socketConn.send(data);
+				}
 				if(this.src!="http://localhost:8080/resources/images/all.png") {
 					if(numCards>12) {
 						$(this).attr("src", "/resources/images/all.png");
@@ -863,6 +872,7 @@ function discard(){
 					}
 				}
 			})
+
 	return false;
 }
 
@@ -938,6 +948,7 @@ function doneEquipment() {
 	});
 	
 	socketConn.send(data);
+	arrangeHand();
 }
 
 // deny participation in quest
@@ -986,6 +997,15 @@ function doneWeaponsQuestSponsor() {
 
 }
 
+//get name from link
+function getNameFromLink(link) {
+	for(var i=0; i<cardTypeList.length;i++){
+		if(cardTypeList[i].link == link) {
+			return cardTypeList[i].name;
+		}
+	}
+	return "link not found";
+}
 // get link from name
 function getLinkFromName(name) {
 	for (var i = 0; i < cardTypeList.length; i++) {
@@ -1099,5 +1119,65 @@ function checkForEquipment(ImageLink) {
 
 	}
 	return "card not found";
+}
+
+function arrangeHand() {
+	var card1id = document.getElementById("card1").id;
+	var card2id = document.getElementById("card2").id;
+	var card3id = document.getElementById("card3").id;
+	var card4id = document.getElementById("card4").id;
+	var card5id = document.getElementById("card5").id;
+	var card6id = document.getElementById("card6").id;
+	var card7id = document.getElementById("card7").id;
+	var card8id = document.getElementById("card8").id;
+	var card9id = document.getElementById("card9").id;
+	var card10id = document.getElementById("card10").id;
+	var card11id = document.getElementById("card11").id;
+	var card12id = document.getElementById("card12").id;
+	var extra1id = document.getElementById("extra1").id;
+	var extra2id = document.getElementById("extra2").id;
+	var extra3id = document.getElementById("extra3").id;
+	var extra4id = document.getElementById("extra4").id;
+	var extra5id = document.getElementById("extra5").id;
+	var extra6id = document.getElementById("extra6").id;
+	var extra7id = document.getElementById("extra7").id;
+	var extra8id = document.getElementById("extra8").id;
+	var mainArrayID = [ card1id, card2id, card3id, card4id, card5id, card6id, card7id, card8id, card9id, card10id, card11id, card12id ];
+	var extraArrayID = [ extra1id, extra2id, extra3id, extra4id, extra5id, extra6id, extra7id, extra8id ];
+	var card1 = document.getElementById("card1").src;
+	var card2 = document.getElementById("card2").src;
+	var card3 = document.getElementById("card3").src;
+	var card4 = document.getElementById("card4").src;
+	var card5 = document.getElementById("card5").src;
+	var card6 = document.getElementById("card6").src;
+	var card7 = document.getElementById("card7").src;
+	var card8 = document.getElementById("card8").src;
+	var card9 = document.getElementById("card9").src;
+	var card10 = document.getElementById("card10").src;
+	var card11 = document.getElementById("card11").src;
+	var card12 = document.getElementById("card12").src;
+	var extra1 = document.getElementById("extra1").src;
+	var extra2 = document.getElementById("extra2").src;
+	var extra3 = document.getElementById("extra3").src;
+	var extra4 = document.getElementById("extra4").src;
+	var extra5 = document.getElementById("extra5").src;
+	var extra6 = document.getElementById("extra6").src;
+	var extra7 = document.getElementById("extra7").src;
+	var extra8 = document.getElementById("extra8").src;
+	var mainArray = [ card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12 ];
+	var extraArray = [ extra1, extra2, extra3, extra4, extra5, extra6, extra7, extra8 ];
+	
+	for(var i=0; i<extraArrayID.length; i++) { 
+		if(extraArray[i] != "http://localhost:8080/resources/images/all.png") {
+			for(var j=0; j<mainArrayID.length; j++) {
+				if(mainArray[j] == "http://localhost:8080/resources/images/all.png") {
+					$("#"+mainArrayID[j]).attr("src", extraArray[i]);
+					$("#"+extraArrayID[i]).attr("src", "http://localhost:8080/resources/images/all.png");
+					if(extraArray[i+1] != "http://localhost:8080/resources/images/all.png") arrangeHand();
+					return;
+				}
+			}
+		}
+	}
 }
 
