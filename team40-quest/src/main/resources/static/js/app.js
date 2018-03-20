@@ -529,6 +529,43 @@ socketConn.onmessage = function(event) {
 	if(event.data == "test") {
 		console.log("testing");
 	}
+	// get all player names
+	if (event.data.startsWith("clientsString")) {
+		var clientString = event.data.replace('clientsString', '');
+		serverMsg.value = clientString;
+	}
+	
+	//update stat pane
+	if(event.data.startsWith("updateStats")) {
+		var temp = event.data.replace("updateStats", "");
+		temp = temp.split("#");
+		for(var i=0; i<temp.length; i++) {
+			temp[i] = temp[i].split(";");
+		}
+		console.log(temp);
+		document.getElementById('p1name').innerText = temp[0][0];
+		document.getElementById('p2name').innerText = temp[1][0];
+		document.getElementById('p3name').innerText = temp[2][0];
+		document.getElementById('p4name').innerText = temp[3][0];
+		document.getElementById('p1rank').innerText = temp[0][1];
+		document.getElementById('p2rank').innerText = temp[1][1];
+		document.getElementById('p3rank').innerText = temp[2][1];
+		document.getElementById('p4rank').innerText = temp[3][1];
+		document.getElementById('p1cards').innerText = temp[0][2];
+		document.getElementById('p2cards').innerText = temp[1][2];
+		document.getElementById('p3cards').innerText = temp[2][2];
+		document.getElementById('p4cards').innerText = temp[3][2];
+		document.getElementById('p1shields').innerText = temp[0][3];
+		document.getElementById('p2shields').innerText = temp[1][3];
+		document.getElementById('p3shields').innerText = temp[2][3];
+		document.getElementById('p4shields').innerText = temp[3][3];
+
+	}
+	
+	//get proof of enrollment 
+	if(event.data.startsWith("You are")) {
+		serverMsg.value = event.data;
+	}
 	// welcome message
 	if (event.data.startsWith("Welcome")) {
 		serverMsg.value = event.data;
@@ -1031,12 +1068,18 @@ function send() {
 
 // print all clients connected
 function print() {
-	// socketConn.send("Print");
+	var data = JSON.stringify({
+		'print' : 0
+	})
+	socketConn.send(data);
 }
 
 // proof of connection - prints deck proof also
 function proof() {
-	// socketConn.send("Proof");
+	var data = JSON.stringify({
+		'proof' : 0
+	})
+	socketConn.send(data);
 }
 
 function checkForEquipment(ImageLink) {

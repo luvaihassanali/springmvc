@@ -18,10 +18,36 @@
 <link rel="icon" type="image/png" href="/resources/favicon.png" />
 </head>
 <body>
-
+	<p style="float:right;">${message}</>
 	<h1 id="title" class="color1">Welcome to Quest of The Round Table</h1>
-	${message}
+
 	<hr />
+<div id="statpane" style="text-align:center;">
+<div id="p4stat" style="float:right; border-style:solid; width: 273px; height: 150px;">
+Player 4: <label id="p4name"></label><br> <br>
+Rank: <label id="p4rank"></label><br> <br>
+Cards: <label id="p4cards">0</label><br><br> 
+Shields: <label id="p4shields">0</label>
+</div>
+<div  id="p3stat"style="float:right; border-style:solid; width: 273px; height: 150px;">
+Player 3:  <label id="p3name"></label><br><br>
+Rank: <label id="p3rank"></label><br><br>
+Cards:<label id="p3cards">0</label><br><Br>
+Shields:<label id="p3shields">0</label>
+</div>
+<div id="p2stat" style="float:right; border-style:solid; width: 273px; height: 150px;">
+Player 2:  <label id="p2name"></label><br><br>
+Rank: <label id="p2rank"></label><br><br>
+Cards:<label id="p2cards">0</label><br><br>
+Shields:<label id="p2shields">0</label>
+</div>
+<div id="p1stat" style="float:right; border-style:solid; width: 273px; height: 150px;">
+Player 1:  <label id="p1name"></label><br><br>
+Rank: <label id="p1rank"></label><br><br>
+Cards:<label id="p1cards">0</label><br><br>
+Shields:<label id="p1shields">0</label>
+</div>
+</div>
 	<p>
 		Enter name: <input type="text" id="enterName" value="Mickey Mouse">
 	</p>

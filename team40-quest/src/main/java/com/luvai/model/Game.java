@@ -157,4 +157,14 @@ public class Game {
 		// if +1 then ---> end of game screen tie?
 	}
 
+	public String getPlayerStats() {
+		String temp = "";
+		for (int i = 0; i < players.size(); i++) {
+			temp += players.get(i).getName() + ";" + players.get(i).getRank().getName() + ";"
+					+ players.get(i).getHandSize() + ";" + players.get(i).shields + "#";
+		}
+
+		return temp;
+	}
+
 }

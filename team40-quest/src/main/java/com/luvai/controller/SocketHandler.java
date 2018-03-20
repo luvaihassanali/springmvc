@@ -25,6 +25,7 @@ import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.StoryCards.EventCard;
 import com.luvai.model.StoryCards.QuestCard;
+import com.luvai.model.StoryCards.StoryCard;
 import com.luvai.model.StoryCards.TournamentCard;
 
 @Component
@@ -63,6 +64,9 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.players.get(3).session
 						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(3).getHandString()));
 				flipStoryCard();
+				String temp = gameEngine.getPlayerStats();
+				sendToAllSessions(gameEngine, "updateStats" + temp);
+
 			}
 		}
 		// sponsoring quuest
@@ -296,6 +300,41 @@ public class SocketHandler extends TextWebSocketHandler {
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 		}
+
+		// print all gameEngine players for requested client
+		if (jsonObject.has("print")) {
+			session.sendMessage(new TextMessage("All players:\n"));
+			String clientsString = "clientsString";
+			for (Player p : gameEngine.players) {
+				clientsString += "ID: " + p.id + " Name: " + p.getName() + "\n";
+			}
+			session.sendMessage(new TextMessage(clientsString));
+		}
+
+		// validation of connection and decks
+		if (jsonObject.has("proof")) {
+			//
+			logger.info("ADVENTURE DECK PROOF:");
+			int i = 1;
+			for (AdventureCard a : gameEngine.adventureDeck.cards) {
+				logger.info("{}. {}", i, a.getName());
+				i++;
+			}
+			//
+			logger.info("STORY DECK PROOF:");
+			int j = 1;
+			for (StoryCard s : gameEngine.storyDeck.cards) {
+				logger.info("{}. {}", j, s.getName());
+				j++;
+			}
+
+			// output player name in console
+			if (getPlayerFromSession(session) == null) {
+			} else {
+				getPlayerFromSession(session).session
+						.sendMessage(new TextMessage("You are " + getPlayerFromSession(session).getName()));
+			}
+		} // validation of decks
 	}
 
 	public void Winning() throws IOException {
