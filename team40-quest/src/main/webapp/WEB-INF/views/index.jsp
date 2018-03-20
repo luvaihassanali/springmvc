@@ -62,7 +62,7 @@ Shields:<label id="p1shields">0</label>
 	<label>Console</label>
 
 	<div id="battleScreen"
-		style="display: none; margin: 0 auto; font-size: 24px; border-style: dashed; background-color: white; width: 600px; height: 600px; z-index: 2; text-align: center;">
+		style="display: none; margin: 0 auto; font-size: 24px; border-style: solid; position:relative; background-color: white; width: 600px; height: 630px; z-index: 2; text-align: center;">
 		<strong>Battle Screen</strong>&nbsp;<br />
 		<div id="enemyDisplay" style="float: right;">
 			<div>

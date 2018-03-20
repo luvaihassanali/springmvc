@@ -416,6 +416,7 @@ socketConn.onmessage = function(event) {
 		console.log(participantInfo);
 		currentStage = participantInfo.stages;
 	}
+	 
 	
 
 	// get current player pts
@@ -671,8 +672,8 @@ function displayBattle(stage) {
 	}
 
 	var foeLinks = [];
-	var foeWeaponNames = questInfo.weapons[0];
-	//console.log(foeWeaponNames);
+	var foeWeaponNames = questInfo.weapons[stage-1];
+	console.log(foeWeaponNames);
 	var foeWeaponLinks = [];
 	var currentStageWeps = [];
 			

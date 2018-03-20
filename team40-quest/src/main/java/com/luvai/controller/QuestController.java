@@ -144,7 +144,7 @@ public class QuestController extends SocketHandler {
 			foePoints.points.add(tempPts);
 		}
 		String temp = foePoints.toString();
-		// System.out.println("145 questcontroller " + temp);
+		System.out.println("145 questcontroller " + temp);
 		sendToAllSessions(gameEngine, "FoeInfo" + temp);
 	}
 
