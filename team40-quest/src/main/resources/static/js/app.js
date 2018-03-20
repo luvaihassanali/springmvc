@@ -197,7 +197,7 @@ var testMorgan = {
 var testTemp = {
 	name : "Test of Temptation",
 	type : "test",
-	link : "/resources/images/T Test of the Questing Beast.jpg"
+	link : "/resources/images/T Test of Temptation.jpg"
 };
 var testBeast = {
 	name : "Test of the Questing Beast",
@@ -399,6 +399,13 @@ socketConn.onmessage = function(event) {
 							'');
 					cardId = cardId.split('%20').join(' ');
 					if (checkForEquipment(this.src) != "card not found") {
+						for(var i=0; i<tempWeaponArr2.length;i++){
+							if((checkForEquipment(this.src)) == tempWeaponArr2[i]) {
+								var serverMsg = document.getElementById('serverMsg');
+								serverMsg.value += "\nCannot choose repeat weapons";
+								return;
+							}
+						}
 						tempWeaponArr2.push(checkForEquipment(this.src))
 						var changeImageId = "#" + this.id;
 						numCards--;
@@ -826,6 +833,13 @@ function setupQuestRound() {
 													var cardName = checkForCardType(
 															cardSrc, "weapon");
 													if (cardName != "card not found") {
+														for(var i=0; i<tempWeaponArr.length;i++){
+															if(cardName == tempWeaponArr[i]) {
+																var serverMsg = document.getElementById('serverMsg');
+																serverMsg.value += "\nCannot choose repeat weapons";
+																return;
+															}
+														}
 														tempWeaponArr
 																.push(cardName)
 														var changeImageId = "#"

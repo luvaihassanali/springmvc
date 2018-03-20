@@ -161,7 +161,7 @@ public class Game {
 		String temp = "";
 		for (int i = 0; i < players.size(); i++) {
 			temp += players.get(i).getName() + ";" + players.get(i).getRank().getName() + ";"
-					+ players.get(i).getHandSize() + ";" + players.get(i).shields + "#";
+					+ (players.get(i).getHandSize()) + ";" + players.get(i).shields + "#";
 		}
 
 		return temp;

@@ -128,9 +128,11 @@ public class Player {
 	}
 
 	public void discardSponsor(ArrayList<String> cards) { // adjust for more stages
+		System.out.println(cards);
 		ArrayList<String> names1 = new ArrayList<String>();
 		ArrayList<String> names2 = new ArrayList<String>();
 
+		System.out.println(cards.size());
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).endsWith(Integer.toString(0))) {
 
@@ -143,31 +145,35 @@ public class Player {
 				names2.add(removeLastChar(cards.get(i)));
 			}
 		}
-		// for (String a : names1) {
+		System.out.println("names");
+		System.out.println(names1);
+		System.out.println(names1.size());
+		System.out.println(names2);
+		System.out.println(names2.size());
 
-		// System.out.println(a);
-		// }
-		// for (String a : names2) {
+		for (int i = 0; i < names1.size(); i++) {
+			for (int j = 0; j < this.getHandSize(); j++) {
+				if (this.hand.get(j).getName().equals(names1.get(i))) {
 
-		// System.out.println(a);
-		// }
-
-		for (int i = 0; i < this.getHandSize(); i++) {
-			for (int j = 0; j < names1.size(); j++) {
-				if (this.hand.get(i).getName().equals(names1.get(j))) {
-
-					this.hand.remove(i);
+					this.hand.remove(j);
+					break;
 				}
 			}
 		}
 
-		for (int i = 0; i < this.getHandSize(); i++) {
-			for (int j = 0; j < names2.size(); j++) {
-				if (this.hand.get(i).getName().equals(names2.get(j))) {
+		for (int i = 0; i < names2.size(); i++) {
+			for (int j = 0; j < this.getHandSize(); j++) {
+				if (this.hand.get(j).getName().equals(names2.get(i))) {
 
-					this.hand.remove(i);
+					this.hand.remove(j);
+					break;
 				}
 			}
+		}
+
+		System.out.println(this.getHandSize());
+		for (AdventureCard a : this.hand) {
+			System.out.println(a.getName());
 		}
 
 	}

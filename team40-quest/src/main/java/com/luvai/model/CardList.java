@@ -154,7 +154,7 @@ public class CardList {
 	public static String prosperityImage = "/resources/images/E Prosperity Throughout the Realm.jpg";
 	public static String queensFavorImage = "/resources/images/E Queen's Favor.jpg";
 	public static String testMorganImage = "/resources/images/T Test of Morgan Le Fey.jpg";
-	public static String testTempImage = "/resources/images/T Test of the Questing Beast.jpg";
+	public static String testTempImage = "/resources/images/T Test of Temptation.jpg";
 	public static String testBeastImage = "/resources/images/T Test of the Questing Beast.jpg";
 	public static String testValorImage = "/resources/images/T Test of Valor.jpg";
 	public static String arthurQuestImage = "/resources/images/Q Arthur.jpg";

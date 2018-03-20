@@ -120,7 +120,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				tracker++;
 			}
 			tracker = 0;
-			// System.out.println(cardToRemove);
+
 			JsonArray foeWeapons = (JsonArray) jsonObject.get("weapons");
 			for (int i = 0; i < foeWeapons.size(); i++) {
 				JsonArray temp = (JsonArray) foeWeapons.get(i);
@@ -130,7 +130,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 
 			}
-			// System.out.println(cardToRemove);
 			gameEngine.current_quest.sponsor.discardSponsor(cardToRemove);
 			String update = gameEngine.getPlayerStats();
 			sendToAllSessions(gameEngine, "updateStats" + update);
@@ -380,6 +379,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					if (gameEngine.players.get(i).equals(gameEngine.current_quest.sponsor)) {
 						String temp = "";
 						int cardTracker = 0;
+
 						for (int k = gameEngine.current_quest.sponsor.getHandSize(); k < 12
 								+ gameEngine.current_quest.currentQuest.getStages(); k++) {
 							cardTracker++;
@@ -417,6 +417,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		sendToAllSessions(gameEngine, "QuestOverWaitForSponsor");
 		String temp = "";
 		int cardTracker = 0;
+		System.out.println(gameEngine.current_quest.sponsor.getHandSize());
 		for (int i = gameEngine.current_quest.sponsor.getHandSize(); i < 12
 				+ gameEngine.current_quest.currentQuest.getStages(); i++) {
 			cardTracker++;

@@ -69,7 +69,7 @@ public class QuestController extends SocketHandler {
 			}
 		}
 		ArrayList<String> remove = new ArrayList<String>(equipmentList);
-		// System.out.println("remove list");
+		System.out.println("remove list");
 		gameEngine.getCurrentParticipant().discardPlayer(remove);
 		calculatePlayerPoints();
 		String update = gameEngine.getPlayerStats();
