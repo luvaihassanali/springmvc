@@ -223,45 +223,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
 						gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
 
-						String winners = "";
-						for (Player p : gameEngine.current_quest.participants) {
-
-							winners += p.getName() + ",";
-						}
-						if (winners.equals("")) {
-							Losing();
-							return;
-						}
-						logger.info("231 Player(s) {} are the winners of {} quest sponsored by {}", winners,
-								gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
-						for (int i = 0; i < gameEngine.players.size(); i++) {
-							for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
-								if (gameEngine.players.get(i).equals(gameEngine.current_quest.participants.get(j))) {
-									gameEngine.current_quest.participants.get(j)
-											.giveShields(gameEngine.current_quest.currentQuest.getStages());
-									gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage(
-											"Getting " + gameEngine.current_quest.currentQuest.getStages()
-													+ " shields for winning quest"));
-
-								} else {
-									gameEngine.players.get(i).session
-											.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
-									if (gameEngine.players.get(i).equals(gameEngine.current_quest.sponsor)) {
-										String temp = "";
-										for (int k = gameEngine.current_quest.sponsor.getHandSize(); k < 12
-												+ gameEngine.current_quest.currentQuest.getStages(); k++) {
-											AdventureCard newCard = gameEngine.adventureDeck.flipCard();
-											temp += newCard.getStringFile() + ";";
-											gameEngine.current_quest.sponsor.getHand().add(newCard);
-										}
-										// System.out.println(temp);
-										gameEngine.current_quest.sponsor.session
-												.sendMessage(new TextMessage("SponsorPickup" + temp));
-									}
-
-								}
-							}
-						}
+						Winning();
 						return;
 					}
 				}
@@ -303,47 +265,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					sendToAllSessions(gameEngine, "incStage");
 					gameEngine.current_quest.currentStage++;
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-						String winners = "";
-						for (Player p : gameEngine.current_quest.participants) {
-							// System.out.println(p.getName());
-							winners += p.getName() + ",";
-
-						}
-						// System.out.println(winners);
-						if (winners.equals("")) {
-							Losing();
-							return;
-						}
-						logger.info("336 Player(s) {} are the winners of {} quest sponsored by {}", winners,
-								gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
-						for (int i = 0; i < gameEngine.players.size(); i++) {
-							for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
-								if (gameEngine.players.get(i).equals(gameEngine.current_quest.participants.get(j))) {
-									gameEngine.current_quest.participants.get(j)
-											.giveShields(gameEngine.current_quest.currentQuest.getStages());
-									gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage(
-											"Getting " + gameEngine.current_quest.currentQuest.getStages()
-													+ " shields for winning quest"));
-
-								} else {
-									gameEngine.players.get(i).session
-											.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
-									if (gameEngine.players.get(i).equals(gameEngine.current_quest.sponsor)) {
-										String temp = "";
-										for (int k = gameEngine.current_quest.sponsor.getHandSize(); k < 12
-												+ gameEngine.current_quest.currentQuest.getStages(); k++) {
-											AdventureCard newCard = gameEngine.adventureDeck.flipCard();
-											temp += newCard.getStringFile() + ";";
-											gameEngine.current_quest.sponsor.getHand().add(newCard);
-										}
-										// System.out.println(temp);
-										gameEngine.current_quest.sponsor.session
-												.sendMessage(new TextMessage("SponsorPickup" + temp));
-									}
-
-								}
-							}
-						}
+						Winning();
 						return;
 					}
 					gameEngine.adventureDeck.flipCard();
@@ -360,41 +282,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					sendToAllSessions(gameEngine, "incStage");
 					gameEngine.current_quest.currentStage++;
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-						String winners = "";
-						for (Player p : gameEngine.current_quest.participants) {
-							System.out.println(p.getName());
-							winners += p.getName() + ",";
-						}
-						logger.info("359 Player(s) {} are the winners of {} quest sponsored by {}", winners,
-								gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
-						for (int i = 0; i < gameEngine.players.size(); i++) {
-							for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
-								if (gameEngine.players.get(i).equals(gameEngine.current_quest.participants.get(j))) {
-									gameEngine.current_quest.participants.get(j)
-											.giveShields(gameEngine.current_quest.currentQuest.getStages());
-									gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage(
-											"Getting " + gameEngine.current_quest.currentQuest.getStages()
-													+ " shields for winning quest"));
-
-								} else {
-									gameEngine.players.get(i).session
-											.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
-									if (gameEngine.players.get(i).equals(gameEngine.current_quest.sponsor)) {
-										String temp = "";
-										for (int k = gameEngine.current_quest.sponsor.getHandSize(); k < 12
-												+ gameEngine.current_quest.currentQuest.getStages(); k++) {
-											AdventureCard newCard = gameEngine.adventureDeck.flipCard();
-											temp += newCard.getStringFile() + ";";
-											gameEngine.current_quest.sponsor.getHand().add(newCard);
-										}
-										// System.out.println(temp);
-										gameEngine.current_quest.sponsor.session
-												.sendMessage(new TextMessage("SponsorPickup" + temp));
-									}
-
-								}
-							}
-						}
+						Winning();
 						return;
 					}
 				}
@@ -410,8 +298,61 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 	}
 
-	public void Winning() {
+	public void Winning() throws IOException {
+		boolean sendOnce = true;
+		String winners = "";
+		for (Player p : gameEngine.current_quest.participants) {
 
+			winners += p.getName() + ",";
+		}
+		if (winners.equals("")) {
+			Losing();
+			return;
+		}
+		logger.info("Player(s) {} are the winners of {} quest sponsored by {}, receiving {} shields", winners,
+				gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName(),
+				gameEngine.current_quest.currentQuest.getStages());
+		for (int i = 0; i < gameEngine.players.size(); i++) {
+			for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
+
+				if (gameEngine.players.get(i).getName()
+						.equals(gameEngine.current_quest.participants.get(j).getName())) {
+					gameEngine.current_quest.participants.get(j)
+							.giveShields(gameEngine.current_quest.currentQuest.getStages());
+					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
+							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
+					logger.info("Giving shields to {}", gameEngine.current_quest.participants.get(j).getName());
+				} else {
+					gameEngine.players.get(i).session.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
+					if (gameEngine.players.get(i).equals(gameEngine.current_quest.sponsor)) {
+						String temp = "";
+						int cardTracker = 0;
+						for (int k = gameEngine.current_quest.sponsor.getHandSize(); k < 12
+								+ gameEngine.current_quest.currentQuest.getStages(); k++) {
+							cardTracker++;
+							AdventureCard newCard = gameEngine.adventureDeck.flipCard();
+							temp += newCard.getStringFile() + ";";
+							gameEngine.current_quest.sponsor.getHand().add(newCard);
+						}
+						if (sendOnce) {
+							logger.info(
+									"Player {} who sponsored {} quest is receiving {} card due to"
+											+ " sponsoring quest",
+									gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(),
+									cardTracker);
+							gameEngine.current_quest.sponsor.session
+									.sendMessage(new TextMessage("SponsorPickup" + temp));
+							cardTracker = 0;
+							sendOnce = false;
+						}
+
+					}
+
+				}
+			}
+		}
+		sendOnce = true;
+		return;
 	}
 
 	public void Losing() throws IOException {

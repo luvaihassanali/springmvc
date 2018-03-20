@@ -375,6 +375,7 @@ socketConn.onmessage = function(event) {
 	}
 	//getting shields
 	if (event.data.startsWith("Getting")) {
+		console.log("here");
 		serverMsg.value = event.data;
 	}
 	// pick up cards used for sponsor
