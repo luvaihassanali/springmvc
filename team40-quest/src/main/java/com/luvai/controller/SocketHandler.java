@@ -347,6 +347,36 @@ public class SocketHandler extends TextWebSocketHandler {
 						.sendMessage(new TextMessage("You are " + getPlayerFromSession(session).getName()));
 			}
 		} // validation of decks
+
+		// getting ai player
+		if (jsonObject.has("AI")) {
+			System.out.println(jsonObject.get("AI").getAsString());
+			JsonElement playerName = jsonObject.get("AI");
+			Player newPlayer = new Player(playerName.getAsString(), session);
+			newPlayer.setAI(2);
+			gameEngine.players.add(newPlayer);
+			logger.info("Player {} is enrolled in the game", playerName.getAsString());
+			if (gameEngine.players.size() == 4) {
+				sendToAllSessions(gameEngine, "GameReadyToStart");
+				logger.info("All players have joined, starting game...");
+				gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
+				gameEngine.players.get(1).setHand(gameEngine.mockHand2);
+				gameEngine.players.get(2).setHand(gameEngine.mockHand3);
+				gameEngine.players.get(3).setHand(gameEngine.mockHand4);
+				gameEngine.players.get(0).session
+						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(0).getHandString()));
+				gameEngine.players.get(1).session
+						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(1).getHandString()));
+				gameEngine.players.get(2).session
+						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(2).getHandString()));
+				gameEngine.players.get(3).session
+						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(3).getHandString()));
+				flipStoryCard();
+				String temp = gameEngine.getPlayerStats();
+				sendToAllSessions(gameEngine, "updateStats" + temp);
+			}
+
+		}
 	}
 
 	public void Winning() throws IOException {

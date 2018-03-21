@@ -48,8 +48,8 @@ Cards:<label id="p1cards">0</label><br><br>
 Shields:<label id="p1shields">0</label>
 </div>
 </div>
-	<p>
-		Enter name: <input type="text" id="enterName" value="Mickey Mouse">
+	<p id="nameparagraph">
+		Enter name: <input type="text" id="enterName" value="Mickey Mouse"> <button id="setAI" onclick="setAI()">AI</button>
 	</p>
 	<button id="send" onclick="send()">Send</button>
 	<button id="print" disabled onclick="print()">Print all

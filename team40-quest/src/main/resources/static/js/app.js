@@ -1081,7 +1081,24 @@ function changeColor() {
 		title.className = 'color1';
 	}
 }
-
+//set AI player
+function setAI() {
+		var random =  Math.floor(Math.random() * 1000);
+		var name = "AI_Player_" + random;
+		var data = JSON.stringify({
+			'AI' : name
+		})
+		socketConn.send(data);
+		document.getElementById('title').innerHTML = "Welcome to the Quest of The Round Table - "
+			+ name + "'s View";
+	changeColor();
+	document.getElementById('nameparagraph').style.display = "none";
+	document.getElementById('send').style.display = "none";
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Waiting for other players...";
+		
+		
+}
 // send name to server -> adds client to player list
 function send() {
 	var clientMsg = document.getElementById('enterName');
@@ -1094,7 +1111,7 @@ function send() {
 		document.getElementById('title').innerHTML = "Welcome to the Quest of The Round Table - "
 				+ clientMsg.value + "'s View";
 		changeColor();
-		document.getElementById('enterName').style.display = "none";
+		document.getElementById('nameparagraph').style.display = "none";
 		document.getElementById('send').style.display = "none";
 		var serverMsg = document.getElementById('serverMsg');
 		serverMsg.value = "Waiting for other players...";
