@@ -30,6 +30,12 @@ socketConn.onmessage = function(event) {
 
 	var serverMsg = document.getElementById('serverMsg');
 	
+	//undisable flip button
+	
+	if(event.data == "undisableFlip") {
+		document.getElementById('flip').disabled = false;
+		serverMsg.value = "It's your turn, press flip story deck button to continue"
+	}
 	// ask to sponsor quest
 	if (event.data === "sponsorQuest") {
 		document.getElementById('sponsorQuest').style.display = 'block';
@@ -574,7 +580,9 @@ function discard(){
 							if(PlayerName === sponsor) { document.getElementById("serverMsg").value = "Replacing cards used to sponsor"; }
 							
 							if(numCards == 12 && document.getElementById("serverMsg").value.startsWith("Replacing cards used to sponsor")) {
-								var data = JSON.stringify({'flipStoryCard':true});
+								var serverMsg = document.getElementById("serverMsg");
+								serverMsg.value = "Wait for other players...";
+								var data = JSON.stringify({'incTurnRoundOver':true});
 								socketConn.send(data);
 							}
 						}
@@ -764,7 +772,8 @@ function denySponsorQuest() {
 }
 // flip story card
 function flipStoryDeck() {
-	// socketConn.send("flipStoryDeck");
+	var data = JSON.stringify({ 'flipStoryDeck' : 0 })
+	socketConn.send(data);
 }
 
 // static resource test, changes title back and forth from red and black

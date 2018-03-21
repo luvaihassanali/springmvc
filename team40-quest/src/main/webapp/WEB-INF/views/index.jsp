@@ -23,25 +23,25 @@
 
 	<hr />
 <div id="statpane" style="text-align:center;">
-<div id="p4stat" style="float:right; border-style:solid; width: 273px; height: 150px;">
+<div id="p4stat" style="float:right; border-style:solid; width: 272px; height: 150px;">
 Player 4: <label id="p4name"></label><br> <br>
 Rank: <label id="p4rank"></label><br> <br>
 Cards: <label id="p4cards">0</label><br><br> 
 Shields: <label id="p4shields">0</label>
 </div>
-<div  id="p3stat"style="float:right; border-style:solid; width: 273px; height: 150px;">
+<div  id="p3stat"style="float:right; border-style:solid; width: 272px; height: 150px;">
 Player 3:  <label id="p3name"></label><br><br>
 Rank: <label id="p3rank"></label><br><br>
 Cards:<label id="p3cards">0</label><br><Br>
 Shields:<label id="p3shields">0</label>
 </div>
-<div id="p2stat" style="float:right; border-style:solid; width: 273px; height: 150px;">
+<div id="p2stat" style="float:right; border-style:solid; width: 272px; height: 150px;">
 Player 2:  <label id="p2name"></label><br><br>
 Rank: <label id="p2rank"></label><br><br>
 Cards:<label id="p2cards">0</label><br><br>
 Shields:<label id="p2shields">0</label>
 </div>
-<div id="p1stat" style="float:right; border-style:solid; width: 273px; height: 150px;">
+<div id="p1stat" style="float:right; border-style:solid; width: 272px; height: 150px;">
 Player 1:  <label id="p1name"></label><br><br>
 Rank: <label id="p1rank"></label><br><br>
 Cards:<label id="p1cards">0</label><br><br>
@@ -49,20 +49,20 @@ Shields:<label id="p1shields">0</label>
 </div>
 </div>
 	<p id="nameparagraph">
-		Enter name: <input type="text" id="enterName" value="Mickey Mouse"> <button id="setAI" onclick="setAI()">AI</button>
+		Enter name: <input type="text" id="enterName" value="Mickey Mouse"> <button id="setAI" onclick="setAI()">AI Player</button>
 	</p>
 	<button id="send" onclick="send()">Send</button>
 	<button id="print" disabled onclick="print()">Print all
 		players</button>
 	<button id="proof" onclick="proof()">Proof</button>
-	<button type="button" onclick="arrangeHand()">Re arrange</button>
+	<button id="flip" disabled type="button" onclick="flipStoryDeck()">Flip Story Deck</button>
 	<br>
 	<br>
 	<label>Console</label>
 
 	<div id="battleScreen"
-		style="display: none; margin: 0 auto; font-size: 24px; border-style: solid; position:relative; background-color: white; width: 600px; height: 635px; z-index: 2; text-align: center;">
-		<strong>Battle Screen</strong>&nbsp;<br />
+		style="display: none; margin: 0 auto; font-size: 20px; border-style: solid; position:relative; background-color: white; width: 600px; height: 650px; z-index: 2; text-align: center;">
+				<label style="">*****************Battle Screen*****************</label> <br>
 		<div id="enemyDisplay" style="float: right;">
 			<div>
 				<img id="enemyPic" src="/resources/images/all.png" width="180"

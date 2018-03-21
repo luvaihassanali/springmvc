@@ -194,10 +194,13 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 		}
 
-		// flip story deck
-		if (jsonObject.has("flipStoryCard")) {
-			gameEngine.incTurn();
+		if (jsonObject.has("flipStoryDeck")) {
 			flipStoryCard();
+		}
+		// flip story deck
+		if (jsonObject.has("incTurnRoundOver")) {
+			gameEngine.incTurn();
+			gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
 		}
 
 		// json for getting participants battle equipment
