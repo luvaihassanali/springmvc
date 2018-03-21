@@ -235,9 +235,9 @@ socketConn.onmessage = function(event) {
 		
 	}
 	
-	//test
-	if(event.data == "test") {
-		console.log("testing");
+	//show rig button
+	if(event.data == "showRigger") {
+		document.getElementById("rigger").style.display = "block";
 	}
 	// get all player names
 	if (event.data.startsWith("clientsString")) {
@@ -285,6 +285,7 @@ socketConn.onmessage = function(event) {
 	if (event.data == "GameReadyToStart") {
 		document.getElementById('print').disabled = false;
 		serverMsg.value = "All players have joined, starting game, wait for your turn..."
+		document.getElementById('rigger').style.display = "none";
 	}
 }
 
@@ -916,6 +917,14 @@ function arrangeHand() {
 	}
 }
 
+function riggedGame() {
+	document.getElementById('rigger').style.display = "none";
+	var version = 42;
+	var data = JSON.stringify({
+		'riggedGame' : version
+	})
+	socketConn.send(data);
+}
 //static card resources for spring application
 var all = {
 	name : "All",

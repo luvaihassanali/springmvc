@@ -19,7 +19,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -36,6 +35,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	static Game gameEngine = new Game();
 	public static boolean rankSet = true;
 	public String BattleInformation = "";
+	public int riggedGame = 0;
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
@@ -51,18 +51,23 @@ public class SocketHandler extends TextWebSocketHandler {
 			if (gameEngine.players.size() == 4) {
 				sendToAllSessions(gameEngine, "GameReadyToStart");
 				logger.info("All players have joined, starting game...");
-				gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
-				gameEngine.players.get(1).setHand(gameEngine.mockHand2);
-				gameEngine.players.get(2).setHand(gameEngine.mockHand3);
-				gameEngine.players.get(3).setHand(gameEngine.mockHand4);
-				gameEngine.players.get(0).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(0).getHandString()));
-				gameEngine.players.get(1).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(1).getHandString()));
-				gameEngine.players.get(2).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(2).getHandString()));
-				gameEngine.players.get(3).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(3).getHandString()));
+				if (riggedGame != 0) {
+					if (riggedGame == 42) {
+						gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
+						gameEngine.players.get(1).setHand(gameEngine.mockHand2);
+						gameEngine.players.get(2).setHand(gameEngine.mockHand3);
+						gameEngine.players.get(3).setHand(gameEngine.mockHand4);
+
+					}
+				} else {
+					for (Player p : gameEngine.players) {
+						p.pickupNewHand(gameEngine.adventureDeck);
+					}
+				}
+				for (Player p : gameEngine.players) {
+					p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+				}
+
 				flipStoryCard();
 				String temp = gameEngine.getPlayerStats();
 				sendToAllSessions(gameEngine, "updateStats" + temp);
@@ -308,7 +313,16 @@ public class SocketHandler extends TextWebSocketHandler {
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 		}
+		// rigged game
+		if (jsonObject.has("riggedGame")) {
+			int version = jsonObject.get("riggedGame").getAsInt();
+			if (version == 42) {
+				logger.info("Setting up rigged game");
+				riggedGame = 42;
+				gameEngine.storyDeck.initRiggedStoryDeck(riggedGame);
+			}
 
+		}
 		// print all gameEngine players for requested client
 		if (jsonObject.has("print")) {
 			session.sendMessage(new TextMessage("All players:\n"));
@@ -467,18 +481,11 @@ public class SocketHandler extends TextWebSocketHandler {
 	}
 
 	// flip story deck
-	int tracker = 0;
 
 	public void flipStoryCard() throws IOException {
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
-		if (tracker == 0)
-			gameEngine.storyDeck.faceUp = CardList.Quest6;
-		if (tracker == 1)
-			gameEngine.storyDeck.faceUp = CardList.Event1;
-		if (tracker == 2)
-			gameEngine.storyDeck.faceUp = CardList.Event8;
-		// gameEngine.storyDeck.flipCard();
+		gameEngine.storyDeck.flipCard();
 
 		logger.info("Flipping new card from story deck: {}", gameEngine.storyDeck.faceUp.getName());
 		sendToAllSessions(gameEngine, ("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
@@ -492,12 +499,13 @@ public class SocketHandler extends TextWebSocketHandler {
 		if (gameEngine.storyDeck.faceUp instanceof EventCard) {
 			System.out.println("its " + gameEngine.getActivePlayer().getName() + "'s turn");
 		}
-		tracker++;
 	}
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
+		if (session.getId().equals("0"))
+			session.sendMessage(new TextMessage("showRigger"));
 		logger.info("New player attempting to connect...");
 		if (gameEngine.players.size() == 4) {
 			session.sendMessage(new TextMessage("Too many players, sorry. Being disconnected."));

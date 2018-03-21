@@ -56,6 +56,7 @@ Shields:<label id="p1shields">0</label>
 		players</button>
 	<button id="proof" onclick="proof()">Proof</button>
 	<button id="flip" disabled type="button" onclick="flipStoryDeck()">Flip Story Deck</button>
+	<button id="rigger" onclick="riggedGame()" style="display:none">Rigged Game</button>
 	<br>
 	<br>
 	<label>Console</label>
