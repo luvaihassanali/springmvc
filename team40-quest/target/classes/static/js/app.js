@@ -1,308 +1,3 @@
-//static card resources for spring application
-var all = {
-	name : "All",
-	type : "misc",
-	link : "/resources/images/all.png"
-};
-var back = {
-	name : "back",
-	type : "misc",
-	link : "/resources/images/card-back.png"
-};
-var horse = {
-	name : "Horse",
-	type : "weapon",
-	link : "/resources/images/W Horse.jpg"
-};
-var sword = {
-	name : "Sword",
-	type : "weapon",
-	link : "/resources/images/W Sword.jpg"
-};
-var dagger = {
-	name : "Dagger",
-	type : "weapon",
-	link : "/resources/images/W Dagger.jpg"
-};
-var lance = {
-	name : "Lance",
-	type : "weapon",
-	link : "/resources/images/W Lance.jpg"
-};
-var battleAx = {
-	name : "Battle-ax",
-	type : "weapon",
-	link : "/resources/images/W Battle-ax.jpg"
-};
-var excalibur = {
-	name : "Excalibur",
-	type : "weapon",
-	link : "/resources/images/W Excalibur.jpg"
-};
-var robberKnight = {
-	name : "Robber Knight",
-	type : "foe",
-	link : "/resources/images/F Robber Knight.jpg"
-};
-var saxons = {
-	name : "Saxons",
-	type : "foe",
-	link : "/resources/images/F Saxons.jpg"
-};
-var boar = {
-	name : "Boar",
-	type : "foe",
-	link : "/resources/images/F Boar.jpg"
-};
-var thieves = {
-	name : "Thieves",
-	type : "foe",
-	link : "/resources/images/F Thieves.jpg"
-};
-var greenKnight = {
-	name : "Green Knight",
-	type : "foe",
-	link : "/resources/images/F Green Knight.jpg"
-};
-var blackKnight = {
-	name : "Black Knight",
-	type : "foe",
-	link : "/resources/images/F Black Knight.jpg"
-};
-var evilKnight = {
-	name : "Evil Knight",
-	type : "foe",
-	link : "/resources/images/F Evil Knight.jpg"
-};
-var saxonKnight = {
-	name : "Saxon Knight",
-	type : "foe",
-	link : "/resources/images/F Saxon Knight.jpg"
-};
-var dragon = {
-	name : "Dragon",
-	type : "foe",
-	link : "/resources/images/F Dragon.jpg"
-};
-var giant = {
-	name : "Giant",
-	type : "foe",
-	link : "/resources/images/F Giant.jpg"
-};
-var mordred = {
-	name : "Mordred",
-	type : "foe",
-	link : "/resources/images/F Mordred.jpg"
-};
-var sirG = {
-	name : "Sir Gawain",
-	type : "ally",
-	link : "/resources/images/A Sir Gawain.jpg"
-};
-var sirPe = {
-	name : "King Pellinore",
-	type : "ally",
-	link : "/resources/images/A King Pellinore.jpg"
-};
-var sirP = {
-	name : "Sir Percival",
-	type : "ally",
-	link : "/resources/images/A Sir Percival.jpg"
-};
-var sirT = {
-	name : "Sir Tristan",
-	type : "ally",
-	link : "/resources/images/A Sir Tristan.jpg"
-};
-var sirL = {
-	name : "Sir Lance",
-	type : "ally",
-	link : "/resources/images/A Sir Lancelot.jpg"
-};
-var sirGa = {
-	name : "Sir Galahad",
-	type : "ally",
-	link : "/resources/images/A Sir Galahad.jpg"
-};
-var queenG = {
-	name : "Queen Guinevere",
-	type : "ally",
-	link : "/resources/images/A Queen Guinevere.jpg"
-};
-var queenI = {
-	name : "Queen Iseult",
-	type : "ally",
-	link : "/resources/images/A Queen Iseult.jpg"
-};
-var arthur = {
-	name : "King Arthur",
-	type : "ally",
-	link : "/resources/images/A King Arthur.jpg"
-};
-var merlin = {
-	name : "Merlin",
-	type : "ally",
-	link : "/resources/images/A Merlin.jpg"
-};
-var amour = {
-	name : "Amour",
-	type : "amour",
-	link : "/resources/images/Amour.jpg"
-};
-var chivalrousDeed = {
-	name : "Chivalrous Deed",
-	type : "event",
-	link : "/resources/images/E Chivalrous Deed.jpg"
-};
-var courtCamelot = {
-	name : "Court Called to Camelot",
-	type : "event",
-	link : "/resources/images/E Court Called Camelot.jpg"
-};
-var callToArms = {
-	name : "King's Call to Arms",
-	type : "event",
-	link : "/resources/images/E King's Call to Arms.jpg"
-};
-var recognition = {
-	name : "King's Recognition",
-	type : "event",
-	link : "/resources/images/E King's Recognition.jpg"
-};
-var plague = {
-	name : "Plague",
-	type : "event",
-	link : "/resources/images/E Plague.jpg"
-};
-var pox = {
-	name : "Pox",
-	type : "event",
-	link : "/resources/images/E Pox.jpg"
-};
-var prosperity = {
-	name : "Prosperity Throughout the Realm",
-	type : "event",
-	link : "/resources/images/E Prosperity Throughout the Realm.jpg"
-};
-var queensFavor = {
-	name : "Queen's Favor",
-	type : "event",
-	link : "/resources/images/E Queen's Favor.jpg"
-};
-var testMorgan = {
-	name : "Test of Morgan Le Fey",
-	type : "test",
-	link : "/resources/images/T Test of Morgan Le Fey.jpg"
-};
-var testTemp = {
-	name : "Test of Temptation",
-	type : "test",
-	link : "/resources/images/T Test of Temptation.jpg"
-};
-var testBeast = {
-	name : "Test of the Questing Beast",
-	type : "test",
-	link : "/resources/images/T Test of the Questing Beast.jpg"
-};
-var testValor = {
-	name : "Test of Valor",
-	type : "test",
-	link : "/resources/images/T Test of Valor.jpg"
-};
-var arthurQuest = {
-	name : "Vanquish King Arthur's Enemies",
-	type : "quest",
-	link : "/resources/images/Q Arthur.jpg"
-};
-var beastQuest = {
-	name : "Search for the Questing Beast",
-	type : "quest",
-	link : "/resources/images/Q Beast.jpg"
-};
-var boarQuest = {
-	name : "Boar Hunt",
-	type : "quest",
-	link : "/resources/images/Q Boar.jpg"
-};
-var dragonQuest = {
-	name : "Slay the Dragon",
-	type : "quest",
-	link : "/resources/images/Q Dragon.jpg"
-};
-var forestQuest = {
-	name : "Journey through the Enchanted Forest",
-	type : "quest",
-	link : "/resources/images/Q Forest.jpg"
-};
-var grailQuest = {
-	name : "Search for the Holy Grail",
-	type : "quest",
-	link : "/resources/images/Q Grail.jpg"
-};
-var gkQuest = {
-	name : "Test of the Green Knight",
-	type : "quest",
-	link : "/resources/images/Q Green.jpg"
-};
-var honorQuest = {
-	name : "Defend the Queen's Honor",
-	type : "quest",
-	link : "/resources/images/Q Honor.jpg"
-};
-var maidenQuest = {
-	name : "Rescue the Fair Maiden",
-	type : "quest",
-	link : "/resources/images/Q Maiden.jpg"
-};
-var saxonQuest = {
-	name : "Repel the Saxon Raiders",
-	type : "quest",
-	link : "/resources/images/Q Saxon.jpg"
-};
-var squire = {
-	name : "Squire",
-	type : "rank",
-	link : "/resources/images/R Squire.jpg"
-};
-var knight = {
-	name : "Knight",
-	type : "rank",
-	link : "/resources/images/R Knight.jpg"
-};
-var cKnight = {
-	name : "Champion Knight",
-	type : "rank",
-	link : "/resources/images/R Champion Knight.jpg"
-};
-var camelot = {
-	name : "At Camelot",
-	type : "tournament",
-	link : "/resources/images/T1.jpg"
-};
-var orkney = {
-	name : "At Ornkey",
-	type : "tournament",
-	link : "/resources/images/T2.jpg"
-};
-var tintagel = {
-	name : "At Tintagel",
-	type : "tournament",
-	link : "/resources/images/T3.jpg"
-};
-var york = {
-	name : "At York",
-	type : "tournament",
-	link : "/resources/images/T4.jpg"
-};
-var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
-		robberKnight, saxons, boar, thieves, greenKnight, blackKnight,
-		evilKnight, saxonKnight, dragon, giant, mordred, sirG, sirPe, sirP,
-		sirT, sirL, sirGa, queenG, queenI, arthur, merlin, amour,
-		chivalrousDeed, courtCamelot, callToArms, recognition, plague, pox,
-		prosperity, queensFavor, testMorgan, testTemp, testBeast, testValor,
-		arthurQuest, beastQuest, dragonQuest, forestQuest, grailQuest, gkQuest,
-		honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot,
-		orkney, tintagel, york ];
 
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
@@ -1212,3 +907,308 @@ function arrangeHand() {
 	}
 }
 
+//static card resources for spring application
+var all = {
+	name : "All",
+	type : "misc",
+	link : "/resources/images/all.png"
+};
+var back = {
+	name : "back",
+	type : "misc",
+	link : "/resources/images/card-back.png"
+};
+var horse = {
+	name : "Horse",
+	type : "weapon",
+	link : "/resources/images/W Horse.jpg"
+};
+var sword = {
+	name : "Sword",
+	type : "weapon",
+	link : "/resources/images/W Sword.jpg"
+};
+var dagger = {
+	name : "Dagger",
+	type : "weapon",
+	link : "/resources/images/W Dagger.jpg"
+};
+var lance = {
+	name : "Lance",
+	type : "weapon",
+	link : "/resources/images/W Lance.jpg"
+};
+var battleAx = {
+	name : "Battle-ax",
+	type : "weapon",
+	link : "/resources/images/W Battle-ax.jpg"
+};
+var excalibur = {
+	name : "Excalibur",
+	type : "weapon",
+	link : "/resources/images/W Excalibur.jpg"
+};
+var robberKnight = {
+	name : "Robber Knight",
+	type : "foe",
+	link : "/resources/images/F Robber Knight.jpg"
+};
+var saxons = {
+	name : "Saxons",
+	type : "foe",
+	link : "/resources/images/F Saxons.jpg"
+};
+var boar = {
+	name : "Boar",
+	type : "foe",
+	link : "/resources/images/F Boar.jpg"
+};
+var thieves = {
+	name : "Thieves",
+	type : "foe",
+	link : "/resources/images/F Thieves.jpg"
+};
+var greenKnight = {
+	name : "Green Knight",
+	type : "foe",
+	link : "/resources/images/F Green Knight.jpg"
+};
+var blackKnight = {
+	name : "Black Knight",
+	type : "foe",
+	link : "/resources/images/F Black Knight.jpg"
+};
+var evilKnight = {
+	name : "Evil Knight",
+	type : "foe",
+	link : "/resources/images/F Evil Knight.jpg"
+};
+var saxonKnight = {
+	name : "Saxon Knight",
+	type : "foe",
+	link : "/resources/images/F Saxon Knight.jpg"
+};
+var dragon = {
+	name : "Dragon",
+	type : "foe",
+	link : "/resources/images/F Dragon.jpg"
+};
+var giant = {
+	name : "Giant",
+	type : "foe",
+	link : "/resources/images/F Giant.jpg"
+};
+var mordred = {
+	name : "Mordred",
+	type : "foe",
+	link : "/resources/images/F Mordred.jpg"
+};
+var sirG = {
+	name : "Sir Gawain",
+	type : "ally",
+	link : "/resources/images/A Sir Gawain.jpg"
+};
+var sirPe = {
+	name : "King Pellinore",
+	type : "ally",
+	link : "/resources/images/A King Pellinore.jpg"
+};
+var sirP = {
+	name : "Sir Percival",
+	type : "ally",
+	link : "/resources/images/A Sir Percival.jpg"
+};
+var sirT = {
+	name : "Sir Tristan",
+	type : "ally",
+	link : "/resources/images/A Sir Tristan.jpg"
+};
+var sirL = {
+	name : "Sir Lance",
+	type : "ally",
+	link : "/resources/images/A Sir Lancelot.jpg"
+};
+var sirGa = {
+	name : "Sir Galahad",
+	type : "ally",
+	link : "/resources/images/A Sir Galahad.jpg"
+};
+var queenG = {
+	name : "Queen Guinevere",
+	type : "ally",
+	link : "/resources/images/A Queen Guinevere.jpg"
+};
+var queenI = {
+	name : "Queen Iseult",
+	type : "ally",
+	link : "/resources/images/A Queen Iseult.jpg"
+};
+var arthur = {
+	name : "King Arthur",
+	type : "ally",
+	link : "/resources/images/A King Arthur.jpg"
+};
+var merlin = {
+	name : "Merlin",
+	type : "ally",
+	link : "/resources/images/A Merlin.jpg"
+};
+var amour = {
+	name : "Amour",
+	type : "amour",
+	link : "/resources/images/Amour.jpg"
+};
+var chivalrousDeed = {
+	name : "Chivalrous Deed",
+	type : "event",
+	link : "/resources/images/E Chivalrous Deed.jpg"
+};
+var courtCamelot = {
+	name : "Court Called to Camelot",
+	type : "event",
+	link : "/resources/images/E Court Called Camelot.jpg"
+};
+var callToArms = {
+	name : "King's Call to Arms",
+	type : "event",
+	link : "/resources/images/E King's Call to Arms.jpg"
+};
+var recognition = {
+	name : "King's Recognition",
+	type : "event",
+	link : "/resources/images/E King's Recognition.jpg"
+};
+var plague = {
+	name : "Plague",
+	type : "event",
+	link : "/resources/images/E Plague.jpg"
+};
+var pox = {
+	name : "Pox",
+	type : "event",
+	link : "/resources/images/E Pox.jpg"
+};
+var prosperity = {
+	name : "Prosperity Throughout the Realm",
+	type : "event",
+	link : "/resources/images/E Prosperity Throughout the Realm.jpg"
+};
+var queensFavor = {
+	name : "Queen's Favor",
+	type : "event",
+	link : "/resources/images/E Queen's Favor.jpg"
+};
+var testMorgan = {
+	name : "Test of Morgan Le Fey",
+	type : "test",
+	link : "/resources/images/T Test of Morgan Le Fey.jpg"
+};
+var testTemp = {
+	name : "Test of Temptation",
+	type : "test",
+	link : "/resources/images/T Test of Temptation.jpg"
+};
+var testBeast = {
+	name : "Test of the Questing Beast",
+	type : "test",
+	link : "/resources/images/T Test of the Questing Beast.jpg"
+};
+var testValor = {
+	name : "Test of Valor",
+	type : "test",
+	link : "/resources/images/T Test of Valor.jpg"
+};
+var arthurQuest = {
+	name : "Vanquish King Arthur's Enemies",
+	type : "quest",
+	link : "/resources/images/Q Arthur.jpg"
+};
+var beastQuest = {
+	name : "Search for the Questing Beast",
+	type : "quest",
+	link : "/resources/images/Q Beast.jpg"
+};
+var boarQuest = {
+	name : "Boar Hunt",
+	type : "quest",
+	link : "/resources/images/Q Boar.jpg"
+};
+var dragonQuest = {
+	name : "Slay the Dragon",
+	type : "quest",
+	link : "/resources/images/Q Dragon.jpg"
+};
+var forestQuest = {
+	name : "Journey through the Enchanted Forest",
+	type : "quest",
+	link : "/resources/images/Q Forest.jpg"
+};
+var grailQuest = {
+	name : "Search for the Holy Grail",
+	type : "quest",
+	link : "/resources/images/Q Grail.jpg"
+};
+var gkQuest = {
+	name : "Test of the Green Knight",
+	type : "quest",
+	link : "/resources/images/Q Green.jpg"
+};
+var honorQuest = {
+	name : "Defend the Queen's Honor",
+	type : "quest",
+	link : "/resources/images/Q Honor.jpg"
+};
+var maidenQuest = {
+	name : "Rescue the Fair Maiden",
+	type : "quest",
+	link : "/resources/images/Q Maiden.jpg"
+};
+var saxonQuest = {
+	name : "Repel the Saxon Raiders",
+	type : "quest",
+	link : "/resources/images/Q Saxon.jpg"
+};
+var squire = {
+	name : "Squire",
+	type : "rank",
+	link : "/resources/images/R Squire.jpg"
+};
+var knight = {
+	name : "Knight",
+	type : "rank",
+	link : "/resources/images/R Knight.jpg"
+};
+var cKnight = {
+	name : "Champion Knight",
+	type : "rank",
+	link : "/resources/images/R Champion Knight.jpg"
+};
+var camelot = {
+	name : "At Camelot",
+	type : "tournament",
+	link : "/resources/images/T1.jpg"
+};
+var orkney = {
+	name : "At Ornkey",
+	type : "tournament",
+	link : "/resources/images/T2.jpg"
+};
+var tintagel = {
+	name : "At Tintagel",
+	type : "tournament",
+	link : "/resources/images/T3.jpg"
+};
+var york = {
+	name : "At York",
+	type : "tournament",
+	link : "/resources/images/T4.jpg"
+};
+var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
+		robberKnight, saxons, boar, thieves, greenKnight, blackKnight,
+		evilKnight, saxonKnight, dragon, giant, mordred, sirG, sirPe, sirP,
+		sirT, sirL, sirGa, queenG, queenI, arthur, merlin, amour,
+		chivalrousDeed, courtCamelot, callToArms, recognition, plague, pox,
+		prosperity, queensFavor, testMorgan, testTemp, testBeast, testValor,
+		arthurQuest, beastQuest, dragonQuest, forestQuest, grailQuest, gkQuest,
+		honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot,
+		orkney, tintagel, york ];
