@@ -67,7 +67,7 @@ socketConn.onmessage = function(event) {
 	
 	// no sponsors
 	if (event.data == "NoSponsors") {
-		serverMsg.value = "No one sponsored quest, flipping next card - ";
+		serverMsg.value = "No one sponsored quest, wait for next player - ";
 	}
 	
 	//when quest over
@@ -287,6 +287,10 @@ socketConn.onmessage = function(event) {
 		serverMsg.value = event.data;
 	}
 
+	// wait
+	if(event.data == "wait") {
+		serverMsg.value = "Wait for other players...";
+	}
 	// game started
 	if (event.data == "GameReadyToStart") {
 		document.getElementById('print').disabled = false;
@@ -868,6 +872,7 @@ function denySponsorQuest() {
 function flipStoryDeck() {
 	var data = JSON.stringify({ 'flipStoryDeck' : 0 })
 	socketConn.send(data);
+	document.getElementById('flip').disabled = true;
 }
 
 // static resource test, changes title back and forth from red and black

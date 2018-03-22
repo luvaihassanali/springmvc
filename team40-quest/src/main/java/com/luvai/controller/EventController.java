@@ -1,6 +1,9 @@
 package com.luvai.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +32,7 @@ public class EventController extends SocketHandler {
 		logger.info("Player {} has initiated event {}", current_player.getName(), eventCard.getName());
 
 		if (eventCard.getName().equals("Chivalrous Deed")) {
-
+			EventChivalrous();
 		}
 		if (eventCard.getName().equals("Court Called Camelot")) {
 
@@ -53,6 +56,38 @@ public class EventController extends SocketHandler {
 
 		}
 
+	}
+
+	public void EventChivalrous() throws IOException {
+		ArrayList<Player> sortedByShields = new ArrayList<Player>();
+		sortedByShields.addAll(gameEngine.players);
+
+		for (Player p : sortedByShields) {
+			logger.info("{} with {} shields", p.getName(), p.getShields());
+		}
+
+		// custom comparator. sorts by increasing shield count;
+		Collections.sort(sortedByShields, new Comparator<Player>() {
+			public int compare(Player p1, Player p2) {
+				return p1.getShields() < p2.getShields() ? -1 : p1.getShields() > p2.getShields() ? 1 : 0;
+			}
+		});
+
+		for (int i = 1; i < sortedByShields.size(); i++) {
+			if (sortedByShields.get(i).getShields() > sortedByShields.get(i - 1).getShields()) {
+				sortedByShields.subList(i, sortedByShields.size()).clear();
+				break;
+			}
+		}
+
+		for (int i = 0; i < sortedByShields.size(); i++) {
+			sortedByShields.get(i).giveShields(3);
+			logger.info(" {} is awarded with 3 shields for a total of {}", sortedByShields.get(i).getName(),
+					sortedByShields.get(i).getShields());
+		}
+		sendToAllSessions(gameEngine, "wait");
+		gameEngine.incTurn();
+		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 	}
 
 	public void EventProsperity() throws IOException {

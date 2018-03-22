@@ -90,13 +90,8 @@ public class SocketHandler extends TextWebSocketHandler {
 				if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
 					sendToAllSessions(gameEngine, "NoSponsors");
 					logger.info("No players chose to sponsor {} quest", gameEngine.storyDeck.faceUp.getName());
-					setTimeout(() -> {
-						try {
-							flipStoryCard();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}, 2000);
+					gameEngine.incTurn();
+					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 					return;
 				}
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
@@ -184,7 +179,7 @@ public class SocketHandler extends TextWebSocketHandler {
 							gameEngine.getActivePlayer().getHand().add(newCard);
 						}
 						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
-						logger.info("No players participated, {} is replacing cards used to setup {} quest",
+						logger.info("No players participated, sponsor {} is replacing cards used to setup {} quest",
 								gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
 						String update = gameEngine.getPlayerStats();
 						sendToAllSessions(gameEngine, "updateStats" + update);
