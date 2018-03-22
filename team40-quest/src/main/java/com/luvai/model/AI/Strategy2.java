@@ -12,8 +12,9 @@ public class Strategy2 extends AbstractAI {
 	}
 
 	@Override
-	public void doIParticipate() {
-		// TODO Auto-generated method st
+	public boolean doIParticipateQuest() {
+		// to:do once implemented test
+		return false;
 
 	}
 

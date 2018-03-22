@@ -1,4 +1,5 @@
 var isAi = false; 
+var strategyType = "";
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
@@ -53,6 +54,16 @@ socketConn.onmessage = function(event) {
 	if (event.data == "AskToParticipate") {
  		document.getElementById("acceptQuest").style.display = "inline";
 		serverMsg.value = "Please accept/decline quest by clicking below"
+			console.log(isAI);
+		console.log("here");
+		if(isAI) {
+			var data = JSON.stringify({
+				'AICommand' : "AskToParticipateQuest"
+			})
+			socketConn.send(data);
+			document.getElementById("acceptQuest").style.display = "none";
+			serverMsg.value = "Wait for other players...";
+		}
 	}
 	
 	// ready to start quest
@@ -205,7 +216,7 @@ socketConn.onmessage = function(event) {
 	
 	// flip story deck
 	if (event.data.startsWith("flipStoryDeck")) {
-		serverMsg.value = "Flipping card from Story Deck - ";
+		serverMsg.value = "Flipping card from Story Deck (wait for other players) -  ";
 		var card = event.data.replace('flipStoryDeck', '');
 		card = JSON.parse(card);
 		storyCardFaceUp = card;
@@ -893,6 +904,7 @@ function setAI() {
 		})
 		socketConn.send(data);
 		isAI = true;
+		strategyType = "Strategy2";
 		document.getElementById('title').innerHTML = "Welcome to the Quest of The Round Table - "
 			+ name + "'s View";
 	changeColor();
@@ -919,7 +931,7 @@ function send() {
 		document.getElementById('send').style.display = "none";
 		document.getElementById('rigger').style.display = "none";
 		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value = "Waiting for other players...";
+		serverMsg.value = "Waiting for other players...(to create AI player(s), open a new browser window and click AI Player button)";
 	}
 }
 

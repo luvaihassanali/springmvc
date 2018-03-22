@@ -19,6 +19,6 @@ public abstract class AbstractAI {
 	// abstract methods
 	abstract public void setStrategyType();
 
-	abstract public void doIParticipate();
+	abstract public boolean doIParticipateQuest();
 
 }

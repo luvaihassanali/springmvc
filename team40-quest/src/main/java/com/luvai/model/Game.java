@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.luvai.controller.AIController;
 import com.luvai.controller.EventController;
 import com.luvai.controller.QuestController;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -23,6 +24,7 @@ public class Game {
 	public int numTurns = 0;
 	public QuestController current_quest;
 	public EventController current_event;
+	public AIController AIController;
 	public Player roundInitiater;
 
 	public Game() {
@@ -30,6 +32,7 @@ public class Game {
 		players = new ArrayList<Player>();
 		adventureDeck = new AdventureDeck();
 		storyDeck = new StoryDeck();
+		AIController = new AIController();
 	}
 
 	@SuppressWarnings("serial")

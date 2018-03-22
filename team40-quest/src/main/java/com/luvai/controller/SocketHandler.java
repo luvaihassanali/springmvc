@@ -42,6 +42,11 @@ public class SocketHandler extends TextWebSocketHandler {
 			throws InterruptedException, IOException {
 
 		JsonObject jsonObject = (new JsonParser()).parse(message.getPayload()).getAsJsonObject();
+
+		// send ai to controller
+		if (jsonObject.has("AICommand")) {
+			gameEngine.AIController.receiveAICommand(jsonObject);
+		}
 		// get player name and set up game players
 		if (jsonObject.has("newName")) {
 			JsonElement playerName = jsonObject.get("newName");
@@ -383,10 +388,8 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// getting ai player
 		if (jsonObject.has("AI")) {
-			System.out.println(jsonObject.get("AI").getAsString());
 			JsonElement playerName = jsonObject.get("AI");
 			Player newPlayer = new Player(playerName.getAsString(), session, 2);
-			// newPlayer.setAI(2);
 			gameEngine.players.add(newPlayer);
 			logger.info("Player {} is enrolled in the game", playerName.getAsString());
 			if (gameEngine.players.size() == 4) {
