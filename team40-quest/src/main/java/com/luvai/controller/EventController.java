@@ -88,11 +88,12 @@ public class EventController extends SocketHandler {
 		sendToAllSessions(gameEngine, "wait");
 		gameEngine.incTurn();
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
 	}
 
 	public void EventProsperity() throws IOException {
 		String temp = "";
-		logger.info("All players immediately 2 adventure cards");
+		logger.info("All players draw immediately 2 adventure cards & discard if too many");
 		for (Player p : gameEngine.players) {
 			AdventureCard newCard = gameEngine.adventureDeck.flipCard();
 			p.getHand().add(newCard);
@@ -102,8 +103,10 @@ public class EventController extends SocketHandler {
 			temp += newCard2.getStringFile() + ";";
 			p.session.sendMessage(new TextMessage("PickupCardsProsperity" + temp));
 			temp = "";
+			logger.info("Player {} received {} and {}", p.getName(), newCard.getName(), newCard2.getName());
 		}
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
+
 	}
 }

@@ -1,6 +1,6 @@
 package com.luvai.model.AdventureCards;
 
-public class WeaponCard extends AdventureCard{
+public class WeaponCard extends AdventureCard {
 
 	int battlePoints;
 
@@ -10,8 +10,12 @@ public class WeaponCard extends AdventureCard{
 		this.battlePoints = battlePoints;
 	}
 
-	public int getBattlePoints(){ 
-		return battlePoints; 
-		}
-	
+	public int getBattlePoints() {
+		return battlePoints;
+	}
+
+	public String toString() {
+		return this.name;
+	}
+
 }

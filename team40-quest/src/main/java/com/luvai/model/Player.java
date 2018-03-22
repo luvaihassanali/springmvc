@@ -2,6 +2,8 @@ package com.luvai.model;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.google.gson.JsonObject;
@@ -14,6 +16,7 @@ import com.luvai.model.AdventureCards.WeaponCard;
 import com.luvai.model.Decks.AdventureDeck;
 
 public class Player {
+	private static final Logger logger = LogManager.getLogger(Player.class);
 	public String id;
 	public String name;
 	public WebSocketSession session;
@@ -95,6 +98,7 @@ public class Player {
 		name = name.replaceAll("\"", "");
 		for (int i = 0; i < this.getHandSize(); i++) {
 			if (this.getHand().get(i).getName().equals(name)) {
+				logger.info("Player {} discarded {}", this.getName(), this.getHand().get(i).getName());
 				this.getHand().remove(i);
 				break;
 			}
@@ -105,8 +109,9 @@ public class Player {
 		for (int i = 0; i < toRemove.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (toRemove.get(i).equals(this.getHand().get(j).getName())) {
+					// logger.info("Player {} equipped {}", this.getName(),
+					// this.getHand().get(j).getName());
 					this.getHand().remove(j);
-
 					break;
 				}
 			}
@@ -148,7 +153,7 @@ public class Player {
 		for (int i = 0; i < names1.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (this.hand.get(j).getName().equals(names1.get(i))) {
-
+					logger.info("Player {} discarded {}", this.getName(), this.getHand().get(j).getName());
 					this.hand.remove(j);
 					break;
 				}
@@ -158,7 +163,7 @@ public class Player {
 		for (int i = 0; i < names2.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (this.hand.get(j).getName().equals(names2.get(i))) {
-
+					logger.info("Player {} discarded {}", this.getName(), this.getHand().get(j).getName());
 					this.hand.remove(j);
 					break;
 				}
@@ -199,6 +204,10 @@ public class Player {
 
 	public void setAmourCard(AdventureCard a_card) {
 		this.amour = (AmourCard) a_card;
+	}
+
+	public void unequipAmour() {
+		this.amour = null;
 	}
 
 	public AmourCard getAmourCard() {

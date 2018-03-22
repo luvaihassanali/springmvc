@@ -19,6 +19,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -221,8 +222,12 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 
 		if (jsonObject.has("nextQuestTurn")) {
-			gameEngine.getCurrentParticipant().getWeapons().clear();
-
+			if (gameEngine.getCurrentParticipant().getWeapons().size() != 0) {
+				logger.info("Player {} is unequipping {} used during battle",
+						gameEngine.getCurrentParticipant().getName(),
+						gameEngine.getCurrentParticipant().getWeapons().toString());
+				gameEngine.getCurrentParticipant().getWeapons().clear();
+			}
 			boolean BattleResult = jsonObject.get("nextQuestTurn").getAsBoolean();
 			if (BattleResult == false) {
 				String update = gameEngine.getPlayerStats();
@@ -458,6 +463,15 @@ public class SocketHandler extends TextWebSocketHandler {
 							sendOnce = false;
 							String update = gameEngine.getPlayerStats();
 							sendToAllSessions(gameEngine, "updateStats" + update);
+							for (Player p : gameEngine.players) {
+								AdventureCard amour = p.getAmourCard();
+								if (amour == null) {
+								} else {
+
+									p.unequipAmour();
+									logger.info("Player {} is unequipping the amour used in last quest", p.getName());
+								}
+							}
 
 						}
 
@@ -492,6 +506,12 @@ public class SocketHandler extends TextWebSocketHandler {
 		cardTracker = 0;
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
+		for (Player p : gameEngine.players) {
+			if (p.getAmourCard().equals(CardList.Amour)) {
+				p.unequipAmour();
+				logger.info("Player {} is unequipping the amour used in last quest");
+			}
+		}
 	}
 
 	// flip story deck
