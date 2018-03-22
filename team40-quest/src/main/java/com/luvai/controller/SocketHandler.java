@@ -19,7 +19,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -33,7 +32,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 	private static final Logger logger = LogManager.getLogger(SocketHandler.class);
-	static Game gameEngine = new Game();
+	public static Game gameEngine = new Game();
 	public static boolean rankSet = true;
 	public String BattleInformation = "";
 	public int riggedGame = 0;
@@ -386,30 +385,35 @@ public class SocketHandler extends TextWebSocketHandler {
 		if (jsonObject.has("AI")) {
 			System.out.println(jsonObject.get("AI").getAsString());
 			JsonElement playerName = jsonObject.get("AI");
-			Player newPlayer = new Player(playerName.getAsString(), session);
-			newPlayer.setAI(2);
+			Player newPlayer = new Player(playerName.getAsString(), session, 2);
+			// newPlayer.setAI(2);
 			gameEngine.players.add(newPlayer);
 			logger.info("Player {} is enrolled in the game", playerName.getAsString());
 			if (gameEngine.players.size() == 4) {
 				sendToAllSessions(gameEngine, "GameReadyToStart");
 				logger.info("All players have joined, starting game...");
-				gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
-				gameEngine.players.get(1).setHand(gameEngine.mockHand2);
-				gameEngine.players.get(2).setHand(gameEngine.mockHand3);
-				gameEngine.players.get(3).setHand(gameEngine.mockHand4);
-				gameEngine.players.get(0).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(0).getHandString()));
-				gameEngine.players.get(1).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(1).getHandString()));
-				gameEngine.players.get(2).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(2).getHandString()));
-				gameEngine.players.get(3).session
-						.sendMessage(new TextMessage("setHand" + gameEngine.players.get(3).getHandString()));
+				if (riggedGame != 0) {
+					if (riggedGame == 42) {
+						gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
+						gameEngine.players.get(1).setHand(gameEngine.mockHand2);
+						gameEngine.players.get(2).setHand(gameEngine.mockHand3);
+						gameEngine.players.get(3).setHand(gameEngine.mockHand4);
+
+					}
+				} else {
+					for (Player p : gameEngine.players) {
+						p.pickupNewHand(gameEngine.adventureDeck);
+					}
+				}
+				for (Player p : gameEngine.players) {
+					p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+				}
+
 				flipStoryCard();
 				String temp = gameEngine.getPlayerStats();
 				sendToAllSessions(gameEngine, "updateStats" + temp);
-			}
 
+			}
 		}
 	}
 
@@ -492,7 +496,6 @@ public class SocketHandler extends TextWebSocketHandler {
 		sendToAllSessions(gameEngine, "QuestOverWaitForSponsor");
 		String temp = "";
 		int cardTracker = 0;
-		System.out.println(gameEngine.current_quest.sponsor.getHandSize());
 		for (int i = gameEngine.current_quest.sponsor.getHandSize(); i < 12
 				+ gameEngine.current_quest.currentQuest.getStages(); i++) {
 			cardTracker++;
@@ -507,9 +510,12 @@ public class SocketHandler extends TextWebSocketHandler {
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
 		for (Player p : gameEngine.players) {
-			if (p.getAmourCard().equals(CardList.Amour)) {
+			AdventureCard amour = p.getAmourCard();
+			if (amour == null) {
+			} else {
+
 				p.unequipAmour();
-				logger.info("Player {} is unequipping the amour used in last quest");
+				logger.info("Player {} is unequipping the amour used in last quest", p.getName());
 			}
 		}
 	}

@@ -103,7 +103,7 @@ public class EventController extends SocketHandler {
 			temp += newCard2.getStringFile() + ";";
 			p.session.sendMessage(new TextMessage("PickupCardsProsperity" + temp));
 			temp = "";
-			logger.info("Player {} received {} and {}", p.getName(), newCard.getName(), newCard2.getName());
+			logger.info("Player {} picked up {} and {}", p.getName(), newCard.getName(), newCard2.getName());
 		}
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);

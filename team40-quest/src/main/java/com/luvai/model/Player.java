@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.google.gson.JsonObject;
-import com.luvai.model.AI.AI;
+import com.luvai.model.AI.AbstractAI;
 import com.luvai.model.AI.Strategy2;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.AdventureCards.AllyCard;
@@ -28,7 +28,11 @@ public class Player {
 	int shields;
 	int battlePoints;
 	public int tieCheck;
-	AI ai;
+	AbstractAI ai;
+
+	public Player() {
+
+	}
 
 	public Player(String name, WebSocketSession session) {
 		this.id = session.getId();
@@ -44,8 +48,21 @@ public class Player {
 		this.tieCheck = 0;
 	}
 
-	public Player(String name) {
+	public Player(String name, WebSocketSession session, int isAI) {
+		this.id = session.getId();
 		this.name = name;
+		this.session = session;
+		this.hand = new ArrayList<AdventureCard>();
+		this.weapons = new ArrayList<WeaponCard>();
+		this.rank = CardList.Squire;
+		this.battlePoints = 5;
+		this.shields = 0;
+		this.amour = null;
+		this.allies = new ArrayList<AllyCard>();
+		this.tieCheck = 0;
+		if (isAI == 2) {
+			this.ai = new Strategy2();
+		}
 	}
 
 	public void equipCards(JsonObject json) {
@@ -252,7 +269,7 @@ public class Player {
 		return !(this.ai == null);
 	}
 
-	public AI getAI() {
+	public AbstractAI getAI() {
 		return this.ai;
 	}
 

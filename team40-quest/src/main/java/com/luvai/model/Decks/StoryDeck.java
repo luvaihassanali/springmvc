@@ -18,8 +18,7 @@ public class StoryDeck extends Decks {
 	public ArrayList<StoryCard> discardPile = new ArrayList<StoryCard>();
 
 	public StoryDeck() {
-		logger.info(
-				"\\n\\n\\n\\n ******************************Shuffling story deck... ******************************\\\\n\\\\n\\\\n\\\\n");
+		logger.info("Shuffling story deck...\n");
 		this.initStoryDeck();
 	}
 
