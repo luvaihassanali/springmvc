@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.luvai.controller.EventController;
 import com.luvai.controller.QuestController;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.Decks.AdventureDeck;
 import com.luvai.model.Decks.StoryDeck;
+import com.luvai.model.StoryCards.EventCard;
 import com.luvai.model.StoryCards.QuestCard;
 
 public class Game {
@@ -20,6 +22,7 @@ public class Game {
 	private int winCondition;
 	public int numTurns = 0;
 	public QuestController current_quest;
+	public EventController current_event;
 	public Player roundInitiater;
 
 	public Game() {
@@ -100,6 +103,10 @@ public class Game {
 
 	public void newQuest(Game g, Player s, QuestCard q) throws IOException {
 		current_quest = new QuestController(g, s, q);
+	}
+
+	public void newEvent(Game g, Player s, EventCard e) throws IOException {
+		current_event = new EventController(g, s, e);
 	}
 
 	public void incTurn() {

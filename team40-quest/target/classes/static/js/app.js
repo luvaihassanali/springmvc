@@ -1,4 +1,4 @@
-
+var isAi = false; 
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
@@ -19,7 +19,7 @@ var currentPlayerPts = 0;
 var currentStage = 0;
 var sponsor = "";
 var numCards =0;
-
+var whichEvent = "";
 // when connection is initiated
 socketConn.onopen = function(event) {
 
@@ -197,9 +197,15 @@ socketConn.onmessage = function(event) {
 		stageCounter++;
 
 	}
+	
+	//pick up x cards
+	if(event.data.startsWith("PickupCards")) {
+		PickupCards(event.data);
+	}
+	
 	// flip story deck
 	if (event.data.startsWith("flipStoryDeck")) {
-		serverMsg.value = "Flipping card from Story Deck";
+		serverMsg.value = "Flipping card from Story Deck - ";
 		var card = event.data.replace('flipStoryDeck', '');
 		card = JSON.parse(card);
 		storyCardFaceUp = card;
@@ -288,7 +294,87 @@ socketConn.onmessage = function(event) {
 		document.getElementById('rigger').style.display = "none";
 	}
 }
+//pick up x cards
+function PickupCards(newCards) {
+	
+	if(newCards.startsWith("PickupCardsProsperity")) {
+		whichEvent = "Prosperity";
+		newCards = newCards.replace("PickupCardsProsperity", "");
+	}
+	
+	newCards = newCards.split(";");
+	newCards.pop();
+	
+	var card1id = document.getElementById("card1").id;
+	var card2id = document.getElementById("card2").id;
+	var card3id = document.getElementById("card3").id;
+	var card4id = document.getElementById("card4").id;
+	var card5id = document.getElementById("card5").id;
+	var card6id = document.getElementById("card6").id;
+	var card7id = document.getElementById("card7").id;
+	var card8id = document.getElementById("card8").id;
+	var card9id = document.getElementById("card9").id;
+	var card10id = document.getElementById("card10").id;
+	var card11id = document.getElementById("card11").id;
+	var card12id = document.getElementById("card12").id;
+	var extra1id = document.getElementById("extra1").id;
+	var extra2id = document.getElementById("extra2").id;
+	var extra3id = document.getElementById("extra3").id;
+	var extra4id = document.getElementById("extra4").id;
+	var extra5id = document.getElementById("extra5").id;
+	var extra6id = document.getElementById("extra6").id;
+	var extra7id = document.getElementById("extra7").id;
+	var extra8id = document.getElementById("extra8").id;
+	var imageArrayID = [ card1id, card2id, card3id, card4id, card5id, card6id, card7id, card8id, card9id, card10id, card11id, card12id, extra1id, extra2id, extra3id, extra4id, extra5id, extra6id, extra7id, extra8id ];
+	var card1 = document.getElementById("card1").src;
+	var card2 = document.getElementById("card2").src;
+	var card3 = document.getElementById("card3").src;
+	var card4 = document.getElementById("card4").src;
+	var card5 = document.getElementById("card5").src;
+	var card6 = document.getElementById("card6").src;
+	var card7 = document.getElementById("card7").src;
+	var card8 = document.getElementById("card8").src;
+	var card9 = document.getElementById("card9").src;
+	var card10 = document.getElementById("card10").src;
+	var card11 = document.getElementById("card11").src;
+	var card12 = document.getElementById("card12").src;
+	var extra1 = document.getElementById("extra1").src;
+	var extra2 = document.getElementById("extra2").src;
+	var extra3 = document.getElementById("extra3").src;
+	var extra4 = document.getElementById("extra4").src;
+	var extra5 = document.getElementById("extra5").src;
+	var extra6 = document.getElementById("extra6").src;
+	var extra7 = document.getElementById("extra7").src;
+	var extra8 = document.getElementById("extra8").src;
+	var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, extra1, extra2, extra3, extra4, extra5, extra6, extra7, extra8 ];
 
+	var numNewCards = newCards.length;
+
+	for(var i=0; i<imageArrayID.length; i++) {
+			if(imageArray[i] == "http://localhost:8080/resources/images/all.png") {
+				var imageId = imageArrayID[i];
+				$("#"+imageId).attr("src", "http://localhost:8080" + newCards.pop());
+				if(newCards.length == 0) break;
+			}
+		}
+	
+	var cardTracker = 0;
+	for(var i=0; i<imageArray.length; i++) {
+		var tempCardLink = imageArray[i].replace("http://localhost:8080","");
+		tempCardLink = tempCardLink.split('%20').join(' ');
+		// console.log(tempCardLink);
+		if(tempCardLink!="/resources/images/all.png") cardTracker++;
+	}
+	//console.log(numNewCards);
+	cardTracker += numNewCards;
+	numCards = cardTracker;
+	//console.log(cardTracker);
+	if(cardTracker > 12) {
+		var serverMsg = document.getElementById('serverMsg');
+		serverMsg.value += "Right click to remove extra cards to continue (for discard)";
+		discard();
+	}
+}
 // sponsor pickup
 function sponsorPickup(cards) {
 	
@@ -362,7 +448,7 @@ function sponsorPickup(cards) {
 		//console.log(cardTracker);
 		if(cardTracker > 12) {
 			var serverMsg = document.getElementById('serverMsg');
-			serverMsg.value += " You must choose a card to continue (or right-click to discard) ";
+			serverMsg.value += " Right click extra cards to continue (for discard) ";
 			discard();
 			
 		}
@@ -563,10 +649,10 @@ function discard(){
 			'contextmenu',
 			'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8',
 			function() {
+				if(numCards==12) return false;
 				var cardSrc = this.src.replace('http://localhost:8080','');
 				if(cardSrc == "/resources/images/all.png") {} else {
 					cardSrc = cardSrc.split('%20').join(' ');
-					console.log(cardSrc);
 					var discardName = getNameFromLink(cardSrc);
 					var data = JSON.stringify({ 'discard': discardName});
 					socketConn.send(data);
@@ -576,7 +662,21 @@ function discard(){
 						$(this).attr("src", "/resources/images/all.png");
 						numCards--;
 						if(numCards>=12) { 
-						//	console.log(numCards);
+						
+							if(whichEvent!="" && numCards == 12) {
+								
+								 document.getElementById("serverMsg").value = "Wait for other players..."; 
+								if(whichEvent == "Prosperity") {
+									var data = JSON.stringify({
+										'doneEventProsperity' : 0
+									})
+									socketConn.send(data);
+									arrangeHand();
+									return false;
+								}
+								
+								
+							}
 							document.getElementById("doneEquipment").disabled = false;
 							if(PlayerName === sponsor) { document.getElementById("serverMsg").value = "Replacing cards used to sponsor"; }
 							
@@ -585,8 +685,9 @@ function discard(){
 								serverMsg.value = "Wait for other players...";
 								var data = JSON.stringify({'incTurnRoundOver':true});
 								socketConn.send(data);
-							}
-						}
+								arrangeHand();
+							} 
+						} 
 					}
 				}
 			})
@@ -655,10 +756,10 @@ function pickWeapons() {
 
 // send weapon info - done choosing
 function doneEquipment() {
+	$('body').off('click');
 	document.getElementById('doneEquipment').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Going into battle - ";
-	$('body').off('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8');
 	var data = JSON.stringify({
 		'name' : PlayerName,
 		'stages' : stageCounter,
@@ -683,7 +784,7 @@ function denyQuestParticipate() {
 
 // finished setting up quest for sponsor
 function doneWeaponsQuestSponsor() {
-
+	$('body').off('click');
 	var serverMsg = document.getElementById('serverMsg');
 	document.getElementById('doneQuest').style.display = "none";
 
@@ -691,10 +792,6 @@ function doneWeaponsQuestSponsor() {
 		weapons.push(tempWeaponArr);
 		tempWeaponArr = [];
 		serverMsg.value = "Done setup";
-		$('body')
-				.off(
-						'click',
-						'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12');
 		serverMsg.value += '\nWaiting on results...';
 		var questData = JSON.stringify({
 			'foes' : foes,
@@ -703,10 +800,6 @@ function doneWeaponsQuestSponsor() {
 		socketConn.send(questData);
 	} else {
 		serverMsg.value = "Choose next foe";
-		$('body')
-				.off(
-						'click',
-						'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12');
 		weapons.push(tempWeaponArr);
 		tempWeaponArr = [];
 		stageCounter++;
@@ -794,6 +887,7 @@ function setAI() {
 			'AI' : name
 		})
 		socketConn.send(data);
+		isAI = true;
 		document.getElementById('title').innerHTML = "Welcome to the Quest of The Round Table - "
 			+ name + "'s View";
 	changeColor();
@@ -818,6 +912,7 @@ function send() {
 		changeColor();
 		document.getElementById('nameparagraph').style.display = "none";
 		document.getElementById('send').style.display = "none";
+		document.getElementById('rigger').style.display = "none";
 		var serverMsg = document.getElementById('serverMsg');
 		serverMsg.value = "Waiting for other players...";
 	}
@@ -918,6 +1013,7 @@ function arrangeHand() {
 }
 
 function riggedGame() {
+	send();
 	document.getElementById('rigger').style.display = "none";
 	var version = 42;
 	var data = JSON.stringify({

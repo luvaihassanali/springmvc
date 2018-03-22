@@ -128,11 +128,10 @@ public class Player {
 	}
 
 	public void discardSponsor(ArrayList<String> cards) { // adjust for more stages
-		System.out.println(cards);
+
 		ArrayList<String> names1 = new ArrayList<String>();
 		ArrayList<String> names2 = new ArrayList<String>();
 
-		System.out.println(cards.size());
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).endsWith(Integer.toString(0))) {
 
@@ -145,11 +144,6 @@ public class Player {
 				names2.add(removeLastChar(cards.get(i)));
 			}
 		}
-		System.out.println("names");
-		System.out.println(names1);
-		System.out.println(names1.size());
-		System.out.println(names2);
-		System.out.println(names2.size());
 
 		for (int i = 0; i < names1.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
@@ -170,12 +164,6 @@ public class Player {
 				}
 			}
 		}
-
-		System.out.println(this.getHandSize());
-		for (AdventureCard a : this.hand) {
-			System.out.println(a.getName());
-		}
-
 	}
 
 	public String removeLastChar(String s) {

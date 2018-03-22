@@ -157,12 +157,13 @@ public class SocketHandler extends TextWebSocketHandler {
 				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
 					gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
 					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("ReadyToStartQuest"));
-					gameEngine.adventureDeck.flipCard();
+					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
 					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
 					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 					gameEngine.getCurrentParticipant().session
 							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
+					String update = gameEngine.getPlayerStats();
+					sendToAllSessions(gameEngine, "updateStats" + update);
 					return;
 				}
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
@@ -185,9 +186,12 @@ public class SocketHandler extends TextWebSocketHandler {
 						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
 						logger.info("No players participated, {} is replacing cards used to setup {} quest",
 								gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
+						String update = gameEngine.getPlayerStats();
+						sendToAllSessions(gameEngine, "updateStats" + update);
 						return;
 					}
 					gameEngine.adventureDeck.flipCard();
+					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
 					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
 					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 					gameEngine.getCurrentParticipant().session
@@ -312,6 +316,19 @@ public class SocketHandler extends TextWebSocketHandler {
 			String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		}
+		// done events
+
+		if (jsonObject.has("doneEventProsperity")) {
+
+			gameEngine.current_event.prosperityTracker++;
+			if (gameEngine.current_event.prosperityTracker == 4) {
+				logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+				gameEngine.current_event.prosperityTracker = 0;
+				gameEngine.incTurn();
+				gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
+			}
+
 		}
 		// rigged game
 		if (jsonObject.has("riggedGame")) {
@@ -444,6 +461,8 @@ public class SocketHandler extends TextWebSocketHandler {
 									.sendMessage(new TextMessage("SponsorPickup" + temp));
 							cardTracker = 0;
 							sendOnce = false;
+							String update = gameEngine.getPlayerStats();
+							sendToAllSessions(gameEngine, "updateStats" + update);
 
 						}
 
@@ -487,17 +506,18 @@ public class SocketHandler extends TextWebSocketHandler {
 		sendToAllSessions(gameEngine, "updateStats" + update);
 		gameEngine.storyDeck.flipCard();
 
-		logger.info("Flipping new card from story deck: {}", gameEngine.storyDeck.faceUp.getName());
+		logger.info("Player {} is flipping new card from story deck: {}", gameEngine.getActivePlayer().getName(),
+				gameEngine.storyDeck.faceUp.getName());
 		sendToAllSessions(gameEngine, ("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
 		if (gameEngine.storyDeck.faceUp instanceof QuestCard) {
 			gameEngine.roundInitiater = gameEngine.getActivePlayer();
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
 		}
 		if (gameEngine.storyDeck.faceUp instanceof TournamentCard) {
-
+			System.out.println("its " + gameEngine.getActivePlayer().getName() + "'s turn");
 		}
 		if (gameEngine.storyDeck.faceUp instanceof EventCard) {
-			System.out.println("its " + gameEngine.getActivePlayer().getName() + "'s turn");
+			gameEngine.newEvent(gameEngine, gameEngine.getActivePlayer(), (EventCard) gameEngine.storyDeck.faceUp);
 		}
 	}
 
