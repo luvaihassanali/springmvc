@@ -1,5 +1,7 @@
 package com.luvai.model.AI;
 
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,9 +34,35 @@ public class Strategy2 extends AbstractAI {
 	@Override
 	public AdventureCard[] getDiscardChoice(Player currentPlayer, int numDiscards) {
 		AdventureCard[] discards = new AdventureCard[numDiscards];
-		for (int i = 0; i < discards.length; i++) {
-			discards[i] = currentPlayer.getHand().get(i);
+		ArrayList<AdventureCard> toDiscard = new ArrayList<AdventureCard>();
+
+		for (AdventureCard a : currentPlayer.getHand()) {
+			if (toDiscard.size() == 2)
+				break;
+			if (a.getBattlePoints() == 0)
+				if (toDiscard.contains(a)) {
+				} else {
+					toDiscard.add(a);
+				}
+			if (a.getBattlePoints() == -1)
+				if (toDiscard.contains(a)) {
+				} else {
+					toDiscard.add(a);
+				}
+			if (a.getBattlePoints() < 6)
+				if (toDiscard.contains(a)) {
+				} else {
+					toDiscard.add(a);
+				}
 		}
+
+		AdventureCard[] test = new AdventureCard[toDiscard.size()];
+		toDiscard.toArray(test);
+
+		for (int i = 0; i < numDiscards; i++) {
+			discards[i] = test[i];
+		}
+
 		return discards;
 	}
 }

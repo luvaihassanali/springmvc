@@ -38,7 +38,6 @@ public class AIController extends SocketHandler {
 		String discards = "";
 		for (AdventureCard a : AIdiscard) {
 			discards += a.getName() + ";";
-			// System.out.println(a.getName());
 		}
 		String message = "AIremoveFromHand";
 		if (gameEngine.storyDeck.faceUp.getName().equals(("Prosperity Throughout the Realm")))

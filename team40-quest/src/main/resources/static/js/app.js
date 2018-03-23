@@ -1359,12 +1359,12 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		orkney, tintagel, york ];
 
 function AIDiscard(cardNames) {
-	console.log(cardNames);
+
 	if(cardNames.startsWith("Prosperity")) {
 		cardNames = cardNames.replace("Prosperity","");
 		whichEvent = "Prosperity";
 	}
-	console.log(cardNames);
+
 	var card1aiID=$('#card1').attr('id');
 	var card2aiID=$('#card2').attr('id');
 	var card3aiID=$('#card3').attr('id');
@@ -1407,16 +1407,12 @@ function AIDiscard(cardNames) {
 	var extra7ai=$('#extra7').attr('src');
 	var extra8ai=$('#extra8').attr('src');
 	var imageArrayai = [card1ai, card2ai, card3ai, card4ai, card5ai, card6ai, card7ai, card8ai, card9ai, card10ai, card11ai, card12ai, extra1ai, extra2ai, extra3ai, extra4ai, extra5ai, extra6ai, extra7ai, extra8ai ];
-	
-	console.log(cardNames);
 	cardNames = cardNames.split(";");
 	cardNames.pop();
-	console.log(cardNames);
+
 	for(var j=0; j<cardNames.length; j++) {
 		for(var i=0; i<imageArrayai.length; i++) {
 			var tempSrc = getLinkFromName(cardNames[j]);
-			console.log(tempSrc);
-			console.log(imageArrayaiID[i]);
 			if (tempSrc == imageArrayai[i]) {
 				$("#"+imageArrayaiID[i]).attr("src","http://localhost:8080/resources/images/all.png");
 				var data = JSON.stringify({ 'discard': cardNames[j]});
@@ -1425,9 +1421,9 @@ function AIDiscard(cardNames) {
 			}
 		}
 	}
+	
 	if(whichEvent!="") {
-		
-		 document.getElementById("serverMsg").value = "Wait for other players..."; 
+		document.getElementById("serverMsg").value = "Wait for other players..."; 
 		if(whichEvent == "Prosperity") {
 			var data = JSON.stringify({
 				'doneEventProsperity' : 0

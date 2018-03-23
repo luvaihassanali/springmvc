@@ -201,7 +201,7 @@ public class CardList {
 	public static AllyCard KingArthur = new AllyCard("King Arthur", arthurImage, 10, 0, 2, 0);
 	public static AllyCard QueenGuinevere = new AllyCard("Queen Guinevere", queenGImage, 0, 0, 3, 0);
 	public static AllyCard Merlin = new AllyCard("Merlin", merlinImage, 0, 0, 0, 0); // special
-	public static AllyCard QueenIseult = new AllyCard("QueenIseult", queenIImage, 0, 0, 2, 4);
+	public static AllyCard QueenIseult = new AllyCard("Queen Iseult", queenIImage, 0, 0, 2, 4);
 	public static AllyCard SirLancelot = new AllyCard("Sir Lancelot", sirLImage, 15, 25, 0, 0);
 	public static AllyCard SirGalahad = new AllyCard("Sir Galahad", sirGImage, 15, 0, 0, 0);
 	public static AmourCard Amour = new AmourCard("Amour", amourImage, 10, 1);

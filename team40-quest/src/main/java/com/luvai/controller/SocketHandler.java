@@ -324,7 +324,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		// done events
 
 		if (jsonObject.has("doneEventProsperity")) {
-			System.out.println(gameEngine.current_event.prosperityTracker);
+
 			gameEngine.current_event.prosperityTracker++;
 			if (gameEngine.current_event.prosperityTracker == 4) {
 				logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
@@ -354,13 +354,13 @@ public class SocketHandler extends TextWebSocketHandler {
 			session.sendMessage(new TextMessage(clientsString));
 		}
 		// discard
+
 		if (jsonObject.has("discard")) {
 			String discard = jsonObject.get("discard").toString();
 			Player p = getPlayerFromSession(session);
 			p.discard(discard);
-			String update = gameEngine.getPlayerStats();
-			sendToAllSessions(gameEngine, "updateStats" + update);
 		}
+
 		// validation of connection and decks
 		if (jsonObject.has("proof")) {
 			//
