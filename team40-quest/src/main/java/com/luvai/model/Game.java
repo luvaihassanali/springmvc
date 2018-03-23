@@ -61,7 +61,7 @@ public class Game {
 			add(CardList.RobberKnight);
 			add(CardList.Merlin);
 			add(CardList.Horse);
-			add(CardList.Sword);
+			add(CardList.Dagger);
 			add(CardList.Horse);
 			add(CardList.Battleax);
 			add(CardList.GreenKnight);

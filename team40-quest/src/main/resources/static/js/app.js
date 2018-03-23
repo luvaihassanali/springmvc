@@ -1,4 +1,4 @@
-var isAi = false; 
+var isAI = false; 
 var strategyType = "";
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
@@ -32,10 +32,16 @@ socketConn.onmessage = function(event) {
 	var serverMsg = document.getElementById('serverMsg');
 	
 	//undisable flip button
+	if(event.data.startsWith("AI")) {
+		parseAICommand(event.data);
+	}
 	
 	if(event.data == "undisableFlip") {
 		document.getElementById('flip').disabled = false;
 		serverMsg.value = "It's your turn, press flip story deck button to continue"
+		if(isAI==true) {
+			document.getElementById('flip').click();
+		}
 	}
 	// ask to sponsor quest
 	if (event.data === "sponsorQuest") {
@@ -54,8 +60,6 @@ socketConn.onmessage = function(event) {
 	if (event.data == "AskToParticipate") {
  		document.getElementById("acceptQuest").style.display = "inline";
 		serverMsg.value = "Please accept/decline quest by clicking below"
-			console.log(isAI);
-		console.log("here");
 		if(isAI) {
 			var data = JSON.stringify({
 				'AICommand' : "AskToParticipateQuest"
@@ -387,6 +391,15 @@ function PickupCards(newCards) {
 	if(cardTracker > 12) {
 		var serverMsg = document.getElementById('serverMsg');
 		serverMsg.value += "Right click to remove extra cards to continue (for discard)";
+		if(isAI==true) {
+			var data = JSON.stringify({
+				'AICommand': 'DiscardChoice',
+					'numCards' : (cardTracker - 12),
+					'name' : PlayerName
+			})
+			socketConn.send(data);
+			return;
+		}
 		discard();
 	}
 }
@@ -899,6 +912,7 @@ function changeColor() {
 function setAI() {
 		var random =  Math.floor(Math.random() * 1000);
 		var name = "AI_Player_" + random;
+		PlayerName = name;
 		var data = JSON.stringify({
 			'AI' : name
 		})
@@ -1343,3 +1357,88 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		arthurQuest, beastQuest, dragonQuest, forestQuest, grailQuest, gkQuest,
 		honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot,
 		orkney, tintagel, york ];
+
+function AIDiscard(cardNames) {
+	console.log(cardNames);
+	if(cardNames.startsWith("Prosperity")) {
+		cardNames = cardNames.replace("Prosperity","");
+		whichEvent = "Prosperity";
+	}
+	console.log(cardNames);
+	var card1aiID=$('#card1').attr('id');
+	var card2aiID=$('#card2').attr('id');
+	var card3aiID=$('#card3').attr('id');
+	var card4aiID=$('#card4').attr('id');
+	var card5aiID=$('#card5').attr('id');
+	var card6aiID=$('#card6').attr('id');
+	var card7aiID=$('#card7').attr('id');
+	var card8aiID=$('#card8').attr('id');
+	var card9aiID=$('#card9').attr('id');
+	var card10aiID=$('#card10').attr('id');
+	var card11aiID=$('#card11').attr('id');
+	var card12aiID=$('#card12').attr('id');
+	var extra1aiID=$('#extra1').attr('id');
+	var extra2aiID=$('#extra2').attr('id');
+	var extra3aiID=$('#extra3').attr('id');
+	var extra4aiID=$('#extra4').attr('id');
+	var extra5aiID=$('#extra5').attr('id');
+	var extra6aiID=$('#extra6').attr('id');
+	var extra7aiID=$('#extra7').attr('id');
+	var extra8aiID=$('#extra8').attr('id');
+	var imageArrayaiID = [card1aiID, card2aiID, card3aiID, card4aiID, card5aiID, card6aiID, card7aiID, card8aiID, card9aiID, card10aiID, card11aiID, card12aiID, extra1aiID, extra2aiID, extra3aiID, extra4aiID, extra5aiID, extra6aiID, extra7aiID, extra8aiID ];
+	var card1ai=$('#card1').attr('src');
+	var card2ai=$('#card2').attr('src');
+	var card3ai=$('#card3').attr('src');
+	var card4ai=$('#card4').attr('src');
+	var card5ai=$('#card5').attr('src');
+	var card6ai=$('#card6').attr('src');
+	var card7ai=$('#card7').attr('src');
+	var card8ai=$('#card8').attr('src');
+	var card9ai=$('#card9').attr('src');
+	var card10ai=$('#card10').attr('src');
+	var card11ai=$('#card11').attr('src');
+	var card12ai=$('#card12').attr('src');
+	var extra1ai=$('#extra1').attr('src');
+	var extra2ai=$('#extra2').attr('src');
+	var extra3ai=$('#extra3').attr('src');
+	var extra4ai=$('#extra4').attr('src');
+	var extra5ai=$('#extra5').attr('src');
+	var extra6ai=$('#extra6').attr('src');
+	var extra7ai=$('#extra7').attr('src');
+	var extra8ai=$('#extra8').attr('src');
+	var imageArrayai = [card1ai, card2ai, card3ai, card4ai, card5ai, card6ai, card7ai, card8ai, card9ai, card10ai, card11ai, card12ai, extra1ai, extra2ai, extra3ai, extra4ai, extra5ai, extra6ai, extra7ai, extra8ai ];
+	
+	console.log(cardNames);
+	cardNames = cardNames.split(";");
+	cardNames.pop();
+	console.log(cardNames);
+	for(var j=0; j<cardNames.length; j++) {
+		for(var i=0; i<imageArrayai.length; i++) {
+			var tempSrc = getLinkFromName(cardNames[j]);
+			console.log(tempSrc);
+			console.log(imageArrayaiID[i]);
+			if (tempSrc == imageArrayai[i]) {
+				$("#"+imageArrayaiID[i]).attr("src","http://localhost:8080/resources/images/all.png");
+				var data = JSON.stringify({ 'discard': cardNames[j]});
+				socketConn.send(data);
+				break;
+			}
+		}
+	}
+	if(whichEvent!="") {
+		
+		 document.getElementById("serverMsg").value = "Wait for other players..."; 
+		if(whichEvent == "Prosperity") {
+			var data = JSON.stringify({
+				'doneEventProsperity' : 0
+			})
+			socketConn.send(data);
+			arrangeHand();
+			return;
+		}
+	}
+}
+
+function parseAICommand(eventData) {
+	if(eventData.startsWith("AIremoveFromHand")) AIDiscard(eventData.replace("AIremoveFromHand",""));
+}

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.TextMessage;
 
 import com.google.gson.JsonObject;
+import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
 
 public class AIController extends SocketHandler {
@@ -20,6 +21,32 @@ public class AIController extends SocketHandler {
 
 		if (jsonObject.get("AICommand").getAsString().equals("AskToParticipateQuest"))
 			AIQuestParticipation(jsonObject);
+
+		if (jsonObject.get("AICommand").getAsString().equals("DiscardChoice")) {
+			AIDiscard(jsonObject);
+		}
+
+	}
+
+	public void AIDiscard(JsonObject jsonObject) throws IOException {
+		int numCards = jsonObject.get("numCards").getAsInt();
+		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+		AdventureCard[] AIdiscard = currentPlayer.getAI().getDiscardChoice(currentPlayer, numCards);
+		// for (AdventureCard a : currentPlayer.getHand()) {
+		// System.out.println(a.getName());
+		// }
+		String discards = "";
+		for (AdventureCard a : AIdiscard) {
+			discards += a.getName() + ";";
+			// System.out.println(a.getName());
+		}
+		String message = "AIremoveFromHand";
+		if (gameEngine.storyDeck.faceUp.getName().equals(("Prosperity Throughout the Realm")))
+			message += "Prosperity";
+		currentPlayer.session.sendMessage(new TextMessage(message + discards));
+
+		// String update = gameEngine.getPlayerStats();
+		// sendToAllSessions(gameEngine, "updateStats" + update);
 
 	}
 
