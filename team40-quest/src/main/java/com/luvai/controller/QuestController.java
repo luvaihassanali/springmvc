@@ -22,6 +22,7 @@ import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.AdventureCards.AllyCard;
 import com.luvai.model.AdventureCards.AmourCard;
 import com.luvai.model.AdventureCards.FoeCard;
+import com.luvai.model.AdventureCards.TestCard;
 import com.luvai.model.AdventureCards.WeaponCard;
 import com.luvai.model.StoryCards.QuestCard;
 
@@ -32,6 +33,7 @@ public class QuestController extends SocketHandler {
 	public ArrayList<Player> participants;
 	QuestCard currentQuest;
 	public ArrayList<FoeCard> QuestFoes;
+	public ArrayList<TestCard> QuestTests;
 
 	public int participantTurns = 0;
 	public int currentStage = 1;
@@ -42,6 +44,7 @@ public class QuestController extends SocketHandler {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
 		participants = new ArrayList<Player>();
 		QuestFoes = new ArrayList<FoeCard>();
+		QuestTests = new ArrayList<TestCard>();
 		gameEngine = g;
 		sponsor = s;
 		currentQuest = q;
@@ -76,17 +79,25 @@ public class QuestController extends SocketHandler {
 	}
 
 	// initiate foes for current quest
-	public void initiateFoes(JsonObject json) {
-		JsonElement quest_foes = json.get("foes");
+	public void initiateQuest(JsonObject json) {
+		JsonElement quest_cards = json.get("QuestSetupCards");
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
-		List<String> foeList = new Gson().fromJson(quest_foes, listType);
-		// System.out.println(foeList);
-		for (int k = 0; k < foeList.size(); k++) {
-			AdventureCard tempCard = getCardFromName(foeList.get(k));
-			QuestFoes.add((FoeCard) tempCard);
-		}
+		List<String> questCardList = new Gson().fromJson(quest_cards, listType);
+		// System.out.println(questCardList);
+		for (int k = 0; k < questCardList.size(); k++) {
+			// System.out.println("in loop");
+			Card tempCard = getCardFromName(questCardList.get(k));
+			// System.out.println(tempCard.getName());
+			if (tempCard.getName().contains("Test")) {
+				// System.out.println("adding test");
+				QuestTests.add((TestCard) tempCard);
+			} else {
+				// System.out.println("adding foe");
+				QuestFoes.add((FoeCard) tempCard);
+			}
 
+		}
 		JsonArray quest_foe_weapons = json.getAsJsonArray("weapons");
 		for (int i = 0; i < quest_foe_weapons.size(); i++) {
 			JsonArray temp = (JsonArray) quest_foe_weapons.get(i);
@@ -94,19 +105,17 @@ public class QuestController extends SocketHandler {
 				String x = temp.get(j).toString();
 				x = x.replaceAll("\"", "");
 				AdventureCard tempCard = getCardFromName(x);
+				// System.out.println(tempCard.getName());
 				QuestFoes.get(i).weapons.add((WeaponCard) tempCard);
 			}
 		}
-
-		/*		for (FoeCard f : QuestFoes) {
-					System.out.println(f.getName());
-					for (WeaponCard w : f.getWeapons()) {
-						System.out.println(w.getName());
-					}
-				} */
+		// for (FoeCard f : QuestFoes) {
+		// System.out.println(f.getName());
+		// for (WeaponCard w : f.getWeapons()) {
+		// System.out.println(w.getName());
+		// }
+		// }
 		calculateFoeBattlePoints();
-		String update = gameEngine.getPlayerStats();
-		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
 
 	public void calculatePlayerPoints() {
@@ -148,6 +157,13 @@ public class QuestController extends SocketHandler {
 		}
 		String temp = foePoints.toString();
 		sendToAllSessions(gameEngine, "FoeInfo" + temp);
+		PointArray testPoints = new PointArray(currentQuest.getStages() - 1);
+		for (TestCard t : QuestTests) {
+			testPoints.names.add(t.getName());
+			testPoints.points.add(t.getBattlePoints());
+		}
+		String temp2 = testPoints.toString();
+		sendToAllSessions(gameEngine, "TestInfo" + temp2);
 	}
 
 	public AdventureCard getCardFromName(String name) {

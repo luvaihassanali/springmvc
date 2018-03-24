@@ -104,18 +104,9 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 
 		// json for quest setup info from sponsor
-		if (jsonObject.has("foes")) {
-			gameEngine.current_quest.initiateFoes(jsonObject);
-			// System.out.println(jsonObject.toString());
-			logger.info("Player {} has setup {} quest with foes: {} and weapons: {}",
-					gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(),
-					jsonObject.get("foes"), jsonObject.get("weapons"));
-			String jsonOutput = "currentQuestInfo" + jsonObject.toString();
-			sendToAllSessions(gameEngine, jsonOutput);
-			sendToNextPlayer(gameEngine, "AskToParticipate");
-			gameEngine.incTurn();
+		if (jsonObject.has("QuestSetupCards")) {
 			ArrayList<String> cardToRemove = new ArrayList<String>();
-			JsonElement Foes = jsonObject.get("foes");
+			JsonElement Foes = jsonObject.get("QuestSetupCards");
 			Type listType = new TypeToken<List<String>>() {
 			}.getType();
 			List<String> foeList = new Gson().fromJson(Foes, listType);
@@ -125,7 +116,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				tracker++;
 			}
 			tracker = 0;
-
 			JsonArray foeWeapons = (JsonArray) jsonObject.get("weapons");
 			for (int i = 0; i < foeWeapons.size(); i++) {
 				JsonArray temp = (JsonArray) foeWeapons.get(i);
@@ -135,10 +125,25 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 
 			}
+			for (int i = 0; i < cardToRemove.size(); i++) {
+				// System.out.println(cardToRemove.get(i));
+			}
+			String jsonOutput = "currentQuestInfo" + cardToRemove;
+			sendToAllSessions(gameEngine, jsonOutput);
+			gameEngine.current_quest.initiateQuest(jsonObject);
+			// logger
+			sendToNextPlayer(gameEngine, "AskToParticipate");
+			gameEngine.incTurn();
 			gameEngine.current_quest.sponsor.discardSponsor(cardToRemove);
 			String update = gameEngine.getPlayerStats();
 			sendToAllSessions(gameEngine, "updateStats" + update);
 			return;
+			/*
+			
+			logger.info("Player {} has setup {} quest with foes: {} and weapons: {}",
+					gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(),
+					jsonObject.get("QuestSetupCards"), jsonObject.get("weapons"));
+			*/
 		}
 
 		// json for accepting/decline participating in quest
@@ -330,7 +335,9 @@ public class SocketHandler extends TextWebSocketHandler {
 				logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
 				gameEngine.current_event.prosperityTracker = 0;
 				gameEngine.incTurn();
-				gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
+				//System.out.println("Should undisable line 338");
+				 gameEngine.getActivePlayer().session.sendMessage((new
+				 TextMessage("undisableFlip")));
 			}
 
 		}

@@ -25,4 +25,6 @@ public abstract class AbstractAI {
 
 	abstract public boolean doIParticipateQuest();
 
+	abstract public boolean doISponsorQuest();
+
 }

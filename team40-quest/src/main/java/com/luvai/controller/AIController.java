@@ -26,6 +26,29 @@ public class AIController extends SocketHandler {
 			AIDiscard(jsonObject);
 		}
 
+		if (jsonObject.get("AICommand").getAsString().equals("SponsorQuest")) {
+			AIQuestSponsor(jsonObject);
+		}
+
+	}
+
+	public void AIQuestSponsor(JsonObject jsonObject) throws IOException {
+		System.out.println("in ai quest sponsor");
+		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+		boolean sponsorAnswer = currentPlayer.getAI().doISponsorQuest();
+		if (sponsorAnswer) {
+		} else {
+			gameEngine.incTurn();
+			if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
+				sendToAllSessions(gameEngine, "NoSponsors");
+				logger.info("No players chose to sponsor {} quest", gameEngine.storyDeck.faceUp.getName());
+				gameEngine.incTurn();
+				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+				return;
+			}
+			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
+		}
+
 	}
 
 	public void AIDiscard(JsonObject jsonObject) throws IOException {

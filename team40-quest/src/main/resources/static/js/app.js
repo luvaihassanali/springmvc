@@ -13,6 +13,7 @@ var tempWeaponArr2 = [];
 var questInfo;
 var participantInfo;
 var FoeInfo = "";
+var TestInfo = "";
 var roundInitiater = "";
 var initSet = false;
 var currentPlayerInfo = "";
@@ -48,12 +49,20 @@ socketConn.onmessage = function(event) {
 	if (event.data === "sponsorQuest") {
 		document.getElementById('sponsorQuest').style.display = 'block';
 		serverMsg.value = "Click to answer below"
+		if(isAI) {
+			var data = JSON.stringify({
+				'AICommand' : "SponsorQuest",
+					'name' : PlayerName
+			})
+			socketConn.send(data);
+			document.getElementById('sponsorQuest').style.display = 'none';
+		}
 	}
 	
 	// get current quest info
 	if (event.data.startsWith("currentQuestInfo")) {
 		questInfo = event.data.replace("currentQuestInfo", "");
-		questInfo = JSON.parse(questInfo);
+		//questInfo = JSON.parse(questInfo);
 		console.log(questInfo);
 	}
 	
@@ -161,6 +170,14 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("FoeInfo")) {
 		var temp = event.data.replace("FoeInfo", "");
 		FoeInfo = temp;
+		console.log(FoeInfo);
+	}
+	
+	//get test info
+	if (event.data.startsWith("TestInfo")) {
+		var temp = event.data.replace("TestInfo", "");
+		TestInfo = temp;
+		console.log(TestInfo)
 	}
 	
 	//new round 
@@ -614,7 +631,7 @@ function setupQuestRound() {
 
 	if (stageCounter <= stageTracker) {
 		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value += "\nChoose foe card for stage: " + stageCounter;
+		serverMsg.value += "\nChoose foe or test card for stage: " + stageCounter;
 		$('body')
 				.on(
 						'click',
@@ -623,6 +640,27 @@ function setupQuestRound() {
 							var cardSrc = this.src.replace(
 									'http://localhost:8080', '');
 							cardSrc = cardSrc.split('%20').join(' ');
+							var cardNameT = checkForCardType(cardSrc, "test");
+							if (cardNameT != "card not found") {
+								foes.push(cardNameT);
+								var changeImageId = "#" + this.id;
+								$(changeImageId).attr("src",
+										"/resources/images/all.png");
+								stageCounter++;
+								if(stageCounter>stageTracker) {
+									serverMsg.value = "Done setup";
+									serverMsg.value += '\nWaiting on results...';
+									
+									var questData = JSON.stringify({
+										'QuestSetupCards' : foes,
+										'weapons' : weapons
+									})
+									socketConn.send(questData);
+									return;
+								}
+								serverMsg.value = "Choose foe or test card for stage: " + stageCounter;
+								return;
+							}
 							var cardName = checkForCardType(cardSrc, "foe");
 							if (cardName != "card not found") {
 								foes.push(cardName);
@@ -688,9 +726,9 @@ function discard(){
 					
 					if(PlayerName == sponsor) {
 						sponsorDiscardTracker++;
-						if(sponsorDiscardTracker == 2) {
+						if(sponsorDiscardTracker == stageTracker) {
 							var data = JSON.stringify({'incTurnRoundOver':true});
-							socketConn.send(data);
+							//socketConn.send(data);
 							console.log("out here now");
 							sponsorDiscardTracker == 0;
 						}
@@ -706,7 +744,9 @@ function discard(){
 								
 								 document.getElementById("serverMsg").value = "Wait for other players..."; 
 								if(whichEvent == "Prosperity") {
+									console.log("sending prosperity");
 									var data = JSON.stringify({
+										
 										'doneEventProsperity' : 0
 									})
 									socketConn.send(data);
@@ -832,7 +872,7 @@ function doneWeaponsQuestSponsor() {
 		serverMsg.value = "Done setup";
 		serverMsg.value += '\nWaiting on results...';
 		var questData = JSON.stringify({
-			'foes' : foes,
+			'QuestSetupCards' : foes,
 			'weapons' : weapons
 		})
 		socketConn.send(questData);

@@ -5,21 +5,23 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.luvai.controller.SocketHandler;
+import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
 
 public class Strategy2 extends AbstractAI {
 	private static final Logger logger = LogManager.getLogger(Strategy2.class);
+	Game gameEngine;
 
 	public Strategy2() {
-
+		gameEngine = SocketHandler.gameEngine;
 		setStrategyType();
 		logger.info("Assigning new AI Player strategy {}", this.Strategy_Type);
 	}
 
 	@Override
 	public boolean doIParticipateQuest() {
-		// to:do once implemented test
 		return false;
 
 	}
@@ -64,5 +66,12 @@ public class Strategy2 extends AbstractAI {
 		}
 
 		return discards;
+	}
+
+	@Override
+	public boolean doISponsorQuest() {
+		logger.info("Player {} denied to sponsor quest {}", this.gameEngine.getActivePlayer().getName(),
+				this.gameEngine.storyDeck.faceUp.getName());
+		return false;
 	}
 }

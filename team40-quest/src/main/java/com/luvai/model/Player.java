@@ -153,6 +153,7 @@ public class Player {
 
 		ArrayList<String> names1 = new ArrayList<String>();
 		ArrayList<String> names2 = new ArrayList<String>();
+		ArrayList<String> names3 = new ArrayList<String>();
 
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).endsWith(Integer.toString(0))) {
@@ -167,10 +168,16 @@ public class Player {
 			}
 		}
 
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i).endsWith(Integer.toString(2))) {
+
+				names3.add(removeLastChar(cards.get(i)));
+			}
+		}
 		for (int i = 0; i < names1.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (this.hand.get(j).getName().equals(names1.get(i))) {
-					logger.info("Player {} discarded {}", this.getName(), this.getHand().get(j).getName());
+					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
 					this.hand.remove(j);
 					break;
 				}
@@ -180,12 +187,23 @@ public class Player {
 		for (int i = 0; i < names2.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (this.hand.get(j).getName().equals(names2.get(i))) {
-					logger.info("Player {} discarded {}", this.getName(), this.getHand().get(j).getName());
+					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
 					this.hand.remove(j);
 					break;
 				}
 			}
 		}
+
+		for (int i = 0; i < names3.size(); i++) {
+			for (int j = 0; j < this.getHandSize(); j++) {
+				if (this.hand.get(j).getName().equals(names3.get(i))) {
+					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
+					this.hand.remove(j);
+					break;
+				}
+			}
+		}
+		System.out.println("end of discard sponsor cards left: " + this.getHandSize());
 	}
 
 	public String removeLastChar(String s) {
