@@ -21,6 +21,7 @@ var currentStage = 0;
 var sponsor = "";
 var numCards =0;
 var whichEvent = "";
+var sponsorDiscardTracker = 0;
 // when connection is initiated
 socketConn.onopen = function(event) {
 
@@ -684,6 +685,16 @@ function discard(){
 					var discardName = getNameFromLink(cardSrc);
 					var data = JSON.stringify({ 'discard': discardName});
 					socketConn.send(data);
+					
+					if(PlayerName == sponsor) {
+						sponsorDiscardTracker++;
+						if(sponsorDiscardTracker == 2) {
+							var data = JSON.stringify({'incTurnRoundOver':true});
+							socketConn.send(data);
+							console.log("out here now");
+							sponsorDiscardTracker == 0;
+						}
+					}
 				}
 				if(this.src!="http://localhost:8080/resources/images/all.png") {
 					if(numCards>12) {
@@ -701,10 +712,9 @@ function discard(){
 									socketConn.send(data);
 									arrangeHand();
 									return false;
-								}
-								
-								
+								}		
 							}
+							
 							document.getElementById("doneEquipment").disabled = false;
 							if(PlayerName === sponsor) { document.getElementById("serverMsg").value = "Replacing cards used to sponsor"; }
 							
