@@ -51,6 +51,16 @@ public class QuestController extends SocketHandler {
 		setupQuest();
 	}
 
+	public void placeBids(JsonObject json) {
+		JsonElement player_bids = json.get("equipment_info");
+		Type listType = new TypeToken<List<String>>() {
+		}.getType();
+		List<String> bidList = new Gson().fromJson(player_bids, listType);
+		ArrayList<String> remove = new ArrayList<String>(bidList);
+		gameEngine.getCurrentParticipant().discardPlayer(remove);
+		calculateNumBids(bidList);
+	}
+
 	// adjust player for points with chosen equipment
 	public void equipPlayer(JsonObject json) {
 		JsonElement player_equipment = json.get("equipment_info");
@@ -118,6 +128,12 @@ public class QuestController extends SocketHandler {
 		calculateFoeBattlePoints();
 	}
 
+	public void calculateNumBids(List<String> bids) {
+		Player currentPlayer = gameEngine.getCurrentParticipant();
+		int tempBids = bids.size();
+		sendToAllSessions(gameEngine, "currentPlayerBids" + tempBids + ";" + currentPlayer.getName());
+	}
+
 	public void calculatePlayerPoints() {
 		Player currentPlayer = gameEngine.getCurrentParticipant();
 		int tempPts = currentPlayer.getBattlePoints();
@@ -160,7 +176,7 @@ public class QuestController extends SocketHandler {
 		PointArray testPoints = new PointArray(currentQuest.getStages() - 1);
 		for (TestCard t : QuestTests) {
 			testPoints.names.add(t.getName());
-			testPoints.points.add(t.getBattlePoints());
+			testPoints.points.add(t.getMinBid());
 		}
 		String temp2 = testPoints.toString();
 		sendToAllSessions(gameEngine, "TestInfo" + temp2);
