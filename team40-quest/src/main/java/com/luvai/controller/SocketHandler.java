@@ -353,45 +353,47 @@ public class SocketHandler extends TextWebSocketHandler {
 							gameEngine.current_quest.getCurrentParticipant().getName(),
 							gameEngine.storyDeck.faceUp.getName());
 
-					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
-					if (gameEngine.current_quest.participants.isEmpty()) {
-						Losing();
-						return;
-					}
-					if (gameEngine.current_quest.participants.size() == 1) {
+					if (gameEngine.current_quest.getNextParticipant()
+							.equals(gameEngine.current_quest.firstQuestPlayer)) {
+						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
 						sendToAllSessions(gameEngine, "incStage");
 						gameEngine.current_quest.currentStage++;
-
 						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+							gameEngine.current_quest.participants
+									.remove(gameEngine.current_quest.getCurrentParticipant());
 
 							Winning();
 							return;
 						}
+					}
+					if (gameEngine.current_quest.getCurrentParticipant()
+							.equals(gameEngine.current_quest.firstQuestPlayer)) {
+						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
+						gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+						if (gameEngine.current_quest.participants.isEmpty()) {
+							Losing();
+							return;
+						}
+						gameEngine.current_quest.incTurn();
+
 						gameEngine.adventureDeck.flipCard();
 						gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
 						String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-						gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-						gameEngine.getCurrentParticipant().session
+						gameEngine.current_quest.getCurrentParticipant().session
+								.sendMessage(new TextMessage("Choose equipment"));
+						gameEngine.current_quest.getCurrentParticipant().session
 								.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 
 						return;
+
 					}
-					gameEngine.adventureDeck.flipCard();
-					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("Choose equipment"));
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-					return;
-
+					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
 				}
-
 				if (gameEngine.current_quest.participants.size() == 0) {
 					Losing();
 					return;
 				}
+
 				if (TestResult) {
 					if (gameEngine.current_quest.participants.size() == 1) {
 						System.out.println("log - player beat test");
