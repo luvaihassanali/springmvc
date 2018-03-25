@@ -29,6 +29,7 @@ var sponsorDiscardTracker = 0;
 var stageEvents;
 var minBid = 0;
 var testResult = false;
+var testTracker = 0;
 // when connection is initiated
 socketConn.onopen = function(event) {
 
@@ -123,9 +124,15 @@ socketConn.onmessage = function(event) {
 
 	// choosing equipment for battle
 	if (event.data == "Choose equipment") {
+
+		console.log(stageTracker);
+		console.log(stageCounter);
+		if(stageCounter > stageTracker) stageCounter = stageTracker;
+		console.log(stageTracker);
 		console.log(stageCounter);
 		console.log(questInfo);
 		console.log(questInfo[stageCounter - 1]);
+		
 		if (questInfo[stageCounter - 1].includes("Test")) {
 			document.getElementById('doneEquipment').style.display = "inline";
 			document.getElementById('doneEquipment').disabled = false;
@@ -133,8 +140,16 @@ socketConn.onmessage = function(event) {
 			console.log("minBid" + minBid);
 			serverMsg.value = "Please click on the cards you wish to bid for test (Click done to drop out)";
 			 var x = document.getElementById("doneEquipment").disabled;
+			
+			 testTracker++;
 			 console.log(x);
-			if(x == false) document.getElementById('doneEquipment').disabled = true;
+			if(x == false) { 
+				document.getElementById('doneEquipment').disabled = true;
+				document.getElementById('dropOut').style.display = "inline";
+				document.getElementById('dropOut').disabled = true;
+				if(testTracker >= 2) { document.getElementById('dropOut').disabled = false; testTracker = 0; }
+			
+			}
 			$('body')
 					.on(
 							'click',
@@ -942,6 +957,20 @@ function pickWeapons() {
 					})
 }
 
+//drop out of test
+function dropOutOfTest() {
+	$('body').off('click');
+	document.getElementById('doneEquipment').style.display = "none";
+	document.getElementById('dropOut').style.display = "none";
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Dropped out of test, wait for quest to complete";
+
+	var datat = JSON.stringify({
+		'nextQuestTurn' : false,
+		'type' : "Test",
+	});
+	socketConn.send(datat);
+}
 // send weapon info - done choosing
 function doneEquipment() {
 	$('body').off('click');
@@ -950,6 +979,8 @@ function doneEquipment() {
 	console.log(questInfo[stageCounter - 1]);
 	if (questInfo[stageCounter - 1].includes("Test")) {
 		serverMsg.value = "Placing bids, please wait for other players...- ";
+		if(tempBidArr.length == 0) serverMsg.value = "Dropping out of test, please wait for other players";
+	
 		var data = JSON.stringify({
 			'name' : PlayerName,
 			'stages' : stageCounter,

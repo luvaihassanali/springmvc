@@ -121,6 +121,7 @@ Shields:<label id="p1shields">0</label>
 			style="display: none">Done</button>
 		<button id="doneEquipment" onclick="doneEquipment()"
 			style="display: none">Done</button>
+			<button id="dropOut" onclick="dropOutOfTest()" style="display: none"> Drop out</button>
 	</p>
 	<div oncontextmenu="discard();return false;" style="float: right" id="playerHand">
 	 <div style="float:right">
