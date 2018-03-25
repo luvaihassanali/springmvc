@@ -396,33 +396,24 @@ public class SocketHandler extends TextWebSocketHandler {
 
 				if (TestResult) {
 					if (gameEngine.current_quest.participants.size() == 1) {
-						System.out.println("log - player beat test");
+						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+							System.out.println("log - player beat test");
+							Winning();
+							return;
+						}
 						sendToAllSessions(gameEngine, "incStage");
+
 						gameEngine.current_quest.currentStage++;
 						gameEngine.getCurrentParticipant().discardPlayer(gameEngine.current_quest.toDiscardAfterTest);
 						String temp = gameEngine.getPlayerStats();
 						sendToAllSessions(gameEngine, "updateStats" + temp);
 
-						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-
-							Winning();
-							return;
-						}
-
-						gameEngine.adventureDeck.flipCard();
-						gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-						String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-						gameEngine.current_quest.getCurrentParticipant().session
-								.sendMessage(new TextMessage("Choose equipment"));
-						gameEngine.current_quest.getCurrentParticipant().session
-								.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-						return;
-
 					}
+
 					gameEngine.current_quest.incTurn();
 					gameEngine.getCurrentParticipant().session
 							.sendMessage(new TextMessage("updateMinBid" + gameEngine.current_quest.currentMinBid));
+
 					gameEngine.adventureDeck.flipCard();
 					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
 					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
@@ -430,9 +421,23 @@ public class SocketHandler extends TextWebSocketHandler {
 							.sendMessage(new TextMessage("Choose equipment"));
 					gameEngine.current_quest.getCurrentParticipant().session
 							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+
+					if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)
+							&& gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest
+									.getStages()) {
+						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
+						sendToAllSessions(gameEngine, "incStage");
+						gameEngine.current_quest.currentStage++;
+						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+							System.out.println("in dis one");
+							Winning();
+							return;
+						}
+					}
+					return;
 				}
+
 			}
-			return;
 		}
 
 		// done events
