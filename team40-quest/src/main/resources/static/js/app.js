@@ -132,23 +132,31 @@ socketConn.onmessage = function(event) {
 			minBid = TestInfo[1];
 			console.log("minBid" + minBid);
 			serverMsg.value = "Please click on the cards you wish to bid for test (Click done to drop out)";
+			 var x = document.getElementById("doneEquipment").disabled;
+			 console.log(x);
+			if(x == false) document.getElementById('doneEquipment').disabled = true;
 			$('body')
 					.on(
 							'click',
 							'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8',
 							function() {
-							
+	
 								var cardId = this.src.replace(
 										'http://localhost:8080', '');
 								cardId = cardId.split('%20').join(' ');
-								console.log("adding to bid array" + getNameFromLink(cardId));
-								tempBidArr.push(getNameFromLink(cardId));
-								var changeImageId = "#" + this.id;
-								numCards--;
+								if(getNameFromLink(cardId) != "link not found") {
+									console.log("adding to bid array" + getNameFromLink(cardId));
+									tempBidArr.push(getNameFromLink(cardId));
+									var changeImageId = "#" + this.id;
+									numCards--;
+								}
 								$(changeImageId).attr("src",
 										"/resources/images/all.png");
 								console.log(tempBidArr.length);
-								if(tempBidArr.length == 4 ) document.getElementById('doneEquipment').disabled = false;
+									var minBidInt = minBid.replace(";", "");
+									console.log(minBidInt);
+								console.log("RIGHT BEFORE CHECKING TO UNDISABLE^");
+								if(tempBidArr.length >= minBidInt ) document.getElementById('doneEquipment').disabled = false;
 								console.log(numCards)
 							})
 			return;
@@ -198,7 +206,13 @@ socketConn.onmessage = function(event) {
 		console.log(participantInfo);
 		currentStage = participantInfo.stages;
 	}
-
+	//update min bids
+	if (event.data.startsWith("updateMinBid")) {
+		var newBid = event.data.replace("updateMinBid","");
+		minBid = newBid;
+		TestInfo[1] = newBid;
+		console.log("UPDATING MINI BID" + minBid);
+	}
 	//get current playre bids
 	if (event.data.startsWith("currentPlayerBids")) {
 		var bids = event.data.replace("currentPlayerBids","");
@@ -342,6 +356,7 @@ socketConn.onmessage = function(event) {
 	// show rig button
 	if (event.data == "showRigger") {
 		document.getElementById("rigger").style.display = "block";
+		document.getElementById("setAI").style.display = "none";
 	}
 	// get all player names
 	if (event.data.startsWith("clientsString")) {
@@ -588,16 +603,21 @@ function displayBattle(stage) {
 		console.log("This is a test");
 		console.log(tempBidArr.length);
 		console.log(minBid);
+		if (PlayerName == participantInfo.name) {
 		var minBidInt = minBid.replace(";", "");
 		console.log(minBidInt);
 		if(tempBidArr.length >= minBidInt) testResult = true; 
+		}
+	
+		
 		var datat = JSON.stringify({
 			'nextQuestTurn' : testResult,
-			'type' : "Test"
+			'type' : "Test",
 		});
 		if (PlayerName == participantInfo.name) {
 			socketConn.send(datat);
 		}
+		
 		return;
 	} else {
 		console.log("This is a battle");
@@ -613,6 +633,9 @@ function displayBattle(stage) {
 		if (PlayerName == participantInfo.name) {
 			socketConn.send(datab);
 		}
+		var serverMsg = document.getElementById('serverMsg');
+		serverMsg += "battle won, please wait";
+		
 	}
 }
 /*

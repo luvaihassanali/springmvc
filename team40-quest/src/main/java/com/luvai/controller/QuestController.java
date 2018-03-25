@@ -34,11 +34,12 @@ public class QuestController extends SocketHandler {
 	QuestCard currentQuest;
 	public ArrayList<FoeCard> QuestFoes;
 	public ArrayList<TestCard> QuestTests;
-
+	public int currentMinBid = 0;
 	public int participantTurns = 0;
 	public int currentStage = 1;
 	public int initialPSize = 0;
 	public Player firstQuestPlayer;
+	ArrayList<String> toDiscardAfterTest;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -56,8 +57,8 @@ public class QuestController extends SocketHandler {
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
 		List<String> bidList = new Gson().fromJson(player_bids, listType);
-		ArrayList<String> remove = new ArrayList<String>(bidList);
-		gameEngine.getCurrentParticipant().discardPlayer(remove);
+		toDiscardAfterTest = new ArrayList<String>(bidList);
+
 		calculateNumBids(bidList);
 	}
 
@@ -131,6 +132,7 @@ public class QuestController extends SocketHandler {
 	public void calculateNumBids(List<String> bids) {
 		Player currentPlayer = gameEngine.getCurrentParticipant();
 		int tempBids = bids.size();
+		currentMinBid = tempBids;
 		sendToAllSessions(gameEngine, "currentPlayerBids" + tempBids + ";" + currentPlayer.getName());
 	}
 
