@@ -85,6 +85,7 @@ public class QuestController extends SocketHandler {
 		ArrayList<String> remove = new ArrayList<String>(equipmentList);
 		gameEngine.getCurrentParticipant().discardPlayer(remove);
 		calculatePlayerPoints();
+		gameEngine.getCurrentParticipant().getWeapons().clear();
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
@@ -139,6 +140,8 @@ public class QuestController extends SocketHandler {
 	public void calculatePlayerPoints() {
 		Player currentPlayer = gameEngine.getCurrentParticipant();
 		int tempPts = currentPlayer.getBattlePoints();
+		System.out.println(currentPlayer.getBattlePoints());
+		System.out.println(tempPts + "before battle stars");
 		String cardNames = "";
 		if (currentPlayer.getAmourCard() != null) {
 			tempPts += 10;
@@ -153,8 +156,14 @@ public class QuestController extends SocketHandler {
 			cardNames += a.getName() + "#";
 			// ally bonus points
 		}
+		System.out.println(tempPts);
 		sendToAllSessions(gameEngine,
 				"currentPlayerPoints" + tempPts + ";" + currentPlayer.getRank().getName() + ";" + cardNames);
+		tempPts = 0;
+		currentPlayer.getWeapons().clear();
+		System.out.println(currentPlayer.getBattlePoints());
+		for (AdventureCard a : currentPlayer.getWeapons())
+			System.out.println(a.getName());
 	}
 
 	public void calculateFoeBattlePoints() {

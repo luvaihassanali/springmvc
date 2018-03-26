@@ -21,7 +21,7 @@ public class Player {
 	public String name;
 	public WebSocketSession session;
 	private ArrayList<AdventureCard> hand;
-	ArrayList<WeaponCard> weapons;
+	public ArrayList<WeaponCard> weapons;
 	ArrayList<AllyCard> allies;
 	AmourCard amour;
 	RankCard rank;
@@ -126,8 +126,7 @@ public class Player {
 		for (int i = 0; i < toRemove.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (toRemove.get(i).equals(this.getHand().get(j).getName())) {
-					// logger.info("Player {} equipped {}", this.getName(),
-					// this.getHand().get(j).getName());
+					logger.info("Player {} equipped {}", this.getName(), this.getHand().get(j).getName());
 					this.getHand().remove(j);
 					break;
 				}
@@ -203,7 +202,6 @@ public class Player {
 				}
 			}
 		}
-		System.out.println("end of discard sponsor cards left: " + this.getHandSize());
 	}
 
 	public String removeLastChar(String s) {

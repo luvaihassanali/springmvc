@@ -109,6 +109,8 @@ socketConn.onmessage = function(event) {
 	// when quest over
 	if (event.data == "QuestOverWaitForSponsor") {
 		serverMsg.value += "\nQuest over, wait for sponsor to pick up cards - ";
+		questInfo = [];
+		FoeInfo = "";
 	}
 	// getting shields
 	if (event.data.startsWith("Getting")) {
@@ -177,7 +179,7 @@ socketConn.onmessage = function(event) {
 			return;
 			// get min bid
 		} else {
-
+			
 			teamWeaponArr2 = [];
 			document.getElementById('doneEquipment').style.display = "inline";
 			serverMsg.value = "Please click on the equipment you want to choose for battle";
@@ -239,12 +241,14 @@ socketConn.onmessage = function(event) {
 			sponsor = "";
 		}
 		displayBattle(stageCounter);
+	
 		//going to display battle
 	}
 	// get current player pts
 	if (event.data.startsWith("currentPlayerPoints")) {
 		var pts = event.data.replace("currentPlayerPoints", "");
 		currentPlayerInfo = pts;
+		console.log(pts);
 		// console.log(PlayerName);
 		// console.log(sponsor);
 
@@ -253,6 +257,7 @@ socketConn.onmessage = function(event) {
 			sponsor = "";
 		}
 		displayBattle(stageCounter);
+		
 	}
 
 	// get foe info
@@ -505,10 +510,9 @@ function PickupCards(newCards) {
 		if (tempCardLink != "/resources/images/all.png")
 			cardTracker++;
 	}
-	// console.log(numNewCards);
+
 	cardTracker += numNewCards;
 	numCards = cardTracker;
-	// console.log(cardTracker);
 	if (cardTracker > 12) {
 		var serverMsg = document.getElementById('serverMsg');
 		serverMsg.value += "Right click to remove extra cards to continue (for discard)";
@@ -521,8 +525,19 @@ function PickupCards(newCards) {
 			socketConn.send(data);
 			return;
 		}
+
 		discard();
 	}
+
+	if(numCards <= 12) {
+		console.log("sending prosperity");
+		var data = JSON.stringify({
+
+			'doneEventProsperity' : 0
+		})
+		socketConn.send(data);
+	}
+
 }
 // sponsor pickup
 function sponsorPickup(cards) {
@@ -639,17 +654,29 @@ function displayBattle(stage) {
 		console.log(FoeInfo);
 		console.log(participantInfo);
 		console.log(currentPlayerInfo);
+		var pPts = currentPlayerInfo.split(";");
+		pPts = pPts[0].replace(";","");
 		var foePts = FoeInfo.split("#");
-		
+		foePts = (foePts[stageCounter]);
+		foePts = foePts.replace(";","");
+		console.log(stageCounter);
+		console.log(parseInt(foePts));
+		console.log(parseInt(pPts));
+		var battleResult = false;
+		if(parseInt(pPts)>=parseInt(foePts)) battleResult = true;
+
 		var datab = JSON.stringify({
-			'nextQuestTurn' : true,
+			'nextQuestTurn' : battleResult,
 			'type' : "Foe"
 		});
 		if (PlayerName == participantInfo.name) {
 			socketConn.send(datab);
 		}
 		var serverMsg = document.getElementById('serverMsg');
-		serverMsg += "battle won, please wait";
+		if(battleResult) { serverMsg += "battle won, please wait"; } else {
+			serverMsg += "battle lost, please wait";
+		}
+		
 		
 	}
 }
@@ -669,68 +696,68 @@ function displayBattle(stage) {
  * currentStageWeps.push(getLinkFromName(foeWeaponNames[i])); }
  * 
  * //console.log(currentStageWeps); //console.log(FoeInfo); var foesInfo =
- * FoeInfo.split(";"); for (var i = 0; i < foesInfo.length; i++) { foesInfo[i] =
- * foesInfo[i].split("#"); foeLinks.push(getLinkFromName(foesInfo[i][0])); }
- * foeLinks.pop(); //console.log(foeLinks);
- * 
- * var pequip = []; var fequip = []; for (var i = 0; i < 6; i++) { pequip[i] =
- * all.link; fequip[i] = all.link; }
- * 
- * for (var i = 0; i < weaponLinks.length; i++) { pequip.pop();
- * pequip.unshift(weaponLinks[i]); }
- * 
- * for (var i = 0; i < currentStageWeps.length; i++) { fequip.pop();
- * fequip.unshift(currentStageWeps[i]); } //console.log(fequip);
- * $("#playerPic").attr("src", playerCardLink);
- * $("#playerWeaponSpot1").attr("src", pequip[0]);
- * $("#playerWeaponSpot2").attr("src", pequip[1]);
- * $("#playerWeaponSpot3").attr("src", pequip[2]);
- * $("#playerWeaponSpot4").attr("src", pequip[3]);
- * $("#playerWeaponSpot5").attr("src", pequip[4]);
- * $("#playerWeaponSpot6").attr("src", pequip[5]); $("#enemyPic").attr("src",
- * foeLinks[stage - 1]); $("#enemyWeaponSpot1").attr("src", fequip[0]);
- * $("#enemyWeaponSpot2").attr("src", fequip[1]);
- * $("#enemyWeaponSpot3").attr("src", fequip[2]);
- * $("#enemyWeaponSpot4").attr("src", fequip[3]);
+  FoeInfo.split(";"); for (var i = 0; i < foesInfo.length; i++) { foesInfo[i] =
+  foesInfo[i].split("#"); foeLinks.push(getLinkFromName(foesInfo[i][0])); }
+  foeLinks.pop(); //console.log(foeLinks);
+  
+  var pequip = []; var fequip = []; for (var i = 0; i < 6; i++) { pequip[i] =
+  all.link; fequip[i] = all.link; }
+  
+  for (var i = 0; i < weaponLinks.length; i++) { pequip.pop();
+  pequip.unshift(weaponLinks[i]); }
+  
+  for (var i = 0; i < currentStageWeps.length; i++) { fequip.pop();
+  fequip.unshift(currentStageWeps[i]); } //console.log(fequip);
+  $("#playerPic").attr("src", playerCardLink);
+  $("#playerWeaponSpot1").attr("src", pequip[0]);
+  $("#playerWeaponSpot2").attr("src", pequip[1]);
+  $("#playerWeaponSpot3").attr("src", pequip[2]);
+  $("#playerWeaponSpot4").attr("src", pequip[3]);
+  $("#playerWeaponSpot5").attr("src", pequip[4]);
+  $("#playerWeaponSpot6").attr("src", pequip[5]); $("#enemyPic").attr("src",
+  foeLinks[stage - 1]); $("#enemyWeaponSpot1").attr("src", fequip[0]);
+  $("#enemyWeaponSpot2").attr("src", fequip[1]);
+  $("#enemyWeaponSpot3").attr("src", fequip[2]);
+  $("#enemyWeaponSpot4").attr("src", fequip[3]);
  * $("#enemyWeaponSpot5").attr("src", fequip[4]);
- * $("#enemyWeaponSpot6").attr("src", fequip[5]); var playerWin; var tempPPoints =
- * (Number)(currentPlayerPts); var tempFPoints = (Number)(foesInfo[stage-1][1]);
- * console.log("player points: " + tempPPoints); console.log("foe points: " +
- * tempFPoints); if(tempPPoints >= tempFPoints) { playerWin = true; } else {
- * playerWin = false; } console.log("player won battle: " + playerWin);
- * 
- * if(playerWin) { document.getElementById("p_win").style.display = "block";
- * document.getElementById("f_lose").style.display = "block"; var serverMsg =
- * document.getElementById('serverMsg');
- * if(serverMsg.value.startsWith("Player")) { setTimeout(function(){
- * serverMsg.value = "This battle was won...please wait for next round to
- * complete"; document.getElementById('battleScreen').style.display = "none";
- * document.getElementById("p_win").style.display = "none";
- * document.getElementById("f_lose").style.display = "none";
- * document.getElementById("p_lose").style.display = "none";
- * document.getElementById("f_win").style.display = "none"; }, 5000); } else {
- * setTimeout(function(){ var serverMsg = document.getElementById('serverMsg');
- * serverMsg.value += " Round won, going to next player turn";
- * document.getElementById('battleScreen').style.display = "none";
- * document.getElementById("p_win").style.display = "none";
- * document.getElementById("f_lose").style.display = "none";
- * document.getElementById("p_lose").style.display = "none";
- * document.getElementById("f_win").style.display = "none"; var data =
- * JSON.stringify({ 'nextQuestTurn' : true}); if(PlayerName ==
- * participantInfo.name) { socketConn.send(data); } }, 5000); } } else {
- * document.getElementById("p_lose").style.display = "block";
- * document.getElementById("f_win").style.display = "block";
- * setTimeout(function(){ var serverMsg = document.getElementById('serverMsg');
- * if(serverMsg.value=="Going into battle - ") { var data = JSON.stringify({
- * 'nextQuestTurn' : false}); if(PlayerName == participantInfo.name) {
- * socketConn.send(data);} } serverMsg.value += " Round lost, going to next
- * turn... "; document.getElementById('battleScreen').style.display = "none";
- * document.getElementById("p_win").style.display = "none";
- * document.getElementById("f_lose").style.display = "none";
- * document.getElementById("p_lose").style.display = "none";
- * document.getElementById("f_win").style.display = "none"; }, 5000); } } }
- */
-
+  $("#enemyWeaponSpot6").attr("src", fequip[5]); var playerWin; var tempPPoints =
+  (Number)(currentPlayerPts); var tempFPoints = (Number)(foesInfo[stage-1][1]);
+  console.log("player points: " + tempPPoints); console.log("foe points: " +
+  tempFPoints); if(tempPPoints >= tempFPoints) { playerWin = true; } else {
+  playerWin = false; } console.log("player won battle: " + playerWin);
+  
+  if(playerWin) { document.getElementById("p_win").style.display = "block";
+  document.getElementById("f_lose").style.display = "block"; var serverMsg =
+  document.getElementById('serverMsg');
+  if(serverMsg.value.startsWith("Player")) { setTimeout(function(){
+  serverMsg.value = "This battle was won...please wait for next round to
+  complete"; document.getElementById('battleScreen').style.display = "none";
+  document.getElementById("p_win").style.display = "none";
+  document.getElementById("f_lose").style.display = "none";
+  document.getElementById("p_lose").style.display = "none";
+  document.getElementById("f_win").style.display = "none"; }, 5000); } else {
+  setTimeout(function(){ var serverMsg = document.getElementById('serverMsg');
+  serverMsg.value += " Round won, going to next player turn";
+  document.getElementById('battleScreen').style.display = "none";
+  document.getElementById("p_win").style.display = "none";
+  document.getElementById("f_lose").style.display = "none";
+  document.getElementById("p_lose").style.display = "none";
+  document.getElementById("f_win").style.display = "none"; var data =
+  JSON.stringify({ 'nextQuestTurn' : true}); if(PlayerName ==
+  participantInfo.name) { socketConn.send(data); } }, 5000); } } else {
+  document.getElementById("p_lose").style.display = "block";
+  document.getElementById("f_win").style.display = "block";
+  setTimeout(function(){ var serverMsg = document.getElementById('serverMsg');
+  if(serverMsg.value=="Going into battle - ") { var data = JSON.stringify({
+  'nextQuestTurn' : false}); if(PlayerName == participantInfo.name) {
+  socketConn.send(data);} } serverMsg.value += " Round lost, going to next
+  turn... "; document.getElementById('battleScreen').style.display = "none";
+  document.getElementById("p_win").style.display = "none";
+  document.getElementById("f_lose").style.display = "none";
+  document.getElementById("p_lose").style.display = "none";
+  document.getElementById("f_win").style.display = "none"; }, 5000); } } }
+ 
+*/
 // setup quest if sponsor
 function setupQuestRound() {
 
@@ -839,6 +866,8 @@ function discard() {
 
 							if (PlayerName == sponsor) {
 								sponsorDiscardTracker++;
+								console.log(sponsorDiscardTracker);
+								console.log(stageTracker);
 								if (sponsorDiscardTracker == stageTracker) {
 									var data = JSON.stringify({
 										'incTurnRoundOver' : true
@@ -868,6 +897,7 @@ function discard() {
 											})
 											socketConn.send(data);
 											arrangeHand();
+											whichEvent = "";
 											return false;
 										}
 									}
@@ -997,9 +1027,10 @@ function doneEquipment() {
 			'stages' : stageCounter,
 			'equipment_info' : tempWeaponArr2
 		});
-
+	
 		socketConn.send(data);
 		arrangeHand();
+		tempWeaponArr2=[];
 	}
 
 }
@@ -1085,6 +1116,7 @@ function acceptSponsorQuest() {
 		'sponsor_quest' : true
 	});
 	socketConn.send(data);
+	stageCounter = 1;
 	setupQuestRound();
 }
 // deny to sponsor quest

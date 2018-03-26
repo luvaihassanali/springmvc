@@ -1,6 +1,7 @@
 package com.luvai.controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,6 +66,12 @@ public class AIController extends SocketHandler {
 		String message = "AIremoveFromHand";
 		if (gameEngine.storyDeck.faceUp.getName().equals(("Prosperity Throughout the Realm")))
 			message += "Prosperity";
+		Random rand = new Random();
+		int value = rand.nextInt(2000 - 1000) + 1000;
+		System.out.println(value);
+		setTimeout(() -> {
+			System.out.println("test");
+		}, value);
 		currentPlayer.session.sendMessage(new TextMessage(message + discards));
 
 		// String update = gameEngine.getPlayerStats();
@@ -108,8 +115,20 @@ public class AIController extends SocketHandler {
 				gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
 				return;
 			}
+			System.out.println(gameEngine.getActivePlayer().getName());
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 		}
+	}
+
+	public static void setTimeout(Runnable runnable, int delay) {
+		new Thread(() -> {
+			try {
+				Thread.sleep(delay);
+				runnable.run();
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}).start();
 	}
 
 }

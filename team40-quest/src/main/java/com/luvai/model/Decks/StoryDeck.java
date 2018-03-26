@@ -111,8 +111,8 @@ public class StoryDeck extends Decks {
 		Collections.shuffle(Arrays.asList(s_arr));
 		StoryCard[] s_arr2 = new StoryCard[4];
 		s_arr2[3] = CardList.Quest6; // should be 6, 8 has 3
-		s_arr2[2] = CardList.Event1;// should be 8
-		s_arr2[1] = CardList.Event8;// 1
+		s_arr2[2] = CardList.Event8;// should be 8
+		s_arr2[1] = CardList.Event1;// 1
 		s_arr2[0] = CardList.Quest5;
 		this.fillDeck(s_arr);
 		this.fillDeck(s_arr2);

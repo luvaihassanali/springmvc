@@ -279,7 +279,6 @@ public class SocketHandler extends TextWebSocketHandler {
 							Losing();
 							return;
 						}
-						gameEngine.current_quest.incTurn();
 
 						gameEngine.adventureDeck.flipCard();
 						gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
@@ -305,6 +304,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					logger.info("Player {} was victorious in {} quest battle",
 							gameEngine.current_quest.getCurrentParticipant().getName(),
 							gameEngine.storyDeck.faceUp.getName());
+					gameEngine.getCurrentParticipant().getWeapons().clear();
 					if (gameEngine.current_quest.participants.size() == 1) {
 						sendToAllSessions(gameEngine, "incStage");
 						gameEngine.current_quest.currentStage++;
@@ -405,8 +405,12 @@ public class SocketHandler extends TextWebSocketHandler {
 
 						if (gameEngine.current_quest.currentStage == 1
 								&& gameEngine.current_quest.participants.size() == 1) {
-							sendToAllSessions(gameEngine, "incStage");
-							gameEngine.current_quest.currentStage++;
+							if (gameEngine.current_quest.getCurrentParticipant()
+									.equals(gameEngine.current_quest.firstQuestPlayer)) {
+							} else {
+								sendToAllSessions(gameEngine, "incStage");
+								gameEngine.current_quest.currentStage++;
+							}
 						}
 
 						gameEngine.adventureDeck.flipCard();
@@ -790,14 +794,4 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 	}
 
-	public static void setTimeout(Runnable runnable, int delay) {
-		new Thread(() -> {
-			try {
-				Thread.sleep(delay);
-				runnable.run();
-			} catch (Exception e) {
-				System.err.println(e);
-			}
-		}).start();
-	}
 }// end of class
