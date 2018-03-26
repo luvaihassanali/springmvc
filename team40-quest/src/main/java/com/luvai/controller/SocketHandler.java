@@ -62,7 +62,6 @@ public class SocketHandler extends TextWebSocketHandler {
 						gameEngine.players.get(1).setHand(gameEngine.mockHand2);
 						gameEngine.players.get(2).setHand(gameEngine.mockHand3);
 						gameEngine.players.get(3).setHand(gameEngine.mockHand4);
-
 					}
 				} else {
 					for (Player p : gameEngine.players) {

@@ -41,6 +41,14 @@ public class FoeCard extends AdventureCard {
 		return bonusBp;
 	}
 
+	public int getWeaponPoints() {
+		int temp = 0;
+		for (int i = 0; i < weapons.size(); i++) {
+			temp += weapons.get(i).getBattlePoints();
+		}
+		return temp;
+	}
+
 	public QuestCard getQuestCard() {
 		return questCard;
 	}

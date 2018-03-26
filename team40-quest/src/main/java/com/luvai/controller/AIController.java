@@ -10,6 +10,7 @@ import org.springframework.web.socket.TextMessage;
 import com.google.gson.JsonObject;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
+import com.luvai.model.StoryCards.QuestCard;
 
 public class AIController extends SocketHandler {
 	private static final Logger logger = LogManager.getLogger(AIController.class);
@@ -34,10 +35,17 @@ public class AIController extends SocketHandler {
 	}
 
 	public void AIQuestSponsor(JsonObject jsonObject) throws IOException {
-		System.out.println("in ai quest sponsor");
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 		boolean sponsorAnswer = currentPlayer.getAI().doISponsorQuest();
 		if (sponsorAnswer) {
+			gameEngine.newQuest(gameEngine, currentPlayer, (QuestCard) gameEngine.storyDeck.faceUp);
+			currentPlayer.getAI().setupQuest();
+			sendToNextPlayer(gameEngine, "AskToParticipate");
+			gameEngine.incTurn();
+			// gameEngine.current_quest.sponsor.discardSponsor(cardToRemove);
+			String update = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + update);
+			return;
 		} else {
 			gameEngine.incTurn();
 			if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {

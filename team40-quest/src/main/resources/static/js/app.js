@@ -63,6 +63,7 @@ socketConn.onmessage = function(event) {
 			})
 			socketConn.send(data);
 			document.getElementById('sponsorQuest').style.display = 'none';
+			serverMsg.value = "Doing AI stuff";
 		}
 	}
 

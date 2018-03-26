@@ -126,7 +126,8 @@ public class Player {
 		for (int i = 0; i < toRemove.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (toRemove.get(i).equals(this.getHand().get(j).getName())) {
-					logger.info("Player {} equipped {}", this.getName(), this.getHand().get(j).getName());
+					// logger.info("Player {} equipped {}", this.getName(),
+					// this.getHand().get(j).getName());
 					this.getHand().remove(j);
 					break;
 				}

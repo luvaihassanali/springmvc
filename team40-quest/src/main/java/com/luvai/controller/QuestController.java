@@ -90,6 +90,43 @@ public class QuestController extends SocketHandler {
 		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
 
+	public void initiateQuestAI(ArrayList<Card> aiQuestcards) {
+		ArrayList<String> cardToRemove = new ArrayList<String>();
+		for (int i = 0; i < aiQuestcards.size(); i++) {
+			cardToRemove.add(aiQuestcards.get(i).getName() + i);
+			// System.out.println(aiQuestcards.get(i).getName() + i);
+		}
+		for (int i = 0; i < aiQuestcards.size(); i++) {
+			if (aiQuestcards.get(i) instanceof FoeCard) {
+				FoeCard f = (FoeCard) aiQuestcards.get(i);
+				for (int j = 0; j < f.getWeapons().size(); j++) {
+					cardToRemove.add(f.getWeapons().get(j).getName() + i);
+					// System.out.println(f.getWeapons().get(j).getName() + i);
+				}
+			}
+
+		}
+		for (String s : cardToRemove) {
+			System.out.println(s);
+		}
+		String jsonOutput = "currentQuestInfo" + cardToRemove;
+		sendToAllSessions(gameEngine, jsonOutput);
+
+		for (Card c : aiQuestcards) {
+			if (c instanceof FoeCard)
+				QuestFoes.add((FoeCard) c);
+			if (c instanceof TestCard)
+				QuestTests.add((TestCard) c);
+		}
+		for (FoeCard f : QuestFoes) {
+			// System.out.println(f.getName());
+		}
+		for (TestCard c : QuestTests) {
+			// System.out.println(c.getName());
+		}
+		calculateFoeBattlePoints();
+	}
+
 	// initiate foes for current quest
 	public void initiateQuest(JsonObject json) {
 		JsonElement quest_cards = json.get("QuestSetupCards");

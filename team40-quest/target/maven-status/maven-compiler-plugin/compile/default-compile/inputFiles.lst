@@ -3,6 +3,7 @@
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/RankCard.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/AdventureCards/FoeCard.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/config/Initializer.java
+/home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/AdventureCards/AdventureCardComparator.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/Decks/StoryDeck.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/StoryCards/EventCard.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/config/SocketConfig.java
