@@ -385,7 +385,7 @@ public class SocketHandler extends TextWebSocketHandler {
 						}
 					}
 					System.out.println("just going to next p");
-					gameEngine.incTurn();
+
 					gameEngine.adventureDeck.flipCard();
 					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
 					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
