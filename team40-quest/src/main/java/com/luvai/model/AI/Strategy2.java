@@ -46,7 +46,9 @@ public class Strategy2 extends AbstractAI {
 	public AdventureCard[] getDiscardChoice(Player currentPlayer, int numDiscards) {
 		AdventureCard[] discards = new AdventureCard[numDiscards];
 		ArrayList<AdventureCard> toDiscard = new ArrayList<AdventureCard>();
-
+		System.out.println("DISCARDS" + numDiscards);
+		System.out.println(currentPlayer.getName());
+		System.out.println(currentPlayer.getHandSize());
 		for (AdventureCard a : currentPlayer.getHand()) {
 			if (toDiscard.size() == 2)
 				break;

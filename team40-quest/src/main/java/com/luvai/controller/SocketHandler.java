@@ -190,6 +190,8 @@ public class SocketHandler extends TextWebSocketHandler {
 						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
 						logger.info("No players participated, sponsor {} is replacing cards used to setup {} quest",
 								gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
+						if (gameEngine.getNextPlayer().isAI())
+							sendToNextPlayer(gameEngine, "undisableFlip");
 						String update = gameEngine.getPlayerStats();
 						sendToAllSessions(gameEngine, "updateStats" + update);
 						return;

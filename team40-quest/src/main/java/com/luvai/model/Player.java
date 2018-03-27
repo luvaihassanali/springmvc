@@ -154,6 +154,8 @@ public class Player {
 		ArrayList<String> names1 = new ArrayList<String>();
 		ArrayList<String> names2 = new ArrayList<String>();
 		ArrayList<String> names3 = new ArrayList<String>();
+		ArrayList<String> names4 = new ArrayList<String>();
+		ArrayList<String> names5 = new ArrayList<String>();
 
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).endsWith(Integer.toString(0))) {
@@ -197,6 +199,26 @@ public class Player {
 		for (int i = 0; i < names3.size(); i++) {
 			for (int j = 0; j < this.getHandSize(); j++) {
 				if (this.hand.get(j).getName().equals(names3.get(i))) {
+					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
+					this.hand.remove(j);
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < names4.size(); i++) {
+			for (int j = 0; j < this.getHandSize(); j++) {
+				if (this.hand.get(j).getName().equals(names4.get(i))) {
+					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
+					this.hand.remove(j);
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < names5.size(); i++) {
+			for (int j = 0; j < this.getHandSize(); j++) {
+				if (this.hand.get(j).getName().equals(names5.get(i))) {
 					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
 					this.hand.remove(j);
 					break;

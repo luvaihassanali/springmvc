@@ -39,6 +39,7 @@ public class AIController extends SocketHandler {
 		boolean sponsorAnswer = currentPlayer.getAI().doISponsorQuest();
 		if (sponsorAnswer) {
 			gameEngine.newQuest(gameEngine, currentPlayer, (QuestCard) gameEngine.storyDeck.faceUp);
+
 			currentPlayer.getAI().setupQuest();
 			sendToNextPlayer(gameEngine, "AskToParticipate");
 			gameEngine.incTurn();
@@ -63,6 +64,7 @@ public class AIController extends SocketHandler {
 	public void AIDiscard(JsonObject jsonObject) throws IOException {
 		int numCards = jsonObject.get("numCards").getAsInt();
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+
 		AdventureCard[] AIdiscard = currentPlayer.getAI().getDiscardChoice(currentPlayer, numCards);
 		// for (AdventureCard a : currentPlayer.getHand()) {
 		// System.out.println(a.getName());
@@ -78,7 +80,7 @@ public class AIController extends SocketHandler {
 		int value = rand.nextInt(2000 - 1000) + 1000;
 		System.out.println(value);
 		setTimeout(() -> {
-			System.out.println("test");
+			System.out.println("getting prosperity discards");
 		}, value);
 		currentPlayer.session.sendMessage(new TextMessage(message + discards));
 

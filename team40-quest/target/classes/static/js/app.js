@@ -619,6 +619,20 @@ function sponsorPickup(cards) {
 	cardTracker += numNewCards;
 	numCards = cardTracker;
 	// console.log(cardTracker);
+	if(isAI) {
+		var extra1 = document.getElementById("card1").src;
+		var extra2 = document.getElementById("card2").src;
+		var card1Src = extra1.replace('http://localhost:8080','');
+		var card2Src = extra2.replace('http://localhost:8080','');
+		card1Src = card1Src.split('%20').join(' ');
+		card2Src = card2Src.split('%20').join(' ');
+		var discardName1 = getNameFromLink(card1Src);
+		var discardName2 = getNameFromLink(card2Src);
+		var toRemove = discardName1 + ";" + discardName2 + ";null";
+		AIDiscard(toRemove);
+		return;
+
+	}
 	if (cardTracker > 12) {
 		var serverMsg = document.getElementById('serverMsg');
 		serverMsg.value += " Right click extra cards to continue (for discard) ";
@@ -1664,7 +1678,9 @@ function AIDiscard(cardNames) {
 			extra8ai ];
 	cardNames = cardNames.split(";");
 	cardNames.pop();
-
+	console.log(cardNames);
+	
+	console.log("ai discard 1672 changing num cards" + numCards);
 	for (var j = 0; j < cardNames.length; j++) {
 		for (var i = 0; i < imageArrayai.length; i++) {
 			var tempSrc = getLinkFromName(cardNames[j]);
