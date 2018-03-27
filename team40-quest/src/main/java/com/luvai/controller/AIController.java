@@ -78,9 +78,9 @@ public class AIController extends SocketHandler {
 			message += "Prosperity";
 		Random rand = new Random();
 		int value = rand.nextInt(2000 - 1000) + 1000;
-		System.out.println(value);
+
 		setTimeout(() -> {
-			System.out.println("getting prosperity discards");
+			// System.out.println("getting prosperity discards");
 		}, value);
 		currentPlayer.session.sendMessage(new TextMessage(message + discards));
 
@@ -125,7 +125,7 @@ public class AIController extends SocketHandler {
 				gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
 				return;
 			}
-			System.out.println(gameEngine.getActivePlayer().getName());
+			// System.out.println(gameEngine.getActivePlayer().getName());
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 		}
 	}

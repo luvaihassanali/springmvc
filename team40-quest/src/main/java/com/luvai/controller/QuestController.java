@@ -106,9 +106,13 @@ public class QuestController extends SocketHandler {
 			}
 
 		}
+		String logString = "";
 		for (String s : cardToRemove) {
-			System.out.println(s);
+			String str = s.substring(0, s.length() - 1);
+			logString += str + ", ";
 		}
+		logger.info("Player {} setup {} quest with {}", gameEngine.getActivePlayer().getName(),
+				gameEngine.storyDeck.faceUp.getName(), logString);
 		String jsonOutput = "currentQuestInfo" + cardToRemove;
 		sendToAllSessions(gameEngine, jsonOutput);
 
@@ -118,12 +122,7 @@ public class QuestController extends SocketHandler {
 			if (c instanceof TestCard)
 				QuestTests.add((TestCard) c);
 		}
-		for (FoeCard f : QuestFoes) {
-			// System.out.println(f.getName());
-		}
-		for (TestCard c : QuestTests) {
-			// System.out.println(c.getName());
-		}
+
 		calculateFoeBattlePoints();
 	}
 
@@ -177,8 +176,7 @@ public class QuestController extends SocketHandler {
 	public void calculatePlayerPoints() {
 		Player currentPlayer = gameEngine.getCurrentParticipant();
 		int tempPts = currentPlayer.getBattlePoints();
-		System.out.println(currentPlayer.getBattlePoints());
-		System.out.println(tempPts + "before battle stars");
+
 		String cardNames = "";
 		if (currentPlayer.getAmourCard() != null) {
 			tempPts += 10;
@@ -193,14 +191,14 @@ public class QuestController extends SocketHandler {
 			cardNames += a.getName() + "#";
 			// ally bonus points
 		}
-		System.out.println(tempPts);
+		// System.out.println(tempPts);
 		sendToAllSessions(gameEngine,
 				"currentPlayerPoints" + tempPts + ";" + currentPlayer.getRank().getName() + ";" + cardNames);
 		tempPts = 0;
 		currentPlayer.getWeapons().clear();
-		System.out.println(currentPlayer.getBattlePoints());
-		for (AdventureCard a : currentPlayer.getWeapons())
-			System.out.println(a.getName());
+		// System.out.println(currentPlayer.getBattlePoints());
+		// for (AdventureCard a : currentPlayer.getWeapons())
+		// System.out.println(a.getName());
 	}
 
 	public void calculateFoeBattlePoints() {

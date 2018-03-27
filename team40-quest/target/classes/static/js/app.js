@@ -630,6 +630,10 @@ function sponsorPickup(cards) {
 		var discardName2 = getNameFromLink(card2Src);
 		var toRemove = discardName1 + ";" + discardName2 + ";null";
 		AIDiscard(toRemove);
+		var data = JSON.stringify({
+			'incTurnRoundOver' : true
+		});
+		socketConn.send(data);
 		return;
 
 	}

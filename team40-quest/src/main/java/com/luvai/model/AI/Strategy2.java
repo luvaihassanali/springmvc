@@ -46,9 +46,7 @@ public class Strategy2 extends AbstractAI {
 	public AdventureCard[] getDiscardChoice(Player currentPlayer, int numDiscards) {
 		AdventureCard[] discards = new AdventureCard[numDiscards];
 		ArrayList<AdventureCard> toDiscard = new ArrayList<AdventureCard>();
-		System.out.println("DISCARDS" + numDiscards);
-		System.out.println(currentPlayer.getName());
-		System.out.println(currentPlayer.getHandSize());
+
 		for (AdventureCard a : currentPlayer.getHand()) {
 			if (toDiscard.size() == 2)
 				break;
@@ -128,13 +126,13 @@ public class Strategy2 extends AbstractAI {
 				}
 			}
 		}
-		for (FoeCard f : foeList) {
-			System.out.println(f.getName());
-		}
+		// for (FoeCard f : foeList) {
+		// System.out.println(f.getName());
+		// }
 		if (foeList.size() == 1)
 			foeTracker = 1;
 		if (foeList.size() == 2) {
-			System.out.println("here");
+			// System.out.println("here");
 			if (foeList.get(0).getBattlePoints() != foeList.get(1).getBattlePoints())
 				foeTracker = 2;
 		}
@@ -143,8 +141,8 @@ public class Strategy2 extends AbstractAI {
 				logger.info("Enough foes to sponsor quest if tests are used");
 				return true;
 			}
-			System.out.println(testList.size());
-			System.out.println(foeTracker);
+			// System.out.println(testList.size());
+			// System.out.println(foeTracker);
 			logger.info("Requirements to sponsor quest are not met");
 			logger.info("Player {} denied to sponsor quest {}", this.gameEngine.getActivePlayer().getName(),
 					this.gameEngine.storyDeck.faceUp.getName());
