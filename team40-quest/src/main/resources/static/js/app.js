@@ -536,7 +536,7 @@ function PickupCards(newCards) {
 
 			'doneEventProsperity' : 0
 		})
-		socketConn.send(data);
+		setTimeout(function(){ socketConn.send(data); }, 3000);
 	}
 
 }
@@ -676,13 +676,31 @@ function displayBattle(stage) {
 		var pPts = currentPlayerInfo.split(";");
 		pPts = pPts[0].replace(";","");
 		var foePts = FoeInfo.split("#");
+		console.log(foePts);
 		foePts = (foePts[stageCounter-1]);
+		console.log(foePts);
 		foePts = foePts.replace(";","");
+		console.log(foePts);
 		console.log(stageCounter);
-		console.log(parseInt(foePts));
-		console.log(parseInt(pPts));
+		var finalFP = parseInt(foePts);
+		var finalPP = parseInt(pPts);
+		console.log(finalPP);
+		console.log(finalFP);
+		console.log(isNaN(finalFP));
+		if(isNaN(finalFP)) {
+			console.log("isNan");
+			
+			foePts = FoeInfo.split("#");
+			console.log(foePts);
+			console.log(stageCounter);
+			foePts = (foePts[stageCounter]);
+			foePts = foePts.replace(";","");
+			finalFP = parseInt(foePts);
+		}
+		console.log(finalPP);
+		console.log(finalFP);
 		var battleResult = false;
-		if(parseInt(pPts)>=parseInt(foePts)) battleResult = true;
+		if(finalPP>=finalFP) battleResult = true;
 
 		var datab = JSON.stringify({
 			'nextQuestTurn' : battleResult,
