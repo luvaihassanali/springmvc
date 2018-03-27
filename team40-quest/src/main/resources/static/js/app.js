@@ -676,7 +676,7 @@ function displayBattle(stage) {
 		var pPts = currentPlayerInfo.split(";");
 		pPts = pPts[0].replace(";","");
 		var foePts = FoeInfo.split("#");
-		foePts = (foePts[stageCounter]);
+		foePts = (foePts[stageCounter-1]);
 		foePts = foePts.replace(";","");
 		console.log(stageCounter);
 		console.log(parseInt(foePts));

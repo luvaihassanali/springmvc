@@ -1,6 +1,7 @@
 package com.luvai.model.AI;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -165,6 +166,8 @@ public class Strategy2 extends AbstractAI {
 		int remainingStages = 0;
 		ArrayList<Card> finalQuestSetup = new ArrayList<Card>();
 		TestCard testCard = null;
+		logger.info("{} setting up {} quest ensuring last stage battle has at least 40 points", currentPlayer.getName(),
+				current_quest.getName());
 		FoeCard topFoe = foeList.get(foeList.size() - 1);
 		if (weaponsList.isEmpty()) {
 			logger.info("No available weapons for foe to equip");
@@ -182,14 +185,23 @@ public class Strategy2 extends AbstractAI {
 			finalQuestSetup.add(testCard);
 		}
 		if (testCard == null) {
+			logger.info("Player {} has no tests to use for 2nd last stage of {} quest setup", currentPlayer.getName(),
+					current_quest.getName());
 			remainingStages = totalStages - 1;
 		} else {
+			logger.info("Player {} used test for 2nd last stage of {} quest setup", currentPlayer.getName(),
+					current_quest.getName());
 			remainingStages = totalStages - 2;
+		}
+		if (remainingStages == 0) {
+			logger.info("No more stages to set");
+		} else {
+			logger.info("Setting remaning stages to low point foes with no weapons");
 		}
 		for (int i = 0; i < remainingStages; i++) {
 			finalQuestSetup.add(foeList.get(i));
 		}
-
+		Collections.reverse(finalQuestSetup);
 		this.gameEngine.current_quest.initiateQuestAI(finalQuestSetup);
 	}
 } // end of class

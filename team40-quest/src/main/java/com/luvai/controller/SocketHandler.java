@@ -465,12 +465,12 @@ public class SocketHandler extends TextWebSocketHandler {
 					if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)
 							&& gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest
 									.getStages()) {
-						System.out.println("test winning if next player is first player and c stage > q stage");
+
 						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
 						sendToAllSessions(gameEngine, "incStage");
 						gameEngine.current_quest.currentStage++;
 						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-							System.out.println("in dis one");
+
 							Winning();
 							return;
 						}

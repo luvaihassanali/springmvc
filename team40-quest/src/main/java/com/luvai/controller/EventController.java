@@ -19,13 +19,14 @@ public class EventController extends SocketHandler {
 	Game gameEngine;
 	Player current_player;
 	EventCard eventCard;
-	int prosperityTracker = 0;
+	int prosperityTracker;
 
 	public EventController(Game g, Player p, EventCard e) throws IOException {
 		gameEngine = g;
 		current_player = p;
 		eventCard = e;
 		executeEvent();
+		prosperityTracker = 0;
 	}
 
 	public void executeEvent() throws IOException {
@@ -105,8 +106,5 @@ public class EventController extends SocketHandler {
 			temp = "";
 			logger.info("Player {} picked up {} and {}", p.getName(), newCard.getName(), newCard2.getName());
 		}
-		String update = gameEngine.getPlayerStats();
-		sendToAllSessions(gameEngine, "updateStats" + update);
-
 	}
 }
