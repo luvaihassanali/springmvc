@@ -257,5 +257,16 @@ public class Strategy2 extends AbstractAI {
 		}
 		Collections.reverse(finalQuestSetup);
 		this.gameEngine.current_quest.initiateQuestAI(finalQuestSetup);
+		// System.out.println("Discard ai sponsor here");
+		for (Card c : finalQuestSetup) {
+			// System.out.println(c.getName());
+			currentPlayer.discard(c.getName());
+			if (c instanceof FoeCard) {
+				for (WeaponCard w : ((FoeCard) c).getWeapons()) {
+					// System.out.println(w.getName());
+					currentPlayer.discard(w.getName());
+				}
+			}
+		}
 	}
 } // end of class

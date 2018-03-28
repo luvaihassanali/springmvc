@@ -5,10 +5,15 @@ import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.luvai.controller.AIController;
 import com.luvai.controller.EventController;
 import com.luvai.controller.QuestController;
+import com.luvai.controller.SocketHandler;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.Decks.AdventureDeck;
 import com.luvai.model.Decks.StoryDeck;
@@ -26,6 +31,7 @@ public class Game {
 	public EventController current_event;
 	public AIController AIController;
 	public Player roundInitiater;
+	public int riggedGame = 0;
 
 	public Game() {
 		logger.info("\n\n\n\n ****************************** Initialising new game ********************************");
@@ -177,6 +183,64 @@ public class Game {
 		}
 
 		return temp;
+	}
+
+	public void setupNewPlayer(JsonObject jsonObject, WebSocketSession session) throws IOException {
+		JsonElement playerName = jsonObject.get("newName");
+		Player newPlayer = new Player(playerName.getAsString(), session);
+		this.players.add(newPlayer);
+		logger.info("Player {} is enrolled in the game", playerName.getAsString());
+		if (this.players.size() == 4) {
+			SocketHandler.sendToAllSessions(this, "GameReadyToStart");
+			logger.info("All players have joined, starting game...");
+			if (riggedGame != 0) {
+				if (riggedGame == 42) {
+					this.players.get(0).setHand(this.mockHand1); // pickUpNewHand()
+					this.players.get(1).setHand(this.mockHand2);
+					this.players.get(2).setHand(this.mockHand3);
+					this.players.get(3).setHand(this.mockHand4);
+				}
+			} else {
+				for (Player p : this.players) {
+					p.pickupNewHand(this.adventureDeck);
+				}
+			}
+			for (Player p : this.players) {
+				p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+			}
+
+			SocketHandler.flipStoryCard();
+			String temp = this.getPlayerStats();
+			SocketHandler.sendToAllSessions(this, "updateStats" + temp);
+
+		}
+	}
+
+	public void getSponsor(JsonObject jsonObject) throws IOException {
+		JsonElement sponsor_quest_answer = jsonObject.get("sponsor_quest");
+		JsonElement name = jsonObject.get("name");
+		if (sponsor_quest_answer.getAsBoolean()) {
+			logger.info("{} accepted to sponsor quest {}", name.getAsString(), this.storyDeck.faceUp.getName());
+			this.newQuest(this, this.getActivePlayer(), (QuestCard) this.storyDeck.faceUp);
+		} else {
+			logger.info("{} declined to sponsor quest {}", name.getAsString(), this.storyDeck.faceUp.getName());
+			this.incTurn();
+			if (this.getActivePlayer().equals(this.roundInitiater)) {
+				SocketHandler.sendToAllSessions(this, "NoSponsors");
+				logger.info("No players chose to sponsor {} quest", this.storyDeck.faceUp.getName());
+				this.incTurn();
+				this.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+				return;
+			}
+			this.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
+		}
+
+	}
+
+	public void updateStats() {
+		String update = this.getPlayerStats();
+		SocketHandler.sendToAllSessions(this, "updateStats" + update);
+
 	}
 
 }

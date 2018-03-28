@@ -1,7 +1,6 @@
 package com.luvai.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -13,12 +12,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -35,7 +30,6 @@ public class SocketHandler extends TextWebSocketHandler {
 	public static Game gameEngine = new Game();
 	public static boolean rankSet = true;
 	public String BattleInformation = "";
-	public int riggedGame = 0;
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
@@ -43,172 +37,29 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		JsonObject jsonObject = (new JsonParser()).parse(message.getPayload()).getAsJsonObject();
 
-		// wildcardstage inc
-		if (jsonObject.has("wildCardStageInc")) {
-			gameEngine.current_quest.currentStage++;
-		}
 		// send ai to controller
 		if (jsonObject.has("AICommand")) {
 			gameEngine.AIController.receiveAICommand(jsonObject);
 		}
 		// get player name and set up game players
 		if (jsonObject.has("newName")) {
-			JsonElement playerName = jsonObject.get("newName");
-			Player newPlayer = new Player(playerName.getAsString(), session);
-			gameEngine.players.add(newPlayer);
-			logger.info("Player {} is enrolled in the game", playerName.getAsString());
-			if (gameEngine.players.size() == 4) {
-				sendToAllSessions(gameEngine, "GameReadyToStart");
-				logger.info("All players have joined, starting game...");
-				if (riggedGame != 0) {
-					if (riggedGame == 42) {
-						gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
-						gameEngine.players.get(1).setHand(gameEngine.mockHand2);
-						gameEngine.players.get(2).setHand(gameEngine.mockHand3);
-						gameEngine.players.get(3).setHand(gameEngine.mockHand4);
-					}
-				} else {
-					for (Player p : gameEngine.players) {
-						p.pickupNewHand(gameEngine.adventureDeck);
-					}
-				}
-				for (Player p : gameEngine.players) {
-					p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
-				}
-
-				flipStoryCard();
-
-			}
+			gameEngine.setupNewPlayer(jsonObject, session);
 		}
 		// sponsoring quuest
 		if (jsonObject.has("sponsor_quest")) {
-			JsonElement sponsor_quest_answer = jsonObject.get("sponsor_quest");
-			JsonElement name = jsonObject.get("name");
-			if (sponsor_quest_answer.getAsBoolean()) {
-				logger.info("{} accepted to sponsor quest {}", name.getAsString(),
-						gameEngine.storyDeck.faceUp.getName());
-				gameEngine.newQuest(gameEngine, gameEngine.getActivePlayer(), (QuestCard) gameEngine.storyDeck.faceUp);
-
-			} else {
-				logger.info("{} declined to sponsor quest {}", name.getAsString(),
-						gameEngine.storyDeck.faceUp.getName());
-				gameEngine.incTurn();
-				if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
-					sendToAllSessions(gameEngine, "NoSponsors");
-					logger.info("No players chose to sponsor {} quest", gameEngine.storyDeck.faceUp.getName());
-					gameEngine.incTurn();
-					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
-					return;
-				}
-				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
-			}
+			gameEngine.getSponsor(jsonObject);
 		}
 
 		// json for quest setup info from sponsor
-		if (jsonObject.has("QuestSetupCards")) {
-			ArrayList<String> cardToRemove = new ArrayList<String>();
-			JsonElement Foes = jsonObject.get("QuestSetupCards");
-			Type listType = new TypeToken<List<String>>() {
-			}.getType();
-			List<String> foeList = new Gson().fromJson(Foes, listType);
-			int tracker = 0;
-			for (String i : foeList) {
-				cardToRemove.add(i + tracker);
-				tracker++;
-			}
-			tracker = 0;
-			JsonArray foeWeapons = (JsonArray) jsonObject.get("weapons");
-			for (int i = 0; i < foeWeapons.size(); i++) {
-				JsonArray temp = (JsonArray) foeWeapons.get(i);
-				for (int j = 0; j < temp.size(); j++) {
-					cardToRemove.add(temp.get(j).getAsString() + i);
-					// System.out.println(temp.get(j).getAsString());
-				}
-
-			}
-			for (int i = 0; i < cardToRemove.size(); i++) {
-				// System.out.println(cardToRemove.get(i));
-			}
-			String jsonOutput = "currentQuestInfo" + cardToRemove;
-			sendToAllSessions(gameEngine, jsonOutput);
-			gameEngine.current_quest.initiateQuest(jsonObject);
-			// logger
-			sendToNextPlayer(gameEngine, "AskToParticipate");
-			gameEngine.incTurn();
-			gameEngine.current_quest.sponsor.discardSponsor(cardToRemove);
-			String update = gameEngine.getPlayerStats();
-			sendToAllSessions(gameEngine, "updateStats" + update);
-			return;
-			/*
-			
-			logger.info("Player {} has setup {} quest with foes: {} and weapons: {}",
-					gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(),
-					jsonObject.get("QuestSetupCards"), jsonObject.get("weapons"));
-			*/
+		if (jsonObject.has("questSetupCards")) {
+			sendToAllSessionsExceptCurrent(gameEngine, session,
+					"questSetupCards" + jsonObject.get("questSetupCards").toString());
+			gameEngine.current_quest.parseQuestInfo(jsonObject);
 		}
 
 		// json for accepting/decline participating in quest
 		if (jsonObject.has("participate_quest")) {
-			JsonElement participate_quest_answer = jsonObject.get("participate_quest");
-			JsonElement name = jsonObject.get("name");
-
-			if (participate_quest_answer.getAsBoolean()) {
-				logger.info("Player {} accepted to participate in {} quest sponsored by {}", name.getAsString(),
-						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
-				gameEngine.current_quest.participants.add(gameEngine.getActivePlayer());
-				if (gameEngine.current_quest.participants.size() == 1) {
-					gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
-				}
-				gameEngine.incTurn();
-				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
-					gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
-					gameEngine.getActivePlayer().session.sendMessage(new TextMessage("ReadyToStartQuest"));
-					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
-					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-					gameEngine.getCurrentParticipant().session
-							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-					String update = gameEngine.getPlayerStats();
-					sendToAllSessions(gameEngine, "updateStats" + update);
-					return;
-				}
-				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
-			} else {
-				logger.info("Player {} denied to participate in {} quest sponsored by {}", name.getAsString(),
-						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
-				gameEngine.incTurn();
-				if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
-					gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
-					if (gameEngine.current_quest.participants.size() == 0) {
-
-						sendToAllSessions(gameEngine, "NoParticipants");
-						String temp = "";
-						for (int i = gameEngine.getActivePlayer().getHandSize(); i < 12
-								+ gameEngine.current_quest.currentQuest.getStages(); i++) {
-							AdventureCard newCard = gameEngine.adventureDeck.flipCard();
-							temp += newCard.getStringFile() + ";";
-							gameEngine.getActivePlayer().getHand().add(newCard);
-						}
-						gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
-						logger.info("No players participated, sponsor {} is replacing cards used to setup {} quest",
-								gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
-						if (gameEngine.getNextPlayer().isAI())
-							sendToNextPlayer(gameEngine, "undisableFlip");
-						String update = gameEngine.getPlayerStats();
-						sendToAllSessions(gameEngine, "updateStats" + update);
-						return;
-					}
-					gameEngine.adventureDeck.flipCard();
-					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-					gameEngine.getCurrentParticipant().session
-							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-					gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
-					return;
-				}
-				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
-			}
+			gameEngine.current_quest.getNewParticipants(jsonObject, session);
 		}
 
 		if (jsonObject.has("flipStoryDeck")) {
@@ -222,291 +73,31 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for getting participants battle equipment
 		if (jsonObject.has("equipment_info")) {
-			String temp = gameEngine.getPlayerStats();
-			sendToAllSessions(gameEngine, "updateStats" + temp);
-			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
-			sendToAllSessions(gameEngine, jsonOutput);
-			logger.info("Player {} chose {} to use for stage {} of {} quest", jsonObject.get("name"),
-					jsonObject.get("equipment_info"), jsonObject.get("stages"), gameEngine.storyDeck.faceUp.getName());
-			if (jsonObject.has("isTest")) {
-				// System.out.println("do something with test stuff");
-				gameEngine.current_quest.placeBids(jsonObject);
-				// System.out.println(jsonObject.get("equipment_info"));
-
-			} else {
-				gameEngine.current_quest.equipPlayer(jsonObject);
-			}
-
-			String update = gameEngine.getPlayerStats();
-			sendToAllSessions(gameEngine, "updateStats" + update);
-			return;
+			gameEngine.current_quest.parseEquipmentInfo(jsonObject);
 		}
 
 		if (jsonObject.has("nextQuestTurn")) {
-			// if no participants end quest
-
-			// `System.out.println(jsonObject.toString());
-
-			if (jsonObject.get("type").getAsString().equals("Foe")) {
-				if (gameEngine.getCurrentParticipant().getWeapons().size() != 0) {
-					logger.info("Player {} is unequipping {} used during battle",
-							gameEngine.getCurrentParticipant().getName(),
-							gameEngine.getCurrentParticipant().getWeapons().toString());
-					gameEngine.getCurrentParticipant().getWeapons().clear();
-				}
-				boolean BattleResult = jsonObject.get("nextQuestTurn").getAsBoolean();
-				if (BattleResult == false) {
-					String update = gameEngine.getPlayerStats();
-					sendToAllSessions(gameEngine, "updateStats" + update);
-					logger.info("Player {} was defeated in {} quest battle",
-							gameEngine.current_quest.getCurrentParticipant().getName(),
-							gameEngine.storyDeck.faceUp.getName());
-
-					if (gameEngine.current_quest.getNextParticipant()
-							.equals(gameEngine.current_quest.firstQuestPlayer)) {
-						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
-						sendToAllSessions(gameEngine, "incStage");
-						gameEngine.current_quest.currentStage++;
-						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-							gameEngine.current_quest.participants
-									.remove(gameEngine.current_quest.getCurrentParticipant());
-
-							Winning();
-							return;
-						}
-					}
-					if (gameEngine.current_quest.getCurrentParticipant()
-							.equals(gameEngine.current_quest.firstQuestPlayer)) {
-						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
-						gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
-						if (gameEngine.current_quest.participants.isEmpty()) {
-							Losing();
-							return;
-						}
-
-						gameEngine.adventureDeck.flipCard();
-						gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-						String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-						gameEngine.current_quest.getCurrentParticipant().session
-								.sendMessage(new TextMessage("Choose equipment"));
-						gameEngine.current_quest.getCurrentParticipant().session
-								.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-						return;
-
-					}
-					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
-				}
-				if (gameEngine.current_quest.participants.size() == 0) {
-					Losing();
-					return;
-				}
-
-				if (BattleResult == true) {
-					String update = gameEngine.getPlayerStats();
-					sendToAllSessions(gameEngine, "updateStats" + update);
-					logger.info("Player {} was victorious in {} quest battle",
-							gameEngine.current_quest.getCurrentParticipant().getName(),
-							gameEngine.storyDeck.faceUp.getName());
-					gameEngine.getCurrentParticipant().getWeapons().clear();
-					if (gameEngine.current_quest.participants.size() == 1) {
-						sendToAllSessions(gameEngine, "incStage");
-						gameEngine.current_quest.currentStage++;
-						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-							Winning();
-							return;
-						}
-						gameEngine.adventureDeck.flipCard();
-						gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-						String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-						gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-						gameEngine.getCurrentParticipant().session
-								.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-						return;
-					}
-
-					if (gameEngine.current_quest.getNextParticipant()
-							.equals(gameEngine.current_quest.firstQuestPlayer)) {
-						sendToAllSessions(gameEngine, "incStage");
-						gameEngine.current_quest.currentStage++;
-						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-							Winning();
-							return;
-						}
-					}
-					gameEngine.current_quest.incTurn();
-
-				}
-
-				gameEngine.adventureDeck.flipCard();
-				gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-				String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-				gameEngine.getCurrentParticipant().session
-						.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-				return;
-			}
-
-			if (jsonObject.get("type").getAsString().equals("Test")) {
-				boolean TestResult = jsonObject.get("nextQuestTurn").getAsBoolean();
-				if (TestResult == false) {
-					String update = gameEngine.getPlayerStats();
-					sendToAllSessions(gameEngine, "updateStats" + update);
-					logger.info("Player {} dropped out of test from {} quest ",
-							gameEngine.current_quest.getCurrentParticipant().getName(),
-							gameEngine.storyDeck.faceUp.getName());
-					String temp = gameEngine.getPlayerStats();
-					sendToAllSessions(gameEngine, "updateStats" + temp);
-					boolean doNotIncStage = (gameEngine.current_quest.getCurrentParticipant()
-							.equals(gameEngine.current_quest.firstQuestPlayer));
-					if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages() - 1
-							&& gameEngine.current_quest.currentStage != 1)
-						doNotIncStage = false;
-					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
-					sendToCurrentParticipant(gameEngine, "this");
-					if (gameEngine.current_quest.participants.isEmpty()) {
-						System.out.println("is empty");
-						Losing();
-						return;
-					}
-
-					if (gameEngine.current_quest.participants.size() == 1) {
-						System.out.println("one left");
-						if (gameEngine.current_quest.currentQuest
-								.getStages() != gameEngine.current_quest.currentStage) {
-							System.out.println("not at stage yet");
-							System.out.println(doNotIncStage);
-							if (doNotIncStage) {
-								System.out.println(gameEngine.current_quest.currentStage);
-								System.out.println(gameEngine.current_quest.currentQuest.getStages());
-								System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
-								System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
-
-							} else {
-								System.out.println(gameEngine.current_quest.currentStage);
-								System.out.println(gameEngine.current_quest.currentQuest.getStages());
-								System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
-								System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
-								sendToAllSessions(gameEngine, "incStage");
-								gameEngine.current_quest.currentStage++;
-							}
-							gameEngine.adventureDeck.flipCard();
-							gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-							String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-							gameEngine.current_quest.getCurrentParticipant().session
-									.sendMessage(new TextMessage("Choose equipment"));
-							gameEngine.current_quest.getCurrentParticipant().session
-									.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-							return;
-						} else {
-							System.out.println("winning");
-							Winning();
-							return;
-						}
-					}
-					System.out.println("just going to next p");
-
-					gameEngine.adventureDeck.flipCard();
-					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("Choose equipment"));
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-					return;
-				}
-
-				if (gameEngine.current_quest.participants.size() == 0) {
-					Losing();
-					return;
-				}
-
-				if (TestResult) {
-					if (gameEngine.current_quest.participants.size() == 1) {
-						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-							System.out.println("log - player beat test");
-							Winning();
-							return;
-						}
-						sendToAllSessions(gameEngine, "incStage");
-
-						gameEngine.current_quest.currentStage++;
-						gameEngine.getCurrentParticipant().discardPlayer(gameEngine.current_quest.toDiscardAfterTest);
-						String temp = gameEngine.getPlayerStats();
-						sendToAllSessions(gameEngine, "updateStats" + temp);
-
-					}
-
-					gameEngine.current_quest.incTurn();
-					gameEngine.getCurrentParticipant().session
-							.sendMessage(new TextMessage("updateMinBid" + gameEngine.current_quest.currentMinBid));
-
-					gameEngine.adventureDeck.flipCard();
-					gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
-					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("Choose equipment"));
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-
-					if (gameEngine.current_quest.getNextParticipant().equals(gameEngine.current_quest.firstQuestPlayer)
-							&& gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest
-									.getStages()) {
-
-						gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getNextParticipant();
-						sendToAllSessions(gameEngine, "incStage");
-						gameEngine.current_quest.currentStage++;
-						if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
-
-							Winning();
-							return;
-						}
-					}
-					return;
-				}
-
-			}
+			gameEngine.current_quest.goToNextTurn(jsonObject);
 		}
 
 		// done events
 
-		if (jsonObject.has("doneEventProsperity"))
-
-		{
-			System.out.println(gameEngine.current_event.eventCard.getName());
-			System.out.println(gameEngine.current_event.prosperityTracker);
-
-			gameEngine.current_event.prosperityTracker++;
-			if (gameEngine.current_event.prosperityTracker == 4) {
-				logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
-				gameEngine.current_event.prosperityTracker = 0;
-				gameEngine.incTurn();
-				// System.out.println("Should undisable line 338");
-				gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
-			}
-
+		if (jsonObject.has("doneEventProsperity")) {
+			gameEngine.AIController.doneProsperity();
 		}
 		// rigged game
 		if (jsonObject.has("riggedGame")) {
 			int version = jsonObject.get("riggedGame").getAsInt();
 			if (version == 42) {
 				logger.info("Setting up rigged game");
-				riggedGame = 42;
-				gameEngine.storyDeck.initRiggedStoryDeck(riggedGame);
+				gameEngine.riggedGame = 42;
+				gameEngine.storyDeck.initRiggedStoryDeck(gameEngine.riggedGame);
 			}
 
 		}
 		// print all gameEngine players for requested client
 		if (jsonObject.has("print")) {
-			session.sendMessage(new TextMessage("All players:\n"));
-			String clientsString = "clientsString";
-			for (Player p : gameEngine.players) {
-				clientsString += "ID: " + p.id + " Name: " + p.getName() + "\n";
-			}
-			session.sendMessage(new TextMessage(clientsString));
+			printPlayers(session);
 		}
 		// discard
 
@@ -518,61 +109,48 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// validation of connection and decks
 		if (jsonObject.has("proof")) {
-			//
-			logger.info("ADVENTURE DECK PROOF:");
-			int i = 1;
-			for (AdventureCard a : gameEngine.adventureDeck.cards) {
-				logger.info("{}. {}", i, a.getName());
-				i++;
-			}
-			//
-			logger.info("STORY DECK PROOF:");
-			int j = 1;
-			for (StoryCard s : gameEngine.storyDeck.cards) {
-				logger.info("{}. {}", j, s.getName());
-				j++;
-			}
-
-			// output player name in console
-			if (getPlayerFromSession(session) == null) {
-			} else {
-				getPlayerFromSession(session).session
-						.sendMessage(new TextMessage("You are " + getPlayerFromSession(session).getName()));
-			}
-		} // validation of decks
+			validateDecks(session);
+		}
 
 		// getting ai player
 		if (jsonObject.has("AI")) {
-			JsonElement playerName = jsonObject.get("AI");
-			Player newPlayer = new Player(playerName.getAsString(), session, 2);
-			gameEngine.players.add(newPlayer);
-			logger.info("Player {} is enrolled in the game", playerName.getAsString());
-			if (gameEngine.players.size() == 4) {
-				sendToAllSessions(gameEngine, "GameReadyToStart");
-				logger.info("All players have joined, starting game...");
-				if (riggedGame != 0) {
-					if (riggedGame == 42) {
-						gameEngine.players.get(0).setHand(gameEngine.mockHand1); // pickUpNewHand()
-						gameEngine.players.get(1).setHand(gameEngine.mockHand2);
-						gameEngine.players.get(2).setHand(gameEngine.mockHand3);
-						gameEngine.players.get(3).setHand(gameEngine.mockHand4);
-
-					}
-				} else {
-					for (Player p : gameEngine.players) {
-						p.pickupNewHand(gameEngine.adventureDeck);
-					}
-				}
-				for (Player p : gameEngine.players) {
-					p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
-				}
-
-				flipStoryCard();
-				String temp = gameEngine.getPlayerStats();
-				sendToAllSessions(gameEngine, "updateStats" + temp);
-
-			}
+			gameEngine.AIController.setupNewAIPlayer(jsonObject, session);
 		}
+	}
+
+	private void printPlayers(WebSocketSession session) throws IOException {
+		session.sendMessage(new TextMessage("All players:\n"));
+		String clientsString = "clientsString";
+		for (Player p : gameEngine.players) {
+			clientsString += "ID: " + p.id + " Name: " + p.getName() + "\n";
+		}
+		session.sendMessage(new TextMessage(clientsString));
+
+	}
+
+	private void validateDecks(WebSocketSession session) throws IOException {
+
+		logger.info("ADVENTURE DECK PROOF:");
+		int i = 1;
+		for (AdventureCard a : gameEngine.adventureDeck.cards) {
+			logger.info("{}. {}", i, a.getName());
+			i++;
+		}
+		//
+		logger.info("STORY DECK PROOF:");
+		int j = 1;
+		for (StoryCard s : gameEngine.storyDeck.cards) {
+			logger.info("{}. {}", j, s.getName());
+			j++;
+		}
+
+		// output player name in console
+		if (getPlayerFromSession(session) == null) {
+		} else {
+			getPlayerFromSession(session).session
+					.sendMessage(new TextMessage("You are " + getPlayerFromSession(session).getName()));
+		}
+
 	}
 
 	public void Winning() throws IOException {
@@ -599,7 +177,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
 							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
 					logger.info("Giving shields to {}", gameEngine.current_quest.participants.get(j).getName());
-					System.out.println(gameEngine.current_quest.participants.get(j).getHandSize());
+					// System.out.println(gameEngine.current_quest.participants.get(j).getHandSize());
 					// for (Player p : gameEngine.players) {
 					// p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
 					// System.out.println(p.getHandString());
@@ -630,8 +208,7 @@ public class SocketHandler extends TextWebSocketHandler {
 									.sendMessage(new TextMessage("SponsorPickup" + temp));
 							cardTracker = 0;
 							sendOnce = false;
-							String update = gameEngine.getPlayerStats();
-							sendToAllSessions(gameEngine, "updateStats" + update);
+							gameEngine.updateStats();
 							for (Player p : gameEngine.players) {
 								AdventureCard amour = p.getAmourCard();
 								if (amour == null) {
@@ -687,9 +264,8 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	// flip story deck
 
-	public void flipStoryCard() throws IOException {
-		String update = gameEngine.getPlayerStats();
-		sendToAllSessions(gameEngine, "updateStats" + update);
+	public static void flipStoryCard() throws IOException {
+		gameEngine.updateStats();
 		gameEngine.storyDeck.flipCard();
 
 		logger.info("Player {} is flipping new card from story deck: {}", gameEngine.getActivePlayer().getName(),
@@ -704,8 +280,6 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		if (gameEngine.storyDeck.faceUp instanceof EventCard) {
 			gameEngine.newEvent(gameEngine, gameEngine.getActivePlayer(), (EventCard) gameEngine.storyDeck.faceUp);
-			update = gameEngine.getPlayerStats();
-			sendToAllSessions(gameEngine, "updateStats" + update);
 		}
 	}
 
@@ -728,8 +302,14 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 	}
 
+	// send to current active player
+	public static void sendToActivePlayer(Game gameEngine, String message) throws IOException {
+		Player temp = gameEngine.getActivePlayer();
+		temp.session.sendMessage(new TextMessage(message));
+	}
+
 	// send message to all players
-	public void sendToAllSessions(Game gameEngine, String message) {
+	public static void sendToAllSessions(Game gameEngine, String message) {
 		for (Player p : gameEngine.players) {
 			try {
 				p.session.sendMessage(new TextMessage(message));
@@ -749,6 +329,39 @@ public class SocketHandler extends TextWebSocketHandler {
 		return null;
 	}
 
+	// send to non participants
+	public void sendToNonParticipants(Game gameEngine, String message) throws IOException {
+		ArrayList<Player> temp = new ArrayList<Player>();
+		for (int i = 0; i < gameEngine.players.size(); i++) {
+			temp.add(gameEngine.players.get(i));
+		}
+		for (int i = 0; i < temp.size(); i++) {
+			if (temp.get(i).equals(gameEngine.current_quest.sponsor))
+				temp.remove(i);
+		}
+		for (int i = 0; i < temp.size(); i++) {
+			for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
+				if (temp.get(i).equals(gameEngine.current_quest.participants.get(j)))
+					temp.remove(i);
+				if (temp.isEmpty())
+					return;
+			}
+		}
+
+		for (int i = 0; i < temp.size(); i++) {
+			System.out.println(temp.get(i).getName());
+			temp.get(i).session.sendMessage(new TextMessage(message));
+		}
+
+	}
+
+	// send to all participants
+	public void sendToAllParticipants(Game gameEngine, String message) throws IOException {
+		for (Player p : gameEngine.current_quest.participants) {
+			p.session.sendMessage(new TextMessage(message));
+		}
+	}
+
 	// send to current participant
 	public void sendToCurrentParticipant(Game gameEngine, String message) throws IOException {
 		Player player = gameEngine.current_quest.getCurrentParticipant();
@@ -758,6 +371,11 @@ public class SocketHandler extends TextWebSocketHandler {
 	// send to next participant
 	public void sendToNextParticipant(Game gameEngine, String message) throws IOException {
 		Player player = gameEngine.current_quest.getNextParticipant();
+		player.session.sendMessage(new TextMessage(message));
+	}
+
+	public void sendToSponsor(Game gameEngine, String message) throws IOException {
+		Player player = gameEngine.current_quest.sponsor;
 		player.session.sendMessage(new TextMessage(message));
 	}
 

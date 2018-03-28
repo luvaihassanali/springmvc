@@ -125,7 +125,7 @@ public class CardList {
 	public static String excaliburImage = "/resources/images/W Excalibur.jpg";
 	public static String robberKnightImage = "/resources/images/F Robber Knight.jpg";
 	public static String saxonsImage = "/resources/images/F Saxons.jpg";
-	public static String boarImage = "/resources/images/F%20Boar.jpg";
+	public static String boarImage = "/resources/images/F Boar.jpg";
 	public static String thievesImage = "/resources/images/F Thieves.jpg";
 	public static String greenKnightImage = "/resources/images/F Green Knight.jpg";
 	public static String blackKnightImage = "/resources/images/F Black Knight.jpg";

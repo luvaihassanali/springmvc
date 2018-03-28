@@ -4,17 +4,17 @@ var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
 var storyCardFaceUp;
-var stageCounter = 1;
 var stageTracker = 0;
-var foes = [];
+var totalStages;
+var questSetupCards = [];
 var weapons = [];
-var tempWeaponArr = [];
-var tempWeaponArr2 = [];
-var tempBidArr = [];
+var battleEquipment = [];
+var questStagesArray = [];
+var testBids = [];
 var questInfo;
+var foeInfo;
 var participantInfo;
-var FoeInfo = "";
-var TestInfo = "";
+var testInfo;
 var roundInitiater = "";
 var initSet = false;
 var currentPlayerInfo = "";
@@ -31,430 +31,15 @@ var minBid = 0;
 var testResult = false;
 var testTracker = 0;
 var wildCardStageInc = false;
+var serverMsg = document.getElementById('serverMsg');
 // when connection is initiated
-socketConn.onopen = function(event) {
+socketConn.onopen = function(event) {};
 
-};
+var handCardID;
+var handCardSRC;
 
-// messages from server received here
-socketConn.onmessage = function(event) {
-
-	var serverMsg = document.getElementById('serverMsg');
-
-	// undisable flip button
-	if (event.data.startsWith("AI")) {
-		parseAICommand(event.data);
-	}
-
-	if (event.data == "undisableFlip") {
-		document.getElementById('flip').disabled = false;
-		serverMsg.value = "It's your turn, press flip story deck button to continue"
-		if (isAI == true) {
-			document.getElementById('flip').click();
-		}
-	}
-	// ask to sponsor quest
-	if (event.data === "sponsorQuest") {
-		document.getElementById('sponsorQuest').style.display = 'block';
-		serverMsg.value = "Click to answer below"
-		if (isAI) {
-			var data = JSON.stringify({
-				'AICommand' : "SponsorQuest",
-				'name' : PlayerName
-			})
-			socketConn.send(data);
-			document.getElementById('sponsorQuest').style.display = 'none';
-			serverMsg.value = "Doing AI stuff";
-		}
-	}
-
-	// get current quest info
-	if (event.data.startsWith("currentQuestInfo")) {
-		questInfo = event.data.replace("currentQuestInfo", "");
-		// questInfo = JSON.parse(questInfo);
-		questInfo = questInfo.split(",");
-		questInfo[0] = questInfo[0].replace("[", "");
-		questInfo[questInfo.length - 1] = questInfo[questInfo.length - 1]
-				.replace("]", "");
-		console.log(questInfo);
-	}
-
-	// participation in quest question
-	if (event.data == "AskToParticipate") {
-		document.getElementById("acceptQuest").style.display = "inline";
-		serverMsg.value = "Please accept/decline quest by clicking below"
-		if (isAI) {
-			var data = JSON.stringify({
-				'AICommand' : "AskToParticipateQuest"
-			})
-			socketConn.send(data);
-			document.getElementById("acceptQuest").style.display = "none";
-			serverMsg.value = "Wait for other players...";
-		}
-	}
-
-	// ready to start quest
-	if (event.data == "ReadyToStartQuest") {
-		console.log("READY TO START QUEST");
-	}
-
-	// no participants
-	if (event.data == "NoParticipants") {
-		serverMsg.value = "No one chose to play in quest, wait for sponsor to pick up cards...";
-	}
-
-	// no sponsors
-	if (event.data == "NoSponsors") {
-		serverMsg.value = "No one sponsored quest, wait for next player - ";
-	}
-
-	// when quest over
-	if (event.data == "QuestOverWaitForSponsor") {
-		serverMsg.value += "\nQuest over, wait for sponsor to pick up cards - ";
-		questInfo = [];
-		FoeInfo = "";
-	}
-	// getting shields
-	if (event.data.startsWith("Getting")) {
-		console.log("here");
-		serverMsg.value = event.data;
-	}
-	// pick up cards used for sponsor
-	if (event.data.startsWith("SponsorPickup")) {
-		serverMsg.value = "Replacing cards used to sponsor quest RIGHT CLICK TO DISCARD EXTRA to move on\n";
-		var temp = event.data.replace("SponsorPickup", "");
-		sponsorPickup(temp);
-	}
-
-	// choosing equipment for battle
-	if (event.data == "Choose equipment") {
-		if(wildCardStageInc) { 
-			stageCounter++; 
-			wildCardStageInc = false;
-			var data = JSON.stringify({
-				'wildCardStageInc' : 0
-			})
-			socketConn.send(data);
-			}
-		console.log(stageTracker);
-		console.log(stageCounter);
-		if(stageCounter > stageTracker) stageCounter = stageTracker;
-		console.log(stageTracker);
-		console.log(stageCounter);
-		console.log(questInfo);
-		console.log(questInfo[stageCounter - 1]);
-		
-		if (questInfo[stageCounter - 1].includes("Test")) {
-			document.getElementById('doneEquipment').style.display = "inline";
-			document.getElementById('doneEquipment').disabled = false;
-			minBid = TestInfo[1];
-			console.log("minBid" + minBid);
-			serverMsg.value = "Please click on the cards you wish to bid for test (Click done to drop out)";
-			 var x = document.getElementById("doneEquipment").disabled;
-			
-			 testTracker++;
-			 console.log(x);
-			if(x == false) { 
-				document.getElementById('doneEquipment').disabled = true;
-				document.getElementById('dropOut').style.display = "inline";
-				document.getElementById('dropOut').disabled = true;
-				if(testTracker >= 2) { document.getElementById('dropOut').disabled = false; testTracker = 0; }
-			
-			}
-			$('body')
-					.on(
-							'click',
-							'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8',
-							function() {
-	
-								var cardId = this.src.replace(
-										'http://localhost:8080', '');
-								cardId = cardId.split('%20').join(' ');
-								if(getNameFromLink(cardId) != "link not found") {
-									console.log("adding to bid array" + getNameFromLink(cardId));
-									tempBidArr.push(getNameFromLink(cardId));
-									var changeImageId = "#" + this.id;
-									numCards--;
-								}
-								$(changeImageId).attr("src",
-										"/resources/images/all.png");
-								console.log(tempBidArr.length);
-									var minBidInt = minBid.replace(";", "");
-									console.log(minBidInt);
-								console.log("RIGHT BEFORE CHECKING TO UNDISABLE^");
-								if(tempBidArr.length >= minBidInt ) document.getElementById('doneEquipment').disabled = false;
-								console.log(numCards)
-							})
-			return;
-			// get min bid
-		} else {
-			
-			teamWeaponArr2 = [];
-			document.getElementById('doneEquipment').style.display = "inline";
-			serverMsg.value = "Please click on the equipment you want to choose for battle";
-			$('body')
-					.on(
-							'click',
-							'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8',
-							function() {
-
-								var cardId = this.src.replace(
-										'http://localhost:8080', '');
-								cardId = cardId.split('%20').join(' ');
-								if (checkForEquipment(this.src) != "card not found") {
-									for (var i = 0; i < tempWeaponArr2.length; i++) {
-										if ((checkForEquipment(this.src)) == tempWeaponArr2[i]) {
-											var serverMsg = document
-													.getElementById('serverMsg');
-											serverMsg.value += "\nCannot choose repeat weapons";
-											return;
-										}
-									}
-									tempWeaponArr2
-											.push(checkForEquipment(this.src))
-									var changeImageId = "#" + this.id;
-									numCards--;
-									$(changeImageId).attr("src",
-											"/resources/images/all.png");
-									if (numCards <= 12) {
-										document.getElementById("doneEquipment").disabled = false;
-									}
-								}
-
-							})
-		}
-	}
-
-	// get current participant info
-	if (event.data.startsWith("currentParticipantInfo")) {
-		participantInfo = event.data.replace("currentParticipantInfo", "");
-		participantInfo = JSON.parse(participantInfo);
-		console.log(participantInfo);
-		currentStage = participantInfo.stages;
-	}
-	//update min bids
-	if (event.data.startsWith("updateMinBid")) {
-		var newBid = event.data.replace("updateMinBid","");
-		minBid = newBid;
-		TestInfo[1] = newBid;
-		console.log("UPDATING MINI BID" + minBid);
-	}
-	//get current playre bids
-	if (event.data.startsWith("currentPlayerBids")) {
-		var bids = event.data.replace("currentPlayerBids","");
-		currentPlayerInfoBids = bids.split(";");
-		currentPlayerBids = currentPlayerInfoBids[0];
-		console.log(currentPlayerBids);
-		if (PlayerName == sponsor) {
-			stageCounter = 1;
-			sponsor = "";
-		}
-		displayBattle(stageCounter);
-	
-		//going to display battle
-	}
-	// get current player pts
-	if (event.data.startsWith("currentPlayerPoints")) {
-		var pts = event.data.replace("currentPlayerPoints", "");
-		currentPlayerInfo = pts;
-		console.log(pts);
-		// console.log(PlayerName);
-		// console.log(sponsor);
-
-		if (PlayerName == sponsor) {
-			stageCounter = 1;
-			sponsor = "";
-		}
-		displayBattle(stageCounter);
-		
-	}
-
-	// get foe info
-	if (event.data.startsWith("FoeInfo")) {
-		var temp = event.data.replace("FoeInfo", "");
-		FoeInfo = temp;
-		console.log(FoeInfo);
-	}
-
-	// get test info
-	if (event.data.startsWith("TestInfo")) {
-		var temp = event.data.replace("TestInfo", "");
-		TestInfo = temp;
-		TestInfo = TestInfo.split("#");
-		console.log(TestInfo)
-	}
-
-	// new round
-	if (event.data == "NextRound") {
-		console.log("next round " + stageCounter);
-	}
-
-	// get card pick up on starting stage
-	if (event.data.startsWith("pickupBeforeStage")) {
-		var pickUpLink = event.data.replace("pickupBeforeStage", "");
-		$("#extra1").attr("src", "http://localhost:8080" + pickUpLink);
-		var card1 = document.getElementById("card1").src;
-		var card2 = document.getElementById("card2").src;
-		var card3 = document.getElementById("card3").src;
-		var card4 = document.getElementById("card4").src;
-		var card5 = document.getElementById("card5").src;
-		var card6 = document.getElementById("card6").src;
-		var card7 = document.getElementById("card7").src;
-		var card8 = document.getElementById("card8").src;
-		var card9 = document.getElementById("card9").src;
-		var card10 = document.getElementById("card10").src;
-		var card11 = document.getElementById("card11").src;
-		var card12 = document.getElementById("card12").src;
-		var extra1 = document.getElementById("extra1").src;
-		var extra2 = document.getElementById("extra2").src;
-		var extra3 = document.getElementById("extra3").src;
-		var extra4 = document.getElementById("extra4").src;
-		var extra5 = document.getElementById("extra5").src;
-		var extra6 = document.getElementById("extra6").src;
-		var extra7 = document.getElementById("extra7").src;
-		var extra8 = document.getElementById("extra8").src;
-		var imageArray = [ card1, card2, card3, card4, card5, card6, card7,
-				card8, card9, card10, card11, card12, extra1, extra2, extra3,
-				extra4, extra5, extra6, extra7, extra8 ];
-		var cardTracker = 0;
-		for (var i = 0; i < imageArray.length; i++) {
-			var tempCardLink = imageArray[i].replace("http://localhost:8080",
-					"");
-			tempCardLink = tempCardLink.split('%20').join(' ');
-			// console.log(tempCardLink);
-			if (tempCardLink != "/resources/images/all.png")
-				cardTracker++;
-		}
-		// console.log(cardTracker);
-		numCards = cardTracker;
-		if (cardTracker > 12) {
-			document.getElementById("doneEquipment").disabled = true;
-			serverMsg.value += " You must choose a card to continue (or right-click to discard) ";
-		}
-	}
-
-	// increase stage counter
-	if (event.data == "incStage") {
-		stageCounter++;
-
-	}
-
-	// pick up x cards
-	if (event.data.startsWith("PickupCards")) {
-		PickupCards(event.data);
-	}
-
-	// flip story deck
-	if (event.data.startsWith("flipStoryDeck")) {
-		serverMsg.value = "Flipping card from Story Deck (wait for other players) -  ";
-		var card = event.data.replace('flipStoryDeck', '');
-		card = JSON.parse(card);
-		storyCardFaceUp = card;
-		stageTracker = storyCardFaceUp.stages;
-		$("#storyCard").attr("src", "http://localhost:8080" + card.stringFile);
-		arrangeHand();
-
-	}
-	// set hand
-	if (event.data.startsWith("setHand")) {
-		serverMsg.value = "Setting player hand, flipping story deck, wait for your turn- ";
-		var handString = event.data.replace('setHand', '');
-		var handStringArray = handString.split(":");
-		$("#card1").attr("src", handStringArray[0]);
-		$("#card2").attr("src", handStringArray[1]);
-		$("#card3").attr("src", handStringArray[2]);
-		$("#card4").attr("src", handStringArray[3]);
-		$("#card5").attr("src", handStringArray[4]);
-		$("#card6").attr("src", handStringArray[5]);
-		$("#card7").attr("src", handStringArray[6]);
-		$("#card8").attr("src", handStringArray[7]);
-		$("#card9").attr("src", handStringArray[8]);
-		$("#card10").attr("src", handStringArray[9]);
-		$("#card11").attr("src", handStringArray[10]);
-		$("#card12").attr("src", handStringArray[11]);
-	}
-
-	// if game is full - deny message
-	if (event.data.startsWith("Too many players")) {
-		serverMsg.value = event.data;
-		document.getElementById("send").disabled = true;
-		document.getElementById("proof").disabled = true;
-
-	}
-
-	//
-	if (event.data == "this") {
-		console.log("THISTHISTHISTHIS");
-		wildCardStageInc = true;
-	}
-	// show rig button
-	if (event.data == "showRigger") {
-		document.getElementById("rigger").style.display = "block";
-		document.getElementById("setAI").style.display = "none";
-	}
-	// get all player names
-	if (event.data.startsWith("clientsString")) {
-		var clientString = event.data.replace('clientsString', '');
-		serverMsg.value = clientString;
-	}
-
-	// update stat pane
-	if (event.data.startsWith("updateStats")) {
-		var temp = event.data.replace("updateStats", "");
-		temp = temp.split("#");
-		for (var i = 0; i < temp.length; i++) {
-			temp[i] = temp[i].split(";");
-		}
-		// console.log(temp);
-		document.getElementById('p1name').innerText = temp[0][0];
-		document.getElementById('p2name').innerText = temp[1][0];
-		document.getElementById('p3name').innerText = temp[2][0];
-		document.getElementById('p4name').innerText = temp[3][0];
-		document.getElementById('p1rank').innerText = temp[0][1];
-		document.getElementById('p2rank').innerText = temp[1][1];
-		document.getElementById('p3rank').innerText = temp[2][1];
-		document.getElementById('p4rank').innerText = temp[3][1];
-		document.getElementById('p1cards').innerText = temp[0][2];
-		document.getElementById('p2cards').innerText = temp[1][2];
-		document.getElementById('p3cards').innerText = temp[2][2];
-		document.getElementById('p4cards').innerText = temp[3][2];
-		document.getElementById('p1shields').innerText = temp[0][3];
-		document.getElementById('p2shields').innerText = temp[1][3];
-		document.getElementById('p3shields').innerText = temp[2][3];
-		document.getElementById('p4shields').innerText = temp[3][3];
-
-	}
-
-	// get proof of enrollment
-	if (event.data.startsWith("You are")) {
-		serverMsg.value = event.data;
-	}
-	// welcome message
-	if (event.data.startsWith("Welcome")) {
-		serverMsg.value = event.data;
-	}
-
-	// wait
-	if (event.data == "wait") {
-		serverMsg.value = "Wait for other players...";
-	}
-	// game started
-	if (event.data == "GameReadyToStart") {
-		document.getElementById('print').disabled = false;
-		serverMsg.value = "All players have joined, starting game, wait for your turn..."
-		document.getElementById('rigger').style.display = "none";
-	}
-}
-// pick up x cards
-function PickupCards(newCards) {
-
-	if (newCards.startsWith("PickupCardsProsperity")) {
-		whichEvent = "Prosperity";
-		newCards = newCards.replace("PickupCardsProsperity", "");
-	}
-
-	newCards = newCards.split(";");
-	newCards.pop();
+$( document ).ready(function() {
+    console.log( "ready!" );
 
 	var card1id = document.getElementById("card1").id;
 	var card2id = document.getElementById("card2").id;
@@ -480,6 +65,7 @@ function PickupCards(newCards) {
 			card7id, card8id, card9id, card10id, card11id, card12id, extra1id,
 			extra2id, extra3id, extra4id, extra5id, extra6id, extra7id,
 			extra8id ];
+	handCardID = imageArrayID;
 	var card1 = document.getElementById("card1").src;
 	var card2 = document.getElementById("card2").src;
 	var card3 = document.getElementById("card3").src;
@@ -503,12 +89,451 @@ function PickupCards(newCards) {
 	var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8,
 			card9, card10, card11, card12, extra1, extra2, extra3, extra4,
 			extra5, extra6, extra7, extra8 ];
+	handCardSRC = imageArray;
+});
+// messages from server received here
+socketConn.onmessage = function(event) {
+    var serverMsg = document.getElementById('serverMsg');
+	
 
+	// undisable flip button
+	if (event.data.startsWith("AI")) {
+		parseAICommand(event.data);
+	}
+
+	if (event.data == "undisableFlip") {
+		document.getElementById('flip').disabled = false;
+		serverMsg.value = "It's your turn, press flip story deck button to continue"
+		if (isAI == true) {
+			document.getElementById('flip').click();
+		}
+	}
+	// ask to sponsor quest
+	if (event.data === "sponsorQuest") {
+		getSponsor();
+	}
+
+	// participation in quest question
+	if (event.data == "AskToParticipate") {
+		getParticipants();
+	}
+
+	// let others know of participation
+	if (event.data.startsWith("AcceptedToParticipate")) {
+		var pName = event.data.replace("AcceptedToParticipate","");
+		serverMsg.value = "Player " + pName + " accepted to participate in quest";
+	}
+	if (event.data.startsWith("DeclinedToParticipate")) {
+		var pName = event.data.replace("DeclinedToParticipate","");
+		serverMsg.value = "Player " + pName + " declined to participate in quest";
+	}
+	// ready to start quest
+	if (event.data == "ReadyToStartQuest") {
+		console.log("READY TO START QUEST");
+	}
+
+	// no participants
+	if (event.data == "NoParticipants") {
+		serverMsg.value = "No one chose to play in quest, wait for sponsor to pick up cards...";
+	}
+
+	// no sponsors
+	if (event.data == "NoSponsors") {
+		serverMsg.value = "No one sponsored quest, wait for next player - ";
+	}
+
+	// when quest over
+	if (event.data == "QuestOverWaitForSponsor") {
+		serverMsg.value += "\nQuest over, wait for sponsor to pick up cards - ";
+		questInfo = [];
+		foeInfo = [];
+	}
+	// getting shields
+	if (event.data.startsWith("Getting")) {
+		console.log("here");
+		serverMsg.value = event.data;
+	}
+	// pick up cards used for sponsor
+	if (event.data.startsWith("SponsorPickup")) {
+		serverMsg.value = "Replacing cards used to sponsor quest RIGHT CLICK TO DISCARD EXTRA to move on\n";
+		var temp = event.data.replace("SponsorPickup", "");
+		sponsorPickup(temp);
+	}
+
+	// choosing equipment for battle
+	if (event.data == "ChooseEquipment") {
+		chooseEquipment();
+	}
+
+	// get current participant info
+	if (event.data.startsWith("currentParticipantInfo")) {
+		parseParticipantInfo(event);
+	}
+	//update min bids
+	if (event.data.startsWith("updateMinBid")) {
+		var newBid = event.data.replace("updateMinBid","");
+		minBid = newBid;
+		TestInfo[1] = newBid;
+		console.log("UPDATING MINI BID" + minBid);
+	}
+	//get current player bids
+	if (event.data.startsWith("currentPlayerBids")) {
+		var bids = event.data.replace("currentPlayerBids","");
+		currentPlayerInfoBids = bids.split(";");
+		currentPlayerBids = currentPlayerInfoBids[0];
+		console.log(currentPlayerBids);
+		if (PlayerName == sponsor) {
+			stageCounter = 0;
+			sponsor = "";
+		}
+
+	}
+	// get current player pts
+	if (event.data.startsWith("currentPlayerPoints")) {
+		var pts = event.data.replace("currentPlayerPoints", "");
+		currentPlayerInfo = pts;
+		//console.log(currentPlayerInfo);
+		currentPlayerInfo = currentPlayerInfo.split(";");
+		currentPlayerInfo[currentPlayerInfo.length-2] = currentPlayerInfo[currentPlayerInfo.length-2].split("#");
+		console.log(currentPlayerInfo);
+
+		
+	}
+
+	// get foe info
+	if (event.data.startsWith("FoeInfo")) {
+		parseCurrentFoeInfo(event);
+	}
+
+	// get test info
+	if (event.data.startsWith("TestInfo")) {
+		parseTestInfo(event);
+	}
+
+	// new round
+	if (event.data == "NextRound") {
+		console.log("next round " + stageCounter);
+	}
+
+	// get card pick up on starting stage
+	if (event.data.startsWith("pickupBeforeStage")) {
+		pickupBeforeStage(event);
+	}
+
+	// increase stage counter
+	if (event.data == "incStage") {
+		stageTracker++;
+
+	}
+	
+	if(event.data.startsWith("questSetupCards")) {
+		parseQuestInfo(event);
+	}
+	//get stages
+	if(event.data.startsWith("questSetupInProgress")) {
+		var tempStages = parseInt(event.data.replace("questSetupInProgress",""));
+		totalStages = tempStages;
+		setupQuestRound();
+	}
+	
+	//notify sponsor of participants choosing equipment
+    if(event.data == "ParticipantsChoosing") {
+    	serverMsg.value = "Participants are choosing equipment, please wait";
+    }
+	//notify participants of quest setup
+	if(event.data.startsWith("questIsBeingSetup")) {
+		var sponsorName = event.data.replace("questIsBeingSetup", "");
+		serverMsg.value = "Player " + sponsorName + " is setting up quest, please wait";
+	}
+	// pick up x cards
+	if (event.data.startsWith("PickupCards")) {
+		PickupCards(event.data);
+	}
+
+	// flip story deck
+	if (event.data.startsWith("flipStoryDeck")) {
+		serverMsg.value = "Flipping card from Story Deck (wait for other players) -  ";
+		var card = event.data.replace('flipStoryDeck', '');
+		card = JSON.parse(card);
+		storyCardFaceUp = card;
+		totalStages = storyCardFaceUp.stages;
+		$("#storyCard").attr("src", "http://localhost:8080" + card.stringFile);
+		arrangeHand();
+
+	}
+	
+	// set hand
+	if (event.data.startsWith("setHand")) {
+		setHand();
+	}
+
+	// if game is full - deny message
+	if (event.data.startsWith("Too many players")) {
+		serverMsg.value = event.data;
+		document.getElementById("send").disabled = true;
+		document.getElementById("proof").disabled = true;
+	}
+
+	// show rig button
+	if (event.data == "showRigger") {
+		document.getElementById("rigger").style.display = "block";
+		document.getElementById("setAI").style.display = "none";
+	}
+	// get all player names
+	if (event.data.startsWith("clientsString")) {
+		var clientString = event.data.replace('clientsString', '');
+		serverMsg.value = clientString;
+	}
+
+	// update stat pane
+	if (event.data.startsWith("updateStats")) {
+		getStats();
+	}
+
+	// get proof of enrollment
+	if (event.data.startsWith("You are")) {
+		serverMsg.value = event.data;
+	}
+	// welcome message
+	if (event.data.startsWith("Welcome")) {
+		serverMsg.value = event.data;
+	}
+
+	// wait
+	if (event.data == "wait") {
+		serverMsg.value = "Wait for other players to finish";
+	}
+	// game started
+	if (event.data == "GameReadyToStart") {
+		startGame();
+	}
+}
+
+function chooseEquipment() {
+	var serverMsg = document.getElementById("serverMsg");
+	serverMsg.value = "It is now time to choose equipment for quest";
+	console.log("total stages: " + totalStages);
+	console.log("stage tracker: " + stageTracker);
+	console.log(questSetupCards[stageTracker])
+	if(questSetupCards[stageTracker].includes("Test")) {
+		console.log("this is a test");
+		//getTestBids();
+		//displayTest(stageTracker);
+	} else {
+		console.log("this is a battle");
+		//getBattleEquipment();
+		//displayBattle(stageTracker);
+		
+	}
+		
+	
+}
+
+function getTestBids() {
+	var serverMsg = document.getElementById("serverMsg");
+	document.getElementById('doneEquipment').style.display = "inline";
+	serverMsg.value = "Please click on cards to bid for test";
+	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
+				var cardId = this.src.replace('http://localhost:8080', '');
+				cardId = cardId.split('%20').join(' ');
+				if(getNameFromLink(cardId) != "link not found") {
+					console.log("adding to bid array" + getNameFromLink(cardId));
+					testBids.push(getNameFromLink(cardId));
+					var changeImageId = "#" + this.id;
+					numCards--;
+				}
+				$(changeImageId).attr("src", "/resources/images/all.png");
+				if (numCards <= 12) {
+					document.getElementById("doneEquipment").disabled = false;
+				}
+	})
+
+}
+
+
+function getBattleEquipment() {
+	var serverMsg = document.getElementById("serverMsg");
+	document.getElementById('doneEquipment').style.display = "inline";
+	serverMsg.value = "Please click on the equipment you want to choose for battle";
+	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
+						var cardId = this.src.replace('http://localhost:8080', '');
+						cardId = cardId.split('%20').join(' ');
+						if (checkForEquipment(this.src) != "card not found") {
+							for (var i = 0; i < battleEquipment.length; i++) {
+								if ((checkForEquipment(this.src)) == battleEquipment[i]) {
+									var serverMsg = document.getElementById('serverMsg');
+									serverMsg.value += "\nCannot choose repeat weapons";
+									return;
+								}
+							}
+							battleEquipment.push(checkForEquipment(this.src))
+							var changeImageId = "#" + this.id;
+							numCards--;
+							$(changeImageId).attr("src", "/resources/images/all.png");
+							if (numCards <= 12) {
+								document.getElementById("doneEquipment").disabled = false;
+							}
+						}
+
+					})
+}
+function pickupBeforeStage(event) {
+	var pickUpLink = event.data.replace("pickupBeforeStage", "");
+	$("#extra1").attr("src", "http://localhost:8080" + pickUpLink);
+	getCurrHand();
+	var cardTracker = 0;
+	for (var i = 0; i < handCardSRC.length; i++) {
+		var tempCardLink = handCardSRC[i].replace("http://localhost:8080","");
+		tempCardLink = tempCardLink.split('%20').join(' ');
+		if (tempCardLink != "/resources/images/all.png")
+			cardTracker++;
+	}
+	
+	numCards = cardTracker;
+	if (cardTracker > 12) {
+		document.getElementById("doneEquipment").disabled = true;
+		var serverMsg = document.getElementById("serverMsg");
+		serverMsg.value = "You must choose a card to continue (or right-click to discard) when it is your turn";
+	}
+}
+
+function parseTestInfo(event) {
+	var temp = event.data.replace("TestInfo", "");
+	TestInfo = temp;
+	//console.log(temp);
+	testInfo = temp.split(";");
+	testInfo.pop();
+	//console.log(testInfo);
+	for(var i=0; i<testInfo.length; i++) {
+		testInfo[i] = testInfo[i].split("#");
+	}
+	//console.log(testInfo);
+}
+function parseCurrentFoeInfo(event) {
+	var temp = event.data.replace("FoeInfo", "");
+	//console.log(temp);
+	foeInfo = temp.split(";");
+	foeInfo.pop();
+	//console.log(foeInfo);
+	for(var i=0; i<foeInfo.length; i++) {
+		foeInfo[i] = foeInfo[i].split("#");
+	}
+	//	console.log(foeInfo);
+}
+
+function parseParticipantInfo(event) {
+	participantInfo = event.data.replace("currentParticipantInfo", "");
+	participantInfo = JSON.parse(participantInfo);
+	//console.log(participantInfo);
+	currentStage = participantInfo.stages;
+}
+function getParticipants() {
+	document.getElementById("acceptQuest").style.display = "inline";
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Please accept/decline quest by clicking below"
+	if (isAI) {
+		var data = JSON.stringify({
+			'AICommand' : "AskToParticipateQuest"
+		})
+		socketConn.send(data);
+		document.getElementById("acceptQuest").style.display = "none";
+		serverMsg.value = "Wait for other players...";
+	}
+}
+
+function parseQuestInfo(event) {
+	var temp = event.data.replace("questSetupCards","");
+	temp = temp.replace("[","");
+	temp = temp.replace("]","");
+	var array = temp.split(",");
+	for(var i=0; i<array.length; i++) {
+		array[i] = array[i].replace(" ","");
+	}
+	questSetupCards = array;
+	console.log(questSetupCards);
+}
+
+function startGame() {
+	var serverMsg = document.getElementById('serverMsg');
+	document.getElementById('print').disabled = false;
+	serverMsg.value = "All players have joined, starting game, wait for your turn..."
+	document.getElementById('rigger').style.display = "none";
+}
+
+function setHand() {
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Setting player hand, flipping story deck, wait for your turn- ";
+	var handString = event.data.replace('setHand', '');
+	var handStringArray = handString.split(":");
+	$("#card1").attr("src", handStringArray[0]);
+	$("#card2").attr("src", handStringArray[1]);
+	$("#card3").attr("src", handStringArray[2]);
+	$("#card4").attr("src", handStringArray[3]);
+	$("#card5").attr("src", handStringArray[4]);
+	$("#card6").attr("src", handStringArray[5]);
+	$("#card7").attr("src", handStringArray[6]);
+	$("#card8").attr("src", handStringArray[7]);
+	$("#card9").attr("src", handStringArray[8]);
+	$("#card10").attr("src", handStringArray[9]);
+	$("#card11").attr("src", handStringArray[10]);
+	$("#card12").attr("src", handStringArray[11]);
+}
+function getSponsor() {
+	document.getElementById('sponsorQuest').style.display = 'block';
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Click to answer below"
+	if (isAI) {
+		var data = JSON.stringify({
+			'AICommand' : "SponsorQuest",
+			'name' : PlayerName
+		})
+		socketConn.send(data);
+		document.getElementById('sponsorQuest').style.display = 'none';
+		serverMsg.value = "Doing AI stuff";
+	}
+}
+
+function getStats() {
+	var temp = event.data.replace("updateStats", "");
+	temp = temp.split("#");
+	for (var i = 0; i < temp.length; i++) {
+		temp[i] = temp[i].split(";");
+	}
+	// console.log(temp);
+	document.getElementById('p1name').innerText = temp[0][0];
+	document.getElementById('p2name').innerText = temp[1][0];
+	document.getElementById('p3name').innerText = temp[2][0];
+	document.getElementById('p4name').innerText = temp[3][0];
+	document.getElementById('p1rank').innerText = temp[0][1];
+	document.getElementById('p2rank').innerText = temp[1][1];
+	document.getElementById('p3rank').innerText = temp[2][1];
+	document.getElementById('p4rank').innerText = temp[3][1];
+	document.getElementById('p1cards').innerText = temp[0][2];
+	document.getElementById('p2cards').innerText = temp[1][2];
+	document.getElementById('p3cards').innerText = temp[2][2];
+	document.getElementById('p4cards').innerText = temp[3][2];
+	document.getElementById('p1shields').innerText = temp[0][3];
+	document.getElementById('p2shields').innerText = temp[1][3];
+	document.getElementById('p3shields').innerText = temp[2][3];
+	document.getElementById('p4shields').innerText = temp[3][3];
+}
+
+// pick up x cards
+function PickupCards(newCards) {
+	getCurrHand();
+	if (newCards.startsWith("PickupCardsProsperity")) {
+		whichEvent = "Prosperity";
+		newCards = newCards.replace("PickupCardsProsperity", "");
+	}
+
+	newCards = newCards.split(";");
+	newCards.pop();
+	//console.log(newCards);
 	var numNewCards = newCards.length;
 
-	for (var i = 0; i < imageArrayID.length; i++) {
-		if (imageArray[i] == "http://localhost:8080/resources/images/all.png") {
-			var imageId = imageArrayID[i];
+	for (var i = 0; i < handCardID.length; i++) {
+		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
+			var imageId = handCardID[i];
 			$("#" + imageId).attr("src",
 					"http://localhost:8080" + newCards.pop());
 			if (newCards.length == 0)
@@ -517,8 +542,8 @@ function PickupCards(newCards) {
 	}
 
 	var cardTracker = 0;
-	for (var i = 0; i < imageArray.length; i++) {
-		var tempCardLink = imageArray[i].replace("http://localhost:8080", "");
+	for (var i = 0; i < handCardSRC.length; i++) {
+		var tempCardLink = handCardSRC[i].replace("http://localhost:8080", "");
 		tempCardLink = tempCardLink.split('%20').join(' ');
 		// console.log(tempCardLink);
 		if (tempCardLink != "/resources/images/all.png")
@@ -549,60 +574,13 @@ function PickupCards(newCards) {
 
 			'doneEventProsperity' : 0
 		})
-		setTimeout(function(){ socketConn.send(data); }, 3000);
+		setTimeout(function(){ socketConn.send(data); }, 1000);
 	}
 
 }
 // sponsor pickup
 function sponsorPickup(cards) {
-
-	var card1id = document.getElementById("card1").id;
-	var card2id = document.getElementById("card2").id;
-	var card3id = document.getElementById("card3").id;
-	var card4id = document.getElementById("card4").id;
-	var card5id = document.getElementById("card5").id;
-	var card6id = document.getElementById("card6").id;
-	var card7id = document.getElementById("card7").id;
-	var card8id = document.getElementById("card8").id;
-	var card9id = document.getElementById("card9").id;
-	var card10id = document.getElementById("card10").id;
-	var card11id = document.getElementById("card11").id;
-	var card12id = document.getElementById("card12").id;
-	var extra1id = document.getElementById("extra1").id;
-	var extra2id = document.getElementById("extra2").id;
-	var extra3id = document.getElementById("extra3").id;
-	var extra4id = document.getElementById("extra4").id;
-	var extra5id = document.getElementById("extra5").id;
-	var extra6id = document.getElementById("extra6").id;
-	var extra7id = document.getElementById("extra7").id;
-	var extra8id = document.getElementById("extra8").id;
-	var imageArrayID = [ card1id, card2id, card3id, card4id, card5id, card6id,
-			card7id, card8id, card9id, card10id, card11id, card12id, extra1id,
-			extra2id, extra3id, extra4id, extra5id, extra6id, extra7id,
-			extra8id ];
-	var card1 = document.getElementById("card1").src;
-	var card2 = document.getElementById("card2").src;
-	var card3 = document.getElementById("card3").src;
-	var card4 = document.getElementById("card4").src;
-	var card5 = document.getElementById("card5").src;
-	var card6 = document.getElementById("card6").src;
-	var card7 = document.getElementById("card7").src;
-	var card8 = document.getElementById("card8").src;
-	var card9 = document.getElementById("card9").src;
-	var card10 = document.getElementById("card10").src;
-	var card11 = document.getElementById("card11").src;
-	var card12 = document.getElementById("card12").src;
-	var extra1 = document.getElementById("extra1").src;
-	var extra2 = document.getElementById("extra2").src;
-	var extra3 = document.getElementById("extra3").src;
-	var extra4 = document.getElementById("extra4").src;
-	var extra5 = document.getElementById("extra5").src;
-	var extra6 = document.getElementById("extra6").src;
-	var extra7 = document.getElementById("extra7").src;
-	var extra8 = document.getElementById("extra8").src;
-	var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8,
-			card9, card10, card11, card12, extra1, extra2, extra3, extra4,
-			extra5, extra6, extra7, extra8 ];
+	getCurrHand();
 	var pickUpLinks = event.data.replace("SponsorPickup", "");
 
 	var pickUpLinksArr = pickUpLinks.split(";");
@@ -610,9 +588,10 @@ function sponsorPickup(cards) {
 	pickUpLinksArr.pop();
 	var numNewCards = pickUpLinksArr.length;
 
-	for (var i = 0; i < imageArrayID.length; i++) {
-		if (imageArray[i] == "http://localhost:8080/resources/images/all.png") {
-			var imageId = imageArrayID[i];
+	for (var i = 0; i < handCardID.length; i++) {
+
+		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
+			var imageId = handCardID[i];
 			$("#" + imageId).attr("src",
 					"http://localhost:8080" + pickUpLinksArr.pop());
 			if (pickUpLinksArr.length == 0)
@@ -621,16 +600,17 @@ function sponsorPickup(cards) {
 	}
 
 	var cardTracker = 0;
-	for (var i = 0; i < imageArray.length; i++) {
-		var tempCardLink = imageArray[i].replace("http://localhost:8080", "");
+	for (var i = 0; i < handCardSRC.length; i++) {
+		var tempCardLink = handCardSRC[i].replace("http://localhost:8080", "");
 		tempCardLink = tempCardLink.split('%20').join(' ');
-		// console.log(tempCardLink);
+		
 		if (tempCardLink != "/resources/images/all.png")
 			cardTracker++;
 	}
-	// console.log(numNewCards);
+	
 	cardTracker += numNewCards;
 	numCards = cardTracker;
+    console.log("After sponsor pickup, total # of cards is: " + cardTracker);
 	if(isAI) {
 		var extra1 = document.getElementById("card1").src;
 		var extra2 = document.getElementById("card2").src;
@@ -656,333 +636,157 @@ function sponsorPickup(cards) {
 
 	}
 }
-// display current battle
-function displayBattle(stage) {
-	console.log(questInfo);
-	console.log(questInfo[stageCounter - 1]);
-	if (questInfo[stageCounter - 1].includes("Test")) {
-		console.log("This is a test");
-		console.log(tempBidArr.length);
-		console.log(minBid);
-		if (PlayerName == participantInfo.name) {
-		var minBidInt = minBid.replace(";", "");
-		console.log(minBidInt);
-		if(tempBidArr.length >= minBidInt) testResult = true; 
-		}
-	
-		
-		var datat = JSON.stringify({
-			'nextQuestTurn' : testResult,
-			'type' : "Test",
-		});
-		if (PlayerName == participantInfo.name) {
-			socketConn.send(datat);
-		}
-		
-		return;
-	} else {
-		console.log("This is a battle");
-		console.log(FoeInfo);
-		console.log(participantInfo);
-		console.log(currentPlayerInfo);
-		var pPts = currentPlayerInfo.split(";");
-		pPts = pPts[0].replace(";","");
-		var foePts = FoeInfo.split("#");
-		for(var i=0; i<foePts.length; i++) {
-			if(foePts[i].includes(";")) console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
-		}
-		console.log(foePts);
-		foePts = (foePts[stageCounter-1]);
-		console.log(foePts);
-		foePts = foePts.replace(";","");
-		console.log(foePts);
-		console.log(stageCounter);
-		var finalFP = parseInt(foePts);
-		var finalPP = parseInt(pPts);
-		console.log(finalPP);
-		console.log(finalFP);
-		console.log(isNaN(finalFP));
-		if(isNaN(finalFP)) {
-			console.log("isNan");
-			
-			foePts = FoeInfo.split("#");
-			console.log(foePts);
-			console.log(stageCounter);
-			foePts = (foePts[stageCounter]);
-			foePts = foePts.replace(";","");
-			finalFP = parseInt(foePts);
-		}
-		console.log(finalPP);
-		console.log(finalFP);
-		var battleResult = false;
-		if(finalPP>=finalFP) battleResult = true;
 
-		var datab = JSON.stringify({
-			'nextQuestTurn' : battleResult,
-			'type' : "Foe"
-		});
-		if (PlayerName == participantInfo.name) {
-			socketConn.send(datab);
-		}
-		var serverMsg = document.getElementById('serverMsg');
-		if(battleResult) { serverMsg += "battle won, please wait"; } else {
-			serverMsg += "battle lost, please wait";
-		}
-		
-		
-	}
+//display current test
+function displayTest(curr_stage) {
+	//console.log("display test");
+}
+
+// display current battle
+function displayBattle(curr_stage) {
+	//console.log("display battle");
+	
 }
 /*
- * document.getElementById('battleScreen').style.display = "block"; var
- * playerInfo = currentPlayerInfo.split(";"); console.log(playerInfo);
- * currentPlayerPts = playerInfo[0]; var playerCardLink =
- * getLinkFromName(playerInfo[1]); var weaponArr = tempWeaponArr2;
- * tempWeaponArr2 = []; var weaponLinks = []; for (var j = 0; j <
- * weaponArr.length; j++) { weaponLinks.push(getLinkFromName(weaponArr[j])); }
- * 
- * var foeLinks = []; var foeWeaponNames = questInfo.weapons[stage-1];
- * console.log(foeWeaponNames); var foeWeaponLinks = []; var currentStageWeps =
- * [];
- * 
- * for (var i = 0; i < foeWeaponNames.length; i++) {
- * currentStageWeps.push(getLinkFromName(foeWeaponNames[i])); }
- * 
- * //console.log(currentStageWeps); //console.log(FoeInfo); var foesInfo =
-  FoeInfo.split(";"); for (var i = 0; i < foesInfo.length; i++) { foesInfo[i] =
-  foesInfo[i].split("#"); foeLinks.push(getLinkFromName(foesInfo[i][0])); }
-  foeLinks.pop(); //console.log(foeLinks);
-  
-  var pequip = []; var fequip = []; for (var i = 0; i < 6; i++) { pequip[i] =
-  all.link; fequip[i] = all.link; }
-  
-  for (var i = 0; i < weaponLinks.length; i++) { pequip.pop();
-  pequip.unshift(weaponLinks[i]); }
-  
-  for (var i = 0; i < currentStageWeps.length; i++) { fequip.pop();
-  fequip.unshift(currentStageWeps[i]); } //console.log(fequip);
-  $("#playerPic").attr("src", playerCardLink);
-  $("#playerWeaponSpot1").attr("src", pequip[0]);
-  $("#playerWeaponSpot2").attr("src", pequip[1]);
-  $("#playerWeaponSpot3").attr("src", pequip[2]);
-  $("#playerWeaponSpot4").attr("src", pequip[3]);
-  $("#playerWeaponSpot5").attr("src", pequip[4]);
-  $("#playerWeaponSpot6").attr("src", pequip[5]); $("#enemyPic").attr("src",
-  foeLinks[stage - 1]); $("#enemyWeaponSpot1").attr("src", fequip[0]);
-  $("#enemyWeaponSpot2").attr("src", fequip[1]);
-  $("#enemyWeaponSpot3").attr("src", fequip[2]);
-  $("#enemyWeaponSpot4").attr("src", fequip[3]);
- * $("#enemyWeaponSpot5").attr("src", fequip[4]);
-  $("#enemyWeaponSpot6").attr("src", fequip[5]); var playerWin; var tempPPoints =
-  (Number)(currentPlayerPts); var tempFPoints = (Number)(foesInfo[stage-1][1]);
-  console.log("player points: " + tempPPoints); console.log("foe points: " +
-  tempFPoints); if(tempPPoints >= tempFPoints) { playerWin = true; } else {
-  playerWin = false; } console.log("player won battle: " + playerWin);
-  
-  if(playerWin) { document.getElementById("p_win").style.display = "block";
-  document.getElementById("f_lose").style.display = "block"; var serverMsg =
-  document.getElementById('serverMsg');
-  if(serverMsg.value.startsWith("Player")) { setTimeout(function(){
-  serverMsg.value = "This battle was won...please wait for next round to
-  complete"; document.getElementById('battleScreen').style.display = "none";
-  document.getElementById("p_win").style.display = "none";
-  document.getElementById("f_lose").style.display = "none";
-  document.getElementById("p_lose").style.display = "none";
-  document.getElementById("f_win").style.display = "none"; }, 5000); } else {
-  setTimeout(function(){ var serverMsg = document.getElementById('serverMsg');
-  serverMsg.value += " Round won, going to next player turn";
-  document.getElementById('battleScreen').style.display = "none";
-  document.getElementById("p_win").style.display = "none";
-  document.getElementById("f_lose").style.display = "none";
-  document.getElementById("p_lose").style.display = "none";
-  document.getElementById("f_win").style.display = "none"; var data =
-  JSON.stringify({ 'nextQuestTurn' : true}); if(PlayerName ==
-  participantInfo.name) { socketConn.send(data); } }, 5000); } } else {
-  document.getElementById("p_lose").style.display = "block";
-  document.getElementById("f_win").style.display = "block";
-  setTimeout(function(){ var serverMsg = document.getElementById('serverMsg');
-  if(serverMsg.value=="Going into battle - ") { var data = JSON.stringify({
-  'nextQuestTurn' : false}); if(PlayerName == participantInfo.name) {
-  socketConn.send(data);} } serverMsg.value += " Round lost, going to next
-  turn... "; document.getElementById('battleScreen').style.display = "none";
-  document.getElementById("p_win").style.display = "none";
-  document.getElementById("f_lose").style.display = "none";
-  document.getElementById("p_lose").style.display = "none";
-  document.getElementById("f_win").style.display = "none"; }, 5000); } } }
- 
+ * // check card type
+function checkForCardType(cardSrc, type) {
+	for (var i = 0; i < cardTypeList.length; i++) {
+		if (cardSrc == cardTypeList[i].link) {
+			if (cardTypeList[i].type == type) {
+				return cardTypeList[i].name;
+			}
+		}
+	}
+	return "card not found";
+}
 */
-// setup quest if sponsor
 function setupQuestRound() {
-
-	if (stageCounter <= stageTracker) {
-		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value += "\nChoose foe or test card for stage: "
-				+ stageCounter;
-		$('body')
-				.on(
-						'click',
-						'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12',
-						function() {
-							var cardSrc = this.src.replace(
-									'http://localhost:8080', '');
+	console.log(totalStages);
+	
+	var serverMsg = document.getElementById('serverMsg');
+    serverMsg.value += "\nChoose foe or test card for stage";	
+    
+	$('body').on('click','#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {
+							var cardSrc = this.src.replace('http://localhost:8080', '');
 							cardSrc = cardSrc.split('%20').join(' ');
-							var cardNameT = checkForCardType(cardSrc, "test");
-							if (cardNameT != "card not found") {
-								foes.push(cardNameT);
+							var tempTestCard = checkForCardType(cardSrc, "test");
+							if (tempTestCard != "card not found") {
+								questSetupCards.push(tempTestCard);
 								var changeImageId = "#" + this.id;
-								$(changeImageId).attr("src",
-										"/resources/images/all.png");
-								stageCounter++;
-								if (stageCounter > stageTracker) {
-									serverMsg.value = "Done setup";
-									serverMsg.value += '\nWaiting on results...';
-
-									var questData = JSON.stringify({
-										'QuestSetupCards' : foes,
-										'weapons' : weapons
-									})
-									socketConn.send(questData);
-									return;
+								$(changeImageId).attr("src", "/resources/images/all.png");
+								totalStages--;
+								console.log(totalStages);
+								if(totalStages == 0) {
+									$('body').off('click');
+									document.getElementById('doneQuest').style.display = "inline";
+									doneQuestSetup();
 								}
-								serverMsg.value = "Choose foe or test card for stage: "
-										+ stageCounter;
-								return;
+								
 							}
-							var cardName = checkForCardType(cardSrc, "foe");
-							if (cardName != "card not found") {
-								foes.push(cardName);
+							var tempFoeCard = checkForCardType(cardSrc, "foe");
+							if (tempFoeCard != "card not found") {
+								questSetupCards.push(tempFoeCard);
 								var changeImageId = "#" + this.id;
 								$(changeImageId).attr("src",
 										"/resources/images/all.png");
+								var serverMsg = document.getElementById('serverMsg');
+								$('body').off('click');
 								serverMsg.value = "Choose weapons for foe";
 								document.getElementById('doneQuest').style.display = "inline";
-								choosingWeapons = true;
-								$('body')
-										.off(
-												'click',
-												'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12');
-								$('body')
-										.on(
-												'click',
-												'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12',
-												function() {
-													var cardSrc = this.src
-															.replace(
-																	'http://localhost:8080',
-																	'');
-													cardSrc = cardSrc.split(
-															'%20').join(' ');
-													var cardName = checkForCardType(
-															cardSrc, "weapon");
-													if (cardName != "card not found") {
-														for (var i = 0; i < tempWeaponArr.length; i++) {
-															if (cardName == tempWeaponArr[i]) {
-																var serverMsg = document
-																		.getElementById('serverMsg');
-																serverMsg.value += "\nCannot choose repeat weapons";
-																return;
-															}
-														}
-														tempWeaponArr
-																.push(cardName)
-														var changeImageId = "#"
-																+ this.id;
-														$(changeImageId)
-																.attr("src",
-																		"/resources/images/all.png");
-													}
-												})
-							}
-						})
-	}
-}
+								totalStages--;
+								console.log(totalStages);
+								$('body').on('click','#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {
+	
+								
 
-// discard function
-function discard() {
-	$('body')
-			.on(
-					'contextmenu',
-					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8',
-					function() {
-						if (numCards == 12)
-							return false;
-						var cardSrc = this.src.replace('http://localhost:8080',
-								'');
-						if (cardSrc == "/resources/images/all.png") {
-						} else {
-							cardSrc = cardSrc.split('%20').join(' ');
-							var discardName = getNameFromLink(cardSrc);
-							var data = JSON.stringify({
-								'discard' : discardName
-							});
-							socketConn.send(data);
-
-							if (PlayerName == sponsor) {
-								sponsorDiscardTracker++;
-								console.log(sponsorDiscardTracker);
-								console.log(stageTracker);
-								if (sponsorDiscardTracker == stageTracker) {
-									var data = JSON.stringify({
-										'incTurnRoundOver' : true
-									});
-									// socketConn.send(data);
-									console.log("out here now");
-									sponsorDiscardTracker == 0;
-								}
-							}
-						}
-						if (this.src != "http://localhost:8080/resources/images/all.png") {
-							if (numCards > 12) {
-								$(this)
-										.attr("src",
-												"/resources/images/all.png");
-								numCards--;
-								if (numCards >= 12) {
-
-									if (whichEvent != "" && numCards == 12) {
-
-										document.getElementById("serverMsg").value = "Wait for other players...";
-										if (whichEvent == "Prosperity") {
-											console.log("sending prosperity");
-											var data = JSON.stringify({
-
-												'doneEventProsperity' : 0
-											})
-											socketConn.send(data);
-											arrangeHand();
-											whichEvent = "";
-											return false;
+								var cardSrc = this.src.replace('http://localhost:8080','');
+								cardSrc = cardSrc.split('%20').join(' ');
+								var cardName = checkForCardType(cardSrc, "weapon");
+								if (cardName != "card not found") {
+									for (var i = 0; i < questSetupCards.length; i++) {
+										if (cardName == questSetupCards[i]) {
+											var serverMsg = document.getElementById('serverMsg');
+											serverMsg.value = "\nCannot choose repeat weapons";
+											return;
 										}
 									}
+									questSetupCards.push(cardName)
+									var changeImageId = "#"	+ this.id;
+									$(changeImageId).attr("src","/resources/images/all.png");
+								}
+							})
+							}
+	})
+}
+	
+// discard function
+function discard() {
+	$('body').on('contextmenu', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8', function() {
+				if (numCards == 12)	return false;
+				var cardSrc = this.src.replace('http://localhost:8080',	'');
+				if (cardSrc == "/resources/images/all.png") {
+				} else {
+					cardSrc = cardSrc.split('%20').join(' ');
+					var discardName = getNameFromLink(cardSrc);
+					var data = JSON.stringify({
+						'discard' : discardName
+					});
+					socketConn.send(data);
+				}
+				if (this.src != "http://localhost:8080/resources/images/all.png") {
+					if (numCards > 12) {
+						$(this)
+								.attr("src",
+										"/resources/images/all.png");
+						numCards--;
+						if (numCards >= 12) {
 
-									document.getElementById("doneEquipment").disabled = false;
-									if (PlayerName === sponsor) {
-										document.getElementById("serverMsg").value = "Replacing cards used to sponsor";
-									}
+							if (whichEvent != "" && numCards == 12) {
 
-									if (numCards == 12
-											&& document
-													.getElementById("serverMsg").value
-													.startsWith("Replacing cards used to sponsor")) {
-										var serverMsg = document
-												.getElementById("serverMsg");
-										serverMsg.value = "Wait for other players...";
-										var data = JSON.stringify({
-											'incTurnRoundOver' : true
-										});
-										socketConn.send(data);
-										arrangeHand();
-									}
+								document.getElementById("serverMsg").value = "Wait for other players...";
+								if (whichEvent == "Prosperity") {
+									//console.log("sending prosperity");
+									var data = JSON.stringify({
+
+										'doneEventProsperity' : 0
+									})
+									socketConn.send(data);
+									arrangeHand();
+									whichEvent = "";
+									return false;
 								}
 							}
-						}
-					})
 
-	return false;
+							document.getElementById("doneEquipment").disabled = false;
+							if (PlayerName === sponsor) {
+								document.getElementById("serverMsg").value = "Replacing cards used to sponsor";
+							}
+
+							if (numCards == 12
+									&& document
+											.getElementById("serverMsg").value
+											.startsWith("Replacing cards used to sponsor")) {
+								var serverMsg = document
+										.getElementById("serverMsg");
+								serverMsg.value = "Wait for other players...";
+								var data = JSON.stringify({
+									'incTurnRoundOver' : true
+								});
+
+								socketConn.send(data);
+								arrangeHand();
+							}
+						}
+					}
+				}
+			})
+
+return false;
 }
 
 // accept to participate in quest
 function acceptQuestParticipate() {
-	stageCounter = 1;
+	stageCounter = 0;
 	document.getElementById('acceptQuest').style.display = "none";
 	var data = JSON.stringify({
 		'name' : PlayerName,
@@ -994,49 +798,7 @@ function acceptQuestParticipate() {
 }
 
 function pickWeapons() {
-	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = ("Click on the equipment you wish to use for battle\nReceiving 1 card");
-	document.getElementById('doneEquipment').style.display = "inline";
-	$('body')
-			.on(
-					'click',
-					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8',
-					function() {
-
-						if (numCards >= 12) {
-							document.getElementById("doneEquipment").disabled = false;
-						}
-
-						var cardSrc = this.src.replace('http://localhost:8080',
-								'');
-						cardSrc = cardSrc.split('%20').join(' ');
-						var allyCardName = checkForCardType(cardSrc, "ally");
-						var weaponCardName = checkForCardType(cardSrc, "weapon");
-						var amourCardName = checkForCardType(cardSrc, "amour");
-
-						if (allyCardName != "card not found") {
-							tempWeaponArr2.push(allyCardName)
-							var changeImageId = "#" + this.id;
-							numCards--;
-							$(changeImageId).attr("src",
-									"/resources/images/all.png");
-						}
-						if (weaponCardName != "card not found") {
-							tempWeaponArr2.push(weaponCardName)
-							var changeImageId = "#" + this.id;
-							numCards--;
-							$(changeImageId).attr("src",
-									"/resources/images/all.png");
-						}
-						if (amourCardName != "card not found") {
-							tempWeaponArr2.push(amourCardName)
-							var changeImageId = "#" + this.id;
-							numCards--;
-							$(changeImageId).attr("src",
-									"/resources/images/all.png");
-						}
-
-					})
+	
 }
 
 //drop out of test
@@ -1058,15 +820,15 @@ function doneEquipment() {
 	$('body').off('click');
 	document.getElementById('doneEquipment').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
-	console.log(questInfo[stageCounter - 1]);
-	if (questInfo[stageCounter - 1].includes("Test")) {
+	console.log(battleEquipment);
+	if (questStagesArray[stageCounter].includes("Test")) {
 		serverMsg.value = "Placing bids, please wait for other players...- ";
-		if(tempBidArr.length == 0) serverMsg.value = "Dropping out of test, please wait for other players";
+		if(testBids.length == 0) serverMsg.value = "Dropping out of test, please wait for other players";
 	
 		var data = JSON.stringify({
 			'name' : PlayerName,
-			'stages' : stageCounter,
-			'equipment_info' : tempBidArr,
+			'stages' : stageTracker,
+			'equipment_info' : testBids,
 			'isTest' : true
 		});
 
@@ -1076,13 +838,15 @@ function doneEquipment() {
 		serverMsg.value = "Going into battle - ";
 		var data = JSON.stringify({
 			'name' : PlayerName,
-			'stages' : stageCounter,
-			'equipment_info' : tempWeaponArr2
+			'stages' : stageTracker,
+			'equipment_info' : battleEquipment,
+			'isTest' : false
 		});
 	
 		socketConn.send(data);
 		arrangeHand();
-		tempWeaponArr2=[];
+		battleEquipment = [];
+		testBids = [];
 	}
 
 }
@@ -1101,28 +865,34 @@ function denyQuestParticipate() {
 
 // finished setting up quest for sponsor
 function doneWeaponsQuestSponsor() {
-	$('body').off('click');
-	var serverMsg = document.getElementById('serverMsg');
-	document.getElementById('doneQuest').style.display = "none";
-
-	if (stageCounter == stageTracker) {
-		weapons.push(tempWeaponArr);
-		tempWeaponArr = [];
-		serverMsg.value = "Done setup";
-		serverMsg.value += '\nWaiting on results...';
-		var questData = JSON.stringify({
-			'QuestSetupCards' : foes,
-			'weapons' : weapons
-		})
-		socketConn.send(questData);
-	} else {
-		serverMsg.value = "Choose next foe";
-		weapons.push(tempWeaponArr);
-		tempWeaponArr = [];
-		stageCounter++;
-		setupQuestRound();
+	if(totalStages == 0) {
+		$('body').off('click');
+		document.getElementById('doneQuest').style.display = "inline";
+		doneQuestSetup();
+		return;
 	}
+	$('body').off('click');
+	setupQuestRound();
+	document.getElementById('doneQuest').style.display = "none";
+}
 
+function doneQuestSetup() {
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Quest setup complete, wait for other players";
+	document.getElementById('doneQuest').style.display = "none";
+	console.log("DONE QUEST SETUP")
+	console.log(questSetupCards);
+	var data = JSON.stringify({ 'questSetupCards' : questSetupCards});
+	socketConn.send(data);
+}
+
+//flip story card
+function flipStoryDeck() {
+	var data = JSON.stringify({
+		'flipStoryDeck' : 0
+	})
+	socketConn.send(data); 
+	document.getElementById('flip').disabled = true;
 }
 
 // get name from link
@@ -1168,8 +938,6 @@ function acceptSponsorQuest() {
 		'sponsor_quest' : true
 	});
 	socketConn.send(data);
-	stageCounter = 1;
-	setupQuestRound();
 }
 // deny to sponsor quest
 function denySponsorQuest() {
@@ -1181,14 +949,6 @@ function denySponsorQuest() {
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Waiting for other players...";
-}
-// flip story card
-function flipStoryDeck() {
-	var data = JSON.stringify({
-		'flipStoryDeck' : 0
-	})
-	socketConn.send(data);
-	document.getElementById('flip').disabled = true;
 }
 
 // static resource test, changes title back and forth from red and black
@@ -1352,6 +1112,7 @@ function riggedGame() {
 	})
 	socketConn.send(data);
 }
+
 // static card resources for spring application
 var all = {
 	name : "All",
@@ -1716,18 +1477,23 @@ function AIDiscard(cardNames) {
 	cardNames = cardNames.split(";");
 	cardNames.pop();
 	console.log(cardNames);
-	
+	console.log(imageArrayai);
 	console.log("ai discard 1672 changing num cards" + numCards);
 	for (var j = 0; j < cardNames.length; j++) {
 		for (var i = 0; i < imageArrayai.length; i++) {
 			var tempSrc = getLinkFromName(cardNames[j]);
+			console.log(tempSrc);
 			if (tempSrc == imageArrayai[i]) {
 				$("#" + imageArrayaiID[i]).attr("src",
 						"http://localhost:8080/resources/images/all.png");
-				var data = JSON.stringify({
+				console.log(cardNames);
+				console.log(cardNames[j]);
+				console.log(j);
+				var dataDiscard = JSON.stringify({
+	
 					'discard' : cardNames[j]
 				});
-				socketConn.send(data);
+				socketConn.send(dataDiscard);
 				break;
 			}
 		}
@@ -1749,4 +1515,56 @@ function AIDiscard(cardNames) {
 function parseAICommand(eventData) {
 	if (eventData.startsWith("AIremoveFromHand"))
 		AIDiscard(eventData.replace("AIremoveFromHand", ""));
+}
+
+function getCurrHand() {
+	var card1id = document.getElementById("card1").id;
+	var card2id = document.getElementById("card2").id;
+	var card3id = document.getElementById("card3").id;
+	var card4id = document.getElementById("card4").id;
+	var card5id = document.getElementById("card5").id;
+	var card6id = document.getElementById("card6").id;
+	var card7id = document.getElementById("card7").id;
+	var card8id = document.getElementById("card8").id;
+	var card9id = document.getElementById("card9").id;
+	var card10id = document.getElementById("card10").id;
+	var card11id = document.getElementById("card11").id;
+	var card12id = document.getElementById("card12").id;
+	var extra1id = document.getElementById("extra1").id;
+	var extra2id = document.getElementById("extra2").id;
+	var extra3id = document.getElementById("extra3").id;
+	var extra4id = document.getElementById("extra4").id;
+	var extra5id = document.getElementById("extra5").id;
+	var extra6id = document.getElementById("extra6").id;
+	var extra7id = document.getElementById("extra7").id;
+	var extra8id = document.getElementById("extra8").id;
+	var imageArrayID = [ card1id, card2id, card3id, card4id, card5id, card6id,
+			card7id, card8id, card9id, card10id, card11id, card12id, extra1id,
+			extra2id, extra3id, extra4id, extra5id, extra6id, extra7id,
+			extra8id ];
+	handCardID = imageArrayID;
+	var card1 = document.getElementById("card1").src;
+	var card2 = document.getElementById("card2").src;
+	var card3 = document.getElementById("card3").src;
+	var card4 = document.getElementById("card4").src;
+	var card5 = document.getElementById("card5").src;
+	var card6 = document.getElementById("card6").src;
+	var card7 = document.getElementById("card7").src;
+	var card8 = document.getElementById("card8").src;
+	var card9 = document.getElementById("card9").src;
+	var card10 = document.getElementById("card10").src;
+	var card11 = document.getElementById("card11").src;
+	var card12 = document.getElementById("card12").src;
+	var extra1 = document.getElementById("extra1").src;
+	var extra2 = document.getElementById("extra2").src;
+	var extra3 = document.getElementById("extra3").src;
+	var extra4 = document.getElementById("extra4").src;
+	var extra5 = document.getElementById("extra5").src;
+	var extra6 = document.getElementById("extra6").src;
+	var extra7 = document.getElementById("extra7").src;
+	var extra8 = document.getElementById("extra8").src;
+	var imageArray = [ card1, card2, card3, card4, card5, card6, card7, card8,
+			card9, card10, card11, card12, extra1, extra2, extra3, extra4,
+			extra5, extra6, extra7, extra8 ];
+	handCardSRC = imageArray;
 }
