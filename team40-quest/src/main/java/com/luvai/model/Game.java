@@ -89,17 +89,19 @@ public class Game {
 	@SuppressWarnings("serial")
 	public ArrayList<AdventureCard> mockHand4 = new ArrayList<AdventureCard>() {
 		{
+
+			// add(CardList.Dagger);
 			add(CardList.KingArthur);
 			add(CardList.GreenKnight);
 			add(CardList.Saxons);
 			add(CardList.SaxonKnight);
-			add(CardList.Lance);
+			add(CardList.Boar);
 			add(CardList.QueenIseult);
 			add(CardList.MorganTest);
 			add(CardList.ValorTest);
-			add(CardList.Excalibur);
+			add(CardList.Dagger);
 			add(CardList.SirPellinore);
-			add(CardList.Battleax);
+			add(CardList.Amour);
 			add(CardList.SirLancelot);
 		}
 	};

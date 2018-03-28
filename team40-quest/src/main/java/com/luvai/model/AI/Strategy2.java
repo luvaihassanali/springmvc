@@ -32,6 +32,61 @@ public class Strategy2 extends AbstractAI {
 
 	@Override
 	public boolean doIParticipateQuest() {
+		logger.info("Strategy2 calculating whether to participate in quest");
+		Player current_player = this.gameEngine.getActivePlayer();
+		sortCards(current_player);
+		QuestCard current_quest = (QuestCard) this.gameEngine.storyDeck.faceUp;
+		int stages = current_quest.getStages();
+		boolean foeConditionMet = false;
+		if (foeList.size() < 2) {
+			logger.info("Player {} does not meet foe requirements (condition 2) for participate in {} quest",
+					current_player.getName(), current_quest.getName());
+			return false;
+		}
+		FoeCard foe1 = foeList.get(0);
+		FoeCard foe2 = foeList.get(1);
+		// System.out.println(foe1.getName() + foe2.getName());
+		if (foe1.getBattlePoints() <= 25 && foe2.getBattlePoints() <= 25)
+			foeConditionMet = true;
+		if (foeConditionMet) {
+			logger.info("Player {} meet foe requirements (condition 2) to participate in {} quest",
+					current_player.getName(), current_quest.getName());
+		} else {
+			logger.info("Player {} does not meet foe requirements (condition 2) for participate in {} quest",
+					current_player.getName(), current_quest.getName());
+			return false;
+		}
+		int totalWeaponBP = 0;
+		for (WeaponCard w : weaponsList) {
+			totalWeaponBP += w.getBattlePoints();
+		}
+		int stageToWeaponRatio = totalWeaponBP / stages;
+		// System.out.println("line 45" + stageToWeaponRatio);
+		if (stageToWeaponRatio >= 10) {
+			logger.info("Player {} has enough weapons to sustain {} quest", current_player.getName(),
+					current_quest.getName());
+			return true;
+		}
+		logger.info("Not enough weapons, checking for amour");
+		if (stageToWeaponRatio + (10 / stages) >= 10) {
+			logger.info("Player {} can sustain quest {} with weapons & amour played", current_player.getName(),
+					current_quest.getName());
+			return true;
+		}
+		stageToWeaponRatio = stageToWeaponRatio + (10 / stages);
+		logger.info("Not strong enough with weapons and amour, checking for allies");
+		int totalAllyBP = 0;
+		for (AllyCard a : alliesList) {
+			totalAllyBP += a.getBattlePoints();
+		}
+		int stageToAllyRatio = totalAllyBP / stages;
+		if (stageToAllyRatio + stageToWeaponRatio >= 10) {
+			logger.info("Player {} can sustain quest {} with weapons, amour, & allies played", current_player.getName(),
+					current_quest.getName());
+			return true;
+		}
+		logger.info("Player {} cards do not meet conditions needed to play in {} quest", current_player.getName(),
+				current_quest.getName());
 		return false;
 
 	}
@@ -42,7 +97,6 @@ public class Strategy2 extends AbstractAI {
 
 	}
 
-	// to-do IMPLEMENT THIS SHIT
 	@Override
 	public AdventureCard[] getDiscardChoice(Player currentPlayer, int numDiscards) {
 		AdventureCard[] discards = new AdventureCard[numDiscards];
@@ -80,7 +134,7 @@ public class Strategy2 extends AbstractAI {
 
 	@Override
 	public boolean doISponsorQuest() {
-
+		logger.info("Strategy2 calculating whether to sponsor quest");
 		sortCards(this.gameEngine.getActivePlayer());
 		QuestCard current_quest = (QuestCard) this.gameEngine.storyDeck.faceUp;
 		int stages = current_quest.getStages();

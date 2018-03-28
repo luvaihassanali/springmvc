@@ -30,6 +30,7 @@ var stageEvents;
 var minBid = 0;
 var testResult = false;
 var testTracker = 0;
+var wildCardStageInc = false;
 // when connection is initiated
 socketConn.onopen = function(event) {
 
@@ -127,7 +128,14 @@ socketConn.onmessage = function(event) {
 
 	// choosing equipment for battle
 	if (event.data == "Choose equipment") {
-
+		if(wildCardStageInc) { 
+			stageCounter++; 
+			wildCardStageInc = false;
+			var data = JSON.stringify({
+				'wildCardStageInc' : 0
+			})
+			socketConn.send(data);
+			}
 		console.log(stageTracker);
 		console.log(stageCounter);
 		if(stageCounter > stageTracker) stageCounter = stageTracker;
@@ -374,6 +382,11 @@ socketConn.onmessage = function(event) {
 
 	}
 
+	//
+	if (event.data == "this") {
+		console.log("THISTHISTHISTHIS");
+		wildCardStageInc = true;
+	}
 	// show rig button
 	if (event.data == "showRigger") {
 		document.getElementById("rigger").style.display = "block";
@@ -618,7 +631,6 @@ function sponsorPickup(cards) {
 	// console.log(numNewCards);
 	cardTracker += numNewCards;
 	numCards = cardTracker;
-	// console.log(cardTracker);
 	if(isAI) {
 		var extra1 = document.getElementById("card1").src;
 		var extra2 = document.getElementById("card2").src;
@@ -676,6 +688,9 @@ function displayBattle(stage) {
 		var pPts = currentPlayerInfo.split(";");
 		pPts = pPts[0].replace(";","");
 		var foePts = FoeInfo.split("#");
+		for(var i=0; i<foePts.length; i++) {
+			if(foePts[i].includes(";")) console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
+		}
 		console.log(foePts);
 		foePts = (foePts[stageCounter-1]);
 		console.log(foePts);

@@ -43,6 +43,10 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		JsonObject jsonObject = (new JsonParser()).parse(message.getPayload()).getAsJsonObject();
 
+		// wildcardstage inc
+		if (jsonObject.has("wildCardStageInc")) {
+			gameEngine.current_quest.currentStage++;
+		}
 		// send ai to controller
 		if (jsonObject.has("AICommand")) {
 			gameEngine.AIController.receiveAICommand(jsonObject);
@@ -73,8 +77,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 
 				flipStoryCard();
-				String temp = gameEngine.getPlayerStats();
-				sendToAllSessions(gameEngine, "updateStats" + temp);
 
 			}
 		}
@@ -220,7 +222,8 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for getting participants battle equipment
 		if (jsonObject.has("equipment_info")) {
-
+			String temp = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + temp);
 			String jsonOutput = "currentParticipantInfo" + jsonObject.toString();
 			sendToAllSessions(gameEngine, jsonOutput);
 			logger.info("Player {} chose {} to use for stage {} of {} quest", jsonObject.get("name"),
@@ -353,9 +356,15 @@ public class SocketHandler extends TextWebSocketHandler {
 					logger.info("Player {} dropped out of test from {} quest ",
 							gameEngine.current_quest.getCurrentParticipant().getName(),
 							gameEngine.storyDeck.faceUp.getName());
-
+					String temp = gameEngine.getPlayerStats();
+					sendToAllSessions(gameEngine, "updateStats" + temp);
+					boolean doNotIncStage = (gameEngine.current_quest.getCurrentParticipant()
+							.equals(gameEngine.current_quest.firstQuestPlayer));
+					if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages() - 1
+							&& gameEngine.current_quest.currentStage != 1)
+						doNotIncStage = false;
 					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
-
+					sendToCurrentParticipant(gameEngine, "this");
 					if (gameEngine.current_quest.participants.isEmpty()) {
 						System.out.println("is empty");
 						Losing();
@@ -367,8 +376,21 @@ public class SocketHandler extends TextWebSocketHandler {
 						if (gameEngine.current_quest.currentQuest
 								.getStages() != gameEngine.current_quest.currentStage) {
 							System.out.println("not at stage yet");
-							sendToAllSessions(gameEngine, "incStage");
-							gameEngine.current_quest.currentStage++;
+							System.out.println(doNotIncStage);
+							if (doNotIncStage) {
+								System.out.println(gameEngine.current_quest.currentStage);
+								System.out.println(gameEngine.current_quest.currentQuest.getStages());
+								System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
+								System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+
+							} else {
+								System.out.println(gameEngine.current_quest.currentStage);
+								System.out.println(gameEngine.current_quest.currentQuest.getStages());
+								System.out.println(gameEngine.current_quest.firstQuestPlayer.getName());
+								System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+								sendToAllSessions(gameEngine, "incStage");
+								gameEngine.current_quest.currentStage++;
+							}
 							gameEngine.adventureDeck.flipCard();
 							gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.faceUp);
 							String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
@@ -577,6 +599,11 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
 							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
 					logger.info("Giving shields to {}", gameEngine.current_quest.participants.get(j).getName());
+					System.out.println(gameEngine.current_quest.participants.get(j).getHandSize());
+					// for (Player p : gameEngine.players) {
+					// p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+					// System.out.println(p.getHandString());
+					// }
 
 				} else {
 					gameEngine.players.get(i).session.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
@@ -677,6 +704,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		if (gameEngine.storyDeck.faceUp instanceof EventCard) {
 			gameEngine.newEvent(gameEngine, gameEngine.getActivePlayer(), (EventCard) gameEngine.storyDeck.faceUp);
+			update = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + update);
 		}
 	}
 

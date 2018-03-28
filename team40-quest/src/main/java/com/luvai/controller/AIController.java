@@ -77,10 +77,10 @@ public class AIController extends SocketHandler {
 		if (gameEngine.storyDeck.faceUp.getName().equals(("Prosperity Throughout the Realm")))
 			message += "Prosperity";
 		Random rand = new Random();
-		int value = rand.nextInt(2000 - 1000) + 1000;
+		int value = rand.nextInt(3000 - 1500) + 1500;
 
 		setTimeout(() -> {
-			// System.out.println("getting prosperity discards");
+			System.out.println("getting prosperity discards");
 		}, value);
 		currentPlayer.session.sendMessage(new TextMessage(message + discards));
 
@@ -91,7 +91,27 @@ public class AIController extends SocketHandler {
 
 	public void AIQuestParticipation(JsonObject jsonObject) throws IOException {
 		if (gameEngine.getActivePlayer().getAI().doIParticipateQuest()) {
-			// to do when tests implemented
+			logger.info("Player {} accepted to participate in quest {} sponsored by {}",
+					gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName(),
+					gameEngine.current_quest.sponsor.getName());
+			gameEngine.current_quest.participants.add(gameEngine.getActivePlayer());
+			if (gameEngine.current_quest.participants.size() == 1) {
+				gameEngine.current_quest.firstQuestPlayer = gameEngine.getCurrentParticipant();
+			}
+			gameEngine.incTurn();
+			if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
+				gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
+				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("ReadyToStartQuest"));
+				gameEngine.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
+				String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
+				gameEngine.getCurrentParticipant().session
+						.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+				String update = gameEngine.getPlayerStats();
+				sendToAllSessions(gameEngine, "updateStats" + update);
+				return;
+			}
+			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 		} else {
 			logger.info("Player {} denied to participate in quest {} sponsored by {}",
 					gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName(),
