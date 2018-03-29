@@ -33,7 +33,7 @@ public class QuestController extends SocketHandler {
 	Game gameEngine;
 	public Player sponsor;
 	public ArrayList<Player> participants;
-	QuestCard currentQuest;
+	public QuestCard currentQuest;
 	public ArrayList<FoeCard> QuestFoes;
 	public ArrayList<TestCard> QuestTests;
 	public String[] currentQuestInfo;
@@ -44,6 +44,7 @@ public class QuestController extends SocketHandler {
 	public Player firstQuestPlayer;
 	ArrayList<String> toDiscardAfterTest;
 	public int equipmentTracker = 0;
+	public PointArray foePoints = null;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -231,7 +232,7 @@ public class QuestController extends SocketHandler {
 
 	public void calculateFoeBattlePoints() {
 		int tempPts;
-		PointArray foePoints = new PointArray(currentQuest.getStages() - 1);
+		foePoints = new PointArray(currentQuest.getStages() - 1);
 		for (FoeCard f : QuestFoes) {
 			tempPts = 0;
 			if (currentQuest.getFoe().equals(f.getName()) || currentQuest.getFoe2().equals(f.getName())) {
@@ -556,8 +557,11 @@ public class QuestController extends SocketHandler {
 
 	public void calculateStageOutcome(String playerPoints, JsonArray questInformation) {
 		// System.out.println(playerPoints);
-		int currentStage = gameEngine.current_quest.currentStage;
+		int currentStage = gameEngine.current_quest.currentStage - 1;
 		ArrayList<String[]> playerPointsArr = new ArrayList<String[]>();
+		FoeCard currentFoe = null;
+		TestCard currentTest = null;
+
 		String[] temp = playerPoints.split(";");
 		for (int i = 0; i < temp.length; i++) {
 			String[] s = temp[i].split("#");
@@ -571,21 +575,24 @@ public class QuestController extends SocketHandler {
 			System.out.println(questInformation.get(i));
 		}
 
-		for (int i = 0; i < gameEngine.current_quest.QuestFoes.size(); i++) {
-			if (QuestFoes.size() == 0) {
-				System.out.println("no foes");
-				break;
-			}
-			System.out.println(QuestFoes.get(i).getName() + " "
-					+ (QuestFoes.get(i).getBattlePoints() + QuestFoes.get(i).getWeaponPoints()));
-		}
+		String foePointsd = foePoints.toString();
+		System.out.println(foePointsd);
 
-		for (int i = 0; i < gameEngine.current_quest.QuestTests.size(); i++) {
-			if (QuestTests.size() == 0) {
-				System.out.println("no tests");
-				break;
-			}
-			System.out.println(QuestTests.get(i).getName() + " " + QuestTests.get(i).getMinBid());
+		JsonObject quest_cards = (JsonObject) questInformation.get(0);
+		JsonElement x = quest_cards.get("questSetupCards");
+		Type listType = new TypeToken<List<String>>() {
+		}.getType();
+		List<String> questCardList = new Gson().fromJson(x, listType);
+		System.out.println(questCardList);
+		for (int i = 0; i < questCardList.size(); i++) {
+			Card currentCard = getCardFromName(questCardList.get(i));
+			if (currentCard instanceof WeaponCard)
+				questCardList.remove(i);
+		}
+		Card tempCard = getCardFromName(questCardList.get(currentStage));
+		if (tempCard instanceof FoeCard) {
+			System.out.println(currentStage + 1 + " is a foe");
+			currentFoe = (FoeCard) getCardFromName(questCardList.get(currentStage));
 		}
 
 		// loop through quest info and set up stages accordingly
@@ -596,9 +603,16 @@ public class QuestController extends SocketHandler {
 		// desktop
 		// get winner of tests -> discard -> do other quest stuff -> display -> inc
 		// stage -> choose equipment again till stage =0
+		System.out.println(
+				"Stage battles commencing: foe " + currentFoe.getName() + " has " + foePoints.points.get(currentStage));
 		for (int i = 0; i < playerPointsArr.size(); i++) {
-			System.out.println("Battle between " + playerPointsArr.get(i)[0] + " and " + "" + "commencing");
-
+			System.out.println("Battle between " + playerPointsArr.get(i)[0] + " and " + currentFoe.getName());
+			System.out.println("Player " + playerPointsArr.get(i)[0] + " has " + playerPointsArr.get(i)[1] + " points");
+			if (Integer.parseInt(playerPointsArr.get(i)[1]) >= foePoints.points.get(currentStage)) {
+				System.out.println("Player wins");
+			} else
+				System.out.println("player loses");
 		}
+
 	}
 }
