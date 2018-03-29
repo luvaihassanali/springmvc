@@ -12,6 +12,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.luvai.model.Game;
@@ -30,6 +31,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public static Game gameEngine = new Game();
 	public static boolean rankSet = true;
 	public String BattleInformation = "";
+	JsonArray questInformation = new JsonArray();
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
@@ -52,6 +54,9 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for quest setup info from sponsor
 		if (jsonObject.has("questSetupCards")) {
+			logger.info("Player {} setup {} quest with {}", gameEngine.current_quest.sponsor.getName(),
+					gameEngine.storyDeck.faceUp.getName(), jsonObject.get("questSetupCards").toString());
+			questInformation.add(jsonObject);
 			sendToAllSessionsExceptCurrent(gameEngine, session,
 					"questSetupCards" + jsonObject.get("questSetupCards").toString());
 			gameEngine.current_quest.parseQuestInfo(jsonObject);
@@ -73,7 +78,29 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for getting participants battle equipment
 		if (jsonObject.has("equipment_info")) {
+			gameEngine.current_quest.equipmentTracker++;
+			// System.out.println(jsonObject.toString());
 			gameEngine.current_quest.parseEquipmentInfo(jsonObject);
+			questInformation.add(jsonObject);
+			if (gameEngine.current_quest.equipmentTracker == gameEngine.current_quest.getParticipants().size()) {
+				// sendToAllSessions(gameEngine, "showStages");
+				// System.out.println("got all equips");
+				// System.out.println(questInformation.toString());
+				logger.info("All players have chosen equipment for stage {} of {} quest which is a test: {}",
+						gameEngine.current_quest.currentStage, gameEngine.storyDeck.faceUp.getName(),
+						jsonObject.get("isTest").getAsBoolean());
+				sendToAllSessions(gameEngine, "allPlayerQuestInfo" + questInformation.toString());
+				String playerPoints = "";
+				for (int i = 0; i < gameEngine.current_quest.participants.size(); i++) {
+					playerPoints += gameEngine.current_quest.participants.get(i).getName() + "#"
+							+ gameEngine.current_quest.calculatePlayerPoints(
+									gameEngine.current_quest.participants.get(i).getName())
+							+ ";";
+				}
+				sendToAllSessions(gameEngine, "playerPointString" + playerPoints);
+				gameEngine.current_quest.calculateStageOutcome(playerPoints, questInformation);
+				return;
+			}
 		}
 
 		if (jsonObject.has("nextQuestTurn")) {
@@ -349,7 +376,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 
 		for (int i = 0; i < temp.size(); i++) {
-			System.out.println(temp.get(i).getName());
+			// System.out.println(temp.get(i).getName());
 			temp.get(i).session.sendMessage(new TextMessage(message));
 		}
 

@@ -32,6 +32,7 @@ public class Strategy2 extends AbstractAI {
 
 	@Override
 	public boolean doIParticipateQuest() {
+		/*
 		logger.info("Strategy2 calculating whether to participate in quest");
 		Player current_player = this.gameEngine.getActivePlayer();
 		sortCards(current_player);
@@ -86,7 +87,7 @@ public class Strategy2 extends AbstractAI {
 			return true;
 		}
 		logger.info("Player {} cards do not meet conditions needed to play in {} quest", current_player.getName(),
-				current_quest.getName());
+				current_quest.getName());*/
 		return false;
 
 	}

@@ -9,7 +9,6 @@ var totalStages;
 var questSetupCards = [];
 var weapons = [];
 var battleEquipment = [];
-var questStagesArray = [];
 var testBids = [];
 var questInfo;
 var foeInfo;
@@ -32,6 +31,7 @@ var testResult = false;
 var testTracker = 0;
 var wildCardStageInc = false;
 var serverMsg = document.getElementById('serverMsg');
+var allBattleEquipment = [];
 // when connection is initiated
 socketConn.onopen = function(event) {};
 
@@ -95,7 +95,25 @@ $( document ).ready(function() {
 socketConn.onmessage = function(event) {
     var serverMsg = document.getElementById('serverMsg');
 	
-
+    //get all player points for stage
+    if (event.data.startsWith("playerPointString")) {
+    	var temp = event.data.replace("playerPointString","");
+    	temp = temp.split(";");
+    	for(var i=0; i<temp.length; i++) {
+    		temp[i] = temp[i].split("#");
+    	}
+    	console.log(temp);
+    }
+    // get all player quest info
+    if (event.data.startsWith("allPlayerQuestInfo")) {
+    	var temp = event.data.replace("allPlayerQuestInfo","");
+    	temp = JSON.parse(temp);
+    	console.log(temp);
+    }
+    // show stages
+    if (event.data == "showStages") {
+    	showStages();
+    }
 	// undisable flip button
 	if (event.data.startsWith("AI")) {
 		parseAICommand(event.data);
@@ -192,12 +210,10 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("currentPlayerPoints")) {
 		var pts = event.data.replace("currentPlayerPoints", "");
 		currentPlayerInfo = pts;
-		//console.log(currentPlayerInfo);
+		console.log(currentPlayerInfo);
 		currentPlayerInfo = currentPlayerInfo.split(";");
 		currentPlayerInfo[currentPlayerInfo.length-2] = currentPlayerInfo[currentPlayerInfo.length-2].split("#");
-		console.log(currentPlayerInfo);
-
-		
+		allBattleEquipment.push(currentPlayerInfo);
 	}
 
 	// get foe info
@@ -312,16 +328,16 @@ socketConn.onmessage = function(event) {
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value = "It is now time to choose equipment for quest";
-	console.log("total stages: " + totalStages);
-	console.log("stage tracker: " + stageTracker);
-	console.log(questSetupCards[stageTracker])
+	//console.log("total stages: " + totalStages);
+	//console.log("stage tracker: " + stageTracker);
+	//console.log(questSetupCards[stageTracker])
 	if(questSetupCards[stageTracker].includes("Test")) {
 		console.log("this is a test");
 		//getTestBids();
 		//displayTest(stageTracker);
 	} else {
 		console.log("this is a battle");
-		//getBattleEquipment();
+		getBattleEquipment();
 		//displayBattle(stageTracker);
 		
 	}
@@ -352,6 +368,7 @@ function getTestBids() {
 
 
 function getBattleEquipment() {
+	battleEquipment = [];
 	var serverMsg = document.getElementById("serverMsg");
 	document.getElementById('doneEquipment').style.display = "inline";
 	serverMsg.value = "Please click on the equipment you want to choose for battle";
@@ -377,6 +394,7 @@ function getBattleEquipment() {
 
 					})
 }
+
 function pickupBeforeStage(event) {
 	var pickUpLink = event.data.replace("pickupBeforeStage", "");
 	$("#extra1").attr("src", "http://localhost:8080" + pickUpLink);
@@ -407,7 +425,7 @@ function parseTestInfo(event) {
 	for(var i=0; i<testInfo.length; i++) {
 		testInfo[i] = testInfo[i].split("#");
 	}
-	//console.log(testInfo);
+	console.log(testInfo);
 }
 function parseCurrentFoeInfo(event) {
 	var temp = event.data.replace("FoeInfo", "");
@@ -418,7 +436,7 @@ function parseCurrentFoeInfo(event) {
 	for(var i=0; i<foeInfo.length; i++) {
 		foeInfo[i] = foeInfo[i].split("#");
 	}
-	//	console.log(foeInfo);
+		console.log(foeInfo);
 }
 
 function parseParticipantInfo(event) {
@@ -450,7 +468,7 @@ function parseQuestInfo(event) {
 		array[i] = array[i].replace(" ","");
 	}
 	questSetupCards = array;
-	console.log(questSetupCards);
+	//onsole.log(questSetupCards);
 }
 
 function startGame() {
@@ -820,8 +838,10 @@ function doneEquipment() {
 	$('body').off('click');
 	document.getElementById('doneEquipment').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
-	console.log(battleEquipment);
-	if (questStagesArray[stageCounter].includes("Test")) {
+	//console.log(battleEquipment);
+	//console.log(questSetupCards);
+	//console.log(allBattleEquipment);
+	if (questSetupCards[stageTracker].includes("Test")) {
 		serverMsg.value = "Placing bids, please wait for other players...- ";
 		if(testBids.length == 0) serverMsg.value = "Dropping out of test, please wait for other players";
 	
@@ -842,7 +862,7 @@ function doneEquipment() {
 			'equipment_info' : battleEquipment,
 			'isTest' : false
 		});
-	
+		
 		socketConn.send(data);
 		arrangeHand();
 		battleEquipment = [];
@@ -880,12 +900,14 @@ function doneQuestSetup() {
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Quest setup complete, wait for other players";
 	document.getElementById('doneQuest').style.display = "none";
-	console.log("DONE QUEST SETUP")
-	console.log(questSetupCards);
 	var data = JSON.stringify({ 'questSetupCards' : questSetupCards});
 	socketConn.send(data);
 }
 
+function showStages() {
+	console.log(questSetupCards);
+	console.log(allBattleEquipment);
+}
 //flip story card
 function flipStoryDeck() {
 	var data = JSON.stringify({
