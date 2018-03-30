@@ -62,6 +62,10 @@ public class SocketHandler extends TextWebSocketHandler {
 			gameEngine.current_quest.parseQuestInfo(jsonObject);
 		}
 
+		// if out of stages
+		if (jsonObject.has("outOfStages")) {
+			Winning();
+		}
 		// json for accepting/decline participating in quest
 		if (jsonObject.has("participate_quest")) {
 			gameEngine.current_quest.getNewParticipants(jsonObject, session);
@@ -78,11 +82,75 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for getting participants battle equipment
 		if (jsonObject.has("equipment_info")) {
+			if (jsonObject.get("isTest").getAsBoolean()) {
+				gameEngine.current_quest.initialStageForTest = gameEngine.current_quest.currentStage;
+				System.out.println(jsonObject.toString());
+				gameEngine.current_quest.parseEquipmentInfo(jsonObject);
+				questInformation.add(jsonObject);
+				System.out.println("HERE FIRST TIME OVER");
+				System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
+				System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
+				System.out.println(gameEngine.current_quest.currentStage);
+				System.out.println(gameEngine.current_quest.participants.size());
+
+				for (Player p : gameEngine.current_quest.participants) {
+					System.out.println(p.getName());
+				}
+
+				if (gameEngine.current_quest.participants.size() == 1) {
+					if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
+						logger.info("Player {} dropped out of {} test",
+								gameEngine.current_quest.getCurrentParticipant().getName());
+						gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+						Losing();
+						return;
+					}
+					logger.info("There is only one participant left in quest test, automatic minimum bid pass");
+					gameEngine.current_quest.currentStage++;
+					sendToAllParticipants(gameEngine, "incStage");
+					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+						Winning();
+						return;
+					}
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
+					return;
+				}
+
+				System.out.println("socket handler 110");
+				System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+				System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
+				System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
+				System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
+				if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
+					System.out.println("player dropped out - remove");
+					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+				}
+				sendToAllSessions(gameEngine, "allPlayerQuestInfo" + questInformation.toString());
+				if (gameEngine.current_quest.participants.size() == 1) {
+					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
+						Winning();
+						return;
+					} else {
+						sendToAllSessions(gameEngine, "incStage");
+						gameEngine.current_quest.currentStage++;
+					}
+				}
+
+				System.out.println("HERE TWICE OVER NOW");
+				System.out.println(gameEngine.current_quest.currentStage);
+				System.out.println(gameEngine.current_quest.participants.size());
+				gameEngine.current_quest.incTurn();
+				gameEngine.getCurrentParticipant().session
+						.sendMessage(new TextMessage("updateMinBid" + gameEngine.current_quest.currentMinBid));
+				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
+				return;
+			}
 			gameEngine.current_quest.equipmentTracker++;
-			// System.out.println(jsonObject.toString());
+			System.out.println(jsonObject.toString());
 			gameEngine.current_quest.parseEquipmentInfo(jsonObject);
 			questInformation.add(jsonObject);
 			if (gameEngine.current_quest.equipmentTracker == gameEngine.current_quest.getParticipants().size()) {
+				gameEngine.current_quest.equipmentTracker = 0;
 				// sendToAllSessions(gameEngine, "showStages");
 				// System.out.println("got all equips");
 				// System.out.println(questInformation.toString());

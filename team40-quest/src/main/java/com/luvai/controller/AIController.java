@@ -18,7 +18,6 @@ public class AIController extends SocketHandler {
 	private static final Logger logger = LogManager.getLogger(AIController.class);
 
 	public AIController() {
-		System.out.println("AI CONTROLLER INIT");
 	}
 
 	public void receiveAICommand(JsonObject jsonObject) throws IOException {

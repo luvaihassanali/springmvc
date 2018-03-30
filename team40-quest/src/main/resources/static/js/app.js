@@ -95,6 +95,10 @@ $( document ).ready(function() {
 socketConn.onmessage = function(event) {
     var serverMsg = document.getElementById('serverMsg');
 	
+    //lost battle
+    if (event.data == "LostBattle") {
+    	serverMsg.value = "Lost battle, wait for quest to finish";
+    }
     //get all player points for stage
     if (event.data.startsWith("playerPointString")) {
     	var temp = event.data.replace("playerPointString","");
@@ -190,8 +194,9 @@ socketConn.onmessage = function(event) {
 	//update min bids
 	if (event.data.startsWith("updateMinBid")) {
 		var newBid = event.data.replace("updateMinBid","");
-		minBid = newBid;
-		TestInfo[1] = newBid;
+		minBid = parseInt(newBid);
+		if(minBid == 0) minBid = 3;
+		testInfo[0][1] = minBid;
 		console.log("UPDATING MINI BID" + minBid);
 	}
 	//get current player bids
@@ -254,7 +259,7 @@ socketConn.onmessage = function(event) {
 	
 	//notify sponsor of participants choosing equipment
     if(event.data == "ParticipantsChoosing") {
-    	serverMsg.value = "Participants are choosing equipment, please wait";
+    	serverMsg.value = "Participants are choosing equipment or bids, please wait";
     }
 	//notify participants of quest setup
 	if(event.data.startsWith("questIsBeingSetup")) {
@@ -328,42 +333,73 @@ socketConn.onmessage = function(event) {
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value = "It is now time to choose equipment for quest";
-	//console.log("total stages: " + totalStages);
-	//console.log("stage tracker: " + stageTracker);
-	//console.log(questSetupCards[stageTracker])
+	console.log("total stages: " + totalStages);
+	console.log("stage tracker: " + stageTracker);
+	console.log(questSetupCards[stageTracker])
+	if(totalStages == stageTracker) {
+		console.log("Quest over");
+		var data = JSON.stringify({
+			'outOfStages' : 0
+		})
+		socketConn.send(data);
+		return;
+	}
 	if(questSetupCards[stageTracker].includes("Test")) {
-		console.log("this is a test");
-		//getTestBids();
+		console.log("this is a test: " + questSetupCards[stageTracker]);
+		getTestBids();
 		//displayTest(stageTracker);
 	} else {
-		console.log("this is a battle");
+		console.log("this is a battle against " + questSetupCards[stageTracker]);
 		getBattleEquipment();
 		//displayBattle(stageTracker);
 		
 	}
-		
 	
 }
 
 function getTestBids() {
 	var serverMsg = document.getElementById("serverMsg");
 	document.getElementById('doneEquipment').style.display = "inline";
-	serverMsg.value = "Please click on cards to bid for test";
-	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
-				var cardId = this.src.replace('http://localhost:8080', '');
-				cardId = cardId.split('%20').join(' ');
-				if(getNameFromLink(cardId) != "link not found") {
-					console.log("adding to bid array" + getNameFromLink(cardId));
-					testBids.push(getNameFromLink(cardId));
-					var changeImageId = "#" + this.id;
-					numCards--;
-				}
-				$(changeImageId).attr("src", "/resources/images/all.png");
-				if (numCards <= 12) {
-					document.getElementById("doneEquipment").disabled = false;
-				}
-	})
+	document.getElementById('doneEquipment').disabled = false;
+	console.log(TestInfo);
+	minBid = parseInt(testInfo[0][1]);
+	console.log("minBid" + parseInt(minBid));
+	serverMsg.value = "Please click on the cards you wish to bid for test (Click done to drop out)";
+	 var x = document.getElementById("doneEquipment").disabled;
+	
+	 testTracker++;
+	 console.log(x);
+	if(x == false) { 
+		document.getElementById('doneEquipment').disabled = true;
+		document.getElementById('dropOut').style.display = "inline";
+		document.getElementById('dropOut').disabled = true;
+		if(numCards<=12) document.getElementById('dropOut').disabled = false;
+		if(testTracker >= 2) { document.getElementById('dropOut').disabled = false; testTracker = 0; }
+	
+	}
+	$('body')
+			.on(
+					'click',
+					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8',
+					function() {
 
+						var cardId = this.src.replace(
+								'http://localhost:8080', '');
+						cardId = cardId.split('%20').join(' ');
+						if(getNameFromLink(cardId) != "link not found") {
+							console.log("adding to bid array" + getNameFromLink(cardId));
+							testBids.push(getNameFromLink(cardId));
+							var changeImageId = "#" + this.id;
+							numCards--;
+						}
+						$(changeImageId).attr("src",
+								"/resources/images/all.png");
+						console.log(testBids.length);
+						console.log(minBid);
+						console.log("RIGHT BEFORE CHECKING TO UNDISABLE^");
+						if(testBids.length >= minBid ) document.getElementById('doneEquipment').disabled = false;
+						console.log(numCards)
+					})
 }
 
 
@@ -468,7 +504,7 @@ function parseQuestInfo(event) {
 		array[i] = array[i].replace(" ","");
 	}
 	questSetupCards = array;
-	//onsole.log(questSetupCards);
+	console.log(questSetupCards);
 }
 
 function startGame() {
@@ -712,7 +748,7 @@ function setupQuestRound() {
 								serverMsg.value = "Choose weapons for foe";
 								document.getElementById('doneQuest').style.display = "inline";
 								totalStages--;
-								console.log(totalStages);
+							//	console.log(totalStages);
 								$('body').on('click','#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {
 	
 								
@@ -826,12 +862,15 @@ function dropOutOfTest() {
 	document.getElementById('dropOut').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Dropped out of test, wait for quest to complete";
-
-	var datat = JSON.stringify({
-		'nextQuestTurn' : false,
-		'type' : "Test",
+	testBids = [];
+	var data = JSON.stringify({
+		'name' : PlayerName,
+		'stages' : stageTracker,
+		'equipment_info' : testBids,
+		'isTest' : true
 	});
-	socketConn.send(datat);
+
+	socketConn.send(data);
 }
 // send weapon info - done choosing
 function doneEquipment() {
@@ -854,6 +893,7 @@ function doneEquipment() {
 
 		socketConn.send(data);
 		arrangeHand();
+
 	} else {
 		serverMsg.value = "Going into battle - ";
 		var data = JSON.stringify({
@@ -866,7 +906,7 @@ function doneEquipment() {
 		socketConn.send(data);
 		arrangeHand();
 		battleEquipment = [];
-		testBids = [];
+		
 	}
 
 }

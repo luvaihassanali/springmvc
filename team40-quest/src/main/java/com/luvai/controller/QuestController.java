@@ -45,6 +45,7 @@ public class QuestController extends SocketHandler {
 	ArrayList<String> toDiscardAfterTest;
 	public int equipmentTracker = 0;
 	public PointArray foePoints = null;
+	public int initialStageForTest = 0;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -63,6 +64,10 @@ public class QuestController extends SocketHandler {
 		}.getType();
 		List<String> bidList = new Gson().fromJson(player_bids, listType);
 		toDiscardAfterTest = new ArrayList<String>(bidList);
+		System.out.println("quest controller 67");
+		for (String s : toDiscardAfterTest) {
+			System.out.println(s + ";");
+		}
 		calculateNumBids(bidList);
 		ArrayList<String> tempDiscards = new ArrayList<String>(bidList);
 		calculateTestDiscards(tempDiscards);
@@ -84,14 +89,20 @@ public class QuestController extends SocketHandler {
 		}
 		System.out.println(toDiscardAfterTest);
 		System.out.println("Bonus bids" + bonusBids);
+
 		for (int i = 0; i < bonusBids; i++) {
 			toDiscardAfterTest.remove(0);
-			if (toDiscardAfterTest.isEmpty())
-				break;
 		}
-		System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
-		System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
-		System.out.println(toDiscardAfterTest);
+		if (toDiscardAfterTest.isEmpty()) {
+			System.out.println("HERE");
+			System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+			System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
+			System.out.println(toDiscardAfterTest);
+			// gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+			System.out.println(gameEngine.current_quest.currentStage);
+			System.out.println(gameEngine.current_quest.participants.size());
+		}
+
 	}
 
 	// adjust player for points with chosen equipment
@@ -345,7 +356,16 @@ public class QuestController extends SocketHandler {
 
 		gameEngine.incTurn();
 		if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
-			sendToAllParticipants(gameEngine, "ChooseEquipment");
+			for (int i = 0; i < currentQuestInfo.length; i++) {
+				System.out.println(currentQuestInfo[i]);
+			}
+			System.out.println("current stage:" + currentStage);
+			if (currentQuestInfo[currentStage - 1].contains("Test")) {
+				// is test - one at a time
+				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
+			} else { // is battle choose concurrently
+				sendToAllParticipants(gameEngine, "ChooseEquipment");
+			}
 			String logString = "";
 			for (Player p : gameEngine.current_quest.participants) {
 				logString += p.getName() + ", ";
@@ -390,7 +410,13 @@ public class QuestController extends SocketHandler {
 				if (gameEngine.getNextPlayer().isAI())
 					sendToNextPlayer(gameEngine, "undisableFlip");
 			} else {
-				sendToAllParticipants(gameEngine, "ChooseEquipment");
+
+				if (currentQuestInfo[currentStage - 1].contains("Test")) {
+					// is test - one at a time
+					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
+				} else { // is battle choose concurrently
+					sendToAllParticipants(gameEngine, "ChooseEquipment");
+				}
 				String logString = "";
 				for (Player p : gameEngine.current_quest.participants) {
 					logString += p.getName() + ", ";
@@ -437,24 +463,21 @@ public class QuestController extends SocketHandler {
 		}*/
 
 	public void sponsorPickup() throws IOException {
+
 		String temp = "";
+		String tempNames = "";
+		int cardTracker = 0;
 		for (int i = gameEngine.getActivePlayer().getHandSize(); i < 12
 				+ gameEngine.current_quest.currentQuest.getStages(); i++) {
+			cardTracker++;
 			AdventureCard newCard = gameEngine.adventureDeck.flipCard();
 			temp += newCard.getStringFile() + ";";
+			tempNames += newCard.getName() + ", ";
 			gameEngine.getActivePlayer().getHand().add(newCard);
 		}
+		logger.info("Player {} who sponsored {} quest is receiving {} card ({}) due to sponsoring quest",
+				gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName(), cardTracker, tempNames);
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
-	}
-
-	public void advanceQuest() throws IOException {
-		gameEngine.current_quest.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
-		String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-		gameEngine.current_quest.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-		gameEngine.current_quest.getCurrentParticipant().session
-				.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
-		String update = gameEngine.getPlayerStats();
-		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
 
 	public void parseQuestInfo(JsonObject jsonObject) throws IOException {
@@ -555,7 +578,7 @@ public class QuestController extends SocketHandler {
 
 	}
 
-	public void calculateStageOutcome(String playerPoints, JsonArray questInformation) {
+	public void calculateStageOutcome(String playerPoints, JsonArray questInformation) throws IOException {
 		// System.out.println(playerPoints);
 		int currentStage = gameEngine.current_quest.currentStage - 1;
 		ArrayList<String[]> playerPointsArr = new ArrayList<String[]>();
@@ -568,22 +591,23 @@ public class QuestController extends SocketHandler {
 			playerPointsArr.add(s);
 		}
 		for (int i = 0; i < playerPointsArr.size(); i++) {
-			System.out.println(playerPointsArr.get(i)[0] + " " + playerPointsArr.get(i)[1]);
+			// System.out.println(playerPointsArr.get(i)[0] + " " +
+			// playerPointsArr.get(i)[1]);
 		}
 
 		for (int i = 0; i < questInformation.size(); i++) {
-			System.out.println(questInformation.get(i));
+			// System.out.println(questInformation.get(i));
 		}
 
-		String foePointsd = foePoints.toString();
-		System.out.println(foePointsd);
+		// String foePoints = foePoints.toString();
+		// System.out.println(foePointsd);
 
 		JsonObject quest_cards = (JsonObject) questInformation.get(0);
 		JsonElement x = quest_cards.get("questSetupCards");
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
 		List<String> questCardList = new Gson().fromJson(x, listType);
-		System.out.println(questCardList);
+		// System.out.println(questCardList);
 		for (int i = 0; i < questCardList.size(); i++) {
 			Card currentCard = getCardFromName(questCardList.get(i));
 			if (currentCard instanceof WeaponCard)
@@ -591,28 +615,81 @@ public class QuestController extends SocketHandler {
 		}
 		Card tempCard = getCardFromName(questCardList.get(currentStage));
 		if (tempCard instanceof FoeCard) {
-			System.out.println(currentStage + 1 + " is a foe");
+			logger.info("{} quest stage {} is a foe battle", gameEngine.current_quest.currentQuest.getName(),
+					currentStage + 1);
 			currentFoe = (FoeCard) getCardFromName(questCardList.get(currentStage));
+			for (int i = 0; i < foePoints.points.size(); i++) {
+
+			}
+			int currentFoePoints = 0;
+			for (int i = 0; i < foePoints.names.size(); i++) {
+				if (currentFoe.getName().equals(foePoints.names.get(i))) {
+					currentFoePoints = foePoints.points.get(i);
+				}
+			}
+			logger.info("Participant battles commencing against foe {} with {} battle points", currentFoe.getName(),
+					currentFoePoints);
+			for (int i = 0; i < playerPointsArr.size(); i++) {
+				logger.info(
+						"Battle against participant {} with {} battle points is starting - versus {} with {} points",
+						playerPointsArr.get(i)[0], playerPointsArr.get(i)[1], currentFoe.getName(), currentFoePoints);
+				if (Integer.parseInt(playerPointsArr.get(i)[1]) >= currentFoePoints) {
+					logger.info("Player {} has WON battle", gameEngine.current_quest.getCurrentParticipant().getName());
+					if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
+						Player shieldGetter = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
+						shieldGetter.giveShields(gameEngine.current_quest.currentQuest.getStages());
+						System.out.println("giving player shields " + shieldGetter.getName());
+					}
+				} else {
+					logger.info("Player {} has LOST battle", playerPointsArr.get(i)[0]);
+					Player toRemove = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
+					toRemove.session.sendMessage(new TextMessage("LostBattle"));
+					gameEngine.current_quest.participants.remove(toRemove);
+					System.out.println("removing player from quest " + toRemove.getName());
+				}
+			}
+			logger.info("Stage {} is over", currentStage + 1);
+			if (currentTest == null) {
+				System.out.println("this was not a test");
+			}
+			gameEngine.updateStats();
+			if (gameEngine.current_quest.participants.isEmpty()) {
+				Losing();
+				return;
+			}
+			if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
+				// System.out.println("QUest is over");
+				// System.out.println("in quest: " + gameEngine.current_quest.currentStage);
+				// System.out.println("current stage: " + currentStage);
+				// System.out.println("num participants: " +
+				// gameEngine.current_quest.participants.size());
+				Winning();
+				// sponsorPickup();
+				// gameEngine.incTurn();
+				// gameEngine.getActivePlayer().session.sendMessage(new
+				// TextMessage("undisableFlip"));
+				return;
+			}
+			sendToAllSessions(gameEngine, "incStage");
+			gameEngine.current_quest.currentStage++;
+			int test = currentStage + 1;
+			System.out.println(gameEngine.current_quest.currentStage);
+			System.out.println("in quest: " + gameEngine.current_quest.currentStage);
+			System.out.println("current stage: " + currentStage);
+			System.out.println("num participants: " + gameEngine.current_quest.participants.size());
+
+			if (currentQuestInfo[test].contains("Test")) {
+				// is test - one at a time
+				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
+			} else { // is battle choose concurrently
+				sendToAllParticipants(gameEngine, "ChooseEquipment");
+			}
+		} else {
+			logger.info("{} quest stage {} is a test", gameEngine.current_quest.currentQuest.getName(),
+					currentStage + 1);
+			currentTest = (TestCard) getCardFromName(questCardList.get(currentStage));
+			System.out.println("in test");
+			gameEngine.current_quest.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 		}
-
-		// loop through quest info and set up stages accordingly
-		// then for stage whatever if test/if battle
-		// if battle calculate points and winners -> send for display
-
-		// tests ... ask each player seperately for bids -> use old team40 quest on
-		// desktop
-		// get winner of tests -> discard -> do other quest stuff -> display -> inc
-		// stage -> choose equipment again till stage =0
-		System.out.println(
-				"Stage battles commencing: foe " + currentFoe.getName() + " has " + foePoints.points.get(currentStage));
-		for (int i = 0; i < playerPointsArr.size(); i++) {
-			System.out.println("Battle between " + playerPointsArr.get(i)[0] + " and " + currentFoe.getName());
-			System.out.println("Player " + playerPointsArr.get(i)[0] + " has " + playerPointsArr.get(i)[1] + " points");
-			if (Integer.parseInt(playerPointsArr.get(i)[1]) >= foePoints.points.get(currentStage)) {
-				System.out.println("Player wins");
-			} else
-				System.out.println("player loses");
-		}
-
 	}
 }
