@@ -174,6 +174,9 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("Getting")) {
 		console.log("here");
 		serverMsg.value = event.data;
+		getCurrHand();
+		console.log(handCardSRC);
+	
 	}
 	// pick up cards used for sponsor
 	if (event.data.startsWith("SponsorPickup")) {
@@ -580,28 +583,39 @@ function PickupCards(newCards) {
 		whichEvent = "Prosperity";
 		newCards = newCards.replace("PickupCardsProsperity", "");
 	}
-
+	if(newCards.startsWith("PickupCardsTestBonus")) {
+		newCards = newCards.replace("PickupCardsTestBonus","");
+	}
+	console.log(newCards)
+	if(newCards=="null") return;
 	newCards = newCards.split(";");
 	newCards.pop();
 	console.log("LINE 585");
 	console.log(newCards);
 	var numNewCards = newCards.length;
-
+	console.log(numNewCards);
 	for (var i = 0; i < handCardID.length; i++) {
+		console.log("begin of loop");
+		console.log(newCards.length);
+		console.log(newCards);
 		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
 			var imageId = handCardID[i];
+			var tempLink = getLinkFromName(newCards.pop())
 			$("#" + imageId).attr("src",
-					"http://localhost:8080" + newCards.pop());
+					"http://localhost:8080" + tempLink);
+			console.log(newCards.length);
+			console.log(newCards);
 			if (newCards.length == 0)
 				break;
 		}
 	}
 
 	var cardTracker = 0;
+	console.log("line 614");
 	for (var i = 0; i < handCardSRC.length; i++) {
 		var tempCardLink = handCardSRC[i].replace("http://localhost:8080", "");
 		tempCardLink = tempCardLink.split('%20').join(' ');
-		// console.log(tempCardLink);
+	  console.log(tempCardLink);
 		if (tempCardLink != "/resources/images/all.png")
 			cardTracker++;
 	}
@@ -624,7 +638,7 @@ function PickupCards(newCards) {
 		discard();
 	}
 
-	if(numCards <= 12) {
+	if(numCards <= 12 && whichEvent == "Prosperity") {
 		console.log("sending prosperity");
 		var data = JSON.stringify({
 

@@ -30,6 +30,7 @@ public class Player {
 	public int tieCheck;
 	AbstractAI ai;
 	public ArrayList<String> testDiscardList;
+	public ArrayList<String> replaceBonusBidsList;
 
 	public Player() {
 
@@ -48,6 +49,7 @@ public class Player {
 		this.allies = new ArrayList<AllyCard>();
 		this.tieCheck = 0;
 		this.testDiscardList = new ArrayList<String>();
+		this.replaceBonusBidsList = new ArrayList<String>();
 	}
 
 	public Player(String name, WebSocketSession session, int isAI) {

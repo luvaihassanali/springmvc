@@ -93,7 +93,8 @@ public class QuestController extends SocketHandler {
 		System.out.println("Bonus bids" + bonusBids);
 
 		for (int i = 0; i < bonusBids; i++) {
-			toDiscardAfterTest.remove(0);
+			String temp = toDiscardAfterTest.remove(0);
+			gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList.add(temp);
 		}
 
 		System.out.println("HERE");

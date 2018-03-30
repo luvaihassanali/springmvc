@@ -109,10 +109,21 @@ public class SocketHandler extends TextWebSocketHandler {
 					System.out.println("to remove after test: ");
 					gameEngine.current_quest.getCurrentParticipant()
 							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
-					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+
 					for (int i = 0; i < gameEngine.current_quest.getCurrentParticipant().testDiscardList.size(); i++) {
 						System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
 					}
+					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+					System.out.println("REPLACE THESSE CARDS ON SCREEN");
+					String testBonusReplacement = "";
+					for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
+						System.out.println(s);
+						testBonusReplacement += s + ";";
+					}
+					testBonusReplacement += "null";
+					// gameEngine.current_quest.getCurrentParticipant().session
+					// .sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
+					gameEngine.updateStats();
 
 					gameEngine.current_quest.currentStage++;
 					sendToAllParticipants(gameEngine, "incStage");
@@ -284,10 +295,21 @@ public class SocketHandler extends TextWebSocketHandler {
 					System.out.println("to remove after test: ");
 					gameEngine.current_quest.getCurrentParticipant()
 							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
-					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+
 					for (int k = 0; k < gameEngine.current_quest.getCurrentParticipant().testDiscardList.size(); k++) {
 						System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(k));
 					}
+					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+					System.out.println("REPLACE THESSE CARDS ON SCREEN");
+					String testBonusReplacement = "";
+					for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
+						System.out.println(s);
+						testBonusReplacement += s + ";";
+					}
+					testBonusReplacement += "null";
+					gameEngine.current_quest.getCurrentParticipant().session
+							.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
+					gameEngine.updateStats();
 
 				} else {
 					gameEngine.players.get(i).session.sendMessage(new TextMessage("QuestOverWaitForSponsor"));
