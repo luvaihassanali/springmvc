@@ -407,6 +407,7 @@ function getTestBids() {
 
 
 function getBattleEquipment() {
+	document.getElementById('dropOut').style.display = "none";
 	battleEquipment = [];
 	var serverMsg = document.getElementById("serverMsg");
 	document.getElementById('doneEquipment').style.display = "inline";
@@ -898,8 +899,10 @@ function dropOutOfTest() {
 }
 // send weapon info - done choosing
 function doneEquipment() {
+	document.getElementById('dropOut').style.display = "none";
 	$('body').off('click');
 	document.getElementById('doneEquipment').style.display = "none";
+	document.getElementById('dropOut').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
 	//console.log(battleEquipment);
 	//console.log(questSetupCards);
@@ -1571,6 +1574,9 @@ function AIDiscard(cardNames) {
 		for (var i = 0; i < imageArrayai.length; i++) {
 			var tempSrc = getLinkFromName(cardNames[j]);
 			console.log(tempSrc);
+			if(imageArrayai[i].includes("%")) imageArrayai[i] = imageArrayai[i].split('%20').join(' ');
+			console.log(imageArrayai[i]);
+	
 			if(imageArrayai[i].startsWith("http")) imageArrayai[i] = imageArrayai[i].replace("http://localhost:8080","");
 			if (tempSrc == imageArrayai[i]) {
 				$("#" + imageArrayaiID[i]).attr("src",

@@ -3677,3 +3677,636 @@
 2018-Mar-30 18:34:39 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player(s) Mickey Mouse2, are the winners of Boar Hunt quest sponsored by Mickey Mouse, receiving 2 shields
 2018-Mar-30 18:34:39 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse who sponsored Boar Hunt quest is receiving 4 card (Excalibur Mordred Robber Knight Saxon Knight ) due to sponsoring quest
 2018-Mar-30 18:34:39 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Giving shields to Mickey Mouse2
+2018-Mar-30 18:50:57 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Excalibur
+2018-Mar-30 18:50:58 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Mordred
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse2 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Horse and Dagger
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 picked up Horse and Lance
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player AI_Player_409 picked up Dragon and Saxon Knight
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player AI_Player_184 picked up Amour and Battle-ax
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_409 discarded Test of the Questing Beast
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_409 discarded Queen Guinevere
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_184 discarded Boar
+2018-Mar-30 18:51:17 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_184 discarded Queen Iseult
+2018-Mar-30 18:51:33 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Horse
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Dagger
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player AI_Player_409 is flipping new card from story deck: Chivalrous Deed
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_409 has initiated event Chivalrous Deed
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Mickey Mouse with 0 shields
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Mickey Mouse2 with 2 shields
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - AI_Player_409 with 0 shields
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - AI_Player_184 with 0 shields
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController -  Mickey Mouse is awarded with 3 shields for a total of 3
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController -  AI_Player_409 is awarded with 3 shields for a total of 3
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController -  AI_Player_184 is awarded with 3 shields for a total of 3
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player AI_Player_184 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - No players chose to sponsor Repel the Saxon Raiders quest
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player AI_Player_184 is flipping new card from story deck: Court Called to Camelot
+2018-Mar-30 18:51:34 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player AI_Player_184 has initiated event Court Called to Camelot
+2018-Mar-30 18:51:55 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 18:51:55 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 18:51:55 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 18:52:01 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:52:01 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 18:52:01 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:52:01 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 18:52:02 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:52:02 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 18:52:03 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:52:03 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 18:52:05 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 18:52:05 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 18:52:05 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 18:52:08 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 18:52:08 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 18:52:08 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - Player AI_Player_625 is enrolled in the game
+2018-Mar-30 18:52:09 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 18:52:09 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 18:52:09 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - Player AI_Player_649 is enrolled in the game
+2018-Mar-30 18:52:10 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 18:52:10 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 18:52:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - Player AI_Player_208 is enrolled in the game
+2018-Mar-30 18:52:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Mar-30 18:52:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_625 accepted to sponsor quest Boar Hunt
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_625
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - AI_Player_625 is setting up stages for Boar Hunt quest
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - AI_Player_625 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_625 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player AI_Player_625 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player AI_Player_649 denied to participate in Boar Hunt quest sponsored by AI_Player_625
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player AI_Player_208 denied to participate in Boar Hunt quest sponsored by AI_Player_625
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_625 discarded Test of Morgan Le Fey
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_625 discarded Green Knight
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_625 discarded Dagger
+2018-Mar-30 18:52:12 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_625 discarded Horse
+2018-Mar-30 18:52:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse accepted to participate in Boar Hunt quest sponsored by AI_Player_625
+2018-Mar-30 18:52:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse getting new card Lance
+2018-Mar-30 18:52:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by AI_Player_625 is commencing with participants: Mickey Mouse, 
+2018-Mar-30 18:52:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - There is only one participant left in quest test, automatic minimum bid pass
+2018-Mar-30 18:52:18 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Lance
+2018-Mar-30 18:52:18 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Boar
+2018-Mar-30 18:52:18 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Black Knight
+2018-Mar-30 18:55:59 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 18:55:59 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 18:55:59 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 18:56:01 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:56:01 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 18:56:02 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:56:02 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 18:56:02 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:56:02 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 18:56:03 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:56:03 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 18:56:04 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 18:56:04 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 18:56:04 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 18:56:06 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Mar-30 18:56:08 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Mar-30 18:56:09 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 18:56:09 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 18:56:09 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - Player AI_Player_57 is enrolled in the game
+2018-Mar-30 18:56:09 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Mar-30 18:56:09 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 18:56:11 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Mar-30 18:56:11 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Mar-30 18:56:11 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Mar-30 18:56:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Boar","Test of the Questing Beast"]
+2018-Mar-30 18:56:13 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Mar-30 18:56:13 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Mar-30 18:56:15 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Mar-30 18:56:15 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Excalibur
+2018-Mar-30 18:56:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Mar-30 18:56:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Black Knight
+2018-Mar-30 18:56:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_57 denied to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Mar-30 18:56:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, 
+2018-Mar-30 18:56:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 chose Excalibur,  for stage 1 of Boar Hunt quest
+2018-Mar-30 18:56:19 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse3 equipped Excalibur
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 chose Excalibur,  for stage 1 of Boar Hunt quest
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Excalibur
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 15 battle points
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse2 with 35 battle points is starting - versus Boar with 15 points
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 has WON battle
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse3 with 35 battle points is starting - versus Boar with 15 points
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 has WON battle
+2018-Mar-30 18:56:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Mar-30 18:56:40 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player(s) Mickey Mouse2, are the winners of Boar Hunt quest sponsored by Mickey Mouse, receiving 2 shields
+2018-Mar-30 18:56:40 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse who sponsored Boar Hunt quest is receiving 4 card (Sword Test of Temptation Lance Amour ) due to sponsoring quest
+2018-Mar-30 18:56:40 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Giving shields to Mickey Mouse2
+2018-Mar-30 18:56:40 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Test of Morgan Le Fey
+2018-Mar-30 18:56:40 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Amour
+2018-Mar-30 18:56:40 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Robber Knight
+2018-Mar-30 18:57:40 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 18:57:40 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 18:57:40 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 18:57:43 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:57:43 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 18:57:44 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:57:44 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 18:57:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:57:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 18:57:45 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:57:45 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 18:59:25 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:59:25 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#4 connected
+2018-Mar-30 18:59:37 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 18:59:37 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 18:59:37 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 18:59:41 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:59:41 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 18:59:41 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:59:41 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 18:59:42 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:59:42 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 18:59:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 18:59:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 18:59:44 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 18:59:44 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 18:59:44 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 18:59:46 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 18:59:46 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 18:59:46 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_441 is enrolled in the game
+2018-Mar-30 18:59:47 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Mar-30 18:59:49 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Mar-30 18:59:49 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Mar-30 18:59:49 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_441 accepted to sponsor quest Boar Hunt
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_441
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - AI_Player_441 is setting up stages for Boar Hunt quest
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - AI_Player_441 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_441 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player AI_Player_441 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Test of Morgan Le Fey
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Green Knight
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Dagger
+2018-Mar-30 18:59:53 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Horse
+2018-Mar-30 18:59:55 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by AI_Player_441
+2018-Mar-30 18:59:55 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Robber Knight
+2018-Mar-30 18:59:56 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by AI_Player_441
+2018-Mar-30 18:59:56 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Saxons
+2018-Mar-30 18:59:58 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse accepted to participate in Boar Hunt quest sponsored by AI_Player_441
+2018-Mar-30 18:59:58 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse getting new card Sword
+2018-Mar-30 18:59:58 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by AI_Player_441 is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse, 
+2018-Mar-30 19:00:15 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Sword
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 chose Dagger,  for stage 2 of Boar Hunt quest
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse3 equipped Dagger
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Boar Hunt quest which is a test: false
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 2 is a foe battle
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Green Knight with 40 battle points
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse3 with 10 battle points is starting - versus Green Knight with 40 points
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 has LOST battle
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Stage 2 is over
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - All players defeated in Boar Hunt quest sponsored by AI_Player_441
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player AI_Player_441 who sponsored Boar Hunt quest is receiving 6 card due to sponsoring quest
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Sir Tristan
+2018-Mar-30 19:00:43 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Saxons
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse2 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Robber Knight and Lance
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player AI_Player_441 picked up Giant and Battle-ax
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 picked up Merlin and Horse
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Mickey Mouse3 picked up Battle-ax and Test of Valor
+2018-Mar-30 19:00:50 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_441 discarded Merlin
+2018-Mar-30 19:00:59 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Robber Knight
+2018-Mar-30 19:00:59 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Lance
+2018-Mar-30 19:00:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Mar-30 19:01:27 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 19:01:27 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 19:01:27 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 19:03:28 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 19:03:28 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 19:03:28 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 19:03:35 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:03:35 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 19:03:35 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:03:35 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 19:03:36 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:03:36 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 19:03:37 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:03:37 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 19:03:38 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 19:03:38 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 19:03:38 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 19:03:40 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:03:40 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:03:40 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - Player AI_Player_814 is enrolled in the game
+2018-Mar-30 19:03:42 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Mar-30 19:03:45 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Mar-30 19:03:45 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Mar-30 19:03:45 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_814 accepted to sponsor quest Boar Hunt
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_814
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - AI_Player_814 is setting up stages for Boar Hunt quest
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - AI_Player_814 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_814 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player AI_Player_814 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Test of Morgan Le Fey
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Green Knight
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Dagger
+2018-Mar-30 19:03:47 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Horse
+2018-Mar-30 19:03:49 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 denied to participate in Boar Hunt quest sponsored by AI_Player_814
+2018-Mar-30 19:03:50 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 denied to participate in Boar Hunt quest sponsored by AI_Player_814
+2018-Mar-30 19:03:52 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse denied to participate in Boar Hunt quest sponsored by AI_Player_814
+2018-Mar-30 19:03:52 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - No players participated, sponsor AI_Player_814 is replacing cards used to setup Boar Hunt quest
+2018-Mar-30 19:03:52 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player AI_Player_814 is receiving Amour, Thieves, Robber Knight, Sword, Sword, Saxons,  for sponsoring
+2018-Mar-30 19:03:52 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Sir Tristan
+2018-Mar-30 19:03:52 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Saxons
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse2 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Thieves and Thieves
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player AI_Player_814 picked up Battle-ax and Giant
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 picked up Mordred and Horse
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Mickey Mouse3 picked up Merlin and King Pellinore
+2018-Mar-30 19:04:01 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_814 discarded Merlin
+2018-Mar-30 19:14:36 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 19:14:36 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 19:14:36 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 19:14:39 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:14:39 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 19:14:41 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:14:41 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 19:14:42 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:14:42 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 19:14:43 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:14:43 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 19:14:44 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 19:14:44 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 19:14:44 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 19:14:46 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:14:46 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:14:46 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - Player AI_Player_745 is enrolled in the game
+2018-Mar-30 19:14:48 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:14:48 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:14:48 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - Player AI_Player_67 is enrolled in the game
+2018-Mar-30 19:14:51 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:14:51 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:14:51 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_812 is enrolled in the game
+2018-Mar-30 19:14:51 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Mar-30 19:14:51 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_745 accepted to sponsor quest Boar Hunt
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_745
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - AI_Player_745 is setting up stages for Boar Hunt quest
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - AI_Player_745 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_745 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player AI_Player_745 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_67 denied to participate in Boar Hunt quest sponsored by AI_Player_745
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player AI_Player_812 denied to participate in Boar Hunt quest sponsored by AI_Player_745
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Test of Morgan Le Fey
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Green Knight
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Dagger
+2018-Mar-30 19:14:52 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Horse
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse denied to participate in Boar Hunt quest sponsored by AI_Player_745
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - No players participated, sponsor AI_Player_745 is replacing cards used to setup Boar Hunt quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player AI_Player_745 is receiving Sword, Queen Iseult, Black Knight, Horse, Evil Knight, Green Knight,  for sponsoring
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player AI_Player_745 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_745 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Sir Tristan
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Thieves and Lance
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_745 picked up Test of the Questing Beast and Dagger
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_67 picked up Horse and Mordred
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Green Knight
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_812 picked up Saxon Knight and Robber Knight
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_67 is flipping new card from story deck: Chivalrous Deed
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player AI_Player_67 has initiated event Chivalrous Deed
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Mickey Mouse with 0 shields
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - AI_Player_745 with 0 shields
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - AI_Player_67 with 0 shields
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - AI_Player_812 with 0 shields
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController -  Mickey Mouse is awarded with 3 shields for a total of 3
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController -  AI_Player_745 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController -  AI_Player_67 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController -  AI_Player_812 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_67 discarded Test of the Questing Beast
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player AI_Player_812 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_67 discarded Queen Guinevere
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player AI_Player_812 discarded Boar
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_812 discarded Queen Iseult
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - No players chose to sponsor Repel the Saxon Raiders quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_812 is flipping new card from story deck: Test of the Green Knight
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_745 discarded Merlin
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - No players chose to sponsor Test of the Green Knight quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player AI_Player_812 is flipping new card from story deck: Journey through the Enchanted Forest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - No players chose to sponsor Journey through the Enchanted Forest quest
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player AI_Player_812 is flipping new card from story deck: King's Recognition
+2018-Mar-30 19:14:53 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_812 has initiated event King's Recognition
+2018-Mar-30 19:16:15 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 19:16:15 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 19:16:15 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 19:16:17 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:16:17 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 19:16:18 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:16:18 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 19:16:18 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:16:18 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 19:16:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:16:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 19:16:21 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 19:16:21 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 19:16:21 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 19:16:25 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:16:25 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:16:25 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_685 is enrolled in the game
+2018-Mar-30 19:16:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:16:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:16:26 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - Player AI_Player_539 is enrolled in the game
+2018-Mar-30 19:16:27 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:16:27 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:16:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.AIController - Player AI_Player_822 is enrolled in the game
+2018-Mar-30 19:16:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Mar-30 19:16:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_685 accepted to sponsor quest Boar Hunt
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_685
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - AI_Player_685 is setting up stages for Boar Hunt quest
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - AI_Player_685 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_685 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player AI_Player_685 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player AI_Player_539 denied to participate in Boar Hunt quest sponsored by AI_Player_685
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Test of Morgan Le Fey
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player AI_Player_822 denied to participate in Boar Hunt quest sponsored by AI_Player_685
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Green Knight
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Dagger
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Horse
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse denied to participate in Boar Hunt quest sponsored by AI_Player_685
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - No players participated, sponsor AI_Player_685 is replacing cards used to setup Boar Hunt quest
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_685 is receiving Sir Percival, Robber Knight, Sword, Amour, Robber Knight, Sir Tristan,  for sponsoring
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player AI_Player_685 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player AI_Player_685 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Sword and Horse
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player AI_Player_685 picked up Robber Knight and Test of the Questing Beast
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player AI_Player_539 picked up Sir Gawain and Saxons
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player AI_Player_822 picked up Dagger and Test of Morgan Le Fey
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Sir Tristan
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Sir Tristan
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_822 discarded Boar
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_822 discarded Queen Iseult
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player AI_Player_539 is flipping new card from story deck: Chivalrous Deed
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player AI_Player_539 has initiated event Chivalrous Deed
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Mickey Mouse with 0 shields
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - AI_Player_685 with 0 shields
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - AI_Player_539 with 0 shields
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - AI_Player_822 with 0 shields
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  Mickey Mouse is awarded with 3 shields for a total of 3
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  AI_Player_685 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  AI_Player_539 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  AI_Player_822 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player AI_Player_822 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.AIController - No players chose to sponsor Repel the Saxon Raiders quest
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_685 discarded Merlin
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player AI_Player_822 is flipping new card from story deck: King's Call to Arms
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_822 has initiated event King's Call to Arms
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_539 discarded Test of the Questing Beast
+2018-Mar-30 19:16:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_539 discarded Queen Guinevere
+2018-Mar-30 19:17:18 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 19:17:18 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 19:17:18 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 19:17:20 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:17:20 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 19:17:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:17:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 19:17:21 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:17:21 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 19:17:22 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:17:22 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 19:17:23 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 19:17:23 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 19:17:23 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 19:17:24 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:17:24 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:17:24 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - Player AI_Player_343 is enrolled in the game
+2018-Mar-30 19:17:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:17:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:17:26 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - Player AI_Player_543 is enrolled in the game
+2018-Mar-30 19:17:27 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:17:27 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:17:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.AIController - Player AI_Player_618 is enrolled in the game
+2018-Mar-30 19:17:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Mar-30 19:17:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_343 accepted to sponsor quest Boar Hunt
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_343
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - AI_Player_343 is setting up stages for Boar Hunt quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - AI_Player_343 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_343 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player AI_Player_343 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player AI_Player_543 denied to participate in Boar Hunt quest sponsored by AI_Player_343
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_618 denied to participate in Boar Hunt quest sponsored by AI_Player_343
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Test of Morgan Le Fey
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Green Knight
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Dagger
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Horse
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse denied to participate in Boar Hunt quest sponsored by AI_Player_343
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - No players participated, sponsor AI_Player_343 is replacing cards used to setup Boar Hunt quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player AI_Player_343 is receiving Battle-ax, Amour, Horse, Sword, Sword, Saxon Knight,  for sponsoring
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player AI_Player_343 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_343 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Giant and Mordred
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_343 picked up Mordred and Dagger
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_543 picked up Sword and Saxons
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Sir Tristan
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_618 picked up Horse and Dagger
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Saxon Knight
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Merlin
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_343 discarded Dagger
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player AI_Player_543 is flipping new card from story deck: Chivalrous Deed
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player AI_Player_543 has initiated event Chivalrous Deed
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Mickey Mouse with 0 shields
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - AI_Player_343 with 0 shields
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - AI_Player_543 with 0 shields
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - AI_Player_618 with 0 shields
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  Mickey Mouse is awarded with 3 shields for a total of 3
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  AI_Player_343 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  AI_Player_543 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  AI_Player_618 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player AI_Player_618 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_543 discarded Test of the Questing Beast
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_543 discarded Queen Guinevere
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_618 discarded Boar
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_618 discarded Queen Iseult
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.AIController - No players chose to sponsor Repel the Saxon Raiders quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player AI_Player_618 is flipping new card from story deck: Search for the Questing Beast
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - No players chose to sponsor Search for the Questing Beast quest
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player AI_Player_618 is flipping new card from story deck: King's Recognition
+2018-Mar-30 19:17:29 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_618 has initiated event King's Recognition
+2018-Mar-30 19:18:53 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Mar-30 19:18:53 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Mar-30 19:18:53 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Mar-30 19:18:56 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:18:56 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Mar-30 19:18:56 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:18:56 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Mar-30 19:18:57 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:18:57 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Mar-30 19:18:57 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Mar-30 19:18:57 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Mar-30 19:18:59 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Mar-30 19:18:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Mar-30 19:18:59 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Mar-30 19:19:02 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:19:02 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:19:02 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_715 is enrolled in the game
+2018-Mar-30 19:19:03 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:19:03 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:19:03 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - Player AI_Player_277 is enrolled in the game
+2018-Mar-30 19:19:05 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Mar-30 19:19:05 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Mar-30 19:19:05 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - Player AI_Player_565 is enrolled in the game
+2018-Mar-30 19:19:05 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Mar-30 19:19:05 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_715 accepted to sponsor quest Boar Hunt
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_715
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - AI_Player_715 is setting up stages for Boar Hunt quest
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - AI_Player_715 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_715 used test for 2nd last stage of Boar Hunt quest setup
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Mar-30 19:19:06 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player AI_Player_715 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Mar-30 19:19:07 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player AI_Player_277 denied to participate in Boar Hunt quest sponsored by AI_Player_715
+2018-Mar-30 19:19:07 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player AI_Player_565 denied to participate in Boar Hunt quest sponsored by AI_Player_715
+2018-Mar-30 19:19:07 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Test of Morgan Le Fey
+2018-Mar-30 19:19:07 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Green Knight
+2018-Mar-30 19:19:07 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Dagger
+2018-Mar-30 19:19:07 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Horse
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse denied to participate in Boar Hunt quest sponsored by AI_Player_715
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - No players participated, sponsor AI_Player_715 is replacing cards used to setup Boar Hunt quest
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player AI_Player_715 is receiving Test of the Questing Beast, Battle-ax, Lance, Saxons, Sword, Robber Knight,  for sponsoring
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player AI_Player_715 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player AI_Player_715 has initiated event Prosperity Throughout the Realm
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Sword and Thieves
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Sir Tristan
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player AI_Player_715 picked up Mordred and Dragon
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player AI_Player_277 picked up Dagger and Dagger
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player AI_Player_565 picked up Sword and Saxon Knight
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Robber Knight
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player AI_Player_565 discarded Boar
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player AI_Player_277 is flipping new card from story deck: Chivalrous Deed
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player AI_Player_277 has initiated event Chivalrous Deed
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Mickey Mouse with 0 shields
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - AI_Player_715 with 0 shields
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - AI_Player_277 with 0 shields
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - AI_Player_565 with 0 shields
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player AI_Player_565 discarded Queen Iseult
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  Mickey Mouse is awarded with 3 shields for a total of 3
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  AI_Player_715 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  AI_Player_277 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController -  AI_Player_565 is awarded with 3 shields for a total of 3
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player AI_Player_277 discarded Test of the Questing Beast
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_277 discarded Queen Guinevere
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Merlin
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player AI_Player_565 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_715 discarded Test of the Questing Beast
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - A player can evolve if this quest is won, declining to sponsor
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - No players chose to sponsor Repel the Saxon Raiders quest
+2018-Mar-30 19:19:13 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_565 is flipping new card from story deck: At Tintagel
