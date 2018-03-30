@@ -32,6 +32,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public static boolean rankSet = true;
 	public String BattleInformation = "";
 	JsonArray questInformation = new JsonArray();
+	public int bonusTestCardControl = 0;
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
@@ -115,14 +116,15 @@ public class SocketHandler extends TextWebSocketHandler {
 					}
 					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
 					System.out.println("REPLACE THESSE CARDS ON SCREEN");
+					bonusTestCardControl = 1;
 					String testBonusReplacement = "";
 					for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
 						System.out.println(s);
 						testBonusReplacement += s + ";";
 					}
 					testBonusReplacement += "null";
-					// gameEngine.current_quest.getCurrentParticipant().session
-					// .sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
+					gameEngine.current_quest.getCurrentParticipant().session
+							.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
 					gameEngine.updateStats();
 
 					gameEngine.current_quest.currentStage++;
@@ -307,8 +309,12 @@ public class SocketHandler extends TextWebSocketHandler {
 						testBonusReplacement += s + ";";
 					}
 					testBonusReplacement += "null";
-					gameEngine.current_quest.getCurrentParticipant().session
-							.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
+					if (bonusTestCardControl == 1) {
+					} else {
+						gameEngine.current_quest.getCurrentParticipant().session
+								.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
+						bonusTestCardControl = 0;
+					}
 					gameEngine.updateStats();
 
 				} else {

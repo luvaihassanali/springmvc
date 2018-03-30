@@ -577,6 +577,7 @@ function getStats() {
 
 // pick up x cards
 function PickupCards(newCards) {
+	var testBonus = false;
 	console.log("PICKING UP NEW CARDS " + PlayerName);
 	getCurrHand();
 	if (newCards.startsWith("PickupCardsProsperity")) {
@@ -585,6 +586,7 @@ function PickupCards(newCards) {
 	}
 	if(newCards.startsWith("PickupCardsTestBonus")) {
 		newCards = newCards.replace("PickupCardsTestBonus","");
+		testBonus = true;
 	}
 	console.log(newCards)
 	if(newCards=="null") return;
@@ -600,7 +602,10 @@ function PickupCards(newCards) {
 		console.log(newCards);
 		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
 			var imageId = handCardID[i];
-			var tempLink = getLinkFromName(newCards.pop())
+			if(testBonus) { var tempLink = getLinkFromName(newCards.pop()) } else {
+				var tempLink = newCards.pop();
+			}
+			
 			$("#" + imageId).attr("src",
 					"http://localhost:8080" + tempLink);
 			console.log(newCards.length);
