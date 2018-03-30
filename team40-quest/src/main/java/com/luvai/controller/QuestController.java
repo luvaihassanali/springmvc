@@ -46,6 +46,8 @@ public class QuestController extends SocketHandler {
 	public int equipmentTracker = 0;
 	public PointArray foePoints = null;
 	public int initialStageForTest = 0;
+	ArrayList<String> aiQuestCardList;
+	ArrayList<String> questCardList;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -159,6 +161,13 @@ public class QuestController extends SocketHandler {
 				}
 			}
 
+		}
+		String[] array = cardToRemove.toArray(new String[cardToRemove.size()]);
+		aiQuestCardList = cardToRemove;
+		currentQuestInfo = array;
+		System.out.println("qc165----------------------------------------------------");
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
 		}
 		String logString = "";
 		for (String s : cardToRemove) {
@@ -409,6 +418,8 @@ public class QuestController extends SocketHandler {
 
 				if (gameEngine.getNextPlayer().isAI())
 					sendToNextPlayer(gameEngine, "undisableFlip");
+
+				return;
 			} else {
 
 				if (currentQuestInfo[currentStage - 1].contains("Test")) {
@@ -606,12 +617,23 @@ public class QuestController extends SocketHandler {
 		JsonElement x = quest_cards.get("questSetupCards");
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
-		List<String> questCardList = new Gson().fromJson(x, listType);
-		// System.out.println(questCardList);
+		questCardList = new Gson().fromJson(x, listType);
+		if (gameEngine.current_quest.sponsor.isAI())
+			questCardList = aiQuestCardList;
+		for (String s : questCardList) {
+			System.out.println(s);
+		}
 		for (int i = 0; i < questCardList.size(); i++) {
 			Card currentCard = getCardFromName(questCardList.get(i));
-			if (currentCard instanceof WeaponCard)
-				questCardList.remove(i);
+			if (currentCard instanceof WeaponCard) {
+				System.out.println("removing this card");
+				System.out.println(currentCard.getName());
+				questCardList.remove(currentCard.getName());
+			}
+		}
+		System.out.println("removing should be");
+		for (String s : questCardList) {
+			System.out.println(s);
 		}
 		Card tempCard = getCardFromName(questCardList.get(currentStage));
 		if (tempCard instanceof FoeCard) {

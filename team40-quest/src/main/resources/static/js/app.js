@@ -574,6 +574,7 @@ function getStats() {
 
 // pick up x cards
 function PickupCards(newCards) {
+	console.log("PICKING UP NEW CARDS " + PlayerName);
 	getCurrHand();
 	if (newCards.startsWith("PickupCardsProsperity")) {
 		whichEvent = "Prosperity";
@@ -582,7 +583,8 @@ function PickupCards(newCards) {
 
 	newCards = newCards.split(";");
 	newCards.pop();
-	//console.log(newCards);
+	console.log("LINE 585");
+	console.log(newCards);
 	var numNewCards = newCards.length;
 
 	for (var i = 0; i < handCardID.length; i++) {
@@ -640,6 +642,7 @@ function sponsorPickup(cards) {
 	var pickUpLinksArr = pickUpLinks.split(";");
 
 	pickUpLinksArr.pop();
+	console.log(pickUpLinksArr);
 	var numNewCards = pickUpLinksArr.length;
 
 	for (var i = 0; i < handCardID.length; i++) {
@@ -675,6 +678,8 @@ function sponsorPickup(cards) {
 		var discardName1 = getNameFromLink(card1Src);
 		var discardName2 = getNameFromLink(card2Src);
 		var toRemove = discardName1 + ";" + discardName2 + ";null";
+		console.log("LOOK HERE LINE 681");
+		console.log(toRemove);
 		AIDiscard(toRemove);
 		var data = JSON.stringify({
 			'incTurnRoundOver' : true
@@ -1482,7 +1487,7 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		orkney, tintagel, york ];
 
 function AIDiscard(cardNames) {
-
+	console.log("ENTERING AI DISCARD\n" + cardNames);
 	if (cardNames.startsWith("Prosperity")) {
 		cardNames = cardNames.replace("Prosperity", "");
 		whichEvent = "Prosperity";
@@ -1540,11 +1545,13 @@ function AIDiscard(cardNames) {
 	cardNames.pop();
 	console.log(cardNames);
 	console.log(imageArrayai);
+	//console.log(handCardSRC);
 	console.log("ai discard 1672 changing num cards" + numCards);
 	for (var j = 0; j < cardNames.length; j++) {
 		for (var i = 0; i < imageArrayai.length; i++) {
 			var tempSrc = getLinkFromName(cardNames[j]);
 			console.log(tempSrc);
+			if(imageArrayai[i].startsWith("http")) imageArrayai[i] = imageArrayai[i].replace("http://localhost:8080","");
 			if (tempSrc == imageArrayai[i]) {
 				$("#" + imageArrayaiID[i]).attr("src",
 						"http://localhost:8080/resources/images/all.png");
@@ -1556,6 +1563,7 @@ function AIDiscard(cardNames) {
 					'discard' : cardNames[j]
 				});
 				socketConn.send(dataDiscard);
+				arrangeHand();
 				break;
 			}
 		}

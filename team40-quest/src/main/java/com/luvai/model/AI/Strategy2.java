@@ -1,10 +1,12 @@
 package com.luvai.model.AI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.socket.TextMessage;
 
 import com.luvai.model.Card;
 import com.luvai.model.Player;
@@ -125,6 +127,22 @@ public class Strategy2 extends AbstractAI {
 
 		AdventureCard[] test = new AdventureCard[toDiscard.size()];
 		toDiscard.toArray(test);
+		for (int i = 0; i < test.length; i++) {
+			// System.out.println(test[i].getName());
+		}
+		for (int i = 0; i < toDiscard.size(); i++) {
+			// System.out.println(toDiscard.get(i).getName());
+		}
+		System.out.println("TEST LENGTH");
+		System.out.println(test.length);
+		System.out.println("TODISCARD SIZE");
+		System.out.println(toDiscard.size());
+		System.out.println("NUM DISCARDS");
+		System.out.println(numDiscards);
+		System.out.println(currentPlayer.getName());
+		System.out.println(currentPlayer.getName().equals(gameEngine.current_quest.sponsor.getName()));
+		if (currentPlayer.getName().equals(gameEngine.current_quest.sponsor.getName()))
+			numDiscards = 2;
 
 		for (int i = 0; i < numDiscards; i++) {
 			discards[i] = test[i];
@@ -258,16 +276,31 @@ public class Strategy2 extends AbstractAI {
 		}
 		Collections.reverse(finalQuestSetup);
 		this.gameEngine.current_quest.initiateQuestAI(finalQuestSetup);
-		// System.out.println("Discard ai sponsor here");
+		System.out.println("SENDING Discard ai sponsor here");
+		String discards = "";
 		for (Card c : finalQuestSetup) {
-			// System.out.println(c.getName());
-			currentPlayer.discard(c.getName());
+			System.out.println(c.getName());
+			// currentPlayer.discard(c.getName());
+			discards += c.getName() + ";";
 			if (c instanceof FoeCard) {
 				for (WeaponCard w : ((FoeCard) c).getWeapons()) {
-					// System.out.println(w.getName());
-					currentPlayer.discard(w.getName());
+					System.out.println(w.getName());
+					// currentPlayer.discard(w.getName());
+					discards += w.getName() + ";";
 				}
 			}
+		}
+		System.out.println("strat 2 288-----------------------------------------------------");
+		System.out.println(gameEngine.getActivePlayer().getName());
+		System.out.println(currentPlayer.getName());
+		System.out.println(currentPlayer.getHandSize());
+		System.out.println(discards);
+		String message = "AIremoveFromHand";
+		try {
+			currentPlayer.session.sendMessage(new TextMessage(message + discards));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 } // end of class

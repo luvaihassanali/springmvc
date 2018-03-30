@@ -66,10 +66,13 @@ public class AIController extends SocketHandler {
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 
 		AdventureCard[] AIdiscard = currentPlayer.getAI().getDiscardChoice(currentPlayer, numCards);
-		// for (AdventureCard a : currentPlayer.getHand()) {
-		// System.out.println(a.getName());
-		// }
+		System.out.println(AIdiscard.length);
+		System.out.println("AIDISCARDLENGTH");
+		for (AdventureCard a : AIdiscard) {
+			System.out.println(a.getName());
+		}
 		String discards = "";
+
 		for (AdventureCard a : AIdiscard) {
 			discards += a.getName() + ";";
 		}
