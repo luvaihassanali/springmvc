@@ -996,6 +996,7 @@ function checkForCardType(cardSrc, type) {
 
 // accept to sponsor quest
 function acceptSponsorQuest() {
+	questSetupCards = []
 	document.getElementById('sponsorQuest').style.display = 'none';
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "You are sponsor, setting up quest...";

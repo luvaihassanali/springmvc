@@ -106,6 +106,14 @@ public class SocketHandler extends TextWebSocketHandler {
 						return;
 					}
 					logger.info("There is only one participant left in quest test, automatic minimum bid pass");
+					System.out.println("to remove after test: ");
+					gameEngine.current_quest.getCurrentParticipant()
+							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
+					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+					for (int i = 0; i < gameEngine.current_quest.getCurrentParticipant().testDiscardList.size(); i++) {
+						System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
+					}
+
 					gameEngine.current_quest.currentStage++;
 					sendToAllParticipants(gameEngine, "incStage");
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
@@ -272,11 +280,14 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
 							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
 					logger.info("Giving shields to {}", gameEngine.current_quest.participants.get(j).getName());
-					// System.out.println(gameEngine.current_quest.participants.get(j).getHandSize());
-					// for (Player p : gameEngine.players) {
-					// p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
-					// System.out.println(p.getHandString());
-					// }
+
+					System.out.println("to remove after test: ");
+					gameEngine.current_quest.getCurrentParticipant()
+							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
+					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+					for (int k = 0; k < gameEngine.current_quest.getCurrentParticipant().testDiscardList.size(); k++) {
+						System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(k));
+					}
 
 				} else {
 					gameEngine.players.get(i).session.sendMessage(new TextMessage("QuestOverWaitForSponsor"));

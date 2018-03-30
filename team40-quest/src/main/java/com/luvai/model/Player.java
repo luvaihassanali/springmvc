@@ -29,6 +29,7 @@ public class Player {
 	int battlePoints;
 	public int tieCheck;
 	AbstractAI ai;
+	public ArrayList<String> testDiscardList;
 
 	public Player() {
 
@@ -46,6 +47,7 @@ public class Player {
 		this.amour = null;
 		this.allies = new ArrayList<AllyCard>();
 		this.tieCheck = 0;
+		this.testDiscardList = new ArrayList<String>();
 	}
 
 	public Player(String name, WebSocketSession session, int isAI) {
@@ -60,6 +62,7 @@ public class Player {
 		this.amour = null;
 		this.allies = new ArrayList<AllyCard>();
 		this.tieCheck = 0;
+		this.testDiscardList = new ArrayList<String>();
 		if (isAI == 2) {
 			this.ai = new Strategy2();
 		}

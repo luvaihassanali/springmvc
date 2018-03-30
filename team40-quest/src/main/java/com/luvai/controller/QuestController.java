@@ -95,16 +95,18 @@ public class QuestController extends SocketHandler {
 		for (int i = 0; i < bonusBids; i++) {
 			toDiscardAfterTest.remove(0);
 		}
-		if (toDiscardAfterTest.isEmpty()) {
-			System.out.println("HERE");
-			System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
-			System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
-			System.out.println(toDiscardAfterTest);
-			// gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
-			System.out.println(gameEngine.current_quest.currentStage);
-			System.out.println(gameEngine.current_quest.participants.size());
-		}
 
+		System.out.println("HERE");
+		System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+		System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
+		System.out.println(toDiscardAfterTest);
+		System.out.println(gameEngine.current_quest.currentStage);
+		System.out.println(gameEngine.current_quest.participants.size());
+
+		System.out.println("SET PLAYER DISCARD TEST LIST HERE");
+		System.out.println(
+				"----------------------------------------------------------------------------------------------------------------------------------------");
+		gameEngine.current_quest.getCurrentParticipant().testDiscardList = toDiscardAfterTest;
 	}
 
 	// adjust player for points with chosen equipment
@@ -627,7 +629,7 @@ public class QuestController extends SocketHandler {
 			Card currentCard = getCardFromName(questCardList.get(i));
 			if (currentCard instanceof WeaponCard) {
 				System.out.println("removing this card");
-				System.out.println(currentCard.getName());
+				System.out.println(currentCard.getName() + ";");
 				questCardList.remove(currentCard.getName());
 			}
 		}
