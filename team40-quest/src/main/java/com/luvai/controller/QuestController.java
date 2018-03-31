@@ -330,7 +330,6 @@ public class QuestController extends SocketHandler {
 	public void pickupBeforeStage() throws IOException {
 		gameEngine.current_quest.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
 		String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-		gameEngine.current_quest.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
 		gameEngine.current_quest.getCurrentParticipant().session
 				.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 		String update = gameEngine.getPlayerStats();
@@ -705,8 +704,10 @@ public class QuestController extends SocketHandler {
 
 			if (currentQuestInfo[test].contains("Test")) {
 				// is test - one at a time
+				gameEngine.current_quest.pickupBeforeStage();
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 			} else { // is battle choose concurrently
+				gameEngine.current_quest.pickupBeforeStage();
 				sendToAllParticipants(gameEngine, "ChooseEquipment");
 			}
 		} else {
@@ -714,6 +715,7 @@ public class QuestController extends SocketHandler {
 					currentStage + 1);
 			currentTest = (TestCard) getCardFromName(questCardList.get(currentStage));
 			System.out.println("in test");
+			gameEngine.current_quest.pickupBeforeStage();
 			gameEngine.current_quest.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 		}
 	}

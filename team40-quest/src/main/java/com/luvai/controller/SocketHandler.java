@@ -133,6 +133,7 @@ public class SocketHandler extends TextWebSocketHandler {
 						Winning();
 						return;
 					}
+					gameEngine.current_quest.pickupBeforeStage();
 					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 					return;
 				}
@@ -187,6 +188,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.current_quest.incTurn();
 				gameEngine.getCurrentParticipant().session
 						.sendMessage(new TextMessage("updateMinBid" + gameEngine.current_quest.currentMinBid));
+
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 				return;
 			}
