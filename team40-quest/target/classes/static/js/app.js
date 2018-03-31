@@ -726,19 +726,7 @@ function displayBattle(curr_stage) {
 	//console.log("display battle");
 	
 }
-/*
- * // check card type
-function checkForCardType(cardSrc, type) {
-	for (var i = 0; i < cardTypeList.length; i++) {
-		if (cardSrc == cardTypeList[i].link) {
-			if (cardTypeList[i].type == type) {
-				return cardTypeList[i].name;
-			}
-		}
-	}
-	return "card not found";
-}
-*/
+
 function setupQuestRound() {
 	console.log(totalStages);
 	
@@ -764,6 +752,19 @@ function setupQuestRound() {
 							}
 							var tempFoeCard = checkForCardType(cardSrc, "foe");
 							if (tempFoeCard != "card not found") {
+								//find a way to stop if card being chosen is not 
+								
+								//get battle points from name
+								//if less don't allot
+								console.log(tempFoeCard);
+								console.log(getBpFromName(tempFoeCard));
+								for(var i=0; i<questSetupCards.length; i++) {
+									if(getBpFromName(tempFoeCard) < getBpFromName(questSetupCards[i])) { 
+										var serverMsg = document.getElementById('serverMsg');
+										serverMsg.value = "Foe battle points must be higher than previous"; 
+										return;
+										}
+								}
 								questSetupCards.push(tempFoeCard);
 								var changeImageId = "#" + this.id;
 								$(changeImageId).attr("src",
@@ -1036,6 +1037,22 @@ function getLinkFromName(name) {
 	return "card not found";
 }
 
+//get bp from name
+function getBpFromName(name) {
+	console.log(storyCardFaceUp);
+	console.log(storyCardFaceUp.foe);
+	console.log(name);
+	for (var i = 0; i < cardTypeList.length; i++) {
+		// console.log(cardTypeList[i]);
+		// console.log(name);
+		if (cardTypeList[i].name === name)
+			if (cardTypeList[i].hasOwnProperty('bp')) {
+			    if(storyCardFaceUp.foe === name) return cardTypeList[i].bonusbp;
+			    return cardTypeList[i].bp;
+			}
+	}
+	return "card not found";
+}
 // check card type
 function checkForCardType(cardSrc, type) {
 	for (var i = 0; i < cardTypeList.length; i++) {
@@ -1265,71 +1282,96 @@ var lance = {
 	name : "Lance",
 	type : "weapon",
 	link : "/resources/images/W Lance.jpg"
+
 };
 var battleAx = {
 	name : "Battle-ax",
 	type : "weapon",
 	link : "/resources/images/W Battle-ax.jpg"
+
 };
 var excalibur = {
 	name : "Excalibur",
 	type : "weapon",
 	link : "/resources/images/W Excalibur.jpg"
+
 };
 var robberKnight = {
 	name : "Robber Knight",
 	type : "foe",
-	link : "/resources/images/F Robber Knight.jpg"
+	link : "/resources/images/F Robber Knight.jpg",
+	bp: 15,
+	bonusbp: 0
 };
 var saxons = {
 	name : "Saxons",
 	type : "foe",
-	link : "/resources/images/F Saxons.jpg"
+	link : "/resources/images/F Saxons.jpg",
+	bp: 15,
+	bonusbp: 25
 };
 var boar = {
 	name : "Boar",
 	type : "foe",
-	link : "/resources/images/F Boar.jpg"
+	link : "/resources/images/F Boar.jpg",
+	bp: 5,
+	bonusbp: 15
 };
 var thieves = {
 	name : "Thieves",
 	type : "foe",
-	link : "/resources/images/F Thieves.jpg"
+	link : "/resources/images/F Thieves.jpg",
+	bp: 5,
+	bonusbp: 0
 };
 var greenKnight = {
 	name : "Green Knight",
 	type : "foe",
-	link : "/resources/images/F Green Knight.jpg"
+	link : "/resources/images/F Green Knight.jpg",
+	bp: 24,
+	bonusbp: 40
 };
 var blackKnight = {
 	name : "Black Knight",
 	type : "foe",
-	link : "/resources/images/F Black Knight.jpg"
+	link : "/resources/images/F Black Knight.jpg",
+	bp: 25,
+	bonusbp: 35
 };
 var evilKnight = {
 	name : "Evil Knight",
 	type : "foe",
-	link : "/resources/images/F Evil Knight.jpg"
+	link : "/resources/images/F Evil Knight.jpg",
+	bp: 20,
+	bonusbp: 30
 };
 var saxonKnight = {
 	name : "Saxon Knight",
 	type : "foe",
-	link : "/resources/images/F Saxon Knight.jpg"
+	link : "/resources/images/F Saxon Knight.jpg",
+	bp: 15,
+	bonusbp: 25
 };
 var dragon = {
 	name : "Dragon",
 	type : "foe",
-	link : "/resources/images/F Dragon.jpg"
+	link : "/resources/images/F Dragon.jpg",
+	bp: 50,
+	bonusbp: 70
 };
 var giant = {
 	name : "Giant",
 	type : "foe",
-	link : "/resources/images/F Giant.jpg"
+	link : "/resources/images/F Giant.jpg",
+	bp: 40,
+	bonusbp: 0 
 };
 var mordred = {
 	name : "Mordred",
 	type : "foe",
-	link : "/resources/images/F Mordred.jpg"
+	link : "/resources/images/F Mordred.jpg",
+	bp: 30,
+	bonusbp: 0
 };
 var sirG = {
 	name : "Sir Gawain",
