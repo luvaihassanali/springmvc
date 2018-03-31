@@ -493,7 +493,7 @@ function getParticipants() {
 		var data = JSON.stringify({
 			'AICommand' : "AskToParticipateQuest"
 		})
-		socketConn.send(data);
+		setTimeout(function(){ socketConn.send(data); }, 1000);
 		document.getElementById("acceptQuest").style.display = "none";
 		serverMsg.value = "Wait for other players...";
 	}
@@ -895,6 +895,38 @@ function dropOutOfTest() {
 		'isTest' : true
 	});
 
+	socketConn.send(data);
+	console.log("figure out way to get cards back");
+	var oldHandSRC = handCardSRC;
+	getCurrHand();
+	console.log(handCardSRC);
+	console.log(oldHandSRC);
+	var replaceTestCardHand = [];
+	for(var i=0; i<12; i++) {
+		replaceTestCardHand[i] = oldHandSRC[i].replace("http://localhost:8080", "");
+		repalceTestCardHand = replaceTestCardHand[i].split('%20').join(' ');
+	}
+	console.log(replaceTestCardHand);
+	console.log("here");
+	
+	$(card1).attr("src", replaceTestCardHand[0]);
+	$(card2).attr("src", replaceTestCardHand[1]);
+	$(card3).attr("src", replaceTestCardHand[2]);
+	$(card4).attr("src", replaceTestCardHand[3]);
+	$(card5).attr("src", replaceTestCardHand[4]);
+	$(card6).attr("src", replaceTestCardHand[5]);
+	$(card7).attr("src", replaceTestCardHand[6]);
+	$(card8).attr("src", replaceTestCardHand[7]);
+	$(card9).attr("src", replaceTestCardHand[8]);
+	$(card10).attr("src", replaceTestCardHand[9]);
+	$(card11).attr("src", replaceTestCardHand[10]);
+	$(card12).attr("src", replaceTestCardHand[11]);
+	
+	var data = JSON.stringify({
+		'removeStageCardFromTest' : oldHandSRC[12],
+		'name' : PlayerName
+	})
+	
 	socketConn.send(data);
 }
 // send weapon info - done choosing

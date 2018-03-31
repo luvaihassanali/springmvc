@@ -144,7 +144,10 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
 				if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
 					System.out.println("player dropped out - remove");
+					for (AdventureCard a : gameEngine.current_quest.getCurrentParticipant().getHand())
+						System.out.println(a.getName());
 					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+					gameEngine.updateStats();
 				}
 				sendToAllSessions(gameEngine, "allPlayerQuestInfo" + questInformation.toString());
 				if (gameEngine.current_quest.participants.size() == 1) {
@@ -154,6 +157,27 @@ public class SocketHandler extends TextWebSocketHandler {
 					} else {
 						sendToAllSessions(gameEngine, "incStage");
 						gameEngine.current_quest.currentStage++;
+						System.out.println("to remove after test: ");
+						gameEngine.current_quest.getCurrentParticipant()
+								.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
+
+						for (int i = 0; i < gameEngine.current_quest.getCurrentParticipant().testDiscardList
+								.size(); i++) {
+							System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
+						}
+						gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
+						System.out.println("REPLACE THESSE CARDS ON SCREEN");
+						bonusTestCardControl = 1;
+						String testBonusReplacement = "";
+						for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
+							System.out.println(s);
+							testBonusReplacement += s + ";";
+						}
+						testBonusReplacement += "null";
+						gameEngine.current_quest.getCurrentParticipant().session
+								.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
+						gameEngine.updateStats();
+
 					}
 				}
 
@@ -192,6 +216,20 @@ public class SocketHandler extends TextWebSocketHandler {
 			}
 		}
 
+		// remove stage card when test is first
+		if (jsonObject.has("removeStageCardFromTest")) {
+			System.out.println(jsonObject.toString());
+			Player p = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+			String cardName = jsonObject.get("removeStageCardFromTest").getAsString();
+			String trimmedName = cardName.replace("http://localhost:8080/resources/images/", "");
+			trimmedName = trimmedName.substring(4);
+			trimmedName = trimmedName.substring(0, trimmedName.length() - 4);
+			trimmedName = trimmedName.replaceAll("%20", " ");
+			System.out.println(trimmedName);
+			System.out.println(p.getName());
+			p.discard(trimmedName);
+			gameEngine.updateStats();
+		}
 		if (jsonObject.has("nextQuestTurn")) {
 			gameEngine.current_quest.goToNextTurn(jsonObject);
 		}
@@ -473,12 +511,14 @@ public class SocketHandler extends TextWebSocketHandler {
 			if (temp.get(i).equals(gameEngine.current_quest.sponsor))
 				temp.remove(i);
 		}
-		for (int i = 0; i < temp.size(); i++) {
-			for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
-				if (temp.get(i).equals(gameEngine.current_quest.participants.get(j)))
-					temp.remove(i);
+
+		for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
+			for (int i = 0; i < temp.size(); i++) {
 				if (temp.isEmpty())
 					return;
+				if (temp.get(i).equals(gameEngine.current_quest.participants.get(j)))
+					temp.remove(i);
+
 			}
 		}
 
