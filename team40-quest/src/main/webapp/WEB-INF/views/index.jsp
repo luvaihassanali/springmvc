@@ -117,6 +117,7 @@ Shields:<label id="p1shields">0</label>
 	</div>
 	<p>
 		<textarea rows="2" cols="50" id="serverMsg"></textarea>
+		<label id="minBid" style="display:none"> Current minimum bid: </label>
 		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()"
 			style="display: none">Done</button>
 		<button id="doneEquipment" onclick="doneEquipment()"

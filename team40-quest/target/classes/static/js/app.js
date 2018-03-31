@@ -106,6 +106,11 @@ socketConn.onmessage = function(event) {
     	for(var i=0; i<temp.length; i++) {
     		temp[i] = temp[i].split("#");
     	}
+		document.getElementById("battleScreen").style.display = "block";
+    	setTimeout(function(){ 
+    		document.getElementById("battleScreen").style.display = "none";
+    	}, 3000);
+	//	document.getElementById("battleScreen").style.display = "none";
     	console.log(temp);
     }
     // get all player quest info
@@ -140,6 +145,7 @@ socketConn.onmessage = function(event) {
 		getParticipants();
 	}
 
+	
 	// let others know of participation
 	if (event.data.startsWith("AcceptedToParticipate")) {
 		var pName = event.data.replace("AcceptedToParticipate","");
@@ -368,6 +374,9 @@ function getTestBids() {
 	minBid = parseInt(testInfo[0][1]);
 	console.log("minBid" + parseInt(minBid));
 	serverMsg.value = "Please click on the cards you wish to bid for test (Click done to drop out)";
+	console.log("SHOW MIN BID")
+	document.getElementById("minBid").style.display = "block";
+	document.getElementById("minBid").innerText = "Current minimum bid: " + minBid;
 	 var x = document.getElementById("doneEquipment").disabled;
 	
 	 testTracker++;
@@ -385,7 +394,7 @@ function getTestBids() {
 					'click',
 					'#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8',
 					function() {
-
+						document.getElementById('dropOut').disabled = true;
 						var cardId = this.src.replace(
 								'http://localhost:8080', '');
 						cardId = cardId.split('%20').join(' ');
@@ -402,6 +411,7 @@ function getTestBids() {
 						console.log("RIGHT BEFORE CHECKING TO UNDISABLE^");
 						if(testBids.length >= minBid ) document.getElementById('doneEquipment').disabled = false;
 						console.log(numCards)
+						
 					})
 }
 
@@ -883,6 +893,7 @@ function pickWeapons() {
 
 //drop out of test
 function dropOutOfTest() {
+	document.getElementById("minBid").style.display = "none";
 	$('body').off('click');
 	document.getElementById('doneEquipment').style.display = "none";
 	document.getElementById('dropOut').style.display = "none";
@@ -932,6 +943,7 @@ function dropOutOfTest() {
 }
 // send weapon info - done choosing
 function doneEquipment() {
+	document.getElementById("minBid").style.display = "none";
 	document.getElementById('dropOut').style.display = "none";
 	$('body').off('click');
 	document.getElementById('doneEquipment').style.display = "none";
@@ -985,6 +997,7 @@ function denyQuestParticipate() {
 
 // finished setting up quest for sponsor
 function doneWeaponsQuestSponsor() {
+	console.log(totalStages);
 	if(totalStages == 0) {
 		$('body').off('click');
 		document.getElementById('doneQuest').style.display = "inline";

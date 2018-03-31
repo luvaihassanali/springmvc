@@ -126,7 +126,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.getCurrentParticipant().session
 							.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
 					gameEngine.updateStats();
-
+					System.out.println("increasing stage 129 sh");
 					gameEngine.current_quest.currentStage++;
 					sendToAllParticipants(gameEngine, "incStage");
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
@@ -324,15 +324,17 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName(),
 				gameEngine.current_quest.currentQuest.getStages());
 		for (int i = 0; i < gameEngine.players.size(); i++) {
+			System.out.println("FOR i LOOP 327 SH");
 			for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
-
+				System.out.println("FOR j LOOP 329 SH");
 				if (gameEngine.players.get(i).getName()
 						.equals(gameEngine.current_quest.participants.get(j).getName())) {
 					gameEngine.current_quest.participants.get(j)
 							.giveShields(gameEngine.current_quest.currentQuest.getStages());
 					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
 							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
-					logger.info("Giving shields to {}", gameEngine.current_quest.participants.get(j).getName());
+					logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
+							gameEngine.current_quest.participants.get(j).getName());
 
 					System.out.println("to remove after test: ");
 					gameEngine.current_quest.getCurrentParticipant()
@@ -399,6 +401,8 @@ public class SocketHandler extends TextWebSocketHandler {
 
 				}
 			}
+			if (gameEngine.current_quest.participants.size() == 1)
+				break;
 		}
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);

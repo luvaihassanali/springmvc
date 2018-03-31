@@ -110,7 +110,7 @@ public class StoryDeck extends Decks {
 		// randomise then populate stack
 		Collections.shuffle(Arrays.asList(s_arr));
 		StoryCard[] s_arr2 = new StoryCard[4];
-		s_arr2[3] = CardList.Quest6; // should be 6, 8 has 3
+		s_arr2[3] = CardList.Quest8; // should be 6, 8 has 3
 		s_arr2[2] = CardList.Event8;// should be event 8
 		s_arr2[1] = CardList.Event1;// event 1
 		s_arr2[0] = CardList.Quest5;
