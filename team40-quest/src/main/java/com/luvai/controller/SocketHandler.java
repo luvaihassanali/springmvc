@@ -250,9 +250,9 @@ public class SocketHandler extends TextWebSocketHandler {
 				String playerPoints = "";
 				for (int i = 0; i < gameEngine.current_quest.participants.size(); i++) {
 					playerPoints += gameEngine.current_quest.participants.get(i).getName() + "#"
-							+ gameEngine.current_quest.calculatePlayerPoints(
-									gameEngine.current_quest.participants.get(i).getName())
-							+ ";";
+							+ gameEngine.current_quest
+									.calculatePlayerPoints(gameEngine.current_quest.participants.get(i).getName())
+							+ "#" + gameEngine.current_quest.participants.get(i).getRank().getName() + ";";
 				}
 				sendToAllSessions(gameEngine, "playerPointString" + playerPoints);
 				gameEngine.current_quest.calculateStageOutcome(playerPoints, questInformation);
@@ -373,12 +373,15 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println("FOR j LOOP 329 SH");
 				if (gameEngine.players.get(i).getName()
 						.equals(gameEngine.current_quest.participants.get(j).getName())) {
-					gameEngine.current_quest.participants.get(j)
-							.giveShields(gameEngine.current_quest.currentQuest.getStages());
-					gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
-							+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
-					logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
-							gameEngine.current_quest.participants.get(j).getName());
+					if (gameEngine.current_quest.shieldSent) {
+					} else {
+						gameEngine.current_quest.participants.get(j)
+								.giveShields(gameEngine.current_quest.currentQuest.getStages());
+						gameEngine.current_quest.participants.get(j).session.sendMessage(new TextMessage("Getting "
+								+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
+						logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
+								gameEngine.current_quest.participants.get(j).getName());
+					}
 
 					System.out.println("to remove after test: ");
 					gameEngine.current_quest.getCurrentParticipant()
@@ -448,6 +451,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			if (gameEngine.current_quest.participants.size() == 1)
 				break;
 		}
+		gameEngine.current_quest.shieldSent = false;
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
 		sendOnce = true;

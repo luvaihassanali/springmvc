@@ -60,61 +60,133 @@ Shields:<label id="p1shields">0</label>
 	<br>
 	<br>
 	<label>Console</label>
-
 	<div id="battleScreen"
-		style="display: none; margin: 0 auto; font-size: 20px; border-style: solid; position:relative; background-color: white; width: 600px; height: 650px; z-index: 2; text-align: center;">
-				<label style="">*****************Battle Screen*****************</label> <br>
-		<div id="enemyDisplay" style="float: right;">
+		style="display:none; margin: 0 auto; font-size: 20px; border-style: solid; border-width: thin; position:relative; background-color: white; width: 1200px; height: 750px; z-index: 2; text-align: center;">
+				<strong> Battle Screen </strong><Br><br><br><br>
+		<div id="player1Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label> player1 name <br> player1 points </label>
 			<div>
-				<img id="enemyPic" src="/resources/images/all.png" width="180"
-					height="250" />
+				<img id="player1Pic" src="/resources/images/all.png" width="100"
+					height="150" />
 			</div>
 			<div>
-				<img id="enemyWeaponSpot1" src="/resources/images/all.png"
-					width="80" height="120" /> <img id="enemyWeaponSpot2"
+				<img id="player1WeaponSpot1" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player1WeaponSpot2"
 					src="/resources/images/all.png" width="80" height="120" /> <img
-					id="enemyWeaponSpot3" src="/resources/images/all.png" width="80"
+					id="player1WeaponSpot3" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
 			<div>
-				<img id="enemyWeaponSpot4" src="/resources/images/all.png"
-					width="80" height="120" /> <img id="enemyWeaponSpot5"
+				<img id="player1WeaponSpot4" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player1WeaponSpot5"
 					src="/resources/images/all.png" width="80" height="120" /> <img
-					id="enemyWeaponSpot6" src="/resources/images/all.png" width="80"
+					id="player1WeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
-			<label id="f_win" style="color: green; display: none;"> <strong>
+			<label id="p1_win" style="color: green; display:block;"> <strong>
 					WINNER </strong>
-			</label> <label id="f_lose" style="color: red; display: none;"> <strong>
+			</label> <label id="p1_lose" style="color: red; display: none;"> <strong>
 					LOSER </strong>
 			</label>
 		</div>
-		<div id="playerDisplay" style="float: left;">
+		<div id="player2Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label> player2 name <br> player2 points </label>
 			<div>
-				<img id="playerPic" src="/resources/images/all.png" width="180"
-					height="250" />
+				<img id="player2Pic" src="/resources/images/all.png" width="100"
+					height="150" />
 			</div>
 			<div>
-				<img id="playerWeaponSpot1" src="/resources/images/all.png"
-					width="80" height="120" /> <img id="playerWeaponSpot2"
+				<img id="player2WeaponSpot2" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player2WeaponSpot2"
 					src="/resources/images/all.png" width="80" height="120" /> <img
-					id="playerWeaponSpot3" src="/resources/images/all.png" width="80"
+					id="player2WeaponSpot3" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
 			<div>
-				<img id="playerWeaponSpot4" src="/resources/images/all.png"
-					width="80" height="120" /> <img id="playerWeaponSpot5"
+				<img id="player2WeaponSpot4" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player2WeaponSpot5"
 					src="/resources/images/all.png" width="80" height="120" /> <img
-					id="playerWeaponSpot6" src="/resources/images/all.png" width="80"
+					id="player2WeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
-			<label id="p_win" style="color: green; display: none;"> <strong>
+			<label id="p2_win" style="color: green; display:block;"> <strong>
 					WINNER </strong>
-			</label> <label id="p_lose" style="color: red; display: none;"> <strong>
+			</label> <label id="p2_lose" style="color: red; display: none;"> <strong>
 					LOSER </strong>
 			</label>
 		</div>
-	</div>
+		<div id="player3Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label> player3 name <br> player3 points </label>
+			<div>
+				<img id="player3Pic" src="/resources/images/all.png" width="100"
+					height="150" />
+			</div>
+			<div>
+				<img id="player3WeaponSpot3" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player3WeaponSpot3"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="player3WeaponSpot3" src="/resources/images/all.png" width="80"
+					height="120" />
+			</div>
+			<div>
+				<img id="player3WeaponSpot4" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player3WeaponSpot5"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="player3WeaponSpot6" src="/resources/images/all.png" width="80"
+					height="120" />
+			</div>
+			<label id="p3_win" style="color: green; display:block;"> <strong>
+					WINNER </strong>
+			</label> <label id="p3_lose" style="color: red; display: none;"> <strong>
+					LOSER </strong>
+			</label>
+		</div>
+		<div id="player4Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label> player4 name <br> player4 points </label>
+			<div>
+				<img id="player4Pic" src="/resources/images/all.png" width="100"
+					height="150" />
+			</div>
+			<div>
+				<img id="player4WeaponSpot4" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player4WeaponSpot4"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="player4WeaponSpot4" src="/resources/images/all.png" width="80"
+					height="120" />
+			</div>
+			<div>
+				<img id="player4WeaponSpot4" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player4WeaponSpot5"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="player4WeaponSpot6" src="/resources/images/all.png" width="80"
+					height="120" />
+			</div>
+			<label id="p4_win" style="color: green; display:block;"> <strong>
+					WINNER </strong>
+			</label> <label id="p4_lose" style="color: red; display: none;"> <strong>
+					LOSER </strong>
+			</label>
+		</div>
+                  <div style="border-style:none; border-width:thin; width: 800px; height:250px; position:absolute; bottom:0;"> 
+     <br> <br>
+ Current stage information: <br> <br>
+		<img id="questPic" src="/resources/images/all.png" width="100"
+					height="150" />
+<img id="foePic" src="/resources/images/all.png" width="100"
+					height="150" />
+		<img id="foeWeaponSpot1" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="foeWeaponSpot2"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="foeWeaponSpot3" src="/resources/images/all.png" width="80"
+					height="120" />
+		<img id="foeWeaponSpot4" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="foeWeaponSpot5"
+					src="/resources/images/all.png" width="80" height="120" /> <img
+					id="foeWeaponSpot6" src="/resources/images/all.png" width="80"
+					height="120" />
+               </div>
+
+	        </div>
 	<p>
 		<textarea rows="2" cols="50" id="serverMsg"></textarea>
 		<label id="minBid" style="display:none"> Current minimum bid: </label>
@@ -138,24 +210,24 @@ Shields:<label id="p1shields">0</label>
                </div>
 		<div>
 			<img id="card1" src="/resources/images/all.png" height="250"
-				width="180"> <img id="card2" alt="image"
+				width="180"> <img id="card2" 
 				src="/resources/images/all.png" height="250" width="180"> <img
-				id="card3" alt="image" src="/resources/images/all.png" height="250"
-				width="180"> <img id="card4" alt="image"
+				id="card3"  src="/resources/images/all.png" height="250"
+				width="180"> <img id="card4" 
 				src="/resources/images/all.png" height="250" width="180"> <img
-				id="card5" alt="image" src="/resources/images/all.png" height="250"
-				width="180"> <img id="card6" alt="image"
+				id="card5"  src="/resources/images/all.png" height="250"
+				width="180"> <img id="card6" 
 				src="/resources/images/all.png" height="250" width="180">
 		</div>
 		<div>
 			<img id="card7" src="/resources/images/all.png" height="250"
-				width="180"> <img id="card8" alt="image"
+				width="180"> <img id="card8" 
 				src="/resources/images/all.png" height="250" width="180"> <img
-				id="card9" alt="image" src="/resources/images/all.png" height="250"
-				width="180"> <img id="card10" alt="image"
+				id="card9"  src="/resources/images/all.png" height="250"
+				width="180"> <img id="card10" 
 				src="/resources/images/all.png" height="250" width="180"> <img
-				id="card11" alt="image" src="/resources/images/all.png" height="250"
-				width="180"> <img id="card12" alt="image"
+				id="card11"  src="/resources/images/all.png" height="250"
+				width="180"> <img id="card12" 
 				src="/resources/images/all.png" height="250" width="180">
 
 
@@ -172,7 +244,7 @@ Shields:<label id="p1shields">0</label>
 		<button id="denyQuestParticipate" onclick="denyQuestParticipate()">No</button>
 	</div>
 	<div>
-		<img id="storyCard" alt="image" src="/resources/images/card-back.png"
+		<img id="storyCard"  src="/resources/images/card-back.png"
 			height="300" width="200"> <img id="storyCardDiscard"
 			src="/resources/images/all.png" height="300" width="200">
 	</div>

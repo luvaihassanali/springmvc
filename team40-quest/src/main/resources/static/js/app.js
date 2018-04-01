@@ -32,6 +32,7 @@ var testTracker = 0;
 var wildCardStageInc = false;
 var serverMsg = document.getElementById('serverMsg');
 var allBattleEquipment = [];
+var allQuestInfo = [];
 // when connection is initiated
 socketConn.onopen = function(event) {};
 
@@ -110,18 +111,26 @@ socketConn.onmessage = function(event) {
     	for(var i=0; i<temp.length; i++) {
     		temp[i] = temp[i].split("#");
     	}
+    	console.log("SHOWING BATTLE SCREEN")
 		document.getElementById("battleScreen").style.display = "block";
     	setTimeout(function(){ 
     		document.getElementById("battleScreen").style.display = "none";
-    	}, 3000);
-	//	document.getElementById("battleScreen").style.display = "none";
+    		console.log("REMOVING BATTLE SCREEN");
+    	}, 10000);
+		console.log(allQuestInfo);
     	console.log(temp);
+    	console.log(foeInfo);
+    	console.log(testInfo);
+    	console.log("battle screen stage tracker: " + stageTracker);
+    	console.log(questSetupCards);
+    	console.log(storyCardFaceUp);
+    	console.log("end battlescreen info");
     }
     // get all player quest info
     if (event.data.startsWith("allPlayerQuestInfo")) {
     	var temp = event.data.replace("allPlayerQuestInfo","");
     	temp = JSON.parse(temp);
-    	console.log(temp);
+    	allQuestInfo = temp;
     }
     // show stages
     if (event.data == "showStages") {
@@ -524,10 +533,11 @@ function pickupBeforeStage(event) {
 function parseTestInfo(event) {
 	var temp = event.data.replace("TestInfo", "");
 	TestInfo = temp;
-	//console.log(temp);
+	console.log(temp);
 	testInfo = temp.split(";");
 	testInfo.pop();
-	//console.log(testInfo);
+	console.log(testInfo);
+	if(testInfo.length == 0) return;
 	for(var i=0; i<testInfo.length; i++) {
 		testInfo[i] = testInfo[i].split("#");
 	}

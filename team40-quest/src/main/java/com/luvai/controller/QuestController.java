@@ -48,6 +48,7 @@ public class QuestController extends SocketHandler {
 	public int initialStageForTest = 0;
 	ArrayList<String> aiQuestCardList;
 	ArrayList<String> questCardList;
+	public boolean shieldSent = false;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -658,6 +659,7 @@ public class QuestController extends SocketHandler {
 						"Battle against participant {} with {} battle points is starting - versus {} with {} points",
 						playerPointsArr.get(i)[0], playerPointsArr.get(i)[1], currentFoe.getName(), currentFoePoints);
 				if (Integer.parseInt(playerPointsArr.get(i)[1]) >= currentFoePoints) {
+					shieldSent = true;
 					logger.info("Player {} has WON battle", gameEngine.current_quest.getCurrentParticipant().getName());
 					if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
 						Player shieldGetter = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
@@ -675,6 +677,9 @@ public class QuestController extends SocketHandler {
 			logger.info("Stage {} is over", currentStage + 1);
 			if (currentTest == null) {
 				System.out.println("this was not a test");
+				for (Player p : gameEngine.current_quest.participants) {
+					p.getWeapons().clear();
+				}
 			}
 			gameEngine.updateStats();
 			if (gameEngine.current_quest.participants.isEmpty()) {
@@ -707,7 +712,12 @@ public class QuestController extends SocketHandler {
 				gameEngine.current_quest.pickupBeforeStage();
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 			} else { // is battle choose concurrently
-				gameEngine.current_quest.pickupBeforeStage();
+				for (Player p : gameEngine.current_quest.participants) {
+					p.getHand().add(gameEngine.adventureDeck.flipCard());
+					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+					p.session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+				}
+				gameEngine.updateStats();
 				sendToAllParticipants(gameEngine, "ChooseEquipment");
 			}
 		} else {
