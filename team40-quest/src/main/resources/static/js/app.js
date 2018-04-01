@@ -95,6 +95,10 @@ $( document ).ready(function() {
 socketConn.onmessage = function(event) {
     var serverMsg = document.getElementById('serverMsg');
 	
+    //replace test cards if drop out
+    if (event.data.startsWith("replaceTestCards")) {
+    	replaceTestCards(event.data.replace("replaceTestCards",""));
+    }
     //lost battle
     if (event.data == "LostBattle") {
     	serverMsg.value = "Lost battle, wait for quest to finish";
@@ -123,7 +127,7 @@ socketConn.onmessage = function(event) {
     if (event.data == "showStages") {
     	showStages();
     }
-	// undisable flip button
+	// get AI commands
 	if (event.data.startsWith("AI")) {
 		parseAICommand(event.data);
 	}
@@ -339,6 +343,27 @@ socketConn.onmessage = function(event) {
 	}
 }
 
+function replaceTestCards(eventData) {
+	var replacementCards = eventData.split(";");
+	console.log(replacementCards);
+	replacementCards.pop(); replacementCards.shift(); //popping twice to act as discard for given stage card
+	for(var i=0; i<replacementCards.length; i++) {
+		console.log(replacementCards[i]);
+		replacementCards[i] = replacementCards[i].substr(1);
+		replacementCards[i] = replacementCards[i].substr(0, replacementCards[i].length-1);
+		console.log(replacementCards[i]);
+		replacementCards[i] = getLinkFromName(replacementCards[i]);
+		console.log(replacementCards[i]);
+	}
+	for (var i = 0; i < handCardID.length; i++) {
+		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
+			var imageId = handCardID[i];
+			$("#" + imageId).attr("src","http://localhost:8080" + replacementCards.pop());
+			if (replacementCards.length == 0)
+				break;
+		}
+	}
+}
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value = "It is now time to choose equipment for quest";
@@ -355,10 +380,41 @@ function chooseEquipment() {
 	}
 	if(questSetupCards[stageTracker].includes("Test")) {
 		console.log("this is a test: " + questSetupCards[stageTracker]);
+		var oldHandSRC = handCardSRC;
+		getCurrHand();
+		if(isAI) {
+			var data = JSON.stringify({
+				'AICommand' : "nextBid",
+				'name' : PlayerName,
+				'stage' : stageTracker,
+				'currHand': handCardSRC,
+				'oldHand' : oldHandSRC,
+				'minBid' : minBid
+			}) 
+			setTimeout(function(){ socketConn.send(data); 
+			serverMsg.value = "Placing bids, please wait for other players...- "; 
+			}, 1000);		
+			return;
+		}
 		getTestBids();
 		//displayTest(stageTracker);
 	} else {
 		console.log("this is a battle against " + questSetupCards[stageTracker]);
+		if(isAI) {
+			var data = JSON.stringify({
+				'AICommand' : "chooseEquipment",
+				'name' : PlayerName,
+				'stage' : stageTracker,
+				'currHand': handCardSRC,
+				'oldHand' : oldHandSRC,
+				//foe points?
+			}) 
+			setTimeout(function(){ 
+				socketConn.send(data); 
+				serverMsg.value = "Going into battle - wait for other players to finsih for results";
+			}, 1000);
+			return;
+		}
 		getBattleEquipment();
 		//displayBattle(stageTracker);
 		
@@ -475,6 +531,7 @@ function parseTestInfo(event) {
 	for(var i=0; i<testInfo.length; i++) {
 		testInfo[i] = testInfo[i].split("#");
 	}
+	minBid = testInfo[0][1];
 	console.log(testInfo);
 }
 function parseCurrentFoeInfo(event) {
@@ -899,11 +956,13 @@ function dropOutOfTest() {
 	document.getElementById('dropOut').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Dropped out of test, wait for quest to complete";
+	var oldBids = testBids;
 	testBids = [];
 	var data = JSON.stringify({
 		'name' : PlayerName,
 		'stages' : stageTracker,
 		'equipment_info' : testBids,
+		'oldBids' : oldBids,
 		'isTest' : true
 	});
 
@@ -967,7 +1026,7 @@ function doneEquipment() {
 		arrangeHand();
 
 	} else {
-		serverMsg.value = "Going into battle - ";
+		serverMsg.value = "Going into battle - wait for other players to finsih for results";
 		var data = JSON.stringify({
 			'name' : PlayerName,
 			'stages' : stageTracker,
@@ -1596,6 +1655,29 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot,
 		orkney, tintagel, york ];
 
+function AIRemoveFromScreen(cardNames) {
+	console.log("Remove from screen: " + cardNames);
+	var removeLink = [];
+	removeLinks = cardNames.split(";");
+	console.log(removeLinks);
+	removeLinks.pop();
+	for(var i=0; i<removeLinks.length; i++) {
+		removeLinks[i] = getLinkFromName(removeLinks[i]);
+		for(var j=0; j<handCardSRC.length; j++) {
+			var currHandCard = handCardSRC[j];
+			currHandCard = currHandCard.replace("http://localhost:8080","");
+			currHandCard = currHandCard.split('%20').join(' ');
+			console.log(currHandCard);
+			if(currHandCard === removeLinks[i]) {
+				console.log("replace card here");
+				var imageId = handCardID[i];
+				$("#" + imageId).attr("src", "http://localhost:8080/resources/images/all.png");
+				break;
+			}
+		} 
+	}
+	//arrangeHand();
+}
 function AIDiscard(cardNames) {
 	console.log("ENTERING AI DISCARD\n" + cardNames);
 	if (cardNames.startsWith("Prosperity")) {
@@ -1698,8 +1780,26 @@ function AIDiscard(cardNames) {
 function parseAICommand(eventData) {
 	if (eventData.startsWith("AIremoveFromHand"))
 		AIDiscard(eventData.replace("AIremoveFromHand", ""));
+	if(event.data.startsWith("AIBidList"))
+		AIPlaceBid(event.data.replace("AIBidList", ""));
+	if(event.data.startsWith("AIRemoveFromScreen"))
+		AIRemoveFromScreen(event.data.replace("AIRemoveFromScreen",""))
 }
 
+function AIPlaceBid(eventData) {
+	console.log(eventData);
+	var bidList = eventData.split(";");
+	bidList.pop();
+	console.log(bidList);
+	var data = JSON.stringify({
+		'name' : PlayerName,
+		'stages' : stageTracker,
+		'equipment_info' : bidList,
+		'isTest' : true
+	});
+
+	setTimeout(function(){ socketConn.send(data); }, 1000);	
+}
 function getCurrHand() {
 	var card1id = document.getElementById("card1").id;
 	var card2id = document.getElementById("card2").id;

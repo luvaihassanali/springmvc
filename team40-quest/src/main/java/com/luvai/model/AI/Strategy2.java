@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.TextMessage;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.luvai.model.Card;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -27,14 +29,14 @@ public class Strategy2 extends AbstractAI {
 		amourList = new ArrayList<AmourCard>();
 		foeList = new ArrayList<FoeCard>();
 		testList = new ArrayList<TestCard>();
-
+		bidTracker = 0;
+		bids = new ArrayList<AdventureCard>();
 		setStrategyType();
 		logger.info("Assigning new AI Player strategy {}", this.Strategy_Type);
 	}
 
 	@Override
 	public boolean doIParticipateQuest() {
-		/*
 		logger.info("Strategy2 calculating whether to participate in quest");
 		Player current_player = this.gameEngine.getActivePlayer();
 		sortCards(current_player);
@@ -89,7 +91,7 @@ public class Strategy2 extends AbstractAI {
 			return true;
 		}
 		logger.info("Player {} cards do not meet conditions needed to play in {} quest", current_player.getName(),
-				current_quest.getName());*/
+				current_quest.getName());
 		return false;
 
 	}
@@ -302,5 +304,79 @@ public class Strategy2 extends AbstractAI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<AdventureCard> nextBid(JsonObject jsonObject) {
+		Player current_player = gameEngine.getCurrentParticipant();
+		System.out.println("in next bid");
+		System.out.println(jsonObject.toString());
+		JsonElement x = jsonObject.get("currHand");
+		String[] cardArr = x.toString().split(",");
+		for (String s : cardArr) {
+			System.out.println(s);
+		}
+
+		for (AdventureCard a : current_player.getHand()) {
+			System.out.println(a.getName());
+		}
+
+		int round = bidTracker;
+		int minBid = jsonObject.get("minBid").getAsInt();
+		System.out.println(gameEngine.current_quest.currentStage);
+		System.out.println("STRAT2 235 MIN BID: " + minBid);
+		if (round == 0) {
+			// if valid i.e over curr min bid -> bid # of foes w >=25 BP
+			System.out.println(round);
+			System.out.println(minBid);
+			for (int j = 0; j < current_player.getHandSize(); j++) {
+				for (int i = 0; i < minBid; i++) {
+					if (current_player.getHand().get(j) instanceof FoeCard) {
+						FoeCard foe = (FoeCard) current_player.getHand().get(j);
+						if (foe.getBattlePoints() <= 25)
+							bids.add(foe);
+						if (bids.size() == minBid)
+							return bids;
+						break;
+					}
+				}
+				bidTracker++;
+			}
+
+			for (int k = 0; k < current_player.getHandSize(); k++) {
+				for (int i = 0; i < minBid; i++) {
+					if (current_player.getHand().get(k) instanceof WeaponCard) {
+						WeaponCard weapon = (WeaponCard) current_player.getHand().get(k);
+						if (weapon.getBattlePoints() <= 25)
+							bids.add(weapon);
+						if (bids.size() == minBid)
+							return bids;
+						break;
+					}
+				}
+			}
+		}
+
+		if (round >= 1) {
+			// if valid -> bid # of foes >= 25 && # of duplicate cards
+			AdventureCard duplicate;
+			System.out.println("IN ROUND 2 NEED : BIDS" + (minBid - bids.size()));
+			for (int i = 0; i < minBid - bids.size(); i++) {
+				bids.add(gameEngine.getCurrentParticipant().getHand().get(i));
+			}
+		}
+		return bids;
+	}
+
+	@Override
+	public void discardAfterWinningTest() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void chooseEquipment() {
+		// TODO Auto-generated method stub
+
 	}
 } // end of class

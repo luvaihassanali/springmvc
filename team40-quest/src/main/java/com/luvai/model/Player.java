@@ -65,6 +65,7 @@ public class Player {
 		this.allies = new ArrayList<AllyCard>();
 		this.tieCheck = 0;
 		this.testDiscardList = new ArrayList<String>();
+		this.replaceBonusBidsList = new ArrayList<String>();
 		if (isAI == 2) {
 			this.ai = new Strategy2();
 		}

@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.JsonObject;
 import com.luvai.controller.SocketHandler;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
@@ -26,6 +27,8 @@ public abstract class AbstractAI {
 	ArrayList<AmourCard> amourList;
 	ArrayList<FoeCard> foeList;
 	ArrayList<TestCard> testList;
+	int bidTracker;
+	ArrayList<AdventureCard> bids;
 
 	// constructs
 	public AbstractAI() {
@@ -107,5 +110,11 @@ public abstract class AbstractAI {
 	abstract public boolean doISponsorQuest();
 
 	abstract public void setupQuest();
+
+	abstract public ArrayList<AdventureCard> nextBid(JsonObject json);
+
+	abstract public void discardAfterWinningTest();
+
+	abstract public void chooseEquipment();
 
 }

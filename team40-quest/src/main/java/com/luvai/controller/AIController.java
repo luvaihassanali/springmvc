@@ -1,6 +1,7 @@
 package com.luvai.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
@@ -32,6 +33,38 @@ public class AIController extends SocketHandler {
 		if (jsonObject.get("AICommand").getAsString().equals("SponsorQuest")) {
 			AIQuestSponsor(jsonObject);
 		}
+
+		if (jsonObject.get("AICommand").getAsString().equals("nextBid")) {
+			AIMakeBid(jsonObject);
+		}
+
+		if (jsonObject.get("AICommand").getAsString().equals("chooseEquipment")) {
+			AIChooseEquipment(jsonObject);
+		}
+
+	}
+
+	private void AIChooseEquipment(JsonObject jsonObject) {
+		gameEngine.updateStats();
+		System.out.println(jsonObject.toString());
+		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+		System.out.println(currentPlayer.getName());
+		currentPlayer.getAI().chooseEquipment();
+
+	}
+
+	private void AIMakeBid(JsonObject jsonObject) throws IOException {
+
+		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+		System.out.println("from json: " + currentPlayer.getName());
+		System.out.println("from getcurrp: " + gameEngine.getCurrentParticipant().getName());
+		ArrayList<AdventureCard> AIBids = currentPlayer.getAI().nextBid(jsonObject);
+		String bidList = "";
+		for (AdventureCard a : AIBids) {
+			System.out.println(a.getName());
+			bidList += a.getName() + ";";
+		}
+		gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIBidList" + bidList));
 
 	}
 

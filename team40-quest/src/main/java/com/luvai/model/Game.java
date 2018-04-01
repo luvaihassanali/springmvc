@@ -85,7 +85,7 @@ public class Game {
 			add(CardList.KingArthur);
 			add(CardList.Excalibur);
 			add(CardList.Horse);
-			add(CardList.Horse);
+			add(CardList.MorganTest);
 			add(CardList.Dragon);
 			add(CardList.BlackKnight);
 			add(CardList.QueenGuinevere);

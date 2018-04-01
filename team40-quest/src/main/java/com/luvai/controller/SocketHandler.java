@@ -13,6 +13,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.luvai.model.Game;
@@ -108,11 +109,17 @@ public class SocketHandler extends TextWebSocketHandler {
 					}
 					logger.info("There is only one participant left in quest test, automatic minimum bid pass");
 					System.out.println("to remove after test: ");
+
 					gameEngine.current_quest.getCurrentParticipant()
 							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
-
+					String aiRemove = "";
 					for (int i = 0; i < gameEngine.current_quest.getCurrentParticipant().testDiscardList.size(); i++) {
 						System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
+						aiRemove += gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i) + ";";
+					}
+					if (gameEngine.getCurrentParticipant().isAI()) {
+						gameEngine.getCurrentParticipant().session
+								.sendMessage(new TextMessage("AIRemoveFromScreen" + aiRemove));
 					}
 					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
 					System.out.println("REPLACE THESSE CARDS ON SCREEN");
@@ -145,9 +152,39 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
 				if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
 					System.out.println("player dropped out - remove");
-					for (AdventureCard a : gameEngine.current_quest.getCurrentParticipant().getHand())
-						System.out.println(a.getName());
+
+					if (jsonObject.has("oldBids")) {
+						for (AdventureCard a : gameEngine.getCurrentParticipant().getHand()) {
+							a.getName();
+						}
+						System.out.println("REPLACE TEST CARDS USED FOR LOSING PLAYER >>> "
+								+ gameEngine.getCurrentParticipant().getName());
+						JsonArray oldBids = (JsonArray) jsonObject.get("oldBids");
+						String replaceTestCards = "";
+						for (int i = 0; i < oldBids.size(); i++) {
+							JsonElement temp = oldBids.get(i);
+							System.out.println(temp.toString());
+							replaceTestCards += temp.toString() + ";";
+						}
+						gameEngine.getCurrentParticipant().session
+								.sendMessage(new TextMessage("replaceTestCards" + replaceTestCards));
+						System.out.println("remove card");
+						System.out.println(replaceTestCards);
+						String[] replaceTestCardArr = replaceTestCards.split(";");
+						String removeExtra = replaceTestCardArr[0].replaceAll(";", "");
+						removeExtra = removeExtra.replaceAll("\"", "");
+						System.out.println(removeExtra + " REMOVE EXTRA HERE ");
+						for (AdventureCard a : gameEngine.getCurrentParticipant().getHand()) {
+							if (a.getName().equals(removeExtra)) {
+								gameEngine.getCurrentParticipant().getHand().remove(a);
+								break;
+							}
+						}
+
+					}
+
 					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+
 					gameEngine.updateStats();
 				}
 				sendToAllSessions(gameEngine, "allPlayerQuestInfo" + questInformation.toString());
@@ -159,12 +196,18 @@ public class SocketHandler extends TextWebSocketHandler {
 						sendToAllSessions(gameEngine, "incStage");
 						gameEngine.current_quest.currentStage++;
 						System.out.println("to remove after test: ");
+
 						gameEngine.current_quest.getCurrentParticipant()
 								.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
-
+						String aiRemove = "";
 						for (int i = 0; i < gameEngine.current_quest.getCurrentParticipant().testDiscardList
 								.size(); i++) {
 							System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
+							aiRemove += gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i) + ";";
+						}
+						if (gameEngine.getCurrentParticipant().isAI()) {
+							gameEngine.getCurrentParticipant().session
+									.sendMessage(new TextMessage("AIRemoveFromScreen" + aiRemove));
 						}
 						gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
 						System.out.println("REPLACE THESSE CARDS ON SCREEN");
@@ -186,8 +229,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println(gameEngine.current_quest.currentStage);
 				System.out.println(gameEngine.current_quest.participants.size());
 				gameEngine.current_quest.incTurn();
-				gameEngine.getCurrentParticipant().session
-						.sendMessage(new TextMessage("updateMinBid" + gameEngine.current_quest.currentMinBid));
+				sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
 
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 				return;
@@ -224,6 +266,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			Player p = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 			String cardName = jsonObject.get("removeStageCardFromTest").getAsString();
 			String trimmedName = cardName.replace("http://localhost:8080/resources/images/", "");
+			if (trimmedName.contains("all.png"))
+				return;
 			trimmedName = trimmedName.substring(4);
 			trimmedName = trimmedName.substring(0, trimmedName.length() - 4);
 			trimmedName = trimmedName.replaceAll("%20", " ");
