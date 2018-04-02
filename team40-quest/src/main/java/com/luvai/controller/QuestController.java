@@ -167,19 +167,35 @@ public class QuestController extends SocketHandler {
 
 		}
 		String[] array = cardToRemove.toArray(new String[cardToRemove.size()]);
-		aiQuestCardList = cardToRemove;
-		currentQuestInfo = array;
-		System.out.println("qc165----------------------------------------------------");
+
+		System.out.println("qc171----------------------------------------------------");
+		String[] jsonArr = new String[array.length];
 		for (int i = 0; i < array.length; i++) {
 			System.out.println(array[i]);
+			jsonArr[i] = "\"" + array[i] + "\"";
 		}
+
+		aiQuestCardList = cardToRemove;
+		currentQuestInfo = array;
+
 		String logString = "";
 		for (String s : cardToRemove) {
 			logString += s + ", ";
 		}
+		System.out.println("QC 180");
+		System.out.println(aiQuestCardList);
+		System.out.println(cardToRemove);
+		for (int i = 0; i < jsonArr.length; i++) {
+			System.out.println(jsonArr[i]);
+		}
+		List<String> JSONlist = new ArrayList<String>(jsonArr.length);
+		for (String s : jsonArr) {
+			JSONlist.add(s);
+		}
+		System.out.println(JSONlist);
 		logger.info("Player {} setup {} quest with {}", gameEngine.getActivePlayer().getName(),
 				gameEngine.storyDeck.faceUp.getName(), logString);
-		String jsonOutput = "questSetupCards" + cardToRemove;
+		String jsonOutput = "questSetupCards" + JSONlist;
 		sendToAllSessions(gameEngine, jsonOutput);
 
 		for (Card c : aiQuestcards) {
@@ -592,6 +608,7 @@ public class QuestController extends SocketHandler {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void calculateStageOutcome(String playerPoints, JsonArray questInformation) throws IOException {
 		// System.out.println(playerPoints);
 		int currentStage = gameEngine.current_quest.currentStage - 1;
@@ -623,15 +640,30 @@ public class QuestController extends SocketHandler {
 		questCardList = new Gson().fromJson(x, listType);
 		if (gameEngine.current_quest.sponsor.isAI())
 			questCardList = aiQuestCardList;
+		System.out.println("for s");
 		for (String s : questCardList) {
 			System.out.println(s);
 		}
+		System.out.println("for i");
+		for (int i = 0; i < questCardList.size(); i++) {
+			System.out.println(questCardList.get(i));
+			Card tempC = getCardFromName(questCardList.get(i));
+			System.out.println(tempC.getName());
+			if (tempC instanceof WeaponCard) {
+				System.out.println("true");
+				questCardList.remove(questCardList.get(i));
+			}
+		}
+		System.out.println(questCardList);
+		System.out.println(questCardList.size());
 		for (int i = 0; i < questCardList.size(); i++) {
 			Card currentCard = getCardFromName(questCardList.get(i));
+			System.out.println(currentCard.getName());
 			if (currentCard instanceof WeaponCard) {
 				System.out.println("removing this card");
 				System.out.println(currentCard.getName() + ";");
 				questCardList.remove(currentCard.getName());
+				continue;
 			}
 		}
 		System.out.println("removing should be");
@@ -707,7 +739,33 @@ public class QuestController extends SocketHandler {
 			System.out.println("current stage: " + currentStage);
 			System.out.println("num participants: " + gameEngine.current_quest.participants.size());
 
-			if (currentQuestInfo[test].contains("Test")) {
+			ArrayList<ArrayList<String>> ordered = new ArrayList<ArrayList<String>>();
+			ArrayList<String> tempArr = new ArrayList<String>();
+
+			tempArr.add(currentQuestInfo[0].replaceAll("\"", ""));
+			for (int i = 1; i < currentQuestInfo.length; i++) {
+				String cardName = currentQuestInfo[i];
+				cardName = cardName.replaceAll("\"", "");
+				CardList cardFinder = new CardList();
+				Card card = cardFinder.getCardFromName(cardName);
+				// System.out.println(card.getName());
+				if (card instanceof FoeCard || card instanceof TestCard) {
+					System.out.println("new row");
+					ordered.add((ArrayList<String>) tempArr.clone());
+					// System.out.println(ordered);
+					// System.out.println(tempArr);
+					tempArr.clear();
+					// System.out.println(tempArr);
+				}
+
+				tempArr.add(cardName);
+				System.out.println(tempArr);
+				if (i == currentQuestInfo.length - 1)
+					ordered.add((ArrayList<String>) tempArr.clone());
+			}
+			System.out.println(ordered);
+
+			if (ordered.get(test).get(0).contains("Test")) {
 				// is test - one at a time
 				gameEngine.current_quest.pickupBeforeStage();
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));

@@ -63,8 +63,8 @@ Shields:<label id="p1shields">0</label>
 	<div id="battleScreen"
 		style="display:none; margin: 0 auto; font-size: 20px; border-style: solid; border-width: thin; position:relative; background-color: white; width: 1200px; height: 750px; z-index: 2; text-align: center;">
 				<strong> Battle Screen </strong><Br><br><br><br>
-		<div id="player1Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
-<label> player1 name <br> player1 points </label>
+		<div id="player1Display" style="display:none; float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label id="p1info"> player1 name <br> player1 points </label>
 			<div>
 				<img id="player1Pic" src="/resources/images/all.png" width="100"
 					height="150" />
@@ -83,20 +83,20 @@ Shields:<label id="p1shields">0</label>
 					id="player1WeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
-			<label id="p1_win" style="color: green; display:block;"> <strong>
+			<label id="p1_win" style="color: green; display:none;"> <strong>
 					WINNER </strong>
 			</label> <label id="p1_lose" style="color: red; display: none;"> <strong>
 					LOSER </strong>
 			</label>
 		</div>
-		<div id="player2Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
-<label> player2 name <br> player2 points </label>
+		<div id="player2Display" style="display:none; float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label id="p2info"> player2 name <br> player2 points </label>
 			<div>
 				<img id="player2Pic" src="/resources/images/all.png" width="100"
 					height="150" />
 			</div>
 			<div>
-				<img id="player2WeaponSpot2" src="/resources/images/all.png"
+				<img id="player2WeaponSpot1" src="/resources/images/all.png"
 					width="80" height="120" /> <img id="player2WeaponSpot2"
 					src="/resources/images/all.png" width="80" height="120" /> <img
 					id="player2WeaponSpot3" src="/resources/images/all.png" width="80"
@@ -109,21 +109,21 @@ Shields:<label id="p1shields">0</label>
 					id="player2WeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
-			<label id="p2_win" style="color: green; display:block;"> <strong>
+			<label id="p2_win" style="color: green; display:none;"> <strong>
 					WINNER </strong>
 			</label> <label id="p2_lose" style="color: red; display: none;"> <strong>
 					LOSER </strong>
 			</label>
 		</div>
-		<div id="player3Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
-<label> player3 name <br> player3 points </label>
+		<div id="player3Display" style="display:none; float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label id="p3info"> player3 name <br> player3 points </label>
 			<div>
 				<img id="player3Pic" src="/resources/images/all.png" width="100"
 					height="150" />
 			</div>
 			<div>
-				<img id="player3WeaponSpot3" src="/resources/images/all.png"
-					width="80" height="120" /> <img id="player3WeaponSpot3"
+				<img id="player3WeaponSpot1" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player3WeaponSpot2"
 					src="/resources/images/all.png" width="80" height="120" /> <img
 					id="player3WeaponSpot3" src="/resources/images/all.png" width="80"
 					height="120" />
@@ -135,23 +135,23 @@ Shields:<label id="p1shields">0</label>
 					id="player3WeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
-			<label id="p3_win" style="color: green; display:block;"> <strong>
+			<label id="p3_win" style="color: green; display:none;"> <strong>
 					WINNER </strong>
 			</label> <label id="p3_lose" style="color: red; display: none;"> <strong>
 					LOSER </strong>
 			</label>
 		</div>
-		<div id="player4Display" style="float: left; border-style: solid; border-width: thin; font-size:14px;">
-<label> player4 name <br> player4 points </label>
+		<div id="player4Display" style="display:none; float: left; border-style: solid; border-width: thin; font-size:14px;">
+<label id="p4info"> player4 name <br> player4 points </label>
 			<div>
 				<img id="player4Pic" src="/resources/images/all.png" width="100"
 					height="150" />
 			</div>
 			<div>
-				<img id="player4WeaponSpot4" src="/resources/images/all.png"
-					width="80" height="120" /> <img id="player4WeaponSpot4"
+				<img id="player4WeaponSpot1" src="/resources/images/all.png"
+					width="80" height="120" /> <img id="player4WeaponSpot2"
 					src="/resources/images/all.png" width="80" height="120" /> <img
-					id="player4WeaponSpot4" src="/resources/images/all.png" width="80"
+					id="player4WeaponSpot3" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
 			<div>
@@ -161,7 +161,7 @@ Shields:<label id="p1shields">0</label>
 					id="player4WeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
 			</div>
-			<label id="p4_win" style="color: green; display:block;"> <strong>
+			<label id="p4_win" style="color: green; display:none;"> <strong>
 					WINNER </strong>
 			</label> <label id="p4_lose" style="color: red; display: none;"> <strong>
 					LOSER </strong>
@@ -169,7 +169,7 @@ Shields:<label id="p1shields">0</label>
 		</div>
                   <div style="border-style:none; border-width:thin; width: 800px; height:250px; position:absolute; bottom:0;"> 
      <br> <br>
- Current stage information: <br> <br>
+ <label id="currStageInfo"> Current stage information: </label><br> <br>
 		<img id="questPic" src="/resources/images/all.png" width="100"
 					height="150" />
 <img id="foePic" src="/resources/images/all.png" width="100"

@@ -33,6 +33,7 @@ var wildCardStageInc = false;
 var serverMsg = document.getElementById('serverMsg');
 var allBattleEquipment = [];
 var allQuestInfo = [];
+var allPlayerPoints = [];
 // when connection is initiated
 socketConn.onopen = function(event) {};
 
@@ -111,19 +112,140 @@ socketConn.onmessage = function(event) {
     	for(var i=0; i<temp.length; i++) {
     		temp[i] = temp[i].split("#");
     	}
-    	console.log("SHOWING BATTLE SCREEN")
+    	 allPlayerPoints = temp;
+    	console.log("SHOWING BATTLE SCREEN");
+    	console.log(stageTracker);
+    	
 		document.getElementById("battleScreen").style.display = "block";
+    	//console.log(storyCardFaceUp);
+    	$("#questPic").attr("src", "http://localhost:8080" + storyCardFaceUp.stringFile);
+    	//console.log(storyCardFaceUp.stringFile);
+    	console.log(questSetupCards);
+    	console.log(stageTracker);
+    	var currFoeName = questSetupCards[stageTracker][0];
+    	console.log(currFoeName);
+    	var currFoePts = 0;
+    	var currFoeLink = getLinkFromName(currFoeName);
+    	//console.log(currFoeLink);
+    	for(var i=0; i<foeInfo.length; i++) {
+    		if(foeInfo[i][0] == currFoeName) {
+    			var currFoePts = foeInfo[i][1];
+    		}
+    	}
+    	document.getElementById("currStageInfo").innerText = "Current stage information: " + currFoeName + " with points: " + currFoePts;
+    	$("#foePic").attr("src", "http://localhost:8080" + currFoeLink);
+    	//console.log("current foe name: " + currFoeName);
+    	//console.log("current foe points: " + currFoePts);
+    	var foeSlot1 =document.getElementById('foeWeaponSpot1').id;
+    	var foeSlot2 = document.getElementById('foeWeaponSpot2').id;
+    	var foeSlot3 = document.getElementById('foeWeaponSpot3').id;
+    	var foeSlot4 = document.getElementById('foeWeaponSpot4').id;
+    	var foeSlot5 = document.getElementById('foeWeaponSpot5').id;
+    	var foeSlot6 = document.getElementById('foeWeaponSpot6').id;
+    	var foeSlots = [foeSlot1, foeSlot2, foeSlot3, foeSlot4, foeSlot5, foeSlot6];
+    	console.log(questSetupCards);
+    	console.log(stageTracker);
+    	if(questSetupCards[stageTracker].length == 1) {
+    		
+    	} else {
+    		var currentFoeWeapons = questSetupCards[stageTracker];
+    		console.log(currentFoeWeapons);
+    	
+    	
+    		var currentFoeWeaponLinks = [];
+    		for(var i=1; i<currentFoeWeapons.length; i++) {
+    			currentFoeWeaponLinks.push(getLinkFromName(currentFoeWeapons[i]));
+    	//		console.log(getLinkFromName(currentFoeWeapons[i]));
+    		}
+    		for(var i=0; i<currentFoeWeaponLinks.length; i++) {
+    			var changeImageId = "#" + foeSlots[i];
+    		//	console.log(changeImageId);
+    			$(changeImageId).attr("src", "http://localhost:8080" + currentFoeWeaponLinks[i]);
+    		}
+    	}
+    	allPlayerPoints.pop();
+    	console.log(allPlayerPoints);
+    	console.log(allPlayerPoints.length);
+    	for(var i=0; i<allPlayerPoints.length; i++) {
+    		console.log("starting loop");
+    		var base_id = "player" + (i+1);
+    		var primitive_id = "p" + (i+1);
+    		var playerDiv = base_id + "Display";
+    		var playerPic = "#" + base_id + "Pic";
+    		var playerPicLink = allPlayerPoints[i][2];
+    		var playerPts = allPlayerPoints[i][1];
+    		var playerName = allPlayerPoints[i][0];
+    		var infoPane = primitive_id + "info";
+    		//console.log(playerDiv);
+    		//console.log(infoPane);
+    		//console.log(playerName);
+    		//console.log(playerPts);
+    		//console.log(playerPicLink);
+    		document.getElementById(playerDiv).style.display = "block";
+    		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
+    		$(playerPic).attr("src", "http://localhost:8080" + playerPicLink);
+    		console.log(allQuestInfo);
+    		var playerInfo = allQuestInfo[i+1];
+    		var playerInfo2;
+    		var a;
+    		if(allQuestInfo[0].hasOwnProperty("questSetupCards")) {
+    			a=0;
+    		} else { var a = -1; }
+    		for(a; a<allQuestInfo.length; a++) {
+    			if(a+1 == allQuestInfo.length) break;
+    			if(allQuestInfo[a+1].name == playerName && allQuestInfo[a+1].stages == stageTracker) {
+    				playerInfo2 = allQuestInfo[a+1];
+    			}
+    		}
+
+    		console.log(playerInfo2);
+    		var weaponArr = playerInfo2.equipment_info;
+    		console.log(weaponArr);
+    		for(var b=0; b<weaponArr.length; b++) {
+    			weaponArr[b] = getLinkFromName(weaponArr[b]);
+    			var picId = "#" + base_id + "WeaponSpot" + (b+1);
+    			$(picId).attr("src", "http://localhost:8080" + weaponArr[b]);
+    			console.log(picId); console.log(weaponArr[b]);
+    		}
+    		var winid = primitive_id + "_win";
+    		var loseid = primitive_id + "_lose";
+    		
+    		if(playerPts >= currFoePts) {
+    			document.getElementById(winid).style.display = "block";
+    			document.getElementById(loseid).style.display = "none";
+    		} else {
+    			document.getElementById(winid).style.display = "none";
+    			document.getElementById(loseid).style.display = "block";
+    		}
+    		    		
+    	}
+
     	setTimeout(function(){ 
     		document.getElementById("battleScreen").style.display = "none";
     		console.log("REMOVING BATTLE SCREEN");
+    		//clear images
+    		$("#questPic").attr("src", "http://localhost:8080/resources/images/all.png");
+    		$("#foePic").attr("src", "http://localhost:8080/resources/images/all.png");
+    		for(var i=0; i<foeSlots.length; i++) {
+    			$("#"+foeSlots[i]).attr("src", "http://localhost:8080/resources/images/all.png");
+    		}
+    		for(var i=0; i<allPlayerPoints.length; i++) {
+    			var base_id_remove = "player" + (i+1);
+        		var primitive_id_remove = "p" + (i+1);
+        		var playerDiv_remove = base_id_remove + "Display";
+        		var playerPic_remove = "#" + base_id_remove + "Pic";
+        		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
+        		var playerInfo;
+            	for(var j=0; j<6; j++) { 
+            		var id = "#player" + (i+1) + "WeaponSpot" + (j+1);
+            		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
+            	}
+    		}
     	}, 10000);
-		console.log(allQuestInfo);
-    	console.log(temp);
+
     	console.log(foeInfo);
     	console.log(testInfo);
-    	console.log("battle screen stage tracker: " + stageTracker);
-    	console.log(questSetupCards);
-    	console.log(storyCardFaceUp);
+    	console.log("battle screen stage tracker: " + stageTracker);    	
     	console.log("end battlescreen info");
     }
     // get all player quest info
@@ -376,9 +498,7 @@ function replaceTestCards(eventData) {
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value = "It is now time to choose equipment for quest";
-	console.log("total stages: " + totalStages);
-	console.log("stage tracker: " + stageTracker);
-	console.log(questSetupCards[stageTracker])
+	
 	if(totalStages == stageTracker) {
 		console.log("Quest over");
 		var data = JSON.stringify({
@@ -387,7 +507,8 @@ function chooseEquipment() {
 		socketConn.send(data);
 		return;
 	}
-	if(questSetupCards[stageTracker].includes("Test")) {
+	console.log(questSetupCards);
+	if(questSetupCards[stageTracker][0].includes("Test")) {
 		console.log("this is a test: " + questSetupCards[stageTracker]);
 		var oldHandSRC = handCardSRC;
 		getCurrHand();
@@ -408,7 +529,7 @@ function chooseEquipment() {
 		getTestBids();
 		//displayTest(stageTracker);
 	} else {
-		console.log("this is a battle against " + questSetupCards[stageTracker]);
+		console.log("this is a battle against " + questSetupCards[stageTracker][0]);
 		if(isAI) {
 			var data = JSON.stringify({
 				'AICommand' : "chooseEquipment",
@@ -533,16 +654,16 @@ function pickupBeforeStage(event) {
 function parseTestInfo(event) {
 	var temp = event.data.replace("TestInfo", "");
 	TestInfo = temp;
-	console.log(temp);
+	//console.log(temp);
 	testInfo = temp.split(";");
 	testInfo.pop();
-	console.log(testInfo);
+	//console.log(testInfo);
 	if(testInfo.length == 0) return;
 	for(var i=0; i<testInfo.length; i++) {
 		testInfo[i] = testInfo[i].split("#");
 	}
 	minBid = testInfo[0][1];
-	console.log(testInfo);
+	//console.log(testInfo);
 }
 function parseCurrentFoeInfo(event) {
 	var temp = event.data.replace("FoeInfo", "");
@@ -553,7 +674,7 @@ function parseCurrentFoeInfo(event) {
 	for(var i=0; i<foeInfo.length; i++) {
 		foeInfo[i] = foeInfo[i].split("#");
 	}
-		console.log(foeInfo);
+	//	console.log(foeInfo);
 }
 
 function parseParticipantInfo(event) {
@@ -577,15 +698,37 @@ function getParticipants() {
 }
 
 function parseQuestInfo(event) {
+	console.log(event);
 	var temp = event.data.replace("questSetupCards","");
-	temp = temp.replace("[","");
-	temp = temp.replace("]","");
-	var array = temp.split(",");
-	for(var i=0; i<array.length; i++) {
-		array[i] = array[i].replace(" ","");
+	console.log(temp);
+	var array = JSON.parse(temp);
+	console.log(array);
+	var orderedQuestCards = [];
+	var temp = [];
+	//console.log(allQuestInfo[0]);
+	//console.log(allQuestInfo[0].questSetupCards);
+	var questCards = array;
+	console.log(questCards.length);
+	temp.push(questCards[0]);
+	for(var i=1; i<questCards.length; i++) {
+		var card = questCards[i];
+		var type = getTypeFromName(questCards[i]);
+		console.log(card);
+		console.log(type);
+	
+		if(type == "foe" || type == "test") {
+			orderedQuestCards.push(temp);
+			temp = [];
+		}
+		temp.push(card);
+		console.log(i);
+		if(i==questCards.length-1) orderedQuestCards.push(temp);
 	}
-	questSetupCards = array;
-	console.log(questSetupCards);
+	console.log(orderedQuestCards);
+	questSetupCards = orderedQuestCards;
+	if(PlayerName == sponsor) {
+		console.log(questSetupCards);
+	}
 }
 
 function startGame() {
@@ -666,18 +809,18 @@ function PickupCards(newCards) {
 		newCards = newCards.replace("PickupCardsTestBonus","");
 		testBonus = true;
 	}
-	console.log(newCards)
+	//console.log(newCards)
 	if(newCards=="null") return;
 	newCards = newCards.split(";");
 	newCards.pop();
-	console.log("LINE 585");
-	console.log(newCards);
+//	console.log("LINE 585");
+	//console.log(newCards);
 	var numNewCards = newCards.length;
 	console.log(numNewCards);
 	for (var i = 0; i < handCardID.length; i++) {
-		console.log("begin of loop");
-		console.log(newCards.length);
-		console.log(newCards);
+		//console.log("begin of loop");
+	//	console.log(newCards.length);
+		//console.log(newCards);
 		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
 			var imageId = handCardID[i];
 			if(testBonus) { var tempLink = getLinkFromName(newCards.pop()) } else {
@@ -686,8 +829,8 @@ function PickupCards(newCards) {
 			
 			$("#" + imageId).attr("src",
 					"http://localhost:8080" + tempLink);
-			console.log(newCards.length);
-			console.log(newCards);
+		//	console.log(newCards.length);
+		//	console.log(newCards);
 			if (newCards.length == 0)
 				break;
 		}
@@ -698,7 +841,7 @@ function PickupCards(newCards) {
 	for (var i = 0; i < handCardSRC.length; i++) {
 		var tempCardLink = handCardSRC[i].replace("http://localhost:8080", "");
 		tempCardLink = tempCardLink.split('%20').join(' ');
-	  console.log(tempCardLink);
+	//  console.log(tempCardLink);
 		if (tempCardLink != "/resources/images/all.png")
 			cardTracker++;
 	}
@@ -739,7 +882,7 @@ function sponsorPickup(cards) {
 	var pickUpLinksArr = pickUpLinks.split(";");
 
 	pickUpLinksArr.pop();
-	console.log(pickUpLinksArr);
+	//console.log(pickUpLinksArr);
 	var numNewCards = pickUpLinksArr.length;
 
 	for (var i = 0; i < handCardID.length; i++) {
@@ -1019,9 +1162,10 @@ function doneEquipment() {
 	document.getElementById('dropOut').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
 	//console.log(battleEquipment);
-	//console.log(questSetupCards);
+	console.log(questSetupCards);
 	//console.log(allBattleEquipment);
-	if (questSetupCards[stageTracker].includes("Test")) {
+	console.log(stageTracker);
+	if (questSetupCards[stageTracker][0].includes("Test")) {
 		serverMsg.value = "Placing bids, please wait for other players...- ";
 		if(testBids.length == 0) serverMsg.value = "Dropping out of test, please wait for other players";
 	
@@ -1119,6 +1263,15 @@ function getLinkFromName(name) {
 	return "card not found";
 }
 
+//get type 
+function getTypeFromName(name) {
+	for(var i=0; i<cardTypeList.length; i++) {
+		if(cardTypeList[i].name === name) {
+			return cardTypeList[i].type;
+		}
+	}
+	return "card not found";
+}
 //get bp from name
 function getBpFromName(name) {
 	console.log(storyCardFaceUp);

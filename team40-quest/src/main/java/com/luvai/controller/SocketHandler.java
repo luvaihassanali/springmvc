@@ -59,8 +59,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			logger.info("Player {} setup {} quest with {}", gameEngine.current_quest.sponsor.getName(),
 					gameEngine.storyDeck.faceUp.getName(), jsonObject.get("questSetupCards").toString());
 			questInformation.add(jsonObject);
-			sendToAllSessionsExceptCurrent(gameEngine, session,
-					"questSetupCards" + jsonObject.get("questSetupCards").toString());
+			sendToAllSessions(gameEngine, "questSetupCards" + jsonObject.get("questSetupCards").toString());
 			gameEngine.current_quest.parseQuestInfo(jsonObject);
 		}
 
@@ -252,7 +251,7 @@ public class SocketHandler extends TextWebSocketHandler {
 					playerPoints += gameEngine.current_quest.participants.get(i).getName() + "#"
 							+ gameEngine.current_quest
 									.calculatePlayerPoints(gameEngine.current_quest.participants.get(i).getName())
-							+ "#" + gameEngine.current_quest.participants.get(i).getRank().getName() + ";";
+							+ "#" + gameEngine.current_quest.participants.get(i).getRank().getStringFile() + ";";
 				}
 				sendToAllSessions(gameEngine, "playerPointString" + playerPoints);
 				gameEngine.current_quest.calculateStageOutcome(playerPoints, questInformation);

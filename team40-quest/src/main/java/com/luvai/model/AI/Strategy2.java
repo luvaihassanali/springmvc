@@ -38,6 +38,7 @@ public class Strategy2 extends AbstractAI {
 	@Override
 	public boolean doIParticipateQuest() {
 		logger.info("Strategy2 calculating whether to participate in quest");
+		/*
 		Player current_player = this.gameEngine.getActivePlayer();
 		sortCards(current_player);
 		QuestCard current_quest = (QuestCard) this.gameEngine.storyDeck.faceUp;
@@ -92,6 +93,7 @@ public class Strategy2 extends AbstractAI {
 		}
 		logger.info("Player {} cards do not meet conditions needed to play in {} quest", current_player.getName(),
 				current_quest.getName());
+				*/
 		return false;
 
 	}
@@ -277,6 +279,8 @@ public class Strategy2 extends AbstractAI {
 			finalQuestSetup.add(foeList.get(i));
 		}
 		Collections.reverse(finalQuestSetup);
+		System.out.println("STrat2 line 282");
+		System.out.println(finalQuestSetup);
 		this.gameEngine.current_quest.initiateQuestAI(finalQuestSetup);
 		System.out.println("SENDING Discard ai sponsor here");
 		String discards = "";

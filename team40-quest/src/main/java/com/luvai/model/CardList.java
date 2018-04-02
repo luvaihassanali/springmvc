@@ -242,4 +242,15 @@ public class CardList {
 	public static RankCard Knight = new RankCard("Knight", knightImage, 10);
 	public static RankCard ChampionKnight = new RankCard("Champion Knight", cKnightImage, 20);
 	public static RankCard RoundTableKnight = new RankCard("Champion Knight of The Round Table", CTRImage, 100);
+
+	public Card getCardFromName(String name) {
+		Card temp = null;
+		for (int i = 0; i < allTypes.size(); i++) {
+			if (allTypes.get(i).getName().equals(name)) {
+				temp = allTypes.get(i);
+				return temp;
+			}
+		}
+		return temp;
+	}
 }
