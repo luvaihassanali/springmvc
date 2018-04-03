@@ -90,6 +90,7 @@ public class EventController extends SocketHandler {
 		gameEngine.incTurn();
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+		gameEngine.updateStats();
 	}
 
 	public void EventProsperity() throws IOException {
@@ -106,5 +107,6 @@ public class EventController extends SocketHandler {
 			temp = "";
 			logger.info("Player {} picked up {} and {}", p.getName(), newCard.getName(), newCard2.getName());
 		}
+		gameEngine.updateStats();
 	}
 }

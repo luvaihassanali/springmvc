@@ -16,4 +16,8 @@ public class TournamentCard extends StoryCard {
 
 		return json;
 	}
+
+	public int getBonus() {
+		return this.bonus;
+	}
 }

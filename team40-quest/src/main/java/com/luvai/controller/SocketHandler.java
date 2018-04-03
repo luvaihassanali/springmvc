@@ -72,6 +72,13 @@ public class SocketHandler extends TextWebSocketHandler {
 			gameEngine.current_quest.getNewParticipants(jsonObject, session);
 		}
 
+		// json for accepting/decline participating in tournament
+		if (jsonObject.has("participate_tournament")) {
+
+			gameEngine.current_tournament.getNewTourniePlayers(jsonObject, session);
+		}
+
+		// flip new card
 		if (jsonObject.has("flipStoryDeck")) {
 			flipStoryCard();
 		}
@@ -283,6 +290,10 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		if (jsonObject.has("doneEventProsperity")) {
 			gameEngine.AIController.doneProsperity();
+		}
+		// get tournie info
+		if (jsonObject.has("tournament_info")) {
+			gameEngine.current_tournament.parseTournieInfo(jsonObject);
 		}
 		// rigged game
 		if (jsonObject.has("riggedGame")) {
@@ -501,7 +512,9 @@ public class SocketHandler extends TextWebSocketHandler {
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
 		}
 		if (gameEngine.storyDeck.faceUp instanceof TournamentCard) {
-			System.out.println("its " + gameEngine.getActivePlayer().getName() + "'s turn");
+			gameEngine.current_tournament = new TournamentController(gameEngine, gameEngine.storyDeck.faceUp);
+			gameEngine.roundInitiater = gameEngine.getActivePlayer();
+			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("participateTournament"));
 		}
 		if (gameEngine.storyDeck.faceUp instanceof EventCard) {
 			gameEngine.newEvent(gameEngine, gameEngine.getActivePlayer(), (EventCard) gameEngine.storyDeck.faceUp);

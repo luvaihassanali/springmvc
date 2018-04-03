@@ -162,9 +162,9 @@ Shields:<label id="p1shields">0</label>
 					height="120" />
 			</div>
 			<label id="p4_win" style="color: green; display:none;"> <strong>
-					WINNER </strong>
+					WINNER </strong> <br> 
 			</label> <label id="p4_lose" style="color: red; display: none;"> <strong>
-					LOSER </strong>
+					LOSER </strong> <br> 
 			</label>
 		</div>
                   <div style="border-style:none; border-width:thin; width: 800px; height:250px; position:absolute; bottom:0;"> 
@@ -185,11 +185,14 @@ Shields:<label id="p1shields">0</label>
 					id="foeWeaponSpot6" src="/resources/images/all.png" width="80"
 					height="120" />
                </div>
-
+<div style="border-style:none; border-width:thin; width: 250px; height:200px; position:absolute; bottom:0; right:0;"> 
+<label id="eliminated"> Players eliminated:</label>
+</div>
 	        </div>
 	<p>
 		<textarea rows="2" cols="50" id="serverMsg"></textarea>
 		<label id="minBid" style="display:none"> Current minimum bid: </label>
+		<button id="doneTournie" onclick="doneTournament()" style="display:none"> Done </button>
 		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()"
 			style="display: none">Done</button>
 		<button id="doneEquipment" onclick="doneEquipment()"
@@ -237,6 +240,11 @@ Shields:<label id="p1shields">0</label>
 		<label><strong>Do you want to sponsor quest?</strong></label>
 		<button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button>
 		<button id="denySponsorQuest" onclick="denySponsorQuest()">No</button>
+	</div>
+	<div id="askTournament" style="display: none">
+		<label><strong>Do you want to participate in tournament?</strong></label>
+		<button id="acceptTournament" onclick="acceptTournament()">Yes</button>
+		<button id="denyTournament" onclick="denyTournament()">No</button>
 	</div>
 	<div id="acceptQuest" style="display: none">
 		<label><strong>Do you want to participate in quest?</strong></label>

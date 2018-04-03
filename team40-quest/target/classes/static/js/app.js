@@ -8,6 +8,7 @@ var stageTracker = 0;
 var totalStages;
 var questSetupCards = [];
 var weapons = [];
+var tournieEquipment = []
 var battleEquipment = [];
 var testBids = [];
 var questInfo;
@@ -34,6 +35,7 @@ var serverMsg = document.getElementById('serverMsg');
 var allBattleEquipment = [];
 var allQuestInfo = [];
 var allPlayerPoints = [];
+inTournie = false;
 // when connection is initiated
 socketConn.onopen = function(event) {};
 
@@ -209,13 +211,14 @@ socketConn.onmessage = function(event) {
     		}
     		var winid = primitive_id + "_win";
     		var loseid = primitive_id + "_lose";
-    		
-    		if(playerPts >= currFoePts) {
+    		console.log(playerName + playerPts); console.log(currFoePts);
+    		if(parseInt(playerPts) >= parseInt(currFoePts)) {
     			document.getElementById(winid).style.display = "block";
     			document.getElementById(loseid).style.display = "none";
     		} else {
     			document.getElementById(winid).style.display = "none";
     			document.getElementById(loseid).style.display = "block";
+    			document.getElementById("eliminated").innerText += "\n" + playerName;
     		}
     		    		
     	}
@@ -229,10 +232,13 @@ socketConn.onmessage = function(event) {
     		for(var i=0; i<foeSlots.length; i++) {
     			$("#"+foeSlots[i]).attr("src", "http://localhost:8080/resources/images/all.png");
     		}
+    		document.getElementById("eliminated").innerText = " Players eliminated:";
     		for(var i=0; i<allPlayerPoints.length; i++) {
     			var base_id_remove = "player" + (i+1);
         		var primitive_id_remove = "p" + (i+1);
         		var playerDiv_remove = base_id_remove + "Display";
+        		document.getElementById(playerDiv_remove).style.display = "none";
+        		
         		var playerPic_remove = "#" + base_id_remove + "Pic";
         		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
         		var playerInfo;
@@ -275,6 +281,11 @@ socketConn.onmessage = function(event) {
 		getSponsor();
 	}
 
+	//tournament
+	if(event.data == "participateTournament") {
+		console.log("here");
+		getTournie();
+	}
 	// participation in quest question
 	if (event.data == "AskToParticipate") {
 		getParticipants();
@@ -325,7 +336,17 @@ socketConn.onmessage = function(event) {
 		var temp = event.data.replace("SponsorPickup", "");
 		sponsorPickup(temp);
 	}
+	
+	//get tournament information
+	if(event.data.startsWith("tournieInfo")) {
+		console.log(event.data);
+	}
 
+    // choosing equipment for tournament
+	if (event.data == "ChooseEquipmentTournie") {
+		chooseEquipmentTournie();
+	}
+	
 	// choosing equipment for battle
 	if (event.data == "ChooseEquipment") {
 		chooseEquipment();
@@ -495,6 +516,7 @@ function replaceTestCards(eventData) {
 		}
 	}
 }
+
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value = "It is now time to choose equipment for quest";
@@ -601,6 +623,31 @@ function getTestBids() {
 					})
 }
 
+function chooseEquipmentTournie() {
+	var serverMsg = document.getElementById("serverMsg");
+	serverMsg.value = "Click to choose equipment for tournament";
+	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
+		var cardId = this.src.replace('http://localhost:8080', '');
+		cardId = cardId.split('%20').join(' ');
+		if (checkForEquipment(this.src) != "card not found") {
+			for (var i = 0; i < tournieEquipment.length; i++) {
+				if ((checkForEquipment(this.src)) == tournieEquipment[i]) {
+					var serverMsg = document.getElementById('serverMsg');
+					serverMsg.value += "\nCannot choose repeat weapons";
+					return;
+				}
+			}
+			tournieEquipment.push(checkForEquipment(this.src))
+			var changeImageId = "#" + this.id;
+			numCards--;
+			$(changeImageId).attr("src", "/resources/images/all.png");
+			if (numCards <= 12) {
+				document.getElementById("doneTournie").style.display = "inline";
+			}
+		}
+
+	})
+}
 
 function getBattleEquipment() {
 	document.getElementById('dropOut').style.display = "none";
@@ -686,7 +733,7 @@ function parseParticipantInfo(event) {
 function getParticipants() {
 	document.getElementById("acceptQuest").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Please accept/decline quest by clicking below"
+	serverMsg.value += "Please accept/decline quest by clicking below"
 	if (isAI) {
 		var data = JSON.stringify({
 			'AICommand' : "AskToParticipateQuest"
@@ -755,6 +802,21 @@ function setHand() {
 	$("#card10").attr("src", handStringArray[9]);
 	$("#card11").attr("src", handStringArray[10]);
 	$("#card12").attr("src", handStringArray[11]);
+}
+
+function getTournie() {
+	document.getElementById("askTournament").style.display = "inline";
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value += "Please accept/decline quest by clicking below"
+	if (isAI) {
+		var data = JSON.stringify({
+			'AICommand' : "AskTournament"
+		})
+		setTimeout(function(){ socketConn.send(data); }, 1000);
+		document.getElementById("askTournament").style.display = "none";
+		serverMsg.value = "Wait for other players...";
+	}
+
 }
 function getSponsor() {
 	document.getElementById('sponsorQuest').style.display = 'block';
@@ -1040,7 +1102,7 @@ function discard() {
 										"/resources/images/all.png");
 						numCards--;
 						if (numCards >= 12) {
-
+							if(inTournie) document.getElementById("doneTournie").style.display = "inline";
 							if (whichEvent != "" && numCards == 12) {
 
 								document.getElementById("serverMsg").value = "Wait for other players...";
@@ -1153,6 +1215,19 @@ function dropOutOfTest() {
 	
 	socketConn.send(data);
 }
+
+//send tournament info
+function doneTournament() {
+	document.getElementById('doneTournie').style.display = "none";
+	$('body').off('click');
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = "Sending challenge, please wait for other players...- ";
+	var data = JSON.stringify({
+		'name' : PlayerName,
+		'tournament_info' : tournieEquipment
+	});
+	socketConn.send(data);
+}
 // send weapon info - done choosing
 function doneEquipment() {
 	document.getElementById("minBid").style.display = "none";
@@ -1208,6 +1283,31 @@ function denyQuestParticipate() {
 	serverMsg.value = ("Waiting for other players to finish quest...");
 }
 
+//accept tournament
+function acceptTournament() {
+	document.getElementById('askTournament').style.display = "none";
+	var data = JSON.stringify({
+		'name' : PlayerName,
+		'participate_tournament' : true
+	});
+	socketConn.send(data);
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = ("Waiting for others to answer...");
+	inTournie = true;
+}
+
+//dent 
+
+function denyTournament() {
+	document.getElementById('askTournament').style.display = "none";
+	var data = JSON.stringify({
+		'name' : PlayerName,
+		'participate_tournament' : false
+	});
+	socketConn.send(data);
+	var serverMsg = document.getElementById('serverMsg');
+	serverMsg.value = ("Waiting for other players to finish tournament...");
+}
 // finished setting up quest for sponsor
 function doneWeaponsQuestSponsor() {
 	console.log(totalStages);

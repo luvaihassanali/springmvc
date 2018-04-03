@@ -464,34 +464,6 @@ public class QuestController extends SocketHandler {
 
 	}
 
-	/*
-		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
-		if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
-			gameEngine.current_quest.initialPSize = gameEngine.current_quest.participants.size();
-			if (gameEngine.current_quest.participants.size() == 0) {
-				sendToAllSessions(gameEngine, "NoParticipants");
-				String temp = "";
-				for (int i = gameEngine.getActivePlayer().getHandSize(); i < 12
-						+ gameEngine.current_quest.currentQuest.getStages(); i++) {
-					AdventureCard newCard = gameEngine.adventureDeck.flipCard();
-					temp += newCard.getStringFile() + ";";
-					gameEngine.getActivePlayer().getHand().add(newCard);
-				}
-				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
-				logger.info("No players participated, sponsor {} is replacing cards used to setup {} quest",
-						gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
-				if (gameEngine.getNextPlayer().isAI())
-					sendToNextPlayer(gameEngine, "undisableFlip");
-				return;
-			}
-		
-			gameEngine.current_quest.getCurrentParticipant().session.sendMessage(new TextMessage("Choose equipment"));
-			gameEngine.current_quest.firstQuestPlayer = gameEngine.current_quest.getCurrentParticipant();
-			return;
-		}
-		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
-		}*/
-
 	public void sponsorPickup() throws IOException {
 
 		String temp = "";

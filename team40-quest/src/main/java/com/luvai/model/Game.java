@@ -14,6 +14,7 @@ import com.luvai.controller.AIController;
 import com.luvai.controller.EventController;
 import com.luvai.controller.QuestController;
 import com.luvai.controller.SocketHandler;
+import com.luvai.controller.TournamentController;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.Decks.AdventureDeck;
 import com.luvai.model.Decks.StoryDeck;
@@ -29,9 +30,11 @@ public class Game {
 	public int numTurns = 0;
 	public QuestController current_quest;
 	public EventController current_event;
+	public TournamentController current_tournament;
 	public AIController AIController;
 	public Player roundInitiater;
 	public int riggedGame = 0;
+	public boolean tournamentInit = false;
 
 	public Game() {
 		logger.info("\n\n\n\n ****************************** Initialising new game ********************************");
@@ -39,6 +42,7 @@ public class Game {
 		adventureDeck = new AdventureDeck();
 		storyDeck = new StoryDeck();
 		AIController = new AIController();
+
 	}
 
 	@SuppressWarnings("serial")
@@ -98,12 +102,12 @@ public class Game {
 
 			// add(CardList.Dagger);
 			add(CardList.KingArthur);
-			add(CardList.GreenKnight);
+			add(CardList.Battleax);
 			add(CardList.Saxons);
 			add(CardList.SaxonKnight);
 			add(CardList.Boar);
 			add(CardList.QueenIseult);
-			add(CardList.MorganTest);
+			add(CardList.Lance);
 			add(CardList.ValorTest);
 			add(CardList.Dagger);
 			add(CardList.SirPellinore);
