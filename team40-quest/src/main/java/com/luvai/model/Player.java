@@ -104,6 +104,7 @@ public class Player {
 		if (this.shields >= 5) {
 			this.rank = CardList.Knight;
 			this.battlePoints = 10;
+			logger.info("Player {} has advanced rank to {}!", this.getName(), this.rank.getName());
 		}
 		if (this.shields >= 7) {
 			this.rank = CardList.ChampionKnight;

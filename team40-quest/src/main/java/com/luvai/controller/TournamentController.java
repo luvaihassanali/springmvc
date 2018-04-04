@@ -2,6 +2,7 @@ package com.luvai.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,8 @@ import com.luvai.model.Card;
 import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
+import com.luvai.model.TournamentPlayer;
+import com.luvai.model.TournamentPlayerComparator;
 import com.luvai.model.AdventureCards.AdventureCard;
 import com.luvai.model.AdventureCards.AllyCard;
 import com.luvai.model.AdventureCards.AmourCard;
@@ -34,6 +37,9 @@ public class TournamentController extends SocketHandler {
 	public CardList cardFinder;
 	JsonArray tournie_info;
 	String playerTourniePoints;
+	boolean tieBreaker;
+	boolean roundOne;
+	int og_participant_size;
 
 	public TournamentController(Game g, StoryCard faceUp) {
 		gameEngine = g;
@@ -43,7 +49,22 @@ public class TournamentController extends SocketHandler {
 		cardFinder = new CardList();
 		tournie_info = new JsonArray();
 		playerTourniePoints = "";
+		tieBreaker = false;
+		roundOne = true;
+		og_participant_size = 0;
 
+	}
+
+	public void tieBreaker(Game g, StoryCard faceUp, ArrayList<Player> participants, String s) throws IOException {
+		logger.info("Initiating tie breaker Tournament {} with {}", faceUp.getName(), s);
+		tieBreaker = true;
+		gameEngine.current_tournament.participants = participants;
+		tournie_info = new JsonArray();
+		playerTourniePoints = "";
+		pickUpBeforeTournie();
+		for (Player p : gameEngine.current_tournament.participants) {
+			p.session.sendMessage(new TextMessage("ChooseEquipmentTournie"));
+		}
 	}
 
 	public void getNewTourniePlayers(JsonObject jsonObject, WebSocketSession session) throws IOException {
@@ -51,11 +72,13 @@ public class TournamentController extends SocketHandler {
 		JsonElement name = jsonObject.get("name");
 
 		if (participate_t_answer.getAsBoolean()) {
-
+			logger.info("Player {} accepted to participate in Tournament {}", name.getAsString(),
+					gameEngine.storyDeck.faceUp.getName());
 			acceptParticipation(name.getAsString());
-			return;
 
 		} else {
+			logger.info("Player {} declined to participate in Tournament {}", name.getAsString(),
+					gameEngine.storyDeck.faceUp.getName());
 			denyParticipation(name.getAsString());
 		}
 	}
@@ -64,7 +87,7 @@ public class TournamentController extends SocketHandler {
 		gameEngine.incTurn();
 		// System.out.println(gameEngine.getActivePlayer().getName());
 		if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
-			System.out.println("gone thru everyone decline");
+			logger.info("All player decisions accepted, starting Tournament {}", gameEngine.storyDeck.faceUp.getName());
 			startTournament();
 			return;
 		}
@@ -80,7 +103,7 @@ public class TournamentController extends SocketHandler {
 		gameEngine.incTurn();
 		// System.out.println(gameEngine.getActivePlayer().getName());
 		if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
-			// System.out.println("gone thru everyone accept");
+			logger.info("All player decisions accepted, starting Tournament {}", gameEngine.storyDeck.faceUp.getName());
 			startTournament();
 			return;
 		}
@@ -90,7 +113,7 @@ public class TournamentController extends SocketHandler {
 
 	private void startTournament() throws IOException {
 		if (gameEngine.current_tournament.participants.size() == 0) {
-			System.out.println("no tournament particpants");
+			logger.info("No players accepted to participate in Tournament {}", gameEngine.storyDeck.faceUp.getName());
 			gameEngine.incTurn();
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 			return;
@@ -108,8 +131,16 @@ public class TournamentController extends SocketHandler {
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 			return;
 		}
+		String loggerPlayers = "";
 		for (int i = 0; i < gameEngine.current_tournament.participants.size(); i++) {
-			System.out.println(gameEngine.current_tournament.participants.get(i).getName());
+			// System.out.println(gameEngine.current_tournament.participants.get(i).getName());
+			loggerPlayers += gameEngine.current_tournament.participants.get(i).getName() + ", ";
+		}
+		logger.info("Tournament {} starting with participants: {}", gameEngine.storyDeck.faceUp.getName(),
+				loggerPlayers);
+		if (roundOne) {
+			og_participant_size = gameEngine.current_tournament.participants.size();
+			roundOne = false;
 		}
 		pickUpBeforeTournie();
 		sendToAllParticipants(gameEngine, "ChooseEquipmentTournie");
@@ -165,56 +196,144 @@ public class TournamentController extends SocketHandler {
 	}
 
 	public void pickUpBeforeTournie() throws IOException {
-		for (Player p : participants) {
+		for (Player p : gameEngine.current_tournament.participants) {
 			p.getHand().add(gameEngine.adventureDeck.flipCard());
 			String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
 			p.session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+			logger.info("Player {} receiving one card: {} before choosing equipment", p.getName(),
+					gameEngine.adventureDeck.faceUp.getName());
 		}
 
 		gameEngine.updateStats();
 	}
 
-	public void parseTournieInfo(JsonObject jsonObject) {
+	public void parseTournieInfo(JsonObject jsonObject) throws IOException {
 		tournie_info.add(jsonObject);
 		tracker++;
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 		JsonArray temp = (JsonArray) jsonObject.get("tournament_info");
 		ArrayList<String> tournieEquip = new ArrayList<String>();
+		String loggerWeapons = "";
 		for (int i = 0; i < temp.size(); i++) {
 			JsonElement x = temp.get(i);
 			String s = x.getAsString();
+			loggerWeapons += s + ", ";
 			tournieEquip.add(s);
 		}
+		logger.info("Player {} has equipped {} for Tournament {}", currentPlayer.getName(), loggerWeapons,
+				gameEngine.storyDeck.faceUp.getName());
 		equipTournie(currentPlayer, tournieEquip);
 		if (tracker == gameEngine.current_tournament.participants.size()) {
 			logger.info("Recieved all tournament challenges");
 			sendToAllSessions(gameEngine, "tournieInfo" + tournie_info);
-			sendToAllSessions(gameEngine, "tournieInfoPts" + playerTourniePoints);
 			calculateOutcome();
+			tracker = 0;
 		}
 	}
 
-	private void calculateOutcome() {
-		// System.out.println(playerTourniePoints);
-		String[] x = playerTourniePoints.split(";");
-		ArrayList<String> playerTournamentInfo = new ArrayList<String>();
-		ArrayList<String[]> y = new ArrayList<String[]>();
-		for (int i = 0; i < x.length; i++) {
-			y.add(x[i].split("#"));
+	private void calculateOutcome() throws IOException {
+		if (tieBreaker) {
+			logger.info("calculating outcome of Tie-breaker of Tournament {}", gameEngine.storyDeck.faceUp.getName());
 		}
-		for (int i = 0; i < y.size(); i++) {
-			for (int j = 0; j < y.get(i).length; j++) {
-				// System.out.println(y.get(i)[j]);
-				playerTournamentInfo.add(y.get(i)[j]);
+		String[] x = playerTourniePoints.split(";");
+		String[][] y = new String[x.length][2];
+		for (int i = 0; i < x.length; i++) {
+			y[i] = x[i].split("#");
+		}
+		TournamentPlayer[] contestants = new TournamentPlayer[x.length];
+		String logStringTieBreaker = "";
+		for (int i = 0; i < y.length; i++) {
+			TournamentPlayer t = new TournamentPlayer(y[i]);
+			contestants[i] = t;
+			logStringTieBreaker += contestants[i].name + ", ";
+		}
+		if (tieBreaker)
+			logger.info("{} participated in tie breaker", logStringTieBreaker);
+		Arrays.sort(contestants, new TournamentPlayerComparator());
+		String send = "";
+		for (TournamentPlayer s : contestants) {
+			// System.out.println(s.toString());
+			String[] logInfo = s.toString().split("#");
+			logger.info("Player {} has {} battle points at rank {}", logInfo[0], logInfo[1], logInfo[2]);
+			send += s.toString() + ";";
+		}
+		sendToAllSessions(gameEngine, "contestantInfo" + send);
+
+		// pause
+
+		ArrayList<TournamentPlayer> winners = new ArrayList<TournamentPlayer>();
+		winners.add(contestants[0]);
+		String logTieBreak = "";
+		for (int i = 1; i < contestants.length; i++) {
+			if (winners.get(0).points == contestants[i].points) {
+				winners.add(contestants[i]);
+				logTieBreak += contestants[i].name + ", ";
 			}
 		}
-		for (String s : playerTournamentInfo)
-			System.out.println(s);
+		if (winners.size() == 1) {
+			TournamentCard t = (TournamentCard) gameEngine.storyDeck.faceUp;
+			int bonus = t.getBonus();
+			int participants = gameEngine.current_tournament.participants.size();
+			int shieldTotal = bonus + participants;
+			if (tieBreaker)
+				logger.info("Tie breaker complete - one winner");
+			logger.info("Player {} is the winner of the tournament", winners.get(0).name);
+			logger.info(
+					"Player {} receiving {} shields, {} for # of participants (orginial # - before tie-breaker) and {} as bonus shields per Tournament {} (tie-breaker)",
+					winners.get(0).name, shieldTotal, participants, bonus);
+			Player p = gameEngine.getPlayerFromName(winners.get(0).name);
+			p.giveShields(shieldTotal);
+			gameEngine.updateStats();
+			gameEngine.incTurn();
+			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+			logger.info("Removing all amour/weapon equipped during tournament by participants");
+		} else {
+			if (tieBreaker)
+				logger.info("Tie breaker complete - still a tie...");
+			logger.info("There has been a tie between {} and {}", winners.get(0).name, logTieBreak);
+			if (tieBreaker) {
+				for (int i = 0; i < winners.size(); i++) {
+					TournamentCard t = (TournamentCard) gameEngine.storyDeck.faceUp;
+					int bonus = t.getBonus();
+					int participants = og_participant_size;
+					int shieldTotal = bonus + participants;
+					Player p = gameEngine.getPlayerFromName(winners.get(i).name);
+					logger.info(
+							"Player {} receiving {} shields, {} for # of participants (orginial # - before tie-breaker) and {} as bonus shields per Tournament {} (tie-breaker)",
+							p.name, shieldTotal, participants, bonus);
+					p.giveShields(shieldTotal);
+				}
+				logger.info("Removing all amour/weapon equipped during tournament by participants");
+				for (Player winner : gameEngine.players) {
+					winner.getWeapons().clear();
+					winner.clearAmourCard();
+				}
+				gameEngine.updateStats();
+				gameEngine.incTurn();
+				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+				return;
+			}
+			logger.info("Clearing weapons and going into tiebreaker");
+			ArrayList<Player> ties = new ArrayList<Player>();
+			String logString = "";
+			for (TournamentPlayer t : winners) {
+				Player p = gameEngine.getPlayerFromName(t.name);
+				ties.add(p);
+				logString += p.getName() + ", ";
+			}
+			logger.info("Removing all amour/weapon equipped during tournament by participants");
+			tieBreaker(gameEngine, gameEngine.storyDeck.faceUp, ties, logString);
+		}
+
+		for (Player p : gameEngine.players) {
+			p.getWeapons().clear();
+			p.unequipAmour();
+		}
 
 	}
 
 	private void equipTournie(Player currentParticipant, ArrayList<String> tournieEquip) {
-		// System.out.println("equipping: " + currentParticipant.getName());
+		currentParticipant.discardPlayer(tournieEquip);
 		for (String s : tournieEquip) {
 			Card temp_card = cardFinder.getCardFromName(s);
 			if (temp_card instanceof WeaponCard) {
@@ -234,7 +353,7 @@ public class TournamentController extends SocketHandler {
 	}
 
 	private void calculateTourniePoints() {
-		ArrayList<String> p_points = new ArrayList();
+		ArrayList<String> p_points = new ArrayList<String>();
 		for (Player p : gameEngine.current_tournament.participants) {
 			int points = p.getBattlePoints();
 			ArrayList<String> removeWeapons = new ArrayList<String>();
@@ -256,7 +375,7 @@ public class TournamentController extends SocketHandler {
 			}
 			// System.out.println(points);
 			// System.out.println(p.getName());
-			String temp = p.getName() + "#" + points + ";";
+			String temp = p.getName() + "#" + points + "#" + p.getRank().getName() + ";";
 			p_points.add(temp);
 		}
 		String send = "";

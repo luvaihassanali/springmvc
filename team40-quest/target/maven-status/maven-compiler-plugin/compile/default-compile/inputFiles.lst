@@ -7,6 +7,7 @@
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/AdventureCards/AdventureCardComparator.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/Decks/StoryDeck.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/StoryCards/EventCard.java
+/home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/TournamentPlayer.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/config/SocketConfig.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/Decks/Decks.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/AdventureCards/AllyCard.java
@@ -31,5 +32,6 @@
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/StoryCards/QuestCard.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/StoryCards/TournamentCard.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/CardList.java
+/home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/TournamentPlayerComparator.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/AdventureCards/WeaponCard.java
 /home/luvai/GitHub/springmvc/team40-quest/src/main/java/com/luvai/model/PointArray.java

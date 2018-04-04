@@ -340,6 +340,22 @@ socketConn.onmessage = function(event) {
 	//get tournament information
 	if(event.data.startsWith("tournieInfo")) {
 		console.log(event.data);
+		if(event.data.startsWith("tournieInfoPts")) {
+			var data = event.data.replace("tournieInfoPts", "");
+			var data = data.split(";");
+			for(var i=0; i<data.length; i++) {
+				data[i] = data[i].split("#");
+			}
+			console.log(data);
+		}
+	}
+	if(event.data.startsWith("contestantInfo")) {
+		var data = event.data.replace("contestantInfo","");
+		var data = data.split(";");
+		for(var i=0; i<data.length; i++) {
+			data[i] = data[i].split("#");
+		}
+		console.log(data);
 	}
 
     // choosing equipment for tournament
@@ -1226,7 +1242,9 @@ function doneTournament() {
 		'name' : PlayerName,
 		'tournament_info' : tournieEquipment
 	});
+	tournieEquipment = [];
 	socketConn.send(data);
+	arrangeHand();
 }
 // send weapon info - done choosing
 function doneEquipment() {
