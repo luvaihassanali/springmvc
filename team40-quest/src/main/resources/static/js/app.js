@@ -227,6 +227,8 @@ socketConn.onmessage = function(event) {
     	setTimeout(function(){ 
     		document.getElementById("battleScreen").style.display = "none";
     		console.log("REMOVING BATTLE SCREEN");
+    		var serverMsg = document.getElementById("serverMsg");
+    		serverMsg.value = "Battle over, wait for next player";
     		//clear images
     		$("#questPic").attr("src", "http://localhost:8080/resources/images/all.png");
     		$("#foePic").attr("src", "http://localhost:8080/resources/images/all.png");
@@ -300,6 +302,15 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("DeclinedToParticipate")) {
 		var pName = event.data.replace("DeclinedToParticipate","");
 		serverMsg.value = "Player " + pName + " declined to participate in quest";
+	}
+	if(event.data.startsWith("AcceptedTournie")) {
+		var pname = event.data.replace("AcceptedTournie","");
+		serverMsg.value += " Player " + pname + " accepted to participate in tournament";
+	}
+	if(event.data.startsWith("DeclinedTournie")) {
+		var pname = event.data.replace("DeclinedTournie","");
+		serverMsg.value += " Player " + pname + " declined to participate in tournament";
+		
 	}
 	// ready to start quest
 	if (event.data == "ReadyToStartQuest") {
@@ -426,6 +437,8 @@ socketConn.onmessage = function(event) {
             		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
             	}
     		}
+    		var serverMsg = document.getElementById("serverMsg");
+    		serverMsg.value += "Tournament over, wait for next player";
     	}, 10000);
 
 	}
@@ -443,6 +456,11 @@ socketConn.onmessage = function(event) {
 	// get current participant info
 	if (event.data.startsWith("currentParticipantInfo")) {
 		parseParticipantInfo(event);
+	}
+	if(event.data.startsWith("whoBidded")) {
+		var bidder = event.data.replace("whoBidded", "");
+		var serverMsg = document.getElementById("serverMsg");
+		serverMsg.value +=  " " + bidder + " just placed " + minBid + " bids";
 	}
 	//update min bids
 	if (event.data.startsWith("updateMinBid")) {
@@ -712,8 +730,9 @@ function getTestBids() {
 }
 
 function chooseEquipmentTournie() {
+	console.log("here");
 	var serverMsg = document.getElementById("serverMsg");
-	serverMsg.value = "Click to choose equipment for tournament";
+	serverMsg.value = "It is now time to choose equipment for tournament (right-click to discard)";
 	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
 		var cardId = this.src.replace('http://localhost:8080', '');
 		cardId = cardId.split('%20').join(' ');
@@ -742,7 +761,7 @@ function getBattleEquipment() {
 	battleEquipment = [];
 	var serverMsg = document.getElementById("serverMsg");
 	document.getElementById('doneEquipment').style.display = "inline";
-	serverMsg.value = "Please click on the equipment you want to choose for battle";
+	serverMsg.value = "Please click on the equipment you want to choose for battle (right-click to discard)";
 	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
 						var cardId = this.src.replace('http://localhost:8080', '');
 						cardId = cardId.split('%20').join(' ');
@@ -821,7 +840,7 @@ function parseParticipantInfo(event) {
 function getParticipants() {
 	document.getElementById("acceptQuest").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value += "Please accept/decline quest by clicking below"
+	serverMsg.value += " Please accept/decline quest by clicking below"
 	if (isAI) {
 		var data = JSON.stringify({
 			'AICommand' : "AskToParticipateQuest"

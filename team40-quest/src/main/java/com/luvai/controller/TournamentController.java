@@ -75,11 +75,13 @@ public class TournamentController extends SocketHandler {
 			logger.info("Player {} accepted to participate in Tournament {}", name.getAsString(),
 					gameEngine.storyDeck.faceUp.getName());
 			acceptParticipation(name.getAsString());
+			sendToAllSessionsExceptCurrent(gameEngine, session, "AcceptedTournie" + name.getAsString());
 
 		} else {
 			logger.info("Player {} declined to participate in Tournament {}", name.getAsString(),
 					gameEngine.storyDeck.faceUp.getName());
 			denyParticipation(name.getAsString());
+			sendToAllSessionsExceptCurrent(gameEngine, session, "DeclinedTournie" + name.getAsString());
 		}
 	}
 
@@ -142,7 +144,7 @@ public class TournamentController extends SocketHandler {
 				loggerPlayers);
 		if (roundOne) {
 			gameEngine.current_tournament.og_participant_size = gameEngine.current_tournament.participants.size();
-			System.out.println("OG SIZE: " + og_participant_size);
+			// System.out.println("OG SIZE: " + og_participant_size);
 			roundOne = false;
 		}
 		pickUpBeforeTournie();

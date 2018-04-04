@@ -236,7 +236,18 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println(gameEngine.current_quest.participants.size());
 				gameEngine.current_quest.incTurn();
 				sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
-
+				sendToAllParticipants(gameEngine,
+						"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName());
+				sendToSponsor(gameEngine, "whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName());
+				System.out.println("SEND NEW STAGE CARD HERE ???? ");
+				for (int i = 0; i < gameEngine.current_quest.currentQuestInfo.length; i++) {
+					System.out.println(gameEngine.current_quest.currentQuestInfo[i]);
+				}
+				if (gameEngine.current_quest.currentQuestInfo[gameEngine.current_quest.currentStage - 1]
+						.contains("Test")) {
+				} else {
+					gameEngine.current_quest.pickupBeforeStage();
+				}
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 				return;
 			}
