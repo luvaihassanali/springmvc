@@ -108,10 +108,12 @@ public class Player {
 		}
 		if (this.shields >= 7) {
 			this.rank = CardList.ChampionKnight;
+			logger.info("Player {} has advanced rank to {}!", this.getName(), this.rank.getName());
 			this.battlePoints = 20;
 		}
 		if (this.shields >= 10) {
 			this.rank = CardList.RoundTableKnight;
+			logger.info("Player {} has advanced rank to {}!", this.getName(), this.rank.getName());
 			this.tieCheck = 1;
 			this.battlePoints = 100;
 		}

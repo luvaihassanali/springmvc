@@ -759,4 +759,15 @@ public class QuestController extends SocketHandler {
 			gameEngine.current_quest.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 		}
 	}
+
+	public static void setTimeout(Runnable runnable, int delay) {
+		new Thread(() -> {
+			try {
+				Thread.sleep(delay);
+				runnable.run();
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}).start();
+	}
 }

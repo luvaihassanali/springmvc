@@ -261,6 +261,7 @@ public class SocketHandler extends TextWebSocketHandler {
 							+ "#" + gameEngine.current_quest.participants.get(i).getRank().getStringFile() + ";";
 				}
 				sendToAllSessions(gameEngine, "playerPointString" + playerPoints);
+				logger.info("Displaying battle screen");
 				gameEngine.current_quest.calculateStageOutcome(playerPoints, questInformation);
 				return;
 			}

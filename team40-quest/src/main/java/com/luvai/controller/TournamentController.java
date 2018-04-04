@@ -254,12 +254,13 @@ public class TournamentController extends SocketHandler {
 		for (TournamentPlayer s : contestants) {
 			// System.out.println(s.toString());
 			String[] logInfo = s.toString().split("#");
-			logger.info("Player {} has {} battle points at rank {}", logInfo[0], logInfo[1], logInfo[2]);
+			logger.info("Player {} has {} battle points at rank {}", logInfo[0], logInfo[1],
+					gameEngine.getPlayerFromName(logInfo[0]).getRank().getName());
 			send += s.toString() + ";";
 		}
 		sendToAllSessions(gameEngine, "contestantInfo" + send);
 
-		// pause
+		logger.info("Displaying tournament screen");
 
 		ArrayList<TournamentPlayer> winners = new ArrayList<TournamentPlayer>();
 		winners.add(contestants[0]);
@@ -375,7 +376,7 @@ public class TournamentController extends SocketHandler {
 			}
 			// System.out.println(points);
 			// System.out.println(p.getName());
-			String temp = p.getName() + "#" + points + "#" + p.getRank().getName() + ";";
+			String temp = p.getName() + "#" + points + "#" + p.getRank().getStringFile() + ";";
 			p_points.add(temp);
 		}
 		String send = "";
@@ -385,5 +386,16 @@ public class TournamentController extends SocketHandler {
 		}
 		playerTourniePoints = send;
 
+	}
+
+	public static void setTimeout(Runnable runnable, int delay) {
+		new Thread(() -> {
+			try {
+				Thread.sleep(delay);
+				runnable.run();
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}).start();
 	}
 }

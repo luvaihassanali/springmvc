@@ -35,7 +35,8 @@ var serverMsg = document.getElementById('serverMsg');
 var allBattleEquipment = [];
 var allQuestInfo = [];
 var allPlayerPoints = [];
-inTournie = false;
+var inTournie = false;
+var playerTEquipArr;
 // when connection is initiated
 socketConn.onopen = function(event) {};
 
@@ -207,7 +208,7 @@ socketConn.onmessage = function(event) {
     			weaponArr[b] = getLinkFromName(weaponArr[b]);
     			var picId = "#" + base_id + "WeaponSpot" + (b+1);
     			$(picId).attr("src", "http://localhost:8080" + weaponArr[b]);
-    			console.log(picId); console.log(weaponArr[b]);
+    			//console.log(picId); console.log(weaponArr[b]);
     		}
     		var winid = primitive_id + "_win";
     		var loseid = primitive_id + "_lose";
@@ -283,7 +284,6 @@ socketConn.onmessage = function(event) {
 
 	//tournament
 	if(event.data == "participateTournament") {
-		console.log("here");
 		getTournie();
 	}
 	// participation in quest question
@@ -340,6 +340,12 @@ socketConn.onmessage = function(event) {
 	//get tournament information
 	if(event.data.startsWith("tournieInfo")) {
 		console.log(event.data);
+		if(event.data.includes("tournament_info")) {
+			var data = event.data.replace("tournieInfo", "");
+			var data = JSON.parse(data);
+			console.log(data);
+			playerTEquipArr = data;
+		}
 		if(event.data.startsWith("tournieInfoPts")) {
 			var data = event.data.replace("tournieInfoPts", "");
 			var data = data.split(";");
@@ -351,11 +357,77 @@ socketConn.onmessage = function(event) {
 	}
 	if(event.data.startsWith("contestantInfo")) {
 		var data = event.data.replace("contestantInfo","");
-		var data = data.split(";");
+		data = data.split(";");
 		for(var i=0; i<data.length; i++) {
 			data[i] = data[i].split("#");
 		}
 		console.log(data);
+		data.pop();
+		console.log(data);
+		var playerTournieArr = data;
+    	console.log("SHOWING TOURNAMENT SCREEN");
+		document.getElementById("tournieScreen").style.display = "block";
+		console.log(playerTournieArr.length);
+		for(var i=0; i<playerTournieArr.length; i++) {
+			console.log("starting loop");
+			var base_id = "player" + (i+1);
+    		var primitive_id = "p" + (i+1);
+    		var playerDiv = base_id + "Displayt";
+    		var playerPic = "#" + base_id + "Pict";
+    		var playerPicLink = playerTournieArr[i][2];
+    		var playerPts = playerTournieArr[i][1];
+    		var playerName = playerTournieArr[i][0];
+    		var infoPane = primitive_id + "infot";
+    		document.getElementById(playerDiv).style.display = "block";
+    		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
+    		$(playerPic).attr("src", "http://localhost:8080" + playerPicLink);
+    		console.log(playerTEquipArr);
+    		console.log(playerName);
+    		for(var j=0; j<playerTEquipArr.length; j++) {
+    			if(playerTEquipArr[j].name === playerName) {
+    				var tequip = playerTEquipArr[j].tournament_info;
+    			}
+    		}
+    		console.log(tequip);
+    		for(var k=0; k<tequip.length; k++) {
+    			var weaponLink = getLinkFromName(tequip[k]);
+    			var picId = "#" + base_id + "WeaponSpot" + (k+1) + "t";
+    			$(picId).attr("src", "http://localhost:8080" + weaponLink);
+    		}
+    		var winid = primitive_id + "_wint";
+    		var loseid = primitive_id + "_loset";
+    		if(playerName == playerTournieArr[0][0]) {
+    			document.getElementById(winid).style.display = "block";
+    			document.getElementById(loseid).style.display = "none";
+    		} else {
+    		if(playerPts == playerTournieArr[0][1]) {
+    			document.getElementById(winid).style.display = "block";
+    			document.getElementById(loseid).style.display = "none";
+    		} else {
+    			document.getElementById(winid).style.display = "none";
+    			document.getElementById(loseid).style.display = "block";
+    		}
+    		}
+		}
+		
+		setTimeout(function(){ 
+    		document.getElementById("tournieScreen").style.display = "none";
+    		console.log("REMOVING TOURNAMENT SCREEN");
+    		for(var i=0; i<playerTournieArr.length; i++) {
+    			var base_id_remove = "player" + (i+1);
+        		var primitive_id_remove = "p" + (i+1);
+        		var playerDiv_remove = base_id_remove + "Displayt";
+        		document.getElementById(playerDiv_remove).style.display = "none";
+        		
+        		var playerPic_remove = "#" + base_id_remove + "Pict";
+        		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
+            	for(var j=0; j<6; j++) { 
+            		var id = "#player" + (i+1) + "WeaponSpot" + (j+1) + "t";
+            		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
+            	}
+    		}
+    	}, 10000);
+
 	}
 
     // choosing equipment for tournament
