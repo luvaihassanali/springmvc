@@ -458,14 +458,16 @@ public class SocketHandler extends TextWebSocketHandler {
 
 				}
 			}
-			if (gameEngine.current_quest.participants.size() == 1)
-				break;
+			if (gameEngine.current_quest.participants.size() == 1) {
+				gameEngine.current_quest.sponsorPickup();
+				return;
+			}
+			gameEngine.current_quest.shieldSent = false;
+			String update = gameEngine.getPlayerStats();
+			sendToAllSessions(gameEngine, "updateStats" + update);
+			sendOnce = true;
+			return;
 		}
-		gameEngine.current_quest.shieldSent = false;
-		String update = gameEngine.getPlayerStats();
-		sendToAllSessions(gameEngine, "updateStats" + update);
-		sendOnce = true;
-		return;
 	}
 
 	public void Losing() throws IOException {
