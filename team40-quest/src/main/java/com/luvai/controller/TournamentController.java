@@ -132,14 +132,17 @@ public class TournamentController extends SocketHandler {
 			return;
 		}
 		String loggerPlayers = "";
+
 		for (int i = 0; i < gameEngine.current_tournament.participants.size(); i++) {
+
 			// System.out.println(gameEngine.current_tournament.participants.get(i).getName());
 			loggerPlayers += gameEngine.current_tournament.participants.get(i).getName() + ", ";
 		}
 		logger.info("Tournament {} starting with participants: {}", gameEngine.storyDeck.faceUp.getName(),
 				loggerPlayers);
 		if (roundOne) {
-			og_participant_size = gameEngine.current_tournament.participants.size();
+			gameEngine.current_tournament.og_participant_size = gameEngine.current_tournament.participants.size();
+			System.out.println("OG SIZE: " + og_participant_size);
 			roundOne = false;
 		}
 		pickUpBeforeTournie();
@@ -274,7 +277,7 @@ public class TournamentController extends SocketHandler {
 		if (winners.size() == 1) {
 			TournamentCard t = (TournamentCard) gameEngine.storyDeck.faceUp;
 			int bonus = t.getBonus();
-			int participants = gameEngine.current_tournament.participants.size();
+			int participants = gameEngine.current_tournament.og_participant_size;
 			int shieldTotal = bonus + participants;
 			if (tieBreaker)
 				logger.info("Tie breaker complete - one winner");
@@ -296,7 +299,7 @@ public class TournamentController extends SocketHandler {
 				for (int i = 0; i < winners.size(); i++) {
 					TournamentCard t = (TournamentCard) gameEngine.storyDeck.faceUp;
 					int bonus = t.getBonus();
-					int participants = og_participant_size;
+					int participants = gameEngine.current_tournament.og_participant_size;
 					int shieldTotal = bonus + participants;
 					Player p = gameEngine.getPlayerFromName(winners.get(i).name);
 					logger.info(

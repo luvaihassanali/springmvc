@@ -6068,3 +6068,379 @@
 2018-Apr-04 12:55:03 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving 5 shields, 2 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
 2018-Apr-04 12:55:03 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse2 has advanced rank to Knight!
 2018-Apr-04 12:55:03 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 12:57:24 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-04 12:57:24 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-04 12:57:24 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-04 12:57:27 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:57:27 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-04 12:57:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:57:27 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-04 12:57:28 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:57:28 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-04 12:57:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:57:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-04 12:57:30 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-04 12:57:30 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-04 12:57:30 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-04 12:57:33 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-04 12:57:36 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-04 12:57:38 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-04 12:57:38 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-04 12:57:38 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: At Camelot
+2018-Apr-04 12:57:38 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 12:57:40 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 12:57:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 accepted to participate in Tournament At Camelot
+2018-Apr-04 12:57:43 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 declined to participate in Tournament At Camelot
+2018-Apr-04 12:57:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 declined to participate in Tournament At Camelot
+2018-Apr-04 12:57:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 12:57:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 12:57:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Thieves before choosing equipment
+2018-Apr-04 12:57:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Evil Knight before choosing equipment
+2018-Apr-04 12:57:50 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Lance,  for Tournament At Camelot
+2018-Apr-04 12:57:50 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Lance
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword,  for Tournament At Camelot
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Sword
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 25 battle points at rank Squire
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 15 battle points at rank Squire
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 is the winner of the tournament
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving 5 shields, 2 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse2 has advanced rank to Knight!
+2018-Apr-04 12:57:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 12:58:49 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-04 12:58:49 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-04 12:58:49 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-04 12:58:52 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:58:52 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-04 12:58:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:58:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-04 12:58:53 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:58:53 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-04 12:58:54 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 12:58:54 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-04 12:58:56 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-04 12:58:56 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-04 12:58:56 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-04 12:58:59 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-04 12:59:01 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-04 12:59:03 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-04 12:59:03 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-04 12:59:03 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: At Camelot
+2018-Apr-04 12:59:03 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 12:59:06 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 12:59:07 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 accepted to participate in Tournament At Camelot
+2018-Apr-04 12:59:09 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 accepted to participate in Tournament At Camelot
+2018-Apr-04 12:59:10 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 declined to participate in Tournament At Camelot
+2018-Apr-04 12:59:10 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 12:59:10 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse, Mickey Mouse2, Mickey Mouse3, 
+2018-Apr-04 12:59:10 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Excalibur before choosing equipment
+2018-Apr-04 12:59:10 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Black Knight before choosing equipment
+2018-Apr-04 12:59:10 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 receiving one card: Horse before choosing equipment
+2018-Apr-04 12:59:15 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has equipped Horse,  for Tournament At Camelot
+2018-Apr-04 12:59:15 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse3 equipped Horse
+2018-Apr-04 12:59:20 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Battle-ax, Dagger,  for Tournament At Camelot
+2018-Apr-04 12:59:20 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Battle-ax
+2018-Apr-04 12:59:20 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Dagger
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword, Horse,  for Tournament At Camelot
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Sword
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Horse
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 25 battle points at rank Squire
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 25 battle points at rank Squire
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has 15 battle points at rank Squire
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - There has been a tie between Mickey Mouse and Mickey Mouse2, 
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Clearing weapons and going into tiebreaker
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Initiating tie breaker Tournament At Camelot with Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Sir Lancelot before choosing equipment
+2018-Apr-04 12:59:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Amour before choosing equipment
+2018-Apr-04 12:59:41 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Dagger,  for Tournament At Camelot
+2018-Apr-04 12:59:41 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Dagger
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Lance,  for Tournament At Camelot
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Lance
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - calculating outcome of Tie-breaker of Tournament At Camelot
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Mickey Mouse, Mickey Mouse2,  participated in tie breaker
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 25 battle points at rank Squire
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 10 battle points at rank Squire
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Tie breaker complete - one winner
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 is the winner of the tournament
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving 5 shields, 2 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse2 has advanced rank to Knight!
+2018-Apr-04 12:59:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:02:12 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-04 13:02:12 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-04 13:02:12 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-04 13:02:15 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:02:15 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-04 13:02:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:02:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-04 13:02:16 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:02:16 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-04 13:02:17 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:02:17 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-04 13:02:18 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-04 13:02:18 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-04 13:02:18 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-04 13:02:20 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-04 13:02:22 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-04 13:02:24 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-04 13:02:24 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-04 13:02:24 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: At Camelot
+2018-Apr-04 13:02:24 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 13:02:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 13:02:28 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 accepted to participate in Tournament At Camelot
+2018-Apr-04 13:02:30 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 accepted to participate in Tournament At Camelot
+2018-Apr-04 13:02:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 declined to participate in Tournament At Camelot
+2018-Apr-04 13:02:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 13:02:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse, Mickey Mouse2, Mickey Mouse3, 
+2018-Apr-04 13:02:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Robber Knight before choosing equipment
+2018-Apr-04 13:02:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Sir Gawain before choosing equipment
+2018-Apr-04 13:02:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 receiving one card: Merlin before choosing equipment
+2018-Apr-04 13:02:35 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword, Horse,  for Tournament At Camelot
+2018-Apr-04 13:02:35 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Sword
+2018-Apr-04 13:02:35 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Horse
+2018-Apr-04 13:03:11 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Horse, Amour,  for Tournament At Camelot
+2018-Apr-04 13:03:11 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Horse
+2018-Apr-04 13:03:11 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Amour
+2018-Apr-04 13:03:14 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse3 discarded Merlin
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has equipped  for Tournament At Camelot
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 25 battle points at rank Squire
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 25 battle points at rank Squire
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has 5 battle points at rank Squire
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - There has been a tie between Mickey Mouse and Mickey Mouse2, 
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Clearing weapons and going into tiebreaker
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating tie breaker Tournament At Camelot with Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Dagger before choosing equipment
+2018-Apr-04 13:03:15 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Sword before choosing equipment
+2018-Apr-04 13:03:29 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Sword,  for Tournament At Camelot
+2018-Apr-04 13:03:29 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Sword
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Dagger,  for Tournament At Camelot
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Dagger
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - calculating outcome of Tie-breaker of Tournament At Camelot
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Mickey Mouse, Mickey Mouse2,  participated in tie breaker
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 15 battle points at rank Squire
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 10 battle points at rank Squire
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Tie breaker complete - one winner
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 is the winner of the tournament
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving 5 shields, 2 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Mickey Mouse2 has advanced rank to Knight!
+2018-Apr-04 13:03:32 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:04:32 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-04 13:04:32 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-04 13:04:32 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-04 13:04:35 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:04:35 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-04 13:04:35 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:04:35 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-04 13:04:36 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:04:36 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-04 13:04:37 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:04:37 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-04 13:04:38 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-04 13:04:38 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-04 13:04:38 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-04 13:04:40 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-04 13:04:42 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-04 13:04:44 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-04 13:04:44 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-04 13:04:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: At Camelot
+2018-Apr-04 13:04:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 13:04:45 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 13:04:47 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 accepted to participate in Tournament At Camelot
+2018-Apr-04 13:04:49 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 declined to participate in Tournament At Camelot
+2018-Apr-04 13:04:50 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 declined to participate in Tournament At Camelot
+2018-Apr-04 13:04:50 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 13:04:50 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 13:04:50 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Sword before choosing equipment
+2018-Apr-04 13:04:50 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Evil Knight before choosing equipment
+2018-Apr-04 13:04:55 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword, Dagger,  for Tournament At Camelot
+2018-Apr-04 13:04:55 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Sword
+2018-Apr-04 13:04:55 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Dagger
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Dagger, Horse,  for Tournament At Camelot
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Dagger
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Horse
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 20 battle points at rank Squire
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 20 battle points at rank Squire
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - There has been a tie between Mickey Mouse and Mickey Mouse2, 
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Clearing weapons and going into tiebreaker
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Initiating tie breaker Tournament At Camelot with Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Amour before choosing equipment
+2018-Apr-04 13:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Black Knight before choosing equipment
+2018-Apr-04 13:05:13 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Battle-ax,  for Tournament At Camelot
+2018-Apr-04 13:05:13 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Battle-ax
+2018-Apr-04 13:05:15 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword,  for Tournament At Camelot
+2018-Apr-04 13:05:15 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Sword
+2018-Apr-04 13:05:15 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:05:15 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - calculating outcome of Tie-breaker of Tournament At Camelot
+2018-Apr-04 13:05:15 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Mickey Mouse, Mickey Mouse2,  participated in tie breaker
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 20 battle points at rank Squire
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 15 battle points at rank Squire
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Tie breaker complete - one winner
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 is the winner of the tournament
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving 5 shields, 2 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse2 has advanced rank to Knight!
+2018-Apr-04 13:05:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:05:28 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-04 13:05:28 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-04 13:05:28 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-04 13:05:34 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:05:34 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-04 13:05:34 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:05:34 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-04 13:05:35 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:05:35 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-04 13:05:36 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:05:36 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-04 13:05:37 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-04 13:05:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-04 13:05:37 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-04 13:05:39 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-04 13:05:43 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-04 13:05:46 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-04 13:05:46 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-04 13:05:46 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: At Camelot
+2018-Apr-04 13:05:46 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 13:05:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 13:05:49 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 accepted to participate in Tournament At Camelot
+2018-Apr-04 13:05:51 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 accepted to participate in Tournament At Camelot
+2018-Apr-04 13:05:52 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 declined to participate in Tournament At Camelot
+2018-Apr-04 13:05:52 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 13:05:52 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse, Mickey Mouse2, Mickey Mouse3, 
+2018-Apr-04 13:05:52 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Saxons before choosing equipment
+2018-Apr-04 13:05:52 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Excalibur before choosing equipment
+2018-Apr-04 13:05:52 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 receiving one card: Sir Galahad before choosing equipment
+2018-Apr-04 13:05:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword,  for Tournament At Camelot
+2018-Apr-04 13:05:59 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Sword
+2018-Apr-04 13:06:01 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Horse,  for Tournament At Camelot
+2018-Apr-04 13:06:01 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Horse
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has equipped  for Tournament At Camelot
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 15 battle points at rank Squire
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 15 battle points at rank Squire
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has 5 battle points at rank Squire
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - There has been a tie between Mickey Mouse and Mickey Mouse2, 
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Clearing weapons and going into tiebreaker
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating tie breaker Tournament At Camelot with Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Sir Gawain before choosing equipment
+2018-Apr-04 13:06:04 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Saxon Knight before choosing equipment
+2018-Apr-04 13:06:17 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Dagger,  for Tournament At Camelot
+2018-Apr-04 13:06:17 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Dagger
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Excalibur,  for Tournament At Camelot
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse2 equipped Excalibur
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - calculating outcome of Tie-breaker of Tournament At Camelot
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Mickey Mouse, Mickey Mouse2,  participated in tie breaker
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 35 battle points at rank Squire
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 10 battle points at rank Squire
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Tie breaker complete - one winner
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 is the winner of the tournament
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving 5 shields, 2 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse2 has advanced rank to Knight!
+2018-Apr-04 13:06:21 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:07:13 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-04 13:07:13 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-04 13:07:13 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-04 13:07:16 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:07:16 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-04 13:07:16 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:07:16 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-04 13:07:17 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:07:17 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-04 13:07:18 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-04 13:07:18 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-04 13:07:19 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-04 13:07:19 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-04 13:07:19 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-04 13:07:21 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player 2Mickey Mouse is enrolled in the game
+2018-Apr-04 13:07:23 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-04 13:07:26 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-04 13:07:26 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-04 13:07:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: At Camelot
+2018-Apr-04 13:07:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 13:07:27 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 13:07:30 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 13:07:31 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 accepted to participate in Tournament At Camelot
+2018-Apr-04 13:07:33 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 declined to participate in Tournament At Camelot
+2018-Apr-04 13:07:33 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 13:07:33 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse, 2Mickey Mouse, Mickey Mouse3, 
+2018-Apr-04 13:07:33 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Saxon Knight before choosing equipment
+2018-Apr-04 13:07:33 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse receiving one card: Sir Percival before choosing equipment
+2018-Apr-04 13:07:33 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 receiving one card: Saxon Knight before choosing equipment
+2018-Apr-04 13:07:36 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has equipped Horse,  for Tournament At Camelot
+2018-Apr-04 13:07:36 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse3 equipped Horse
+2018-Apr-04 13:07:40 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse has equipped Horse,  for Tournament At Camelot
+2018-Apr-04 13:07:40 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player 2Mickey Mouse equipped Horse
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Dagger,  for Tournament At Camelot
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse equipped Dagger
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse has 15 battle points at rank Squire
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has 15 battle points at rank Squire
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 10 battle points at rank Squire
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - There has been a tie between 2Mickey Mouse and Mickey Mouse3, 
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Clearing weapons and going into tiebreaker
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Initiating tie breaker Tournament At Camelot with 2Mickey Mouse, Mickey Mouse3, 
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse receiving one card: Saxon Knight before choosing equipment
+2018-Apr-04 13:07:42 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 receiving one card: Lance before choosing equipment
+2018-Apr-04 13:08:00 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse has equipped Battle-ax,  for Tournament At Camelot
+2018-Apr-04 13:08:00 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player 2Mickey Mouse equipped Battle-ax
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has equipped Lance,  for Tournament At Camelot
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse3 equipped Lance
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - calculating outcome of Tie-breaker of Tournament At Camelot
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - 2Mickey Mouse, Mickey Mouse3,  participated in tie breaker
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 has 25 battle points at rank Squire
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player 2Mickey Mouse has 20 battle points at rank Squire
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Tie breaker complete - one winner
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 is the winner of the tournament
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 receiving 6 shields, 3 for # of participants (orginial # - before tie-breaker) and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse3 has advanced rank to Knight!
+2018-Apr-04 13:08:02 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
