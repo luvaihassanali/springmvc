@@ -102,12 +102,12 @@ public class Game {
 
 			// add(CardList.Dagger);
 			add(CardList.KingArthur);
-			add(CardList.Battleax);
+			add(CardList.Thieves);
 			add(CardList.Saxons);
 			add(CardList.SaxonKnight);
 			add(CardList.Boar);
 			add(CardList.QueenIseult);
-			add(CardList.Lance);
+			add(CardList.SirGawain);
 			add(CardList.ValorTest);
 			add(CardList.Dagger);
 			add(CardList.SirPellinore);
