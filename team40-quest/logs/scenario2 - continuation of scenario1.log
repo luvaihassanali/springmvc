@@ -1,0 +1,30 @@
+2018-Apr-04 19:12:57 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse4 is flipping new card from story deck: At Camelot
+2018-Apr-04 19:12:57 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
+2018-Apr-04 19:13:41 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 accepted to participate in Tournament At Camelot
+2018-Apr-04 19:13:43 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse accepted to participate in Tournament At Camelot
+2018-Apr-04 19:13:45 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 accepted to participate in Tournament At Camelot
+2018-Apr-04 19:13:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse3 declined to participate in Tournament At Camelot
+2018-Apr-04 19:13:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
+2018-Apr-04 19:13:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Mickey Mouse4, Mickey Mouse, Mickey Mouse2, 
+2018-Apr-04 19:13:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 receiving one card: Test of the Questing Beast before choosing equipment
+2018-Apr-04 19:13:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse receiving one card: Amour before choosing equipment
+2018-Apr-04 19:13:47 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 receiving one card: Queen Iseult before choosing equipment
+2018-Apr-04 19:13:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 has equipped Dagger, Horse,  for Tournament At Camelot
+2018-Apr-04 19:13:51 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Dagger
+2018-Apr-04 19:13:51 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Horse
+2018-Apr-04 19:13:55 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has equipped Battle-ax, Dagger,  for Tournament At Camelot
+2018-Apr-04 19:13:55 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse2 used Battle-ax
+2018-Apr-04 19:13:55 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse2 used Dagger
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has equipped Sword,  for Tournament At Camelot
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse used Sword
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 has 40 battle points at rank Squire
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse2 has 25 battle points at rank Squire
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse has 15 battle points at rank Squire
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 is the winner of the tournament
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Player Mickey Mouse4 receiving 6 shields, 3 for # of participants and 3 as bonus shields per Tournament {} (tie-breaker)
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse4 has advanced rank to Knight!
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse4 has advanced rank to Champion Knight!
+2018-Apr-04 19:13:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
+2018-Apr-04 19:14:09 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Slay the Dragon

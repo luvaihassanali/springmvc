@@ -285,7 +285,7 @@ public class TournamentController extends SocketHandler {
 				logger.info("Tie breaker complete - one winner");
 			logger.info("Player {} is the winner of the tournament", winners.get(0).name);
 			logger.info(
-					"Player {} receiving {} shields, {} for # of participants (orginial # - before tie-breaker) and {} as bonus shields per Tournament {} (tie-breaker)",
+					"Player {} receiving {} shields, {} for # of participants and {} as bonus shields per Tournament {} (tie-breaker)",
 					winners.get(0).name, shieldTotal, participants, bonus);
 			Player p = gameEngine.getPlayerFromName(winners.get(0).name);
 			p.giveShields(shieldTotal);

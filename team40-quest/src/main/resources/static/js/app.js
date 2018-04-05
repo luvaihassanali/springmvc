@@ -104,6 +104,11 @@ socketConn.onmessage = function(event) {
     if (event.data.startsWith("replaceTestCards")) {
     	replaceTestCards(event.data.replace("replaceTestCards",""));
     }
+    //test winner
+    if (event.data.startsWith("testWinner")) {
+    	var winner = event.data.replace("testWinner","");
+    	serverMsg.value += " " + winner + " won the test, going to next stage";
+    }
     //lost battle
     if (event.data == "LostBattle") {
     	serverMsg.value = "Lost battle, wait for quest to finish";
@@ -228,7 +233,7 @@ socketConn.onmessage = function(event) {
     		document.getElementById("battleScreen").style.display = "none";
     		console.log("REMOVING BATTLE SCREEN");
     		var serverMsg = document.getElementById("serverMsg");
-    		serverMsg.value = "Battle over, wait for next player";
+    		serverMsg.value += " Battle over, wait for next player";
     		//clear images
     		$("#questPic").attr("src", "http://localhost:8080/resources/images/all.png");
     		$("#foePic").attr("src", "http://localhost:8080/resources/images/all.png");
@@ -279,8 +284,15 @@ socketConn.onmessage = function(event) {
 			document.getElementById('flip').click();
 		}
 	}
+	
+
+	//reset stage tracker for new quest
+	if (event.data == "resetStageTracker") {
+		console.log("resetting stage tracker");
+		stageTracker = 0;
+	}
 	// ask to sponsor quest
-	if (event.data === "sponsorQuest") {
+	if (event.data == "sponsorQuest") {
 		getSponsor();
 	}
 
@@ -438,7 +450,7 @@ socketConn.onmessage = function(event) {
             	}
     		}
     		var serverMsg = document.getElementById("serverMsg");
-    		serverMsg.value += "Tournament over, wait for next player";
+    		serverMsg.value += " Tournament over, wait for next player";
     	}, 10000);
 
 	}
@@ -459,13 +471,15 @@ socketConn.onmessage = function(event) {
 	}
 	if(event.data.startsWith("whoBidded")) {
 		var bidder = event.data.replace("whoBidded", "");
+		bidder = bidder.split("#");
 		var serverMsg = document.getElementById("serverMsg");
-		serverMsg.value +=  " " + bidder + " just placed " + minBid + " bids";
+		serverMsg.value +=  " " + bidder[0] + " just placed " + bidder[1] + " bids";
 	}
 	//update min bids
 	if (event.data.startsWith("updateMinBid")) {
 		var newBid = event.data.replace("updateMinBid","");
 		minBid = parseInt(newBid);
+		console.log(storyCardFaceUp);
 		if(minBid == 0) minBid = 3;
 		testInfo[0][1] = minBid;
 		console.log("UPDATING MINI BID" + minBid);
@@ -1435,6 +1449,7 @@ function doneQuestSetup() {
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "Quest setup complete, wait for other players";
 	document.getElementById('doneQuest').style.display = "none";
+	console.log(questSetupCards);
 	var data = JSON.stringify({ 'questSetupCards' : questSetupCards});
 	socketConn.send(data);
 }
@@ -1511,7 +1526,8 @@ function checkForCardType(cardSrc, type) {
 
 // accept to sponsor quest
 function acceptSponsorQuest() {
-	questSetupCards = []
+	questSetupCards = [];
+	allQuestInfo = [];
 	document.getElementById('sponsorQuest').style.display = 'none';
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "You are sponsor, setting up quest...";

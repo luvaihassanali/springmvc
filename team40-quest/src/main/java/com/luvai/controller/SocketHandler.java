@@ -34,6 +34,8 @@ public class SocketHandler extends TextWebSocketHandler {
 	public String BattleInformation = "";
 	JsonArray questInformation = new JsonArray();
 	public int bonusTestCardControl = 0;
+	public boolean sendOnce = true;
+	public boolean sentAlready = true;
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
@@ -49,8 +51,12 @@ public class SocketHandler extends TextWebSocketHandler {
 		if (jsonObject.has("newName")) {
 			gameEngine.setupNewPlayer(jsonObject, session);
 		}
-		// sponsoring quuest
+		// sponsoring quest
 		if (jsonObject.has("sponsor_quest")) {
+			JsonElement sponsor_quest_answer = jsonObject.get("sponsor_quest");
+			if (sponsor_quest_answer.getAsBoolean()) {
+				questInformation = new JsonArray();
+			}
 			gameEngine.getSponsor(jsonObject);
 		}
 
@@ -139,9 +145,10 @@ public class SocketHandler extends TextWebSocketHandler {
 					gameEngine.current_quest.getCurrentParticipant().session
 							.sendMessage(new TextMessage("PickupCardsTestBonus" + testBonusReplacement));
 					gameEngine.updateStats();
-					System.out.println("increasing stage 129 sh");
+
 					gameEngine.current_quest.currentStage++;
 					sendToAllParticipants(gameEngine, "incStage");
+					logger.info("Going to stage {}", gameEngine.current_quest.currentStage);
 					if (gameEngine.current_quest.currentStage > gameEngine.current_quest.currentQuest.getStages()) {
 						Winning();
 						return;
@@ -234,19 +241,30 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println("HERE TWICE OVER NOW");
 				System.out.println(gameEngine.current_quest.currentStage);
 				System.out.println(gameEngine.current_quest.participants.size());
+				System.out.println(gameEngine.getCurrentParticipant().getName());
 				gameEngine.current_quest.incTurn();
-				sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
 				sendToAllParticipants(gameEngine,
-						"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName());
-				sendToSponsor(gameEngine, "whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName());
-				System.out.println("SEND NEW STAGE CARD HERE ???? ");
+						"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
+								+ gameEngine.current_quest.currentMinBid);
+				sendToSponsor(gameEngine, "whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
+						+ gameEngine.current_quest.currentMinBid);
+				sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+
 				for (int i = 0; i < gameEngine.current_quest.currentQuestInfo.length; i++) {
 					System.out.println(gameEngine.current_quest.currentQuestInfo[i]);
 				}
 				if (gameEngine.current_quest.currentQuestInfo[gameEngine.current_quest.currentStage - 1]
 						.contains("Test")) {
+					System.out.println("in contains test " + gameEngine.getCurrentParticipant().getName());
 				} else {
 					gameEngine.current_quest.pickupBeforeStage();
+				}
+				System.out.println(
+						"in outside contains test - it is turn of: " + gameEngine.getCurrentParticipant().getName());
+				if (gameEngine.current_quest.participants.size() == 1) {
+					logger.info("Player {} won test in {} quest, advancing to stage {}",
+							gameEngine.getCurrentParticipant().getName(), gameEngine.storyDeck.faceUp.getName(),
+							gameEngine.current_quest.currentStage);
 				}
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 				return;
@@ -444,6 +462,7 @@ public class SocketHandler extends TextWebSocketHandler {
 							gameEngine.current_quest.sponsor.getHand().add(newCard);
 						}
 						if (sendOnce) {
+							sentAlready = false;
 							logger.info(
 									"Player {} who sponsored {} quest is receiving {} card ({}) due to"
 											+ " sponsoring quest",
@@ -471,8 +490,10 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 			}
 			if (gameEngine.current_quest.participants.size() == 1) {
-				gameEngine.current_quest.sponsorPickup();
-				return;
+				if (sentAlready) {
+					gameEngine.current_quest.sponsorPickup();
+					sentAlready = false;
+				}
 			}
 			gameEngine.current_quest.shieldSent = false;
 			String update = gameEngine.getPlayerStats();

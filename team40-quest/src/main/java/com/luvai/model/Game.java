@@ -226,6 +226,9 @@ public class Game {
 		if (sponsor_quest_answer.getAsBoolean()) {
 			logger.info("{} accepted to sponsor quest {}", name.getAsString(), this.storyDeck.faceUp.getName());
 			this.newQuest(this, this.getActivePlayer(), (QuestCard) this.storyDeck.faceUp);
+			SocketHandler.sendToAllSessions(this, "resetStageTracker");
+
+			System.out.println("resetting stage tracker: " + this.current_quest.currentStage);
 		} else {
 			logger.info("{} declined to sponsor quest {}", name.getAsString(), this.storyDeck.faceUp.getName());
 			this.incTurn();
