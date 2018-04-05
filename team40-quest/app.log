@@ -444,3 +444,682 @@
 2018-Apr-05 14:19:46 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse4 with 15 battle points is starting - versus Saxons with 10 points
 2018-Apr-05 14:19:46 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 has WON battle
 2018-Apr-05 14:19:46 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-05 14:21:24 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:21:24 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:21:24 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:21:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:21:29 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:29 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:21:30 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:30 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:21:31 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:31 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:21:38 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:21:46 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:21:46 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:21:46 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:21:51 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:51 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:51 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:21:51 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:21:51 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:51 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:21:52 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:21:52 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:21:53 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:21:53 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:21:53 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:21:55 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:21:58 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 14:22:00 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 14:22:00 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 14:22:00 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:22:02 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 14:22:02 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 14:22:02 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 14:22:06 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Boar","Saxons"]
+2018-Apr-05 14:22:06 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 14:22:06 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Saxons
+2018-Apr-05 14:22:08 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:22:08 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Amour
+2018-Apr-05 14:22:10 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:22:10 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Horse
+2018-Apr-05 14:22:20 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:22:20 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:22:20 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:22:23 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:23 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:22:23 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:23 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:22:24 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:24 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:22:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:22:26 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:22:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:22:26 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:22:27 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-05 14:22:27 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-05 14:22:27 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - Player AI_Player_602 is enrolled in the game
+2018-Apr-05 14:22:29 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-05 14:22:29 PM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-05 14:22:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - Player AI_Player_790 is enrolled in the game
+2018-Apr-05 14:22:30 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-05 14:22:30 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-05 14:22:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - Player AI_Player_185 is enrolled in the game
+2018-Apr-05 14:22:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Apr-05 14:22:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:22:45 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:22:45 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:22:45 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:22:47 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:47 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:22:47 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:47 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:22:48 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:48 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:22:49 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:22:49 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:22:50 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:22:50 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:22:50 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:22:53 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:22:55 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 14:22:58 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 14:22:58 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 14:22:58 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:23:03 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 14:23:03 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 14:23:03 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 14:23:10 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 14:23:10 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 14:23:10 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 14:23:12 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:23:12 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Sword
+2018-Apr-05 14:23:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:23:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Sir Percival
+2018-Apr-05 14:23:21 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:23:21 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Sword
+2018-Apr-05 14:23:21 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 14:23:26 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Sword, Sir Tristan, Test of Morgan Le Fey, Amour,  for test in quest Boar Hunt
+2018-Apr-05 14:23:30 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Sir Percival, Test of the Questing Beast, Excalibur, Giant,  for test in quest Boar Hunt
+2018-Apr-05 14:23:35 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 bid Sword, King Arthur, Thieves, Saxons,  for test in quest Boar Hunt
+2018-Apr-05 14:23:38 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 14:24:12 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 dropped out of test in quest Boar Hunt
+2018-Apr-05 14:24:12 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Thieves
+2018-Apr-05 14:24:12 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Saxons
+2018-Apr-05 14:24:12 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse4 won test in Boar Hunt quest, advancing to stage 2
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 chose Sword,  for stage 2 of Boar Hunt quest
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Sword
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Boar Hunt quest which is a test: false
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Displaying battle screen
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 2 is a foe battle
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 15 battle points
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse4 with 15 battle points is starting - versus Boar with 15 points
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 has WON battle
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Stage 2 is over
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player(s) Mickey Mouse4, are the winners of Boar Hunt quest sponsored by Mickey Mouse, receiving 2 shields
+2018-Apr-05 14:24:15 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse who sponsored Boar Hunt quest is receiving 4 card (Saxon Knight Test of Valor Sword Sword ) due to sponsoring quest
+2018-Apr-05 14:24:31 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of Valor
+2018-Apr-05 14:24:32 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Saxon Knight
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse2 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 has initiated event Prosperity Throughout the Realm
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Mickey Mouse picked up Saxons and Horse
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Mickey Mouse2 picked up Dagger and Amour
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Mickey Mouse3 picked up Saxons and Evil Knight
+2018-Apr-05 14:24:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Mickey Mouse4 picked up Battle-ax and Horse
+2018-Apr-05 14:25:51 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:25:51 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:25:51 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:34:55 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:34:55 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:34:55 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:35:01 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:35:01 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:35:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:35:01 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:35:01 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:35:01 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:35:02 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:35:02 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:35:03 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:35:03 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:35:03 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:35:06 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:35:08 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 14:35:10 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 14:35:10 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 14:35:10 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:35:14 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 14:35:14 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 14:35:14 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 14:35:17 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Boar","Test of the Questing Beast"]
+2018-Apr-05 14:35:17 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 14:35:17 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 14:35:19 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:35:19 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Amour
+2018-Apr-05 14:35:22 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 denied to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:35:24 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 denied to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:35:24 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, 
+2018-Apr-05 14:35:26 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 chose Battle-ax,  for stage 1 of Boar Hunt quest
+2018-Apr-05 14:35:26 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse2 used Battle-ax
+2018-Apr-05 14:35:26 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
+2018-Apr-05 14:35:26 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Displaying battle screen
+2018-Apr-05 14:35:26 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
+2018-Apr-05 14:35:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 15 battle points
+2018-Apr-05 14:35:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse2 with 20 battle points is starting - versus Boar with 15 points
+2018-Apr-05 14:35:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 has WON battle
+2018-Apr-05 14:35:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-05 14:35:47 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Mickey Mouse2 discarded Test of the Questing Beast
+2018-Apr-05 14:35:48 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 14:35:48 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse2 dropped out of {} test
+2018-Apr-05 14:35:48 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - All players defeated in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:35:48 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse who sponsored Boar Hunt quest is receiving 4 card due to sponsoring quest
+2018-Apr-05 14:36:14 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:36:14 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:36:14 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:36:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:36:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:36:20 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:36:20 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:36:21 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:36:21 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:36:22 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:36:22 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:36:24 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:36:24 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:36:24 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:36:26 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:36:29 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 14:36:31 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 14:36:31 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 14:36:31 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:36:32 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 14:36:32 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 14:36:32 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 14:36:38 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 14:36:38 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 14:36:38 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 14:36:40 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:36:40 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Robber Knight
+2018-Apr-05 14:36:42 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:36:42 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Sword
+2018-Apr-05 14:36:44 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:36:44 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Sword
+2018-Apr-05 14:36:44 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 14:36:47 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Robber Knight, Sir Tristan, Test of Morgan Le Fey, Amour,  for test in quest Boar Hunt
+2018-Apr-05 14:36:53 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Sword, Test of the Questing Beast, Excalibur, Giant,  for test in quest Boar Hunt
+2018-Apr-05 14:36:55 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse4 discarded Sword
+2018-Apr-05 14:36:55 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 dropped out of test in quest Boar Hunt
+2018-Apr-05 14:37:12 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:37:12 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:37:12 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:37:14 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:37:14 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:37:15 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:37:15 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:37:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:37:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:37:16 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:37:16 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:37:17 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:37:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:37:17 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:37:19 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-05 14:37:19 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-05 14:37:19 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.AIController - Player AI_Player_591 is enrolled in the game
+2018-Apr-05 14:37:21 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:37:26 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-05 14:37:26 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-05 14:37:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_412 is enrolled in the game
+2018-Apr-05 14:37:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Apr-05 14:37:26 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Mickey Mouse declined to sponsor quest Boar Hunt
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_591 accepted to sponsor quest Boar Hunt
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by AI_Player_591
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - AI_Player_591 is setting up stages for Boar Hunt quest
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - AI_Player_591 setting up Boar Hunt quest ensuring last stage battle has at least 40 points
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_591 used test for 2nd last stage of Boar Hunt quest setup
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.model.AI.Strategy2 - No more stages to set
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player AI_Player_591 setup Boar Hunt quest with Test of Morgan Le Fey, Green Knight, Dagger, Horse, 
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player AI_Player_591 discarded Test of Morgan Le Fey
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_591 discarded Green Knight
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_591 discarded Dagger
+2018-Apr-05 14:37:28 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player AI_Player_591 discarded Horse
+2018-Apr-05 14:37:29 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by AI_Player_591
+2018-Apr-05 14:37:29 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Sir Lancelot
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to participate in quest
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_412 meet foe requirements (condition 2) to participate in Boar Hunt quest
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Not enough weapons, checking for amour
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Not strong enough with weapons and amour, checking for allies
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_412 can sustain quest Boar Hunt with weapons, amour, & allies played
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_412 accepted to participate in Boar Hunt quest sponsored by AI_Player_591
+2018-Apr-05 14:37:31 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_412 getting new card Sword
+2018-Apr-05 14:37:33 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse denied to participate in Boar Hunt quest sponsored by AI_Player_591
+2018-Apr-05 14:37:33 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by AI_Player_591 is commencing with participants: Mickey Mouse2, AI_Player_412, 
+2018-Apr-05 14:37:38 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Sir Lance, Test of the Questing Beast, Excalibur,  for test in quest Boar Hunt
+2018-Apr-05 14:37:42 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player AI_Player_412 bid Thieves, Saxons, Saxon Knight,  for test in quest Boar Hunt
+2018-Apr-05 14:37:48 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 14:41:20 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:41:20 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:41:20 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:41:23 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:41:23 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:41:24 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:41:24 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:41:24 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:41:24 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:41:25 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:41:25 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:41:26 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:41:26 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:41:26 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:41:29 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:54:39 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:54:41 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 14:54:41 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 14:54:41 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 14:54:44 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 14:54:44 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 14:54:44 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 14:54:48 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 14:54:48 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 14:54:48 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 14:54:49 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:54:49 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Dagger
+2018-Apr-05 14:54:51 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:54:51 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Amour
+2018-Apr-05 14:54:52 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 14:54:52 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Horse
+2018-Apr-05 14:54:52 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse2, Mickey Mouse3, 
+2018-Apr-05 14:54:58 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Dagger, Sir Tristan, Test of Morgan Le Fey, Amour,  for test in quest Boar Hunt
+2018-Apr-05 14:55:02 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Amour, Test of the Questing Beast, Excalibur, Giant,  for test in quest Boar Hunt
+2018-Apr-05 14:55:06 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse3 discarded Horse
+2018-Apr-05 14:55:07 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 dropped out of test in quest Boar Hunt
+2018-Apr-05 14:56:51 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 14:56:51 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 14:56:51 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 14:56:53 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:56:53 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 14:56:54 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:56:54 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 14:56:54 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:56:54 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 14:56:55 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:56:55 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 14:56:56 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 14:56:56 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#4 connected
+2018-Apr-05 14:56:57 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 14:56:57 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 14:56:57 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 14:57:00 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 14:57:02 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 14:57:05 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 14:57:05 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 14:57:05 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:00:45 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:00:45 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:00:45 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:00:47 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 15:00:48 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:00:48 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Amour
+2018-Apr-05 15:00:57 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:00:57 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Sword
+2018-Apr-05 15:00:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:00:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Saxon Knight
+2018-Apr-05 15:00:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 15:01:07 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Dagger, Sir Tristan, Amour, Horse,  for test in quest Boar Hunt
+2018-Apr-05 15:01:34 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Sword, Test of the Questing Beast, Excalibur, Giant,  for test in quest Boar Hunt
+2018-Apr-05 15:01:40 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 bid Saxon Knight, King Arthur, Thieves, Saxons,  for test in quest Boar Hunt
+2018-Apr-05 15:01:42 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:03:25 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:03:25 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:03:25 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:03:28 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:03:28 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:03:28 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:03:28 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:03:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:03:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:03:30 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:03:30 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:03:31 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:03:31 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:03:31 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:03:34 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 15:03:36 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 15:03:38 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 15:03:38 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 15:03:38 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:03:40 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:03:40 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:03:40 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:03:48 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 15:03:48 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:03:48 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:03:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:03:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Dragon
+2018-Apr-05 15:03:52 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:03:52 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Evil Knight
+2018-Apr-05 15:03:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:03:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Sir Tristan
+2018-Apr-05 15:03:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 15:03:58 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Dragon, Sir Tristan, Amour, Test of Morgan Le Fey,  for test in quest Boar Hunt
+2018-Apr-05 15:04:02 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Evil Knight, Test of the Questing Beast, Excalibur, Giant,  for test in quest Boar Hunt
+2018-Apr-05 15:04:06 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 bid Sir Tristan, King Arthur, Thieves, Saxons,  for test in quest Boar Hunt
+2018-Apr-05 15:04:07 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:04:46 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:04:46 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:04:46 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:04:49 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:04:49 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:04:49 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:04:49 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:04:50 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:04:50 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:04:50 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:04:50 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:04:52 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:04:52 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:04:52 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:04:55 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 15:04:56 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 15:04:58 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 15:04:58 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 15:04:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:05:00 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:05:00 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:05:00 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:05:04 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Boar","Test of the Questing Beast"]
+2018-Apr-05 15:05:04 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:05:04 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:05:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:05:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Dagger
+2018-Apr-05 15:05:08 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:05:08 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Mordred
+2018-Apr-05 15:05:09 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 denied to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:05:09 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, 
+2018-Apr-05 15:05:11 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 chose Excalibur,  for stage 1 of Boar Hunt quest
+2018-Apr-05 15:05:11 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Mickey Mouse3 used Excalibur
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 chose Battle-ax,  for stage 1 of Boar Hunt quest
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Mickey Mouse2 used Battle-ax
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Displaying battle screen
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 15 battle points
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse2 with 20 battle points is starting - versus Boar with 15 points
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 has WON battle
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Battle against participant Mickey Mouse3 with 35 battle points is starting - versus Boar with 15 points
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 has WON battle
+2018-Apr-05 15:05:13 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-05 15:05:30 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Robber Knight, Dagger, Test of Morgan Le Fey, Horse,  for test in quest Boar Hunt
+2018-Apr-05 15:05:34 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Test of the Questing Beast, Mordred, Giant, Evil Knight,  for test in quest Boar Hunt
+2018-Apr-05 15:05:36 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:05:36 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse3 used Test of the Questing Beast
+2018-Apr-05 15:05:36 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse3 used Mordred
+2018-Apr-05 15:05:36 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse3 used Giant
+2018-Apr-05 15:05:36 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse3 used Evil Knight
+2018-Apr-05 15:06:09 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:06:09 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:06:09 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:12:24 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:12:24 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:12:24 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:12:28 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:12:28 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:12:29 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:12:29 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:12:30 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:12:30 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:12:31 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:12:31 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:14:05 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:14:05 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:14:05 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:14:08 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 15:14:10 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 15:14:12 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 15:14:12 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 15:14:12 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:14:13 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:14:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:14:13 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:14:16 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 15:14:16 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:14:16 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:14:20 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:14:20 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Sword
+2018-Apr-05 15:14:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:14:22 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Test of Valor
+2018-Apr-05 15:14:25 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:14:25 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Saxon Knight
+2018-Apr-05 15:14:25 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 15:14:31 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Sword, Sir Tristan, Dagger, Horse,  for test in quest Boar Hunt
+2018-Apr-05 15:14:34 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Mickey Mouse3 discarded Test of Valor
+2018-Apr-05 15:14:35 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:14:53 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:14:53 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:14:53 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:14:56 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:14:56 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:14:57 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:14:57 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:14:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:14:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:14:59 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:14:59 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:15:00 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:15:00 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:15:00 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:15:06 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-05 15:15:06 PM [http-nio-8080-exec-10] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-05 15:15:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.AIController - Player AI_Player_309 is enrolled in the game
+2018-Apr-05 15:15:16 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:15:16 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:15:16 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:15:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:15:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:15:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:15:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:15:21 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:15:21 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:15:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:15:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:15:23 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:15:23 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:15:23 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:15:25 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 15:15:28 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 15:15:30 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 15:15:30 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 15:15:30 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:15:32 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:15:32 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:15:32 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:15:35 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 15:15:35 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:15:35 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:15:36 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:15:36 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Black Knight
+2018-Apr-05 15:15:40 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:15:40 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Lance
+2018-Apr-05 15:15:41 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:15:41 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Saxon Knight
+2018-Apr-05 15:15:41 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 15:15:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Black Knight, Sir Tristan, Dagger, Horse,  for test in quest Boar Hunt
+2018-Apr-05 15:15:53 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Evil Knight, Giant, Excalibur, Lance,  for test in quest Boar Hunt
+2018-Apr-05 15:15:59 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 bid Saxon Knight, Thieves, Saxons, Saxon Knight,  for test in quest Boar Hunt
+2018-Apr-05 15:16:02 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:18:34 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:18:34 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:18:34 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:18:41 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:18:41 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:18:41 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:18:41 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:18:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:18:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:18:43 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:18:43 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:18:45 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:18:45 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:18:45 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:18:47 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 15:18:49 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 15:18:52 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 15:18:52 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 15:18:52 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:18:57 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:18:57 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:18:57 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:19:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 15:19:00 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:19:00 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:19:02 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:19:02 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Amour
+2018-Apr-05 15:19:05 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:19:05 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Robber Knight
+2018-Apr-05 15:19:08 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:19:08 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Thieves
+2018-Apr-05 15:19:08 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 15:19:31 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Dagger, Horse, Battle-ax, Amour,  for test in quest Boar Hunt
+2018-Apr-05 15:19:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Robber Knight, Test of the Questing Beast, Horse, Test of Morgan Le Fey,  for test in quest Boar Hunt
+2018-Apr-05 15:19:43 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 bid Thieves, King Arthur, Thieves, Saxons,  for test in quest Boar Hunt
+2018-Apr-05 15:19:48 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:21:24 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-05 15:21:24 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-05 15:21:24 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-05 15:23:50 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:23:50 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-05 15:23:51 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:23:51 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-05 15:23:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:23:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-05 15:23:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-05 15:23:53 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-05 15:23:55 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Mickey Mouse is enrolled in the game
+2018-Apr-05 15:23:55 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-05 15:23:55 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-05 15:23:58 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Mickey Mouse2 is enrolled in the game
+2018-Apr-05 15:24:01 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Mickey Mouse3 is enrolled in the game
+2018-Apr-05 15:24:04 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Mickey Mouse4 is enrolled in the game
+2018-Apr-05 15:24:04 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-05 15:24:04 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse is flipping new card from story deck: Boar Hunt
+2018-Apr-05 15:24:08 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Mickey Mouse accepted to sponsor quest Boar Hunt
+2018-Apr-05 15:24:08 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Mickey Mouse
+2018-Apr-05 15:24:08 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Mickey Mouse is setting up stages for Boar Hunt quest
+2018-Apr-05 15:24:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-05 15:24:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Test of the Questing Beast
+2018-Apr-05 15:24:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Mickey Mouse discarded Boar
+2018-Apr-05 15:24:14 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:24:14 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 getting new card Sir Gawain
+2018-Apr-05 15:24:16 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:24:16 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 getting new card Battle-ax
+2018-Apr-05 15:24:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 accepted to participate in Boar Hunt quest sponsored by Mickey Mouse
+2018-Apr-05 15:24:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 getting new card Horse
+2018-Apr-05 15:24:19 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Mickey Mouse is commencing with participants: Mickey Mouse2, Mickey Mouse3, Mickey Mouse4, 
+2018-Apr-05 15:24:24 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 bid Sir Gawain, Sir Tristan, Test of Morgan Le Fey, Amour,  for test in quest Boar Hunt
+2018-Apr-05 15:24:28 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 bid Battle-ax, Test of the Questing Beast, Excalibur, Giant,  for test in quest Boar Hunt
+2018-Apr-05 15:24:35 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Mickey Mouse4 bid Horse, King Arthur, Thieves, Saxons,  for test in quest Boar Hunt
+2018-Apr-05 15:24:37 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Mickey Mouse2 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:24:39 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Mickey Mouse3 dropped out of test in quest Boar Hunt
+2018-Apr-05 15:24:39 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Thieves
+2018-Apr-05 15:24:39 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Mickey Mouse4 used Saxons
+2018-Apr-05 15:24:39 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Mickey Mouse4 won test in Boar Hunt quest, advancing to stage 2

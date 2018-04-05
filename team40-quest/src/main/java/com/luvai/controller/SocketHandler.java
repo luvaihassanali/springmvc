@@ -250,7 +250,10 @@ public class SocketHandler extends TextWebSocketHandler {
 								+ gameEngine.current_quest.currentMinBid);
 				sendToSponsor(gameEngine, "whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
 						+ gameEngine.current_quest.currentMinBid);
-				sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+				if (gameEngine.current_quest.originalBid > gameEngine.current_quest.currentMinBid) {
+				} else {
+					sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+				}
 
 				for (int i = 0; i < gameEngine.current_quest.currentQuestInfo.length; i++) {
 					System.out.println(gameEngine.current_quest.currentQuestInfo[i]);

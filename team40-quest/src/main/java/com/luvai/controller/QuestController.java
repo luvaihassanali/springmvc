@@ -49,6 +49,7 @@ public class QuestController extends SocketHandler {
 	ArrayList<String> aiQuestCardList;
 	ArrayList<String> questCardList;
 	public boolean shieldSent = false;
+	public int originalBid = 0;
 
 	public QuestController(Game g, Player s, QuestCard q) throws IOException {
 		logger.info("Initiating new quest {} sponsored by {}", q.getName(), s.getName());
@@ -201,6 +202,8 @@ public class QuestController extends SocketHandler {
 				QuestFoes.add((FoeCard) c);
 			if (c instanceof TestCard)
 				QuestTests.add((TestCard) c);
+			TestCard t = (TestCard) c;
+			originalBid = t.getMinBid();
 		}
 
 		calculateFoeBattlePoints();
@@ -220,6 +223,8 @@ public class QuestController extends SocketHandler {
 			if (tempCard instanceof TestCard) {
 				// System.out.println("adding test");
 				QuestTests.add((TestCard) tempCard);
+				TestCard t = (TestCard) tempCard;
+				originalBid = t.getMinBid();
 			}
 			if (tempCard instanceof FoeCard) {
 				QuestFoes.add((FoeCard) tempCard);
