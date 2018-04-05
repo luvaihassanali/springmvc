@@ -200,10 +200,12 @@ public class QuestController extends SocketHandler {
 		for (Card c : aiQuestcards) {
 			if (c instanceof FoeCard)
 				QuestFoes.add((FoeCard) c);
-			if (c instanceof TestCard)
+			if (c instanceof TestCard) {
 				QuestTests.add((TestCard) c);
-			TestCard t = (TestCard) c;
-			originalBid = t.getMinBid();
+				TestCard t = (TestCard) c;
+
+				originalBid = t.getMinBid();
+			}
 		}
 
 		calculateFoeBattlePoints();

@@ -92,6 +92,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		// flip story deck
 		if (jsonObject.has("incTurnRoundOver")) {
+			System.out.println("INCREASING TURN ON SERVER SIDE LINE 95 SH");
 			gameEngine.incTurn();
 			gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
 		}
@@ -208,8 +209,11 @@ public class SocketHandler extends TextWebSocketHandler {
 						Winning();
 						return;
 					} else {
-						sendToAllSessions(gameEngine, "incStage");
-						gameEngine.current_quest.currentStage++;
+						if (gameEngine.current_quest.participants.size() == 1
+								&& gameEngine.current_quest.getCurrentParticipant().testDiscardList.size() != 0) {
+							sendToAllSessions(gameEngine, "incStage");
+							gameEngine.current_quest.currentStage++;
+						}
 						System.out.println("to remove after test: ");
 
 						gameEngine.current_quest.getCurrentParticipant()
@@ -267,6 +271,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println(
 						"in outside contains test - it is turn of: " + gameEngine.getCurrentParticipant().getName());
 				if (gameEngine.current_quest.participants.size() == 1) {
+
 					logger.info("Player {} won test in {} quest, advancing to stage {}",
 							gameEngine.getCurrentParticipant().getName(), gameEngine.storyDeck.faceUp.getName(),
 							gameEngine.current_quest.currentStage);

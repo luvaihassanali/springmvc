@@ -2167,12 +2167,18 @@ function AIDiscard(cardNames) {
 }
 
 function parseAICommand(eventData) {
+	if(eventData.startsWith("AIDropOut"))
+		AIDropOut();
 	if (eventData.startsWith("AIremoveFromHand"))
 		AIDiscard(eventData.replace("AIremoveFromHand", ""));
-	if(event.data.startsWith("AIBidList"))
+	if(eventData.startsWith("AIBidList"))
 		AIPlaceBid(event.data.replace("AIBidList", ""));
-	if(event.data.startsWith("AIRemoveFromScreen"))
+	if(eventData.startsWith("AIRemoveFromScreen"))
 		AIRemoveFromScreen(event.data.replace("AIRemoveFromScreen",""))
+}
+
+function AIDropOut() {
+	console.log("time to drop out");
 }
 
 function AIPlaceBid(eventData) {

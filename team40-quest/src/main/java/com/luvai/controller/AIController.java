@@ -64,6 +64,16 @@ public class AIController extends SocketHandler {
 			System.out.println(a.getName());
 			bidList += a.getName() + ";";
 		}
+		System.out.println("sending bid list");
+		System.out.println(gameEngine.current_quest.currentMinBid);
+		int bidToCompare = gameEngine.current_quest.currentMinBid;
+		if (bidToCompare == 0)
+			bidToCompare = gameEngine.current_quest.originalBid;
+		if (AIBids.size() < bidToCompare) {
+			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIDropOut"));
+			System.out.println(gameEngine.getCurrentParticipant().getHandSize());
+			return;
+		}
 		gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIBidList" + bidList));
 
 	}

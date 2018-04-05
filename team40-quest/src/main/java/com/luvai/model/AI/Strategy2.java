@@ -345,29 +345,21 @@ public class Strategy2 extends AbstractAI {
 				}
 				bidTracker++;
 			}
-
-			for (int k = 0; k < current_player.getHandSize(); k++) {
-				for (int i = 0; i < minBid; i++) {
-					if (current_player.getHand().get(k) instanceof WeaponCard) {
-						WeaponCard weapon = (WeaponCard) current_player.getHand().get(k);
-						if (weapon.getBattlePoints() <= 25)
-							bids.add(weapon);
-						if (bids.size() == minBid)
-							return bids;
-						break;
-					}
-				}
-			}
 		}
 
-		if (round >= 1) {
+		if (round == 1) {
 			// if valid -> bid # of foes >= 25 && # of duplicate cards
-			AdventureCard duplicate;
+			// AdventureCard duplicate;
 			System.out.println("IN ROUND 2 NEED : BIDS" + (minBid - bids.size()));
 			for (int i = 0; i < minBid - bids.size(); i++) {
 				bids.add(gameEngine.getCurrentParticipant().getHand().get(i));
 			}
 		}
+
+		if (round == 2) {
+			System.out.println("time to drop out");
+		}
+
 		return bids;
 	}
 
