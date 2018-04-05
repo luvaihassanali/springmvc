@@ -16,6 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -36,6 +37,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public int bonusTestCardControl = 0;
 	public boolean sendOnce = true;
 	public boolean sentAlready = true;
+	public CardList cardFinder = new CardList();
 
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)

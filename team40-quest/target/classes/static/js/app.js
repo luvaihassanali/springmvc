@@ -1215,6 +1215,7 @@ function discard() {
 						'discard' : discardName
 					});
 					socketConn.send(data);
+					arrangeHand();
 				}
 				if (this.src != "http://localhost:8080/resources/images/all.png") {
 					if (numCards > 12) {

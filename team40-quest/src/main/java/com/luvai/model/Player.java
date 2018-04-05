@@ -124,9 +124,22 @@ public class Player {
 		name = name.replaceAll("\"", "");
 		for (int i = 0; i < this.getHandSize(); i++) {
 			if (this.getHand().get(i).getName().equals(name)) {
-				logger.info("Player {} discarded {}", this.getName(), this.getHand().get(i).getName());
-				this.getHand().remove(i);
-				break;
+				if (this.getHand().get(i) instanceof AmourCard) {
+					logger.info("Player {} equipped {} as discard", this.getName(), this.getHand().get(i).getName());
+					this.setAmourCard(this.getHand().get(i));
+					this.getHand().remove(i);
+					break;
+				}
+				if (this.getHand().get(i) instanceof AllyCard) {
+					logger.info("Player {} allied with {} as discard", this.getName(), this.getHand().get(i).getName());
+					this.getAllies().add((AllyCard) this.getHand().get(i));
+					this.getHand().remove(i);
+					break;
+				} else {
+					logger.info("Player {} discarded {}", this.getName(), this.getHand().get(i).getName());
+					this.getHand().remove(i);
+					break;
+				}
 			}
 		}
 	}
