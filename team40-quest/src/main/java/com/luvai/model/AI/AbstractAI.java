@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.JsonObject;
 import com.luvai.controller.SocketHandler;
+import com.luvai.model.CardList;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
@@ -29,12 +30,13 @@ public abstract class AbstractAI {
 	ArrayList<TestCard> testList;
 	int bidTracker;
 	ArrayList<AdventureCard> bids;
+	CardList cardFinder;
 
 	// constructs
 	public AbstractAI() {
 		logger.info("Initiating new AI player");
 		gameEngine = SocketHandler.gameEngine;
-
+		cardFinder = new CardList();
 	}
 
 	// non abstract methods

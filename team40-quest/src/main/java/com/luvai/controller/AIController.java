@@ -71,9 +71,32 @@ public class AIController extends SocketHandler {
 			bidToCompare = gameEngine.current_quest.originalBid;
 		if (AIBids.size() < bidToCompare) {
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIDropOut"));
+			System.out.println("AI DROPOUT " + gameEngine.current_quest.getCurrentParticipant().getName());
+			gameEngine.current_quest.getCurrentParticipant().getHand()
+					.remove(gameEngine.current_quest.getCurrentParticipant().getHand().size() - 1);
 			System.out.println(gameEngine.getCurrentParticipant().getHandSize());
+			for (int i = 0; i < gameEngine.getCurrentParticipant().getHandSize(); i++) {
+				System.out.println(gameEngine.getCurrentParticipant().getHand().get(i).getName());
+			}
+			if (gameEngine.current_quest.participants.size() == 1) {
+				gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+				Losing();
+			} else {
+				gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
+				if (gameEngine.current_quest.participants.size() == 1) {
+					if (gameEngine.current_quest.getCurrentParticipant().testDiscardList.size() != 0) {
+						sendToAllSessions(gameEngine, "incStage");
+						gameEngine.current_quest.currentStage++;
+					}
+
+				}
+				gameEngine.current_quest.getCurrentParticipant().session
+						.sendMessage(new TextMessage("ChooseEquipment"));
+			}
 			return;
 		}
+		System.out.println("sending bid list");
+		System.out.println(bidList);
 		gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIBidList" + bidList));
 
 	}

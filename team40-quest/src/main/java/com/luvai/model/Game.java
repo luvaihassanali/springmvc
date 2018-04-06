@@ -84,7 +84,7 @@ public class Game {
 		{
 			add(CardList.ValorTest);
 			add(CardList.BlackKnight);
-			add(CardList.Giant);
+			add(CardList.Saxons);
 			add(CardList.Sword);
 			add(CardList.KingArthur);
 			add(CardList.Excalibur);
@@ -92,7 +92,7 @@ public class Game {
 			add(CardList.MorganTest);
 			add(CardList.Thieves);
 			add(CardList.Dagger);
-			add(CardList.QueenGuinevere);
+			add(CardList.SirGalahad);
 			add(CardList.SirGalahad);
 		}
 	};

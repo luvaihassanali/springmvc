@@ -3,12 +3,13 @@ package com.luvai.model.AI;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.TextMessage;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.luvai.model.Card;
 import com.luvai.model.Player;
@@ -22,6 +23,7 @@ import com.luvai.model.StoryCards.QuestCard;
 
 public class Strategy2 extends AbstractAI {
 	private static final Logger logger = LogManager.getLogger(Strategy2.class);
+	public int round;
 
 	public Strategy2() {
 		weaponsList = new ArrayList<WeaponCard>();
@@ -33,10 +35,12 @@ public class Strategy2 extends AbstractAI {
 		bids = new ArrayList<AdventureCard>();
 		setStrategyType();
 		logger.info("Assigning new AI Player strategy {}", this.Strategy_Type);
+		round = 0;
 	}
 
 	@Override
 	public boolean doIParticipateQuest() {
+		round = 0;
 		logger.info("Strategy2 calculating whether to participate in quest");
 		Player current_player = this.gameEngine.getActivePlayer();
 		sortCards(current_player);
@@ -250,6 +254,7 @@ public class Strategy2 extends AbstractAI {
 		} else {
 			for (int i = 0; i < weaponsList.size(); i++) {
 				topFoe.getWeapons().add(weaponsList.get(i));
+				logger.info("Strategy2 adding {} to foe {}", weaponsList.get(i).getName(), topFoe.getName());
 				if (topFoe.getBattlePoints() + topFoe.getWeaponPoints() >= 40)
 					break;
 			}
@@ -276,6 +281,7 @@ public class Strategy2 extends AbstractAI {
 		}
 		for (int i = 0; i < remainingStages; i++) {
 			finalQuestSetup.add(foeList.get(i));
+			logger.info("Adding {} to quest - strategy2", foeList.get(i).getName());
 		}
 		Collections.reverse(finalQuestSetup);
 		System.out.println("STrat2 line 282");
@@ -312,34 +318,40 @@ public class Strategy2 extends AbstractAI {
 	@Override
 	public ArrayList<AdventureCard> nextBid(JsonObject jsonObject) {
 		Player current_player = gameEngine.getCurrentParticipant();
-		System.out.println("in next bid");
-		System.out.println(jsonObject.toString());
-		JsonElement x = jsonObject.get("currHand");
-		String[] cardArr = x.toString().split(",");
-		for (String s : cardArr) {
-			System.out.println(s);
-		}
+		logger.info("Player {} is calculating what bids to make", current_player.getName());
+		boolean dontAdd = true;
 
-		for (AdventureCard a : current_player.getHand()) {
-			System.out.println(a.getName());
-		}
-
-		int round = bidTracker;
 		int minBid = jsonObject.get("minBid").getAsInt();
 		System.out.println(gameEngine.current_quest.currentStage);
 		System.out.println("STRAT2 235 MIN BID: " + minBid);
 		if (round == 0) {
 			// if valid i.e over curr min bid -> bid # of foes w >=25 BP
+			logger.info("Player {} in first round: choosing foes with >= 25 battle points for bids",
+					current_player.getName());
 			System.out.println(round);
 			System.out.println(minBid);
 			for (int j = 0; j < current_player.getHandSize(); j++) {
 				for (int i = 0; i < minBid; i++) {
 					if (current_player.getHand().get(j) instanceof FoeCard) {
 						FoeCard foe = (FoeCard) current_player.getHand().get(j);
-						if (foe.getBattlePoints() <= 25)
+						if (foe.getBattlePoints() <= 25) {
+
+							for (int k = 0; k < bids.size(); k++) {
+								if (bids.get(k).equals(foe)) {
+									dontAdd = false;
+									break;
+								}
+							}
+						}
+						if (dontAdd) {
 							bids.add(foe);
-						if (bids.size() == minBid)
+							logger.info("Player {} chose to bid {}", current_player.getName(), foe.getName());
+						}
+						dontAdd = true;
+						if (bids.size() == minBid) {
+							round++;
 							return bids;
+						}
 						break;
 					}
 				}
@@ -347,19 +359,67 @@ public class Strategy2 extends AbstractAI {
 			}
 		}
 
-		if (round == 1) {
-			// if valid -> bid # of foes >= 25 && # of duplicate cards
+		if (round >= 1) {
+			logger.info("Player {} in 2+ round: choosing foes with >= 25 battle points for bids and duplicates",
+					current_player.getName());
 			// AdventureCard duplicate;
-			System.out.println("IN ROUND 2 NEED : BIDS" + (minBid - bids.size()));
-			for (int i = 0; i < minBid - bids.size(); i++) {
-				bids.add(gameEngine.getCurrentParticipant().getHand().get(i));
+			// if valid i.e over curr min bid -> bid # of foes w >=25 BP
+			System.out.println(round);
+			System.out.println(minBid);
+			for (int j = 0; j < current_player.getHandSize(); j++) {
+				for (int i = 0; i < minBid; i++) {
+					if (current_player.getHand().get(j) instanceof FoeCard) {
+						FoeCard foe = (FoeCard) current_player.getHand().get(j);
+						if (foe.getBattlePoints() <= 25) {
+
+							for (int k = 0; k < bids.size(); k++) {
+								if (bids.get(k).equals(foe)) {
+									dontAdd = false;
+									break;
+								}
+							}
+						}
+						if (dontAdd) {
+							bids.add(foe);
+							logger.info("Player {} chose to bid {}", current_player.getName(), foe.getName());
+						}
+						dontAdd = true;
+						if (bids.size() == minBid) {
+							round++;
+							return bids;
+						}
+						break;
+					}
+				}
+				bidTracker++;
 			}
+			ArrayList<String> cardNames = new ArrayList<String>();
+			for (int k = 0; k < current_player.getHandSize(); k++) {
+				cardNames.add(current_player.getHand().get(k).getName());
+			}
+			Set<String> unique = findDuplicates(cardNames);
+			System.out.println("unique? : " + unique.size());
+
+			String[] array = unique.toArray(new String[0]);
+			System.out.println(array.length);
+			for (String s : array)
+				System.out.println(s);
+			if (array.length != 0) {
+				AdventureCard duplicate = (AdventureCard) cardFinder.getCardFromName(array[0]);
+				logger.info("Player {} in 2+ round chose to bid {}", current_player.getName(), array[1]);
+				if (round >= 2) {
+					duplicate = (AdventureCard) cardFinder.getCardFromName(array[1]);
+					logger.info("Player {} in 3+ round chose to bid {}", current_player.getName(), array[1]);
+				}
+				bids.add(duplicate);
+				System.out.println("UNIQUE CARD STRING.............");
+			} else {
+				logger.info("No duplicates to bid");
+			}
+
 		}
 
-		if (round == 2) {
-			System.out.println("time to drop out");
-		}
-
+		round++;
 		return bids;
 	}
 
@@ -374,4 +434,19 @@ public class Strategy2 extends AbstractAI {
 		// TODO Auto-generated method stub
 
 	}
+
+	public static Set<String> findDuplicates(ArrayList<String> input) {
+		Set<String> duplicates = new HashSet<String>();
+		for (int i = 0; i < input.size(); i++) {
+			for (int j = 1; j < input.size(); j++) {
+				if (input.get(i) == input.get(j) && i != j) { // duplicate element found
+					System.out.println("Duplicate element in array is : " + input.get(i));
+					duplicates.add(input.get(i));
+					break;
+				}
+			}
+		}
+		return duplicates;
+	}
+
 } // end of class

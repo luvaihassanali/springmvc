@@ -105,14 +105,10 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.current_quest.parseEquipmentInfo(jsonObject);
 				questInformation.add(jsonObject);
 				System.out.println("HERE FIRST TIME OVER");
-				System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
-				System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
-				System.out.println(gameEngine.current_quest.currentStage);
-				System.out.println(gameEngine.current_quest.participants.size());
-
-				for (Player p : gameEngine.current_quest.participants) {
-					System.out.println(p.getName());
-				}
+				// System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
+				// System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
+				// System.out.println(gameEngine.current_quest.currentStage);
+				// System.out.println(gameEngine.current_quest.participants.size());
 
 				if (gameEngine.current_quest.participants.size() == 1) {
 					if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
@@ -249,14 +245,18 @@ public class SocketHandler extends TextWebSocketHandler {
 				System.out.println(gameEngine.current_quest.participants.size());
 				System.out.println(gameEngine.getCurrentParticipant().getName());
 				gameEngine.current_quest.incTurn();
-				sendToAllParticipants(gameEngine,
-						"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
-								+ gameEngine.current_quest.currentMinBid);
-				sendToSponsor(gameEngine, "whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
-						+ gameEngine.current_quest.currentMinBid);
+
 				if (gameEngine.current_quest.originalBid > gameEngine.current_quest.currentMinBid) {
 				} else {
-					sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+					if (gameEngine.current_quest.getCurrentParticipant().testDiscardList.size() != 0) {
+						sendToAllParticipants(gameEngine,
+								"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
+										+ gameEngine.current_quest.currentMinBid);
+						sendToSponsor(gameEngine,
+								"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
+										+ gameEngine.current_quest.currentMinBid);
+						sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+					}
 				}
 
 				for (int i = 0; i < gameEngine.current_quest.currentQuestInfo.length; i++) {

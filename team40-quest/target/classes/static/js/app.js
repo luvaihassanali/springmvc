@@ -2179,6 +2179,8 @@ function parseAICommand(eventData) {
 
 function AIDropOut() {
 	console.log("time to drop out");
+	$("#extra1").attr("src", "http://localhost:8080/resources/images/all.png");
+	document.getElementById("serverMsg").value = "Dropped out of test, wait for quest to complete";
 }
 
 function AIPlaceBid(eventData) {
