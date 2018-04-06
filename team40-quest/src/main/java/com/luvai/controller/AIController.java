@@ -45,11 +45,11 @@ public class AIController extends SocketHandler {
 	}
 
 	private void AIChooseEquipment(JsonObject jsonObject) {
-		gameEngine.updateStats();
+
 		System.out.println(jsonObject.toString());
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 		System.out.println(currentPlayer.getName());
-		currentPlayer.getAI().chooseEquipment();
+		currentPlayer.getAI().chooseEquipment(jsonObject, currentPlayer);
 
 	}
 
@@ -200,9 +200,12 @@ public class AIController extends SocketHandler {
 				}
 			}
 			for (Player p : gameEngine.players) {
+				String handString = "";
+				for (AdventureCard a : p.getHand())
+					handString += a.getName() + ", ";
 				p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
-
 			flipStoryCard();
 			String temp = gameEngine.getPlayerStats();
 			sendToAllSessions(gameEngine, "updateStats" + temp);

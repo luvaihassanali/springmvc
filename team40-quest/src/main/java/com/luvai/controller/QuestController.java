@@ -255,23 +255,35 @@ public class QuestController extends SocketHandler {
 
 	public int calculatePlayerPoints(String name) {
 		Player currentPlayer = gameEngine.getPlayerFromName(name);
+		System.out.println("LINE 258 QC CALCULATE PLAYER POINTS ---------------------");
+		for (WeaponCard w : currentPlayer.getWeapons()) {
+			System.out.println(w.getName());
+		}
+		for (AllyCard a : currentPlayer.getAllies()) {
+			System.out.println(a.getName());
+		}
 		int tempPts = currentPlayer.getBattlePoints();
+		System.out.println(tempPts);
 		ArrayList<String> removeWeapons = new ArrayList<String>();
 		// String cardNames = "";
 		if (currentPlayer.getAmourCard() != null) {
 			tempPts += 10;
 			// cardNames += currentPlayer.getAmourCard().getName() + "#";
+			System.out.println("in amour");
 		}
 		for (WeaponCard w : currentPlayer.getWeapons()) {
+			System.out.println("in weps");
 			tempPts += w.getBattlePoints();
 			// cardNames += w.getName() + "#";
 			removeWeapons.add(w.getName());
 		}
 		for (AllyCard a : currentPlayer.getAllies()) {
+			System.out.println("in ally");
 			tempPts += a.getBattlePoints();
 			// cardNames += a.getName() + "#";
 			// ally bonus points
 		}
+		System.out.println("LEAVING CALC PLAYER PTS " + tempPts);
 		return tempPts;
 	}
 
@@ -568,7 +580,8 @@ public class QuestController extends SocketHandler {
 
 	@SuppressWarnings("unchecked")
 	public void calculateStageOutcome(String playerPoints, JsonArray questInformation) throws IOException {
-		// System.out.println(playerPoints);
+		System.out.println("LINE 571 QC PLAYER POINTS");
+		System.out.println(playerPoints);
 		int currentStage = gameEngine.current_quest.currentStage - 1;
 		ArrayList<String[]> playerPointsArr = new ArrayList<String[]>();
 		FoeCard currentFoe = null;

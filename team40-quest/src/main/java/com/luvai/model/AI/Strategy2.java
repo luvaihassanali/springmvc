@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.socket.TextMessage;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.luvai.model.Card;
 import com.luvai.model.Player;
@@ -430,8 +432,116 @@ public class Strategy2 extends AbstractAI {
 	}
 
 	@Override
-	public void chooseEquipment() {
-		// TODO Auto-generated method stub
+	public void chooseEquipment(JsonObject jsonObject, Player player) {
+		sortCards(player);
+		boolean allyPlayed = false;
+		JsonArray x = (JsonArray) jsonObject.get("currHand");
+		ArrayList<String> aiHand = new ArrayList<String>();
+		for (int i = 0; i < x.size(); i++) {
+			JsonElement temp = x.get(i);
+			// System.out.println(temp.getAsString());
+			if (temp.getAsString().contains("all.png")) {
+			} else {
+				aiHand.add(temp.getAsString());
+			}
+		}
+		for (String s : aiHand) {
+			s = s.replace("http://localhost:8080/resources/images/", "");
+			System.out.println(s);
+			s = s.replace(".png", "");
+			s = s.replace(".jpg", "");
+			s = s.substring(4);
+			s = s.replace("%20", " ");
+			if (s.equals("r"))
+				s = "Amour";
+			System.out.println(s);
+		}
+		System.out.println(gameEngine.current_quest.currentStage);
+		int stage = gameEngine.current_quest.currentStage;
+		QuestCard faceUp = (QuestCard) gameEngine.storyDeck.faceUp;
+		printList();
+		ArrayList<String> toRemove = new ArrayList<String>();
+		if (stage == faceUp.getStages()) {
+			System.out.println("playing strongest");
+			if (player.getAmourCard() == null) {
+				if (amourList.size() != 0) {
+					// player.setAmourCard(amourList.get(0));
+					toRemove.add("Amour");
+				}
+			}
+			if (alliesList.size() != 0) {
+				// player.getAllies().add(alliesList.get(alliesList.size() - 1));
+				toRemove.add(alliesList.get(alliesList.size() - 1).getName());
+			}
+			if (weaponsList.size() != 0) {
+				// player.getWeapons().add(weaponsList.get(weaponsList.size() - 1));
+				toRemove.add(weaponsList.get(weaponsList.size() - 1).getName());
+			}
+			player.discardPlayer(toRemove);
+			String aiDiscard = "";
+			for (String s : toRemove)
+				aiDiscard += s + ";";
+			try {
+				player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			if (player.getAmourCard() == null) {
+				System.out.println("check to play playing amour");
+				if (player.getAmourCard() == null) {
+					if (amourList.size() != 0) {
+						// player.setAmourCard(amourList.get(0));
+						toRemove.add("Amour");
+						// player.discardPlayer(toRemove);
+						String aiDiscard = "";
+						for (String s : toRemove)
+							aiDiscard += s + ";";
+						try {
+							player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return;
+					}
+				}
+
+			}
+			if (allyPlayed) {
+				System.out.println("play weapon");
+				if (weaponsList.size() != 0) {
+					toRemove.add(weaponsList.get(weaponsList.size() - 1).getName());
+					String aiDiscard = "";
+					for (String s : toRemove)
+						aiDiscard += s + ";";
+					try {
+						player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			} else {
+				System.out.println("play ally");
+				if (alliesList.size() != 0) {
+					// player.getAllies().add(alliesList.get(alliesList.size() - 1));
+					toRemove.add(alliesList.get(alliesList.size() - 1).getName());
+					String aiDiscard = "";
+					for (String s : toRemove)
+						aiDiscard += s + ";";
+					try {
+						player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				allyPlayed = true;
+			}
+
+		}
 
 	}
 

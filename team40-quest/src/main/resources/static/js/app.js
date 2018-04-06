@@ -116,6 +116,8 @@ socketConn.onmessage = function(event) {
     //get all player points for stage
     if (event.data.startsWith("playerPointString")) {
     	var temp = event.data.replace("playerPointString","");
+    	console.log("PLAYER POINT STRING-------------------------");
+    	console.log(temp);
     	temp = temp.split(";");
     	for(var i=0; i<temp.length; i++) {
     		temp[i] = temp[i].split("#");
@@ -678,8 +680,6 @@ function chooseEquipment() {
 				'name' : PlayerName,
 				'stage' : stageTracker,
 				'currHand': handCardSRC,
-				'oldHand' : oldHandSRC,
-				//foe points?
 			}) 
 			setTimeout(function(){ 
 				socketConn.send(data); 
@@ -1855,7 +1855,7 @@ var sirT = {
 	link : "/resources/images/A Sir Tristan.jpg"
 };
 var sirL = {
-	name : "Sir Lance",
+	name : "Sir Lancelot",
 	type : "ally",
 	link : "/resources/images/A Sir Lancelot.jpg"
 };
@@ -2045,6 +2045,11 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		orkney, tintagel, york ];
 
 function AIRemoveFromScreen(cardNames) {
+	var send = false;
+	if(cardNames.startsWith("BP")) {
+		cardNames = cardNames.replace("BP", "");
+		send = true;
+	}
 	console.log("Remove from screen: " + cardNames);
 	var removeLink = [];
 	removeLinks = cardNames.split(";");
@@ -2059,13 +2064,45 @@ function AIRemoveFromScreen(cardNames) {
 			console.log(currHandCard);
 			if(currHandCard === removeLinks[i]) {
 				console.log("replace card here");
-				var imageId = handCardID[i];
+				var imageId = handCardID[j];
+				console.log(handCardID[j]);
 				$("#" + imageId).attr("src", "http://localhost:8080/resources/images/all.png");
 				break;
 			}
 		} 
 	}
-	//arrangeHand();
+	getCurrHand();
+	console.log(handCardSRC);
+	arrangeHand();
+	if(send==true) {
+		console.log("SEND battle equipment");
+		console.log(cardNames);
+		if(cardNames.includes(";")) {
+			cardNames = cardNames.split(";");
+		} else {
+			var temp = cardNames;
+			cardNames = [temp];
+		}
+		for(var i=0; i<cardNames.length; i++) {
+			if(cardNames[i] == "") {
+				cardNames.splice(i, 1);
+			}
+		}
+		var serverMsg = document.getElementById("serverMsg");
+		serverMsg.value = "Going into battle - wait for other players to finsih for results";
+		var data = JSON.stringify({
+			'name' : PlayerName,
+			'stages' : stageTracker,
+			'equipment_info' : cardNames,
+			'isTest' : false
+		});
+		
+		console.log("After sending");
+		console.log(cardNames);
+		setTimeout(function(){ socketConn.send(data); }, 1000);	
+		arrangeHand();
+		send == false; 
+	}
 }
 function AIDiscard(cardNames) {
 	console.log("ENTERING AI DISCARD\n" + cardNames);
@@ -2137,6 +2174,7 @@ function AIDiscard(cardNames) {
 	
 			if(imageArrayai[i].startsWith("http")) imageArrayai[i] = imageArrayai[i].replace("http://localhost:8080","");
 			if (tempSrc == imageArrayai[i]) {
+		
 				$("#" + imageArrayaiID[i]).attr("src",
 						"http://localhost:8080/resources/images/all.png");
 				console.log(cardNames);

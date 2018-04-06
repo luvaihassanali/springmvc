@@ -117,6 +117,6 @@ public abstract class AbstractAI {
 
 	abstract public void discardAfterWinningTest();
 
-	abstract public void chooseEquipment();
+	abstract public void chooseEquipment(JsonObject json, Player player);
 
 }

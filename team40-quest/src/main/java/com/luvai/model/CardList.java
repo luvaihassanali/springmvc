@@ -203,7 +203,7 @@ public class CardList {
 	public static AllyCard Merlin = new AllyCard("Merlin", merlinImage, 0, 0, 0, 0); // special
 	public static AllyCard QueenIseult = new AllyCard("Queen Iseult", queenIImage, 0, 0, 2, 4);
 	public static AllyCard SirLancelot = new AllyCard("Sir Lancelot", sirLImage, 15, 25, 0, 0);
-	public static AllyCard SirGalahad = new AllyCard("Sir Galahad", sirGImage, 15, 0, 0, 0);
+	public static AllyCard SirGalahad = new AllyCard("Sir Galahad", sirGaImage, 15, 0, 0, 0);
 	public static AmourCard Amour = new AmourCard("Amour", amourImage, 10, 1);
 	public static TestCard BeastTest = new TestCard("Test of the Questing Beast", testBeastImage, 4);
 	public static TestCard TemptationTest = new TestCard("Test of Temptation", testTempImage, 0);

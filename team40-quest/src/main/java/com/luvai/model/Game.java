@@ -211,6 +211,11 @@ public class Game {
 			}
 			for (Player p : this.players) {
 				p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+				String handString = "";
+				for (AdventureCard a : p.getHand())
+					handString += a.getName() + ", ";
+				p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
 
 			SocketHandler.flipStoryCard();
