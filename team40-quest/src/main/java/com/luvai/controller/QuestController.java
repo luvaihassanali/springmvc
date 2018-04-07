@@ -62,13 +62,12 @@ public class QuestController extends SocketHandler {
 		setupQuest();
 	}
 
-	public void placeBids(JsonObject json) {
+	public void placeBids(JsonObject json) throws IOException {
 		JsonElement player_bids = json.get("equipment_info");
 		Type listType = new TypeToken<List<String>>() {
 		}.getType();
 		List<String> bidList = new Gson().fromJson(player_bids, listType);
 		toDiscardAfterTest = new ArrayList<String>(bidList);
-		System.out.println("quest controller 67");
 		String testBidLogString = "";
 		for (String s : toDiscardAfterTest) {
 			// System.out.println(s + ";");
@@ -80,6 +79,14 @@ public class QuestController extends SocketHandler {
 		} else {
 			logger.info("Player {} bid {} for test in quest {}", json.get("name").getAsString(), testBidLogString,
 					gameEngine.storyDeck.faceUp.getName());
+			Player currPlayer = gameEngine.getPlayerFromName(json.get("name").getAsString());
+			logger.info("Sending Player {} bid to sponsor and other participants", currPlayer.getName());
+			sendToAllParticipants(gameEngine,
+					"whoBidded" + currPlayer.getName() + "#" + gameEngine.current_quest.currentMinBid);
+			sendToSponsor(gameEngine,
+					"whoBidded" + currPlayer.getName() + "#" + gameEngine.current_quest.currentMinBid);
+			sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+
 		}
 		calculateNumBids(bidList);
 		ArrayList<String> tempDiscards = new ArrayList<String>(bidList);
@@ -89,7 +96,7 @@ public class QuestController extends SocketHandler {
 	// get test discards - bids
 	public void calculateTestDiscards(ArrayList<String> discardList) {
 		int bonusBids = 0;
-		System.out.println(discardList);
+		// System.out.println(discardList);
 		for (int i = 0; i < discardList.size(); i++) {
 			AdventureCard tempCard = getCardFromName(discardList.get(i));
 			if (tempCard instanceof AmourCard) {
@@ -100,8 +107,8 @@ public class QuestController extends SocketHandler {
 				bonusBids += current_ally.getBid();
 			}
 		}
-		System.out.println(toDiscardAfterTest);
-		System.out.println("Bonus bids" + bonusBids);
+		// System.out.println(toDiscardAfterTest);
+		// System.out.println("Bonus bids" + bonusBids);
 
 		for (int i = 0; i < bonusBids; i++) {
 			String temp = toDiscardAfterTest.remove(0);
@@ -139,10 +146,12 @@ public class QuestController extends SocketHandler {
 		for (String s : equipmentList) {
 			logString += s + ", ";
 		}
+		if (logString.equals(""))
+			logString = "nothing";
 		logger.info("Player {} chose {} for stage {} of {} quest", currentPlayer.getName(), logString,
 				gameEngine.current_quest.currentStage, gameEngine.storyDeck.faceUp.getName());
 		currentPlayer.discardPlayer(remove);
-		gameEngine.updateStats();
+		// gameEngine.updateStats();
 		// gameEngine.current_quest.incTurn();
 		// calculatePlayerPoints();
 		// gameEngine.getCurrentParticipant().getWeapons().clear();
@@ -167,10 +176,10 @@ public class QuestController extends SocketHandler {
 		}
 		String[] array = cardToRemove.toArray(new String[cardToRemove.size()]);
 
-		System.out.println("qc171----------------------------------------------------");
+		// System.out.println("F171----------------------------------------------------");
 		String[] jsonArr = new String[array.length];
 		for (int i = 0; i < array.length; i++) {
-			System.out.println(array[i]);
+			// System.out.println(array[i]);
 			jsonArr[i] = "\"" + array[i] + "\"";
 		}
 
@@ -181,17 +190,17 @@ public class QuestController extends SocketHandler {
 		for (String s : cardToRemove) {
 			logString += s + ", ";
 		}
-		System.out.println("QC 180");
-		System.out.println(aiQuestCardList);
-		System.out.println(cardToRemove);
+		// System.out.println("QC 180");
+		// System.out.println(aiQuestCardList);
+		// System.out.println(cardToRemove);
 		for (int i = 0; i < jsonArr.length; i++) {
-			System.out.println(jsonArr[i]);
+			// System.out.println(jsonArr[i]);
 		}
 		List<String> JSONlist = new ArrayList<String>(jsonArr.length);
 		for (String s : jsonArr) {
 			JSONlist.add(s);
 		}
-		System.out.println(JSONlist);
+		// System.out.println(JSONlist);
 		logger.info("Player {} setup {} quest with {}", gameEngine.getActivePlayer().getName(),
 				gameEngine.storyDeck.faceUp.getName(), logString);
 		String jsonOutput = "questSetupCards" + JSONlist;
@@ -255,35 +264,36 @@ public class QuestController extends SocketHandler {
 
 	public int calculatePlayerPoints(String name) {
 		Player currentPlayer = gameEngine.getPlayerFromName(name);
-		System.out.println("LINE 258 QC CALCULATE PLAYER POINTS ---------------------");
-		for (WeaponCard w : currentPlayer.getWeapons()) {
-			System.out.println(w.getName());
-		}
-		for (AllyCard a : currentPlayer.getAllies()) {
-			System.out.println(a.getName());
-		}
+		//// System.out.println("LINE 258 QC CALCULATE PLAYER POINTS
+		//// ---------------------");
+		// for (WeaponCard w : currentPlayer.getWeapons()) {
+		// System.out.println(w.getName());
+		// }
+		// for (AllyCard a : currentPlayer.getAllies()) {
+		// System.out.println(a.getName());
+		// }
 		int tempPts = currentPlayer.getBattlePoints();
-		System.out.println(tempPts);
+		// System.out.println(tempPts);
 		ArrayList<String> removeWeapons = new ArrayList<String>();
 		// String cardNames = "";
 		if (currentPlayer.getAmourCard() != null) {
 			tempPts += 10;
 			// cardNames += currentPlayer.getAmourCard().getName() + "#";
-			System.out.println("in amour");
+			// System.out.println("in amour");
 		}
 		for (WeaponCard w : currentPlayer.getWeapons()) {
-			System.out.println("in weps");
+			// System.out.println("in weps");
 			tempPts += w.getBattlePoints();
 			// cardNames += w.getName() + "#";
 			removeWeapons.add(w.getName());
 		}
 		for (AllyCard a : currentPlayer.getAllies()) {
-			System.out.println("in ally");
+			// System.out.println("in ally");
 			tempPts += a.getBattlePoints();
 			// cardNames += a.getName() + "#";
 			// ally bonus points
 		}
-		System.out.println("LEAVING CALC PLAYER PTS " + tempPts);
+		// System.out.println("LEAVING CALC PLAYER PTS " + tempPts);
 		return tempPts;
 	}
 
@@ -354,6 +364,12 @@ public class QuestController extends SocketHandler {
 	public void setupQuest() throws IOException {
 		logger.info("{} is setting up stages for {} quest", this.sponsor.getName(), this.currentQuest.getName());
 		sendToActivePlayer(gameEngine, "questSetupInProgress" + this.currentQuest.getStages());
+		logger.info("Informing players that Player {} is sponsor of {} quest", this.sponsor.getName(),
+				gameEngine.storyDeck.faceUp.getName());
+		QuestCard q = (QuestCard) gameEngine.storyDeck.faceUp;
+		logger.info("Player {} will now choose cards for {} stages of quest", this.sponsor.getName(), q.getStages());
+		logger.info("Informing other players that Player {} is sponsor of {} quest", this.sponsor.getName(),
+				this.currentQuest.getName());
 		sendToAllPlayersExcept(gameEngine, this.sponsor, "questIsBeingSetup" + this.sponsor.getName());
 	}
 
@@ -364,8 +380,10 @@ public class QuestController extends SocketHandler {
 	public void pickupBeforeStage() throws IOException {
 		gameEngine.current_quest.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
 		String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-		gameEngine.current_quest.getCurrentParticipant().session
-				.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		logger.info("Player {} getting new card {}", gameEngine.getActivePlayer().getName(),
+				gameEngine.adventureDeck.faceUp.getName());
+		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		logger.info("Updating GUI stats for all players");
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
 	}
@@ -388,7 +406,8 @@ public class QuestController extends SocketHandler {
 				gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
 
 		gameEngine.current_quest.participants.add(gameEngine.getActivePlayer());
-
+		logger.info("Informing other players that {} has accepted to participate in {} quest",
+				gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
 		sendToAllSessionsExceptCurrent(gameEngine, gameEngine.getActivePlayer().session,
 				"AcceptedToParticipate" + gameEngine.getActivePlayer().getName());
 
@@ -397,14 +416,15 @@ public class QuestController extends SocketHandler {
 		logger.info("Player {} getting new card {}", gameEngine.getActivePlayer().getName(),
 				gameEngine.adventureDeck.faceUp.getName());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		logger.info("Updating GUI stats for all players");
 		gameEngine.updateStats();
 
 		gameEngine.incTurn();
 		if (gameEngine.getActivePlayer().equals(gameEngine.current_quest.sponsor)) {
 			for (int i = 0; i < currentQuestInfo.length; i++) {
-				System.out.println(currentQuestInfo[i]);
+				// System.out.println(currentQuestInfo[i]);
 			}
-			System.out.println("current stage:" + currentStage);
+			// System.out.println("current stage:" + currentStage);
 			if (currentQuestInfo[currentStage - 1].contains("Test")) {
 				// is test - one at a time
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
@@ -415,7 +435,7 @@ public class QuestController extends SocketHandler {
 			for (Player p : gameEngine.current_quest.participants) {
 				logString += p.getName() + ", ";
 			}
-			logger.info("{} quest setup by {} is commencing with participants: {}",
+			logger.info("{} quest setup by {} is commencing, participant(s): {} are choosing equipment CONCURRENTLY",
 					gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName(), logString);
 			sendToSponsor(gameEngine, "ParticipantsChoosing");
 			if (gameEngine.current_quest.participants.size() < 3) {
@@ -423,6 +443,7 @@ public class QuestController extends SocketHandler {
 			}
 			return;
 		}
+		logger.info("Asking Player {} to participate in quest", gameEngine.getActivePlayer().getName());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 
 	}
@@ -430,6 +451,8 @@ public class QuestController extends SocketHandler {
 	public void denyParticipation(String name) throws IOException {
 		logger.info("Player {} denied to participate in {} quest sponsored by {}", name,
 				gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName());
+		logger.info("Informing other players that {} has declined to participate in {} quest",
+				gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName());
 		sendToAllSessionsExceptCurrent(gameEngine, gameEngine.getActivePlayer().session,
 				"DeclinedToParticipate" + gameEngine.getActivePlayer().getName());
 		gameEngine.incTurn();
@@ -450,6 +473,8 @@ public class QuestController extends SocketHandler {
 				}
 				logger.info("Player {} is receiving {} for sponsoring", gameEngine.getActivePlayer().getName(),
 						cardNames);
+				logger.info("Player {} has {} cards, will be prompted to discard",
+						gameEngine.getActivePlayer().getName(), gameEngine.getActivePlayer().getHandSize());
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
 
 				if (gameEngine.getNextPlayer().isAI())
@@ -468,7 +493,7 @@ public class QuestController extends SocketHandler {
 				for (Player p : gameEngine.current_quest.participants) {
 					logString += p.getName() + ", ";
 				}
-				logger.info("{} quest setup by {} is commencing with participants: {}",
+				logger.info("{} quest setup by {} is commencing with participant(s): {} choosing weapons CONCURRENTLY",
 						gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName(), logString);
 				sendToSponsor(gameEngine, "ParticipantsChoosing");
 				if (gameEngine.current_quest.participants.size() < 3) {
@@ -477,6 +502,7 @@ public class QuestController extends SocketHandler {
 				return;
 			}
 		}
+		logger.info("Asking Player {} to participate in quest", gameEngine.getActivePlayer().getName());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 
 	}
@@ -496,6 +522,8 @@ public class QuestController extends SocketHandler {
 		}
 		logger.info("Player {} who sponsored {} quest is receiving {} card ({}) due to sponsoring quest",
 				gameEngine.getActivePlayer().getName(), gameEngine.storyDeck.faceUp.getName(), cardTracker, tempNames);
+		logger.info("Player {} has {} cards, will be prompted to discard", gameEngine.getActivePlayer().getName(),
+				gameEngine.getActivePlayer().getHandSize());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("SponsorPickup" + temp));
 	}
 
@@ -512,10 +540,11 @@ public class QuestController extends SocketHandler {
 		}
 		gameEngine.updateStats();
 		gameEngine.incTurn();
+		logger.info("Asking Player {} to participate in quest", gameEngine.getActivePlayer().getName());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("AskToParticipate"));
 	}
 
-	public void parseEquipmentInfo(JsonObject jsonObject) {
+	public void parseEquipmentInfo(JsonObject jsonObject) throws IOException {
 		// String playerName = jsonObject.get("name").getAsString();
 		// int currStage = jsonObject.get("stages").getAsInt();
 		boolean isTest = jsonObject.get("isTest").getAsBoolean();
@@ -554,6 +583,7 @@ public class QuestController extends SocketHandler {
 			} else {
 				System.out.println("same stage, next player");
 				gameEngine.current_quest.incTurn();
+				logger.info("Asking Player {} to participate in quest", gameEngine.getActivePlayer().getName());
 				gameEngine.current_quest.getCurrentParticipant().session
 						.sendMessage(new TextMessage("AskToParticipate"));
 			}
@@ -580,8 +610,8 @@ public class QuestController extends SocketHandler {
 
 	@SuppressWarnings("unchecked")
 	public void calculateStageOutcome(String playerPoints, JsonArray questInformation) throws IOException {
-		System.out.println("LINE 571 QC PLAYER POINTS");
-		System.out.println(playerPoints);
+		// System.out.println("LINE 571 QC PLAYER POINTS");
+		// System.out.println(playerPoints);
 		int currentStage = gameEngine.current_quest.currentStage - 1;
 		ArrayList<String[]> playerPointsArr = new ArrayList<String[]>();
 		FoeCard currentFoe = null;
@@ -611,38 +641,38 @@ public class QuestController extends SocketHandler {
 		questCardList = new Gson().fromJson(x, listType);
 		if (gameEngine.current_quest.sponsor.isAI())
 			questCardList = aiQuestCardList;
-		System.out.println("for s");
-		for (String s : questCardList) {
-			System.out.println(s);
-		}
-		System.out.println("for i");
+		// System.out.println("for s");
+		// for (String s : questCardList) {
+		// System.out.println(s);
+		// }
+		// System.out.println("for i");
 		for (int i = 0; i < questCardList.size(); i++) {
-			System.out.println(questCardList.get(i));
+			// System.out.println(questCardList.get(i));
 			Card tempC = getCardFromName(questCardList.get(i));
-			System.out.println(tempC.getName());
+			// System.out.println(tempC.getName());
 			if (tempC instanceof WeaponCard) {
-				System.out.println("true");
+				// System.out.println("true");
 				questCardList.remove(questCardList.get(i));
 			}
 		}
-		System.out.println(questCardList);
-		System.out.println(questCardList.size());
+		// System.out.println(questCardList);
+		// System.out.println(questCardList.size());
 		for (int i = 0; i < questCardList.size(); i++) {
 			Card currentCard = getCardFromName(questCardList.get(i));
-			System.out.println(currentCard.getName());
+			// System.out.println(currentCard.getName());
 			if (currentCard instanceof WeaponCard) {
-				System.out.println("removing this card");
-				System.out.println(currentCard.getName() + ";");
+				// System.out.println("removing this card");
+				// System.out.println(currentCard.getName() + ";");
 				questCardList.remove(currentCard.getName());
 				continue;
 			}
 		}
-		System.out.println("removing should be");
-		for (String s : questCardList) {
-			System.out.println(s);
-		}
-		System.out.println(currentStage);
-		System.out.println(gameEngine.current_quest.currentStage - 1);
+		// System.out.println("removing should be");
+		// for (String s : questCardList) {
+		// System.out.println(s);
+		// }
+		// System.out.println(currentStage);
+		// System.out.println(gameEngine.current_quest.currentStage - 1);
 		Card tempCard = getCardFromName(questCardList.get(gameEngine.current_quest.currentStage - 1));
 		if (tempCard instanceof FoeCard) {
 			logger.info("{} quest stage {} is a foe battle", gameEngine.current_quest.currentQuest.getName(),
@@ -665,23 +695,28 @@ public class QuestController extends SocketHandler {
 						playerPointsArr.get(i)[0], playerPointsArr.get(i)[1], currentFoe.getName(), currentFoePoints);
 				if (Integer.parseInt(playerPointsArr.get(i)[1]) >= currentFoePoints) {
 					shieldSent = true;
-					logger.info("Player {} has WON battle", gameEngine.current_quest.getCurrentParticipant().getName());
+					logger.info("Player {} has WON battle", playerPointsArr.get(i)[0]);
 					if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
 						Player shieldGetter = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
+						shieldGetter.getWeapons().clear();
 						shieldGetter.giveShields(gameEngine.current_quest.currentQuest.getStages());
-						System.out.println("giving player shields " + shieldGetter.getName());
+						logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
+								shieldGetter.getName());
 					}
 				} else {
 					logger.info("Player {} has LOST battle", playerPointsArr.get(i)[0]);
 					Player toRemove = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
-					toRemove.session.sendMessage(new TextMessage("LostBattle"));
+					toRemove.getWeapons().clear();
+					logger.info("Informing players of Player {} loss in battle", toRemove.getName());
+					toRemove.session.sendMessage(new TextMessage("LostBattle" + toRemove.getName()));
 					gameEngine.current_quest.participants.remove(toRemove);
-					System.out.println("removing player from quest " + toRemove.getName());
+					logger.info("Player {} has been removed from quest", toRemove.getName());
 				}
 			}
+
 			logger.info("Stage {} is over", currentStage + 1);
 			if (currentTest == null) {
-				System.out.println("this was not a test");
+				// System.out.println("this was not a test");
 				for (Player p : gameEngine.current_quest.participants) {
 					p.getWeapons().clear();
 				}
@@ -692,17 +727,17 @@ public class QuestController extends SocketHandler {
 				return;
 			}
 			if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
-				System.out.println("RESET STAGE HERE ???");
 				Winning();
 				return;
 			}
 			sendToAllSessions(gameEngine, "incStage");
 			gameEngine.current_quest.currentStage++;
 			int test = currentStage + 1;
-			System.out.println(gameEngine.current_quest.currentStage);
-			System.out.println("in quest: " + gameEngine.current_quest.currentStage);
-			System.out.println("current stage: " + currentStage);
-			System.out.println("num participants: " + gameEngine.current_quest.participants.size());
+			// System.out.println(gameEngine.current_quest.currentStage);
+			// System.out.println("in quest: " + gameEngine.current_quest.currentStage);
+			// System.out.println("current stage: " + currentStage);
+			// System.out.println("num participants: " +
+			// gameEngine.current_quest.participants.size());
 
 			ArrayList<ArrayList<String>> ordered = new ArrayList<ArrayList<String>>();
 			ArrayList<String> tempArr = new ArrayList<String>();
@@ -715,7 +750,7 @@ public class QuestController extends SocketHandler {
 				Card card = cardFinder.getCardFromName(cardName);
 				// System.out.println(card.getName());
 				if (card instanceof FoeCard || card instanceof TestCard) {
-					System.out.println("new row");
+					// System.out.println("new row");
 					ordered.add((ArrayList<String>) tempArr.clone());
 					// System.out.println(ordered);
 					// System.out.println(tempArr);
@@ -724,22 +759,32 @@ public class QuestController extends SocketHandler {
 				}
 
 				tempArr.add(cardName);
-				System.out.println(tempArr);
+				// System.out.println(tempArr);
 				if (i == currentQuestInfo.length - 1)
 					ordered.add((ArrayList<String>) tempArr.clone());
 			}
-			System.out.println(ordered);
+			// System.out.println(ordered);
 
 			if (ordered.get(test).get(0).contains("Test")) {
 				// is test - one at a time
 				gameEngine.current_quest.pickupBeforeStage();
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 			} else { // is battle choose concurrently
+				logger.info("All participants are choosing equipment for quest CONCURRENTLY");
+				String logStringParticipants = "";
 				for (Player p : gameEngine.current_quest.participants) {
 					p.getHand().add(gameEngine.adventureDeck.flipCard());
 					String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
+					logger.info("Player {} getting new card {}", p.getName(),
+							gameEngine.adventureDeck.faceUp.getName());
 					p.session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+					logStringParticipants += p.getName() + " has " + p.getHandSize() + " cards in hand";
+					if (p.getHandSize() > 12)
+						logStringParticipants += ", will be prompted to discard ";
+
 				}
+				logger.info("Player(s): {}", logStringParticipants);
+				logger.info("Updating GUI stats for all players");
 				gameEngine.updateStats();
 				sendToAllParticipants(gameEngine, "ChooseEquipment");
 			}

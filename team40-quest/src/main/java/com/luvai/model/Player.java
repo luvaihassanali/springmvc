@@ -154,9 +154,6 @@ public class Player {
 				}
 			}
 		}
-		for (AdventureCard a : this.getHand())
-			System.out.println(a.getName());
-
 	}
 
 	public AdventureCard getCardFromName(String name) {

@@ -101,10 +101,10 @@ public class SocketHandler extends TextWebSocketHandler {
 		if (jsonObject.has("equipment_info")) {
 			if (jsonObject.get("isTest").getAsBoolean()) {
 				gameEngine.current_quest.initialStageForTest = gameEngine.current_quest.currentStage;
-				System.out.println(jsonObject.toString());
+				// System.out.println(jsonObject.toString());
 				gameEngine.current_quest.parseEquipmentInfo(jsonObject);
 				questInformation.add(jsonObject);
-				System.out.println("HERE FIRST TIME OVER");
+				// System.out.println("HERE FIRST TIME OVER");
 				// System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
 				// System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
 				// System.out.println(gameEngine.current_quest.currentStage);
@@ -119,7 +119,7 @@ public class SocketHandler extends TextWebSocketHandler {
 						return;
 					}
 					logger.info("There is only one participant left in quest test, automatic minimum bid pass");
-					System.out.println("to remove after test: ");
+					// System.out.println("to remove after test: ");
 
 					gameEngine.current_quest.getCurrentParticipant()
 							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
@@ -133,11 +133,11 @@ public class SocketHandler extends TextWebSocketHandler {
 								.sendMessage(new TextMessage("AIRemoveFromScreen" + aiRemove));
 					}
 					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
-					System.out.println("REPLACE THESSE CARDS ON SCREEN");
+					// System.out.println("REPLACE THESSE CARDS ON SCREEN");
 					bonusTestCardControl = 1;
 					String testBonusReplacement = "";
 					for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
-						System.out.println(s);
+						// System.out.println(s);
 						testBonusReplacement += s + ";";
 					}
 					testBonusReplacement += "null";
@@ -157,35 +157,35 @@ public class SocketHandler extends TextWebSocketHandler {
 					return;
 				}
 
-				System.out.println("socket handler 110");
-				System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
-				System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
-				System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
-				System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
+				// System.out.println("socket handler 110");
+				// System.out.println(gameEngine.current_quest.getCurrentParticipant().getName());
+				// System.out.println(gameEngine.current_quest.getCurrentParticipant().getHandSize());
+				// System.out.println(gameEngine.current_quest.toDiscardAfterTest.size());
+				// System.out.println(gameEngine.current_quest.toDiscardAfterTest.isEmpty());
 				if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
-					System.out.println("player dropped out - remove");
+					// System.out.println("player dropped out - remove");
 
 					if (jsonObject.has("oldBids")) {
 						for (AdventureCard a : gameEngine.getCurrentParticipant().getHand()) {
 							a.getName();
 						}
-						System.out.println("REPLACE TEST CARDS USED FOR LOSING PLAYER >>> "
-								+ gameEngine.getCurrentParticipant().getName());
+						// System.out.println("REPLACE TEST CARDS USED FOR LOSING PLAYER >>> "
+						// + gameEngine.getCurrentParticipant().getName());
 						JsonArray oldBids = (JsonArray) jsonObject.get("oldBids");
 						String replaceTestCards = "";
 						for (int i = 0; i < oldBids.size(); i++) {
 							JsonElement temp = oldBids.get(i);
-							System.out.println(temp.toString());
+							// System.out.println(temp.toString());
 							replaceTestCards += temp.toString() + ";";
 						}
 						gameEngine.getCurrentParticipant().session
 								.sendMessage(new TextMessage("replaceTestCards" + replaceTestCards));
-						System.out.println("remove card");
-						System.out.println(replaceTestCards);
+						// System.out.println("remove card");
+						// System.out.println(replaceTestCards);
 						String[] replaceTestCardArr = replaceTestCards.split(";");
 						String removeExtra = replaceTestCardArr[0].replaceAll(";", "");
 						removeExtra = removeExtra.replaceAll("\"", "");
-						System.out.println(removeExtra + " REMOVE EXTRA HERE ");
+						// System.out.println(removeExtra + " REMOVE EXTRA HERE ");
 						for (AdventureCard a : gameEngine.getCurrentParticipant().getHand()) {
 							if (a.getName().equals(removeExtra)) {
 								gameEngine.getCurrentParticipant().getHand().remove(a);
@@ -210,14 +210,14 @@ public class SocketHandler extends TextWebSocketHandler {
 							sendToAllSessions(gameEngine, "incStage");
 							gameEngine.current_quest.currentStage++;
 						}
-						System.out.println("to remove after test: ");
+						// System.out.println("to remove after test: ");
 
 						gameEngine.current_quest.getCurrentParticipant()
 								.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
 						String aiRemove = "";
 						for (int i = 0; i < gameEngine.current_quest.getCurrentParticipant().testDiscardList
 								.size(); i++) {
-							System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
+							// System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i));
 							aiRemove += gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(i) + ";";
 						}
 						if (gameEngine.getCurrentParticipant().isAI()) {
@@ -225,11 +225,11 @@ public class SocketHandler extends TextWebSocketHandler {
 									.sendMessage(new TextMessage("AIRemoveFromScreen" + aiRemove));
 						}
 						gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
-						System.out.println("REPLACE THESSE CARDS ON SCREEN");
+						// System.out.println("REPLACE THESSE CARDS ON SCREEN");
 						bonusTestCardControl = 1;
 						String testBonusReplacement = "";
 						for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
-							System.out.println(s);
+							// System.out.println(s);
 							testBonusReplacement += s + ";";
 						}
 						testBonusReplacement += "null";
@@ -240,36 +240,37 @@ public class SocketHandler extends TextWebSocketHandler {
 					}
 				}
 
-				System.out.println("HERE TWICE OVER NOW");
-				System.out.println(gameEngine.current_quest.currentStage);
-				System.out.println(gameEngine.current_quest.participants.size());
-				System.out.println(gameEngine.getCurrentParticipant().getName());
+				// System.out.println("HERE TWICE OVER NOW");
+				// System.out.println(gameEngine.current_quest.currentStage);
+				// System.out.println(gameEngine.current_quest.participants.size());
+				String bidMaker = gameEngine.getCurrentParticipant().getName();
+				// System.out.println(gameEngine.getCurrentParticipant().getName());
 				gameEngine.current_quest.incTurn();
 
 				if (gameEngine.current_quest.originalBid > gameEngine.current_quest.currentMinBid) {
 				} else {
-					if (gameEngine.current_quest.getCurrentParticipant().testDiscardList.size() != 0) {
-						sendToAllParticipants(gameEngine,
-								"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
-										+ gameEngine.current_quest.currentMinBid);
-						sendToSponsor(gameEngine,
-								"whoBidded" + gameEngine.current_quest.getCurrentParticipant().getName() + "#"
-										+ gameEngine.current_quest.currentMinBid);
-						sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
-					}
+
+					logger.info("Sending Player {} bid to sponsor and other participants", bidMaker);
+					sendToAllParticipants(gameEngine,
+							"whoBidded" + bidMaker + "#" + gameEngine.current_quest.currentMinBid);
+					sendToSponsor(gameEngine, "whoBidded" + bidMaker + "#" + gameEngine.current_quest.currentMinBid);
+					sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
+
 				}
 
 				for (int i = 0; i < gameEngine.current_quest.currentQuestInfo.length; i++) {
-					System.out.println(gameEngine.current_quest.currentQuestInfo[i]);
+					// System.out.println(gameEngine.current_quest.currentQuestInfo[i]);
 				}
 				if (gameEngine.current_quest.currentQuestInfo[gameEngine.current_quest.currentStage - 1]
 						.contains("Test")) {
-					System.out.println("in contains test " + gameEngine.getCurrentParticipant().getName());
+					// System.out.println("in contains test " +
+					// gameEngine.getCurrentParticipant().getName());
 				} else {
 					gameEngine.current_quest.pickupBeforeStage();
 				}
-				System.out.println(
-						"in outside contains test - it is turn of: " + gameEngine.getCurrentParticipant().getName());
+				// System.out.println(
+				// "in outside contains test - it is turn of: " +
+				// gameEngine.getCurrentParticipant().getName());
 				if (gameEngine.current_quest.participants.size() == 1) {
 
 					logger.info("Player {} won test in {} quest, advancing to stage {}",
@@ -280,7 +281,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				return;
 			}
 			gameEngine.current_quest.equipmentTracker++;
-			System.out.println(jsonObject.toString());
+			// System.out.println(jsonObject.toString());
 			gameEngine.current_quest.parseEquipmentInfo(jsonObject);
 			questInformation.add(jsonObject);
 			if (gameEngine.current_quest.equipmentTracker == gameEngine.current_quest.getParticipants().size()) {
@@ -300,7 +301,7 @@ public class SocketHandler extends TextWebSocketHandler {
 							+ "#" + gameEngine.current_quest.participants.get(i).getRank().getStringFile() + ";";
 				}
 				sendToAllSessions(gameEngine, "playerPointString" + playerPoints);
-				logger.info("Displaying battle screen");
+
 				gameEngine.current_quest.calculateStageOutcome(playerPoints, questInformation);
 				return;
 			}
@@ -308,7 +309,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// remove stage card when test is first
 		if (jsonObject.has("removeStageCardFromTest")) {
-			System.out.println(jsonObject.toString());
+			// System.out.println(jsonObject.toString());
 			Player p = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 			String cardName = jsonObject.get("removeStageCardFromTest").getAsString();
 			String trimmedName = cardName.replace("http://localhost:8080/resources/images/", "");
@@ -317,8 +318,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			trimmedName = trimmedName.substring(4);
 			trimmedName = trimmedName.substring(0, trimmedName.length() - 4);
 			trimmedName = trimmedName.replaceAll("%20", " ");
-			System.out.println(trimmedName);
-			System.out.println(p.getName());
+			// System.out.println(trimmedName);
+			// System.out.println(p.getName());
 			p.discard(trimmedName);
 			gameEngine.updateStats();
 		}
@@ -403,6 +404,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	}
 
+	@SuppressWarnings("unused")
 	public void Winning() throws IOException {
 		boolean sendOnce = true;
 		String winners = "";
@@ -418,9 +420,9 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.sponsor.getName(),
 				gameEngine.current_quest.currentQuest.getStages());
 		for (int i = 0; i < gameEngine.players.size(); i++) {
-			System.out.println("FOR i LOOP 327 SH");
+
 			for (int j = 0; j < gameEngine.current_quest.participants.size(); j++) {
-				System.out.println("FOR j LOOP 329 SH");
+
 				if (gameEngine.players.get(i).getName()
 						.equals(gameEngine.current_quest.participants.get(j).getName())) {
 					if (gameEngine.current_quest.shieldSent) {
@@ -433,18 +435,18 @@ public class SocketHandler extends TextWebSocketHandler {
 								gameEngine.current_quest.participants.get(j).getName());
 					}
 
-					System.out.println("to remove after test: ");
+					// System.out.println("to remove after test: ");
 					gameEngine.current_quest.getCurrentParticipant()
 							.discardPlayer(gameEngine.current_quest.getCurrentParticipant().testDiscardList);
 
 					for (int k = 0; k < gameEngine.current_quest.getCurrentParticipant().testDiscardList.size(); k++) {
-						System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(k));
+						// System.out.println(gameEngine.current_quest.getCurrentParticipant().testDiscardList.get(k));
 					}
 					gameEngine.current_quest.getCurrentParticipant().testDiscardList.clear();
-					System.out.println("REPLACE THESSE CARDS ON SCREEN");
+					// System.out.println("REPLACE THESSE CARDS ON SCREEN");
 					String testBonusReplacement = "";
 					for (String s : gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList) {
-						System.out.println(s);
+						// System.out.println(s);
 						testBonusReplacement += s + ";";
 					}
 					testBonusReplacement += "null";
@@ -478,6 +480,9 @@ public class SocketHandler extends TextWebSocketHandler {
 											+ " sponsoring quest",
 									gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(),
 									cardTracker, tempNames);
+							logger.info("Player {} has {} cards, will be prompted to discard",
+									gameEngine.current_quest.sponsor.getName(),
+									gameEngine.current_quest.sponsor.getHandSize());
 							gameEngine.current_quest.sponsor.session
 									.sendMessage(new TextMessage("SponsorPickup" + temp));
 							cardTracker = 0;
@@ -528,6 +533,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		logger.info("Player {} who sponsored {} quest is receiving {} card due to" + " sponsoring quest",
 				gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(), cardTracker);
+		logger.info("Player {} has {} cards, will be prompted to discard", gameEngine.current_quest.sponsor.getName(),
+				gameEngine.current_quest.sponsor.getHandSize());
 		gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("SponsorPickup" + temp));
 		cardTracker = 0;
 		String update = gameEngine.getPlayerStats();
@@ -554,6 +561,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		sendToAllSessions(gameEngine, ("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
 		if (gameEngine.storyDeck.faceUp instanceof QuestCard) {
 			gameEngine.roundInitiater = gameEngine.getActivePlayer();
+			logger.info("Asking Player {} to sponsor quest {}", gameEngine.getActivePlayer().getName(),
+					gameEngine.storyDeck.faceUp.getName());
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
 		}
 		if (gameEngine.storyDeck.faceUp instanceof TournamentCard) {
@@ -684,7 +693,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	}
 
 	// send to all players except that in current turn
-	public void sendToAllSessionsExceptCurrent(Game gameEngine, WebSocketSession session, String message)
+	public static void sendToAllSessionsExceptCurrent(Game gameEngine, WebSocketSession session, String message)
 			throws IOException {
 		ArrayList<Player> tempList = new ArrayList<Player>();
 		for (int i = 0; i < gameEngine.players.size(); i++) {
@@ -697,6 +706,17 @@ public class SocketHandler extends TextWebSocketHandler {
 		for (Player p : tempList) {
 			p.session.sendMessage(new TextMessage(message));
 		}
+	}
+
+	public static void setTimeout(Runnable runnable, int delay) {
+		new Thread(() -> {
+			try {
+				Thread.sleep(delay);
+				runnable.run();
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}).start();
 	}
 
 }// end of class

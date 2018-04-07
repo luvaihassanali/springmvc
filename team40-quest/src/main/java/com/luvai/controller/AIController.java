@@ -213,8 +213,8 @@ public class AIController extends SocketHandler {
 	}
 
 	public void doneProsperity() throws IOException {
-		System.out.println(gameEngine.current_event.eventCard.getName());
-		System.out.println(gameEngine.current_event.prosperityTracker);
+		// System.out.println(gameEngine.current_event.eventCard.getName());
+		// System.out.println(gameEngine.current_event.prosperityTracker);
 
 		gameEngine.current_event.prosperityTracker++;
 		if (gameEngine.current_event.prosperityTracker == 4) {

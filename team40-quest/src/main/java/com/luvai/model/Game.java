@@ -93,7 +93,7 @@ public class Game {
 			add(CardList.Thieves);
 			add(CardList.Dagger);
 			add(CardList.SirGalahad);
-			add(CardList.SirGalahad);
+			add(CardList.Sword);
 		}
 	};
 	@SuppressWarnings("serial")
@@ -104,9 +104,9 @@ public class Game {
 			add(CardList.KingArthur);
 			add(CardList.Thieves);
 			add(CardList.Saxons);
-			add(CardList.SaxonKnight);
+			add(CardList.Battleax);
 			add(CardList.Boar);
-			add(CardList.QueenIseult);
+			add(CardList.Lance);
 			add(CardList.SirGawain);
 			add(CardList.ValorTest);
 			add(CardList.Dagger);
@@ -232,10 +232,12 @@ public class Game {
 			logger.info("{} accepted to sponsor quest {}", name.getAsString(), this.storyDeck.faceUp.getName());
 			this.newQuest(this, this.getActivePlayer(), (QuestCard) this.storyDeck.faceUp);
 			SocketHandler.sendToAllSessions(this, "resetStageTracker");
-
-			System.out.println("resetting stage tracker: " + this.current_quest.currentStage);
 		} else {
 			logger.info("{} declined to sponsor quest {}", name.getAsString(), this.storyDeck.faceUp.getName());
+			logger.info("Informing other players that Player {} declined to sponsor {} quest",
+					this.getActivePlayer().getName(), this.storyDeck.faceUp.getName());
+			SocketHandler.sendToAllSessionsExceptCurrent(this, this.getActivePlayer().session,
+					"declinedToSponsor" + this.getActivePlayer().getName());
 			this.incTurn();
 			if (this.getActivePlayer().equals(this.roundInitiater)) {
 				SocketHandler.sendToAllSessions(this, "NoSponsors");
@@ -244,6 +246,8 @@ public class Game {
 				this.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 				return;
 			}
+			logger.info("Asking Player {} to sponsor quest {}", this.getActivePlayer().getName(),
+					this.storyDeck.faceUp.getName());
 			this.getActivePlayer().session.sendMessage(new TextMessage("sponsorQuest"));
 		}
 

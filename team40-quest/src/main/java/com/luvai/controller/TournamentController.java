@@ -62,9 +62,13 @@ public class TournamentController extends SocketHandler {
 		tournie_info = new JsonArray();
 		playerTourniePoints = "";
 		pickUpBeforeTournie();
+		String logStringP = "";
 		for (Player p : gameEngine.current_tournament.participants) {
 			p.session.sendMessage(new TextMessage("ChooseEquipmentTournie"));
+			logStringP += p.getName() + ", ";
 		}
+		logger.info("Participants: {} are choosing weapons concurrently for Tournament {}", logStringP,
+				faceUp.getName());
 	}
 
 	public void getNewTourniePlayers(JsonObject jsonObject, WebSocketSession session) throws IOException {
@@ -75,12 +79,16 @@ public class TournamentController extends SocketHandler {
 			logger.info("Player {} accepted to participate in Tournament {}", name.getAsString(),
 					gameEngine.storyDeck.faceUp.getName());
 			acceptParticipation(name.getAsString());
+			logger.info("Informing other players that {} accepted to participate in Tournament {}", name.getAsString(),
+					gameEngine.storyDeck.faceUp.getName());
 			sendToAllSessionsExceptCurrent(gameEngine, session, "AcceptedTournie" + name.getAsString());
 
 		} else {
 			logger.info("Player {} declined to participate in Tournament {}", name.getAsString(),
 					gameEngine.storyDeck.faceUp.getName());
 			denyParticipation(name.getAsString());
+			logger.info("Informing other players that {} declined to participate in Tournament {}", name.getAsString(),
+					gameEngine.storyDeck.faceUp.getName());
 			sendToAllSessionsExceptCurrent(gameEngine, session, "DeclinedTournie" + name.getAsString());
 		}
 	}
@@ -93,6 +101,8 @@ public class TournamentController extends SocketHandler {
 			startTournament();
 			return;
 		}
+		logger.info("Asking Player {} to participate in Tournament {}", gameEngine.getActivePlayer().getName(),
+				gameEngine.storyDeck.faceUp.getName());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("participateTournament"));
 	}
 
@@ -109,6 +119,8 @@ public class TournamentController extends SocketHandler {
 			startTournament();
 			return;
 		}
+		logger.info("Asking Player {} to participate in Tournament {}", gameEngine.getActivePlayer().getName(),
+				gameEngine.storyDeck.faceUp.getName());
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("participateTournament"));
 
 	}
@@ -148,6 +160,7 @@ public class TournamentController extends SocketHandler {
 			roundOne = false;
 		}
 		pickUpBeforeTournie();
+		logger.info("All tournament participants are choosing equipment concurrently");
 		sendToAllParticipants(gameEngine, "ChooseEquipmentTournie");
 	}
 
@@ -225,6 +238,8 @@ public class TournamentController extends SocketHandler {
 			loggerWeapons += s + ", ";
 			tournieEquip.add(s);
 		}
+		if (loggerWeapons.equals(""))
+			loggerWeapons = "nothing";
 		logger.info("Player {} has equipped {} for Tournament {}", currentPlayer.getName(), loggerWeapons,
 				gameEngine.storyDeck.faceUp.getName());
 		equipTournie(currentPlayer, tournieEquip);
@@ -257,6 +272,7 @@ public class TournamentController extends SocketHandler {
 		Arrays.sort(contestants, new TournamentPlayerComparator());
 		String send = "";
 		for (TournamentPlayer s : contestants) {
+			// System.out.println("TOURNAMENT PLAYER FOR S");
 			// System.out.println(s.toString());
 			String[] logInfo = s.toString().split("#");
 			logger.info("Player {} has {} battle points at rank {}", logInfo[0], logInfo[1],
@@ -314,6 +330,7 @@ public class TournamentController extends SocketHandler {
 					winner.getWeapons().clear();
 					winner.clearAmourCard();
 				}
+				logger.info("Updating GUI stats for all players");
 				gameEngine.updateStats();
 				gameEngine.incTurn();
 				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));

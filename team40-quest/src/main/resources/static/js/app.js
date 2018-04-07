@@ -111,7 +111,8 @@ socketConn.onmessage = function(event) {
     }
     //lost battle
     if (event.data == "LostBattle") {
-    	serverMsg.value = "Lost battle, wait for quest to finish";
+    	var loserName = event.data.replace("LostBattle","");
+    	serverMsg.value = "Player " + loserName + " lost battle, wait for quest to finish";
     }
     //get all player points for stage
     if (event.data.startsWith("playerPointString")) {
@@ -552,6 +553,10 @@ socketConn.onmessage = function(event) {
 	if(event.data.startsWith("questIsBeingSetup")) {
 		var sponsorName = event.data.replace("questIsBeingSetup", "");
 		serverMsg.value = "Player " + sponsorName + " is setting up quest, please wait";
+	}
+	if(event.data.startsWith("declinedToSponsor")) {
+		var notSponsorName = event.data.replace("declinedToSponsor","");
+		serverMsg.value = "Player " + notSponsorName + " is declined to sponsor quest, please wait";
 	}
 	// pick up x cards
 	if (event.data.startsWith("PickupCards")) {
