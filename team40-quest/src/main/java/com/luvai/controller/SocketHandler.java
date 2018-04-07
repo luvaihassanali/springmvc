@@ -44,7 +44,10 @@ public class SocketHandler extends TextWebSocketHandler {
 			throws InterruptedException, IOException {
 
 		JsonObject jsonObject = (new JsonParser()).parse(message.getPayload()).getAsJsonObject();
-
+		// repeat info
+		if (jsonObject.has("logInfo")) {
+			gameEngine.getLogInfo(jsonObject);
+		}
 		// send ai to controller
 		if (jsonObject.has("AICommand")) {
 			gameEngine.AIController.receiveAICommand(jsonObject);
@@ -92,7 +95,6 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		// flip story deck
 		if (jsonObject.has("incTurnRoundOver")) {
-			System.out.println("INCREASING TURN ON SERVER SIDE LINE 95 SH");
 			gameEngine.incTurn();
 			gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
 		}
@@ -153,7 +155,8 @@ public class SocketHandler extends TextWebSocketHandler {
 						return;
 					}
 					gameEngine.current_quest.pickupBeforeStage();
-					gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
+					gameEngine.current_quest.getCurrentParticipant().session
+							.sendMessage(new TextMessage("ChooseEquipment"));
 					return;
 				}
 
@@ -274,8 +277,12 @@ public class SocketHandler extends TextWebSocketHandler {
 				if (gameEngine.current_quest.participants.size() == 1) {
 
 					logger.info("Player {} won test in {} quest, advancing to stage {}",
-							gameEngine.getCurrentParticipant().getName(), gameEngine.storyDeck.faceUp.getName(),
-							gameEngine.current_quest.currentStage);
+							gameEngine.current_quest.getCurrentParticipant().getName(),
+							gameEngine.storyDeck.faceUp.getName(), gameEngine.current_quest.currentStage);
+					logger.info("Informing players that player {} is winner of test",
+							gameEngine.current_quest.getCurrentParticipant().getName());
+					sendToAllSessions(gameEngine,
+							"testWinner" + gameEngine.current_quest.getCurrentParticipant().getName());
 				}
 				gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("ChooseEquipment"));
 				return;
@@ -292,6 +299,8 @@ public class SocketHandler extends TextWebSocketHandler {
 				logger.info("All players have chosen equipment for stage {} of {} quest which is a test: {}",
 						gameEngine.current_quest.currentStage, gameEngine.storyDeck.faceUp.getName(),
 						jsonObject.get("isTest").getAsBoolean());
+				logger.info("Updating GUI stats for all players");
+				gameEngine.updateStats();
 				sendToAllSessions(gameEngine, "allPlayerQuestInfo" + questInformation.toString());
 				String playerPoints = "";
 				for (int i = 0; i < gameEngine.current_quest.participants.size(); i++) {
@@ -342,6 +351,11 @@ public class SocketHandler extends TextWebSocketHandler {
 			if (version == 42) {
 				logger.info("Setting up rigged game");
 				gameEngine.riggedGame = 42;
+				gameEngine.storyDeck.initRiggedStoryDeck(gameEngine.riggedGame);
+			}
+			if (version == 43) {
+				logger.info("Setting up rigged game");
+				gameEngine.riggedGame = 43;
 				gameEngine.storyDeck.initRiggedStoryDeck(gameEngine.riggedGame);
 			}
 
@@ -482,11 +496,12 @@ public class SocketHandler extends TextWebSocketHandler {
 									cardTracker, tempNames);
 							logger.info("Player {} has {} cards, will be prompted to discard",
 									gameEngine.current_quest.sponsor.getName(),
-									gameEngine.current_quest.sponsor.getHandSize());
+									gameEngine.current_quest.sponsor.getHand().size());
 							gameEngine.current_quest.sponsor.session
 									.sendMessage(new TextMessage("SponsorPickup" + temp));
 							cardTracker = 0;
 							sendOnce = false;
+							logger.info("Updating GUI stats for all players");
 							gameEngine.updateStats();
 							for (Player p : gameEngine.players) {
 								AdventureCard amour = p.getAmourCard();
@@ -523,18 +538,21 @@ public class SocketHandler extends TextWebSocketHandler {
 				gameEngine.current_quest.sponsor.getName());
 		sendToAllSessions(gameEngine, "QuestOverWaitForSponsor");
 		String temp = "";
+		String tempNames = "";
 		int cardTracker = 0;
 		for (int i = gameEngine.current_quest.sponsor.getHandSize(); i < 12
 				+ gameEngine.current_quest.currentQuest.getStages(); i++) {
 			cardTracker++;
 			AdventureCard newCard = gameEngine.adventureDeck.flipCard();
 			temp += newCard.getStringFile() + ";";
+			tempNames += newCard.getName() + ", ";
 			gameEngine.current_quest.sponsor.getHand().add(newCard);
 		}
-		logger.info("Player {} who sponsored {} quest is receiving {} card due to" + " sponsoring quest",
-				gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(), cardTracker);
+		logger.info("Player {} who sponsored {} quest is receiving {} card ({}) due to" + " sponsoring quest",
+				gameEngine.current_quest.sponsor.getName(), gameEngine.storyDeck.faceUp.getName(), cardTracker,
+				tempNames);
 		logger.info("Player {} has {} cards, will be prompted to discard", gameEngine.current_quest.sponsor.getName(),
-				gameEngine.current_quest.sponsor.getHandSize());
+				gameEngine.current_quest.sponsor.getHand().size());
 		gameEngine.current_quest.sponsor.session.sendMessage(new TextMessage("SponsorPickup" + temp));
 		cardTracker = 0;
 		String update = gameEngine.getPlayerStats();
@@ -558,6 +576,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		logger.info("Player {} is flipping new card from story deck: {}", gameEngine.getActivePlayer().getName(),
 				gameEngine.storyDeck.faceUp.getName());
+		logger.info("New story card {} is being rendered on player screens", gameEngine.storyDeck.faceUp.getName());
 		sendToAllSessions(gameEngine, ("flipStoryDeck" + gameEngine.storyDeck.faceUp.toString()));
 		if (gameEngine.storyDeck.faceUp instanceof QuestCard) {
 			gameEngine.roundInitiater = gameEngine.getActivePlayer();
@@ -588,7 +607,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			return;
 		} else {
 			logger.info("Player from session#{} connected", session.getId());
-			session.sendMessage(new TextMessage("Welcome, enter your nickname - then press send."));
+			session.sendMessage(new TextMessage("Welcome> enter your nickname then press send"));
 			sessions.add(session);
 
 		}

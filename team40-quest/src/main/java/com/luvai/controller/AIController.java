@@ -69,7 +69,7 @@ public class AIController extends SocketHandler {
 		int bidToCompare = gameEngine.current_quest.currentMinBid;
 		if (bidToCompare == 0)
 			bidToCompare = gameEngine.current_quest.originalBid;
-		if (AIBids.size() < bidToCompare) {
+		if (AIBids.size() < bidToCompare + 1) {
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIDropOut"));
 			System.out.println("AI DROPOUT " + gameEngine.current_quest.getCurrentParticipant().getName());
 			gameEngine.current_quest.getCurrentParticipant().getHand()
@@ -183,6 +183,8 @@ public class AIController extends SocketHandler {
 		Player newPlayer = new Player(playerName.getAsString(), session, 2);
 		gameEngine.players.add(newPlayer);
 		logger.info("Player {} is enrolled in the game", playerName.getAsString());
+		int freeSpots = 4 - gameEngine.players.size();
+		logger.info("There are {} spots available for AI players", freeSpots);
 		if (gameEngine.players.size() == 4) {
 			sendToAllSessions(gameEngine, "GameReadyToStart");
 			logger.info("All players have joined, starting game...");
@@ -192,7 +194,12 @@ public class AIController extends SocketHandler {
 					gameEngine.players.get(1).setHand(gameEngine.mockHand2);
 					gameEngine.players.get(2).setHand(gameEngine.mockHand3);
 					gameEngine.players.get(3).setHand(gameEngine.mockHand4);
-
+				}
+				if (gameEngine.riggedGame == 43) {
+					gameEngine.players.get(0).setHand(gameEngine.mockHand5); // pickUpNewHand()
+					gameEngine.players.get(1).setHand(gameEngine.mockHand6);
+					gameEngine.players.get(2).setHand(gameEngine.mockHand7);
+					gameEngine.players.get(3).setHand(gameEngine.mockHand8);
 				}
 			} else {
 				for (Player p : gameEngine.players) {

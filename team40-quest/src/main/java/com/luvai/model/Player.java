@@ -131,9 +131,12 @@ public class Player {
 					break;
 				}
 				if (this.getHand().get(i) instanceof AllyCard) {
-					logger.info("Player {} allied with {} as discard", this.getName(), this.getHand().get(i).getName());
-					this.getAllies().add((AllyCard) this.getHand().get(i));
-					this.getHand().remove(i);
+					AllyCard ally = (AllyCard) this.getHand().get(i);
+					logger.info(
+							"Player {} allied with {} as discard, will now have +{} battle points for the rest of game",
+							this.getName(), ally.getName(), ally.getBattlePoints());
+					this.getAllies().add(ally);
+					this.getHand().remove(ally);
 					break;
 				} else {
 					logger.info("Player {} discarded {}", this.getName(), this.getHand().get(i).getName());

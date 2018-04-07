@@ -1,0 +1,68 @@
+2018-Apr-07 14:05:48 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Slay the Dragon
+2018-Apr-07 14:05:48 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New story card Slay the Dragon is being rendered on player screens
+2018-Apr-07 14:05:48 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Slay the Dragon
+2018-Apr-07 14:05:49 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player1 declined to sponsor quest Slay the Dragon
+2018-Apr-07 14:05:49 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Informing other players that Player Player1 declined to sponsor Slay the Dragon quest
+2018-Apr-07 14:05:49 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Asking Player Player2 to sponsor quest Slay the Dragon
+2018-Apr-07 14:05:51 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player2 accepted to sponsor quest Slay the Dragon
+2018-Apr-07 14:05:51 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Slay the Dragon sponsored by Player2
+2018-Apr-07 14:05:51 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player2 is setting up stages for Slay the Dragon quest
+2018-Apr-07 14:05:51 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing players that Player Player2 is sponsor of Slay the Dragon quest
+2018-Apr-07 14:05:51 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player2 will now choose cards for 3 stages of quest
+2018-Apr-07 14:06:02 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player2 attempted to choose a foe higher than ones already chosing during Slay the Dragon quest sponsor
+2018-Apr-07 14:06:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player Player2 setup Slay the Dragon quest with ["Test of Morgan Le Fey","Green Knight","Black Knight"]
+2018-Apr-07 14:06:06 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player2 discarded Test of Morgan Le Fey
+2018-Apr-07 14:06:06 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player2 discarded Green Knight
+2018-Apr-07 14:06:06 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player2 discarded Black Knight
+2018-Apr-07 14:06:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-07 14:06:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Slay the Dragon quest sponsored by Player2
+2018-Apr-07 14:06:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Slay the Dragon quest
+2018-Apr-07 14:06:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Battle-ax
+2018-Apr-07 14:06:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 14:06:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-07 14:06:12 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Slay the Dragon quest sponsored by Player2
+2018-Apr-07 14:06:12 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Slay the Dragon quest
+2018-Apr-07 14:06:12 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Sword
+2018-Apr-07 14:06:12 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 14:06:12 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Asking Player Player1 to participate in quest
+2018-Apr-07 14:06:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player1 accepted to participate in Slay the Dragon quest sponsored by Player2
+2018-Apr-07 14:06:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Informing other players that Player1 has accepted to participate in Slay the Dragon quest
+2018-Apr-07 14:06:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player1 getting new card Test of Temptation
+2018-Apr-07 14:06:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 14:06:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Slay the Dragon quest setup by Player2 is commencing, participant(s): Player3, Player4, Player1,  are choosing equipment CONCURRENTLY
+2018-Apr-07 14:06:21 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 bid Sword, Robber Knight, King Arthur,  for test in quest Slay the Dragon
+2018-Apr-07 14:06:21 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Sending Player Player3 bid to sponsor and other participants
+2018-Apr-07 14:06:29 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player4 bid Robber Knight, Saxons, Saxons,  for test in quest Slay the Dragon
+2018-Apr-07 14:06:29 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Sending Player Player4 bid to sponsor and other participants
+2018-Apr-07 14:06:35 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player1 bid Sword, Amour, Horse,  for test in quest Slay the Dragon
+2018-Apr-07 14:06:35 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Sending Player Player1 bid to sponsor and other participants
+2018-Apr-07 14:06:38 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player3 bid Sword, Robber Knight, King Arthur, Battle-ax,  for test in quest Slay the Dragon
+2018-Apr-07 14:06:38 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Sending Player Player3 bid to sponsor and other participants
+2018-Apr-07 14:06:40 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player4 dropped out of test in quest Slay the Dragon
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player1 dropped out of test in quest Slay the Dragon
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player3 used King Arthur
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player3 used Battle-ax
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Lance
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player3 won test in Slay the Dragon quest, advancing to stage 2
+2018-Apr-07 14:06:42 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Informing players that player Player3 is winner of test
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player3 chose Sword,  for stage 2 of Slay the Dragon quest
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player3 used Sword
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Slay the Dragon quest which is a test: false
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Slay the Dragon quest stage 2 is a foe battle
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Green Knight with 25 battle points
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 15 battle points is starting - versus Green Knight with 25 points
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player3 has LOST battle
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing players of player Player3 loss in battle
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player3 has been removed from quest
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Stage 2 is over
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - All players defeated in Slay the Dragon quest sponsored by Player2
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player2 who sponsored Slay the Dragon quest is receiving 6 card (Lance, Battle-ax, Thieves, Thieves, Test of Temptation, Amour, ) due to sponsoring quest
+2018-Apr-07 14:06:54 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player2 has 15 cards, will be prompted to discard
+2018-Apr-07 14:07:07 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player2 discarded Thieves
+2018-Apr-07 14:07:10 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
+2018-Apr-07 14:07:14 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Horse
+2018-Apr-07 14:07:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: King's Call to Arms
+2018-Apr-07 14:07:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New story card King's Call to Arms is being rendered on player screens
+2018-Apr-07 14:07:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Player3 has initiated event King's Call to Arms

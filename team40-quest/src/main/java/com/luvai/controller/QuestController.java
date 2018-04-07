@@ -79,12 +79,16 @@ public class QuestController extends SocketHandler {
 		} else {
 			logger.info("Player {} bid {} for test in quest {}", json.get("name").getAsString(), testBidLogString,
 					gameEngine.storyDeck.faceUp.getName());
-			Player currPlayer = gameEngine.getPlayerFromName(json.get("name").getAsString());
-			logger.info("Sending Player {} bid to sponsor and other participants", currPlayer.getName());
-			sendToAllParticipants(gameEngine,
-					"whoBidded" + currPlayer.getName() + "#" + gameEngine.current_quest.currentMinBid);
-			sendToSponsor(gameEngine,
-					"whoBidded" + currPlayer.getName() + "#" + gameEngine.current_quest.currentMinBid);
+			// Player currPlayer =
+			// gameEngine.getPlayerFromName(json.get("name").getAsString());
+			// logger.info("Sending Player {} bid to sponsor and other participants",
+			// currPlayer.getName());
+			// sendToAllParticipants(gameEngine,
+			// "whoBidded" + currPlayer.getName() + "#" +
+			// gameEngine.current_quest.currentMinBid);
+			// sendToSponsor(gameEngine,
+			// "whoBidded" + currPlayer.getName() + "#" +
+			// gameEngine.current_quest.currentMinBid);
 			sendToAllSessions(gameEngine, "updateMinBid" + gameEngine.current_quest.currentMinBid);
 
 		}
@@ -368,8 +372,6 @@ public class QuestController extends SocketHandler {
 				gameEngine.storyDeck.faceUp.getName());
 		QuestCard q = (QuestCard) gameEngine.storyDeck.faceUp;
 		logger.info("Player {} will now choose cards for {} stages of quest", this.sponsor.getName(), q.getStages());
-		logger.info("Informing other players that Player {} is sponsor of {} quest", this.sponsor.getName(),
-				this.currentQuest.getName());
 		sendToAllPlayersExcept(gameEngine, this.sponsor, "questIsBeingSetup" + this.sponsor.getName());
 	}
 
@@ -380,9 +382,10 @@ public class QuestController extends SocketHandler {
 	public void pickupBeforeStage() throws IOException {
 		gameEngine.current_quest.getCurrentParticipant().getHand().add(gameEngine.adventureDeck.flipCard());
 		String newCardLink = gameEngine.adventureDeck.faceUp.getStringFile();
-		logger.info("Player {} getting new card {}", gameEngine.getActivePlayer().getName(),
+		logger.info("Player {} getting new card {}", gameEngine.current_quest.getCurrentParticipant().getName(),
 				gameEngine.adventureDeck.faceUp.getName());
-		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
+		gameEngine.current_quest.getCurrentParticipant().session
+				.sendMessage(new TextMessage("pickupBeforeStage" + newCardLink));
 		logger.info("Updating GUI stats for all players");
 		String update = gameEngine.getPlayerStats();
 		sendToAllSessions(gameEngine, "updateStats" + update);
@@ -699,6 +702,8 @@ public class QuestController extends SocketHandler {
 					if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
 						Player shieldGetter = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
 						shieldGetter.getWeapons().clear();
+						shieldGetter.session.sendMessage(new TextMessage("Getting "
+								+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
 						shieldGetter.giveShields(gameEngine.current_quest.currentQuest.getStages());
 						logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
 								shieldGetter.getName());
@@ -707,8 +712,8 @@ public class QuestController extends SocketHandler {
 					logger.info("Player {} has LOST battle", playerPointsArr.get(i)[0]);
 					Player toRemove = gameEngine.getPlayerFromName(playerPointsArr.get(i)[0]);
 					toRemove.getWeapons().clear();
-					logger.info("Informing players of Player {} loss in battle", toRemove.getName());
-					toRemove.session.sendMessage(new TextMessage("LostBattle" + toRemove.getName()));
+					logger.info("Informing players of player {} loss in battle", toRemove.getName());
+					sendToAllSessions(gameEngine, "LostBattle" + toRemove.getName());
 					gameEngine.current_quest.participants.remove(toRemove);
 					logger.info("Player {} has been removed from quest", toRemove.getName());
 				}

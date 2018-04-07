@@ -57,34 +57,10 @@ Shields:<label id="p1shields">0</label>
 	<button id="proof" onclick="proof()">Proof</button>
 	<button id="flip" disabled type="button" onclick="flipStoryDeck()">Flip Story Deck</button>
 	<button id="rigger" onclick="riggedGame()" style="display:none">Rigged Game</button>
-	<button id="riggerAI" onclick="riggedGameAI()" style="display:none">Rigged AI Game</button>
 	<br>
 	<br>
-	<label>Console</label><br>
-	<textarea style="float:left;"rows="50" cols="26" id="serverMsg"></textarea>
-		<label id="minBid" style="display:none"> Current minimum bid: </label>
-		<button id="doneTournie" onclick="doneTournament()" style="display:none"> Done </button>
-		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()"
-			style="display: none">Done</button>
-		<button id="doneEquipment" onclick="doneEquipment()"
-			style="display: none">Done</button>
-			<button id="dropOut" onclick="dropOutOfTest()" style="display: none"> Drop out</button>
-        <div id="sponsorQuest" style="display: none">
-		<label><strong>&nbsp&nbsp&nbspDo you want to sponsor quest?</strong></label>
-		<button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button>
-		<button id="denySponsorQuest" onclick="denySponsorQuest()">No</button>
-	</div>
-	<div id="askTournament" style="display: none">
-		<label><strong>&nbsp&nbsp&nbspDo you want to participate in tournament?</strong></label>
-		<button id="acceptTournament" onclick="acceptTournament()">Yes</button>
-		<button id="denyTournament" onclick="denyTournament()">No</button>
-	</div>
-	<div id="acceptQuest" style="display: none">
-		<label><strong>&nbsp&nbsp&nbspDo you want to participate in quest?</strong></label>
-		<button id="acceptQuestParticipate" onclick="acceptQuestParticipate()">Yes</button>
-		<button id="denyQuestParticipate" onclick="denyQuestParticipate()">No</button>
-	</div> 
-<div id="battleScreen"
+	<label>Console</label>
+	<div id="battleScreen"
 		style="display:none; margin: 0 auto; font-size: 20px; border-style: solid; border-width: thin; position:relative; background-color: white; width: 1200px; height: 750px; z-index: 2; text-align: center;">
 				<strong> Battle Screen </strong><Br><br><br><br>
 		<div id="player1Display" style="display:none; float: left; border-style: solid; border-width: thin; font-size:14px;">
@@ -213,7 +189,7 @@ Shields:<label id="p1shields">0</label>
 <label id="eliminated"> Players eliminated:</label>
 </div>
 	        </div>
- <div id="tournieScreen"
+	        <div id="tournieScreen"
 		style="display:none; margin: 0 auto; font-size: 20px; border-style: solid; border-width: thin; position:relative; background-color: white; width: 1400px; height: 750px; z-index: 2; text-align: center;">
 				<strong> Tournament Screen </strong><Br><br><br><br>
 		<div id="player1Displayt" style="display:none; float: left; border-style: solid; border-width: thin; font-size:14px;">
@@ -322,8 +298,18 @@ Shields:<label id="p1shields">0</label>
 		</div>
 
 	        </div>
+	<p>
+		<textarea rows="2" cols="50" id="serverMsg"></textarea>
+		<label id="minBid" style="display:none"> Current minimum bid: </label>
+		<button id="doneTournie" onclick="doneTournament()" style="display:none"> Done </button>
+		<button id="doneQuest" onclick="doneWeaponsQuestSponsor()"
+			style="display: none">Done</button>
+		<button id="doneEquipment" onclick="doneEquipment()"
+			style="display: none">Done</button>
+			<button id="dropOut" onclick="dropOutOfTest()" style="display: none"> Drop out</button>
+	</p>
 	<div oncontextmenu="discard();return false;" style="float: right" id="playerHand">
-	 <div style="float:right"> <br>
+	 <div style="float:right">
 <img id="extra1" src="/resources/images/all.png" height="190" width="133"> 
 <img id="extra2" src="/resources/images/all.png" height="190" width="133"> 
 <img id="extra3" src="/resources/images/all.png" height="190" width="133"> 
@@ -359,21 +345,36 @@ Shields:<label id="p1shields">0</label>
 
 		</div>
 	</div>
-<div style="float:right;">
+	<div id="sponsorQuest" style="display: none">
+		<label><strong>Do you want to sponsor quest?</strong></label>
+		<button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button>
+		<button id="denySponsorQuest" onclick="denySponsorQuest()">No</button>
+	</div>
+	<div id="askTournament" style="display: none">
+		<label><strong>Do you want to participate in tournament?</strong></label>
+		<button id="acceptTournament" onclick="acceptTournament()">Yes</button>
+		<button id="denyTournament" onclick="denyTournament()">No</button>
+	</div>
+	<div id="acceptQuest" style="display: none">
+		<label><strong>Do you want to participate in quest?</strong></label>
+		<button id="acceptQuestParticipate" onclick="acceptQuestParticipate()">Yes</button>
+		<button id="denyQuestParticipate" onclick="denyQuestParticipate()">No</button>
+	</div>
 	<div>
-		<figure><img id="storyCard"  src="/resources/images/card-back.png"
+		<img id="storyCard"  src="/resources/images/card-back.png"
 			height="300" width="200"> <img id="storyCardDiscard"
-			src="/resources/images/all.png" height="300" width="200"> <figcaption>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspStory Cards</figcaption></figure> 
+			src="/resources/images/all.png" height="300" width="200">
 	</div>
-	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Story
+	Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S.
+	Discard Pile
 	<div>
-		<figure><img id="adventureCard" src="/resources/images/card-back.png" height="300"
+		<img id="adventureCard" src="/resources/images/card-back.png" height="300"
 			width="200"> <img id="adventureCardDiscard" src="/resources/images/all.png"
-			height="300" width="200"> <figcaption>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdventure Cards</figcaption></figure> 
-
-
+			height="300" width="200">
 	</div>
-</div>
-
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adventure
+	Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.
+	Discard Pile
 </body>
 </html>

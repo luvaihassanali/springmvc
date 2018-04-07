@@ -5,7 +5,6 @@ var serverMsg = document.getElementById('serverMsg');
 var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
 var storyCardFaceUp;
 var stageTracker = 0;
-var totalStages;
 var questSetupCards = [];
 var weapons = [];
 var tournieEquipment = []
@@ -107,12 +106,21 @@ socketConn.onmessage = function(event) {
     //test winner
     if (event.data.startsWith("testWinner")) {
     	var winner = event.data.replace("testWinner","");
-    	serverMsg.value += " " + winner + " won the test, going to next stage";
+    	if(winner == PlayerName) {
+    		serverMsg.value += "\n> You won the test, going to next stage";
+    	} else {
+    	serverMsg.value += "\n> player" + winner + " won the test, going to next stage";
+    	}
+    	
     }
     //lost battle
-    if (event.data == "LostBattle") {
+    if (event.data.startsWith("LostBattle")) {
     	var loserName = event.data.replace("LostBattle","");
-    	serverMsg.value = "Player " + loserName + " lost battle, wait for quest to finish";
+    	if(loserName == PlayerName) {
+    		serverMsg.value += "\n> You lost battle, no longer part of quest";
+    	} else {
+    	serverMsg.value += "\n> player " + loserName + " lost battle, no longer part of quest";
+    	}
     }
     //get all player points for stage
     if (event.data.startsWith("playerPointString")) {
@@ -236,7 +244,6 @@ socketConn.onmessage = function(event) {
     		document.getElementById("battleScreen").style.display = "none";
     		console.log("REMOVING BATTLE SCREEN");
     		var serverMsg = document.getElementById("serverMsg");
-    		serverMsg.value += " Battle over, wait for next player";
     		//clear images
     		$("#questPic").attr("src", "http://localhost:8080/resources/images/all.png");
     		$("#foePic").attr("src", "http://localhost:8080/resources/images/all.png");
@@ -282,7 +289,7 @@ socketConn.onmessage = function(event) {
 
 	if (event.data == "undisableFlip") {
 		document.getElementById('flip').disabled = false;
-		serverMsg.value = "It's your turn, press flip story deck button to continue"
+		serverMsg.value += "\n> it's your turn, press flip story deck button to continue"
 		if (isAI == true) {
 			document.getElementById('flip').click();
 		}
@@ -312,19 +319,19 @@ socketConn.onmessage = function(event) {
 	// let others know of participation
 	if (event.data.startsWith("AcceptedToParticipate")) {
 		var pName = event.data.replace("AcceptedToParticipate","");
-		serverMsg.value = "Player " + pName + " accepted to participate in quest";
+		serverMsg.value += "\n> player " + pName + " accepted to participate in quest";
 	}
 	if (event.data.startsWith("DeclinedToParticipate")) {
 		var pName = event.data.replace("DeclinedToParticipate","");
-		serverMsg.value = "Player " + pName + " declined to participate in quest";
+		serverMsg.value += "\n> player " + pName + " declined to participate in quest";
 	}
 	if(event.data.startsWith("AcceptedTournie")) {
 		var pname = event.data.replace("AcceptedTournie","");
-		serverMsg.value += " Player " + pname + " accepted to participate in tournament";
+		serverMsg.value += "\n> player " + pname + " accepted to participate in tournament";
 	}
 	if(event.data.startsWith("DeclinedTournie")) {
 		var pname = event.data.replace("DeclinedTournie","");
-		serverMsg.value += " Player " + pname + " declined to participate in tournament";
+		serverMsg.value += "\n> player " + pname + " declined to participate in tournament";
 		
 	}
 	// ready to start quest
@@ -334,31 +341,29 @@ socketConn.onmessage = function(event) {
 
 	// no participants
 	if (event.data == "NoParticipants") {
-		serverMsg.value = "No one chose to play in quest, wait for sponsor to pick up cards...";
+		serverMsg.value += "\n> no one chose to play in quest, wait for sponsor to pick up cards";
 	}
 
 	// no sponsors
 	if (event.data == "NoSponsors") {
-		serverMsg.value = "No one sponsored quest, wait for next player - ";
+		serverMsg.value += "\n> no one sponsored quest, wait for next player to draw";
 	}
 
 	// when quest over
 	if (event.data == "QuestOverWaitForSponsor") {
-		serverMsg.value += "\nQuest over, wait for sponsor to pick up cards - ";
+		serverMsg.value += "\n> quest over, wait for sponsor to pick up cards - ";
 		questInfo = [];
 		foeInfo = [];
 	}
 	// getting shields
 	if (event.data.startsWith("Getting")) {
-		console.log("here");
-		serverMsg.value = event.data;
-		getCurrHand();
-		console.log(handCardSRC);
+		var msg = event.data.replace("Getting", "\n> getting");
+		serverMsg.value += msg;
 	
 	}
 	// pick up cards used for sponsor
 	if (event.data.startsWith("SponsorPickup")) {
-		serverMsg.value = "Replacing cards used to sponsor quest RIGHT CLICK TO DISCARD EXTRA to move on\n";
+		serverMsg.value += "\n> replacing cards used to sponsor quest";
 		var temp = event.data.replace("SponsorPickup", "");
 		sponsorPickup(temp);
 	}
@@ -453,7 +458,7 @@ socketConn.onmessage = function(event) {
             	}
     		}
     		var serverMsg = document.getElementById("serverMsg");
-    		serverMsg.value += " Tournament over, wait for next player";
+    		serverMsg.value += "\n> tournament over, wait for next player";
     	}, 10000);
 
 	}
@@ -476,7 +481,11 @@ socketConn.onmessage = function(event) {
 		var bidder = event.data.replace("whoBidded", "");
 		bidder = bidder.split("#");
 		var serverMsg = document.getElementById("serverMsg");
-		serverMsg.value +=  " " + bidder[0] + " just placed " + bidder[1] + " bids";
+		if(bidder[0] == PlayerName) {
+			serverMsg.value+= "\n> You just placed " + bidder[1] + " bids";
+		} else {
+		serverMsg.value +=  "\n> player " + bidder[0] + " just placed " + bidder[1] + " bids";
+		}
 	}
 	//update min bids
 	if (event.data.startsWith("updateMinBid")) {
@@ -547,16 +556,16 @@ socketConn.onmessage = function(event) {
 	
 	//notify sponsor of participants choosing equipment
     if(event.data == "ParticipantsChoosing") {
-    	serverMsg.value = "Participants are choosing equipment or bids, please wait";
+    	serverMsg.value += "\n> participants are choosing equipment or bids, please wait";
     }
 	//notify participants of quest setup
 	if(event.data.startsWith("questIsBeingSetup")) {
 		var sponsorName = event.data.replace("questIsBeingSetup", "");
-		serverMsg.value = "Player " + sponsorName + " is setting up quest, please wait";
+		serverMsg.value += "\n> player " + sponsorName + " is setting up quest, please wait";
 	}
 	if(event.data.startsWith("declinedToSponsor")) {
 		var notSponsorName = event.data.replace("declinedToSponsor","");
-		serverMsg.value = "Player " + notSponsorName + " is declined to sponsor quest, please wait";
+		serverMsg.value += "\n> player " + notSponsorName + " declined to sponsor quest, please wait";
 	}
 	// pick up x cards
 	if (event.data.startsWith("PickupCards")) {
@@ -565,7 +574,7 @@ socketConn.onmessage = function(event) {
 
 	// flip story deck
 	if (event.data.startsWith("flipStoryDeck")) {
-		serverMsg.value = "Flipping card from Story Deck (wait for other players) -  ";
+		serverMsg.value = "> flipping card from Story Deck, wait for other players";
 		var card = event.data.replace('flipStoryDeck', '');
 		card = JSON.parse(card);
 		storyCardFaceUp = card;
@@ -590,6 +599,7 @@ socketConn.onmessage = function(event) {
 	// show rig button
 	if (event.data == "showRigger") {
 		document.getElementById("rigger").style.display = "block";
+		document.getElementById("riggerAI").style.display = "block";
 		document.getElementById("setAI").style.display = "none";
 	}
 	// get all player names
@@ -609,12 +619,12 @@ socketConn.onmessage = function(event) {
 	}
 	// welcome message
 	if (event.data.startsWith("Welcome")) {
-		serverMsg.value = event.data;
+		serverMsg.value = event.data.replace("Welcome", "");
 	}
 
 	// wait
 	if (event.data == "wait") {
-		serverMsg.value = "Wait for other players to finish";
+		serverMsg.value += "\n> wait for other players to finish";
 	}
 	// game started
 	if (event.data == "GameReadyToStart") {
@@ -646,7 +656,7 @@ function replaceTestCards(eventData) {
 
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
-	serverMsg.value = "It is now time to choose equipment for quest";
+	serverMsg.value += "\n> it is now time to choose equipment for quest";
 	
 	if(totalStages == stageTracker) {
 		console.log("Quest over");
@@ -671,7 +681,7 @@ function chooseEquipment() {
 				'minBid' : minBid
 			}) 
 			setTimeout(function(){ socketConn.send(data); 
-			serverMsg.value = "Placing bids, please wait for other players...- "; 
+			serverMsg.value = "\n> placing bids, please wait for other players"; 
 			}, 1000);		
 			return;
 		}
@@ -688,7 +698,7 @@ function chooseEquipment() {
 			}) 
 			setTimeout(function(){ 
 				socketConn.send(data); 
-				serverMsg.value = "Going into battle - wait for other players to finsih for results";
+				serverMsg.value += "\n> going into battle - wait for other players to finish for results";
 			}, 1000);
 			return;
 		}
@@ -706,7 +716,7 @@ function getTestBids() {
 	console.log(TestInfo);
 	minBid = parseInt(testInfo[0][1]);
 	console.log("minBid" + parseInt(minBid));
-	serverMsg.value = "Please click on the cards you wish to bid for test (Click done to drop out)";
+	serverMsg.value += "\n> please click on the cards you wish to bid for test (Or right click for discard then done button to drop out)";
 	console.log("SHOW MIN BID")
 	document.getElementById("minBid").style.display = "block";
 	document.getElementById("minBid").innerText = "Current minimum bid: " + minBid;
@@ -759,7 +769,12 @@ function chooseEquipmentTournie() {
 			for (var i = 0; i < tournieEquipment.length; i++) {
 				if ((checkForEquipment(this.src)) == tournieEquipment[i]) {
 					var serverMsg = document.getElementById('serverMsg');
-					serverMsg.value += "\nCannot choose repeat weapons";
+					serverMsg.value += "\n> cannot choose repeat weapons";
+					var data = JSON.stringify({ 
+						'logInfo' : "RepeatWeaponTournieP",
+						'name' : PlayerName
+						});
+					socketConn.send(data);
 					return;
 				}
 			}
@@ -780,7 +795,7 @@ function getBattleEquipment() {
 	battleEquipment = [];
 	var serverMsg = document.getElementById("serverMsg");
 	document.getElementById('doneEquipment').style.display = "inline";
-	serverMsg.value = "Please click on the equipment you want to choose for battle (right-click to discard)";
+	serverMsg.value += "\n> please click on the equipment you want to choose for battle (right-click to discard any extra)";
 	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
 						var cardId = this.src.replace('http://localhost:8080', '');
 						cardId = cardId.split('%20').join(' ');
@@ -788,7 +803,12 @@ function getBattleEquipment() {
 							for (var i = 0; i < battleEquipment.length; i++) {
 								if ((checkForEquipment(this.src)) == battleEquipment[i]) {
 									var serverMsg = document.getElementById('serverMsg');
-									serverMsg.value += "\nCannot choose repeat weapons";
+									serverMsg.value += "\n> cannot choose repeat weapons";
+									var data = JSON.stringify({ 
+										'logInfo' : "RepeatWeaponQuestP",
+										'name' : PlayerName
+										});
+									socketConn.send(data);
 									return;
 								}
 							}
@@ -820,7 +840,7 @@ function pickupBeforeStage(event) {
 	if (cardTracker > 12) {
 		document.getElementById("doneEquipment").disabled = true;
 		var serverMsg = document.getElementById("serverMsg");
-		serverMsg.value = "You must choose a card to continue (or right-click to discard) when it is your turn";
+		serverMsg.value += "\n> you must choose a card to continue (or right-click to discard) when it is your turn";
 	}
 }
 
@@ -859,14 +879,14 @@ function parseParticipantInfo(event) {
 function getParticipants() {
 	document.getElementById("acceptQuest").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value += " Please accept/decline quest by clicking below"
+	serverMsg.value += "\n> please accept/decline quest by clicking below"
 	if (isAI) {
 		var data = JSON.stringify({
 			'AICommand' : "AskToParticipateQuest"
 		})
 		setTimeout(function(){ socketConn.send(data); }, 1000);
 		document.getElementById("acceptQuest").style.display = "none";
-		serverMsg.value = "Wait for other players...";
+		serverMsg.value += "\n> wait for other players...";
 	}
 }
 
@@ -907,13 +927,13 @@ function parseQuestInfo(event) {
 function startGame() {
 	var serverMsg = document.getElementById('serverMsg');
 	document.getElementById('print').disabled = false;
-	serverMsg.value = "All players have joined, starting game, wait for your turn..."
+	serverMsg.value += "\n> all players have joined, starting game, wait for your turn..."
 	document.getElementById('rigger').style.display = "none";
 }
 
 function setHand() {
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Setting player hand, flipping story deck, wait for your turn- ";
+	serverMsg.value += "\n> setting player hand, flipping story deck, wait for your turn- ";
 	var handString = event.data.replace('setHand', '');
 	var handStringArray = handString.split(":");
 	$("#card1").attr("src", handStringArray[0]);
@@ -933,21 +953,21 @@ function setHand() {
 function getTournie() {
 	document.getElementById("askTournament").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value += "Please accept/decline quest by clicking below"
+	serverMsg.value += "\n> please accept/decline quest by clicking below"
 	if (isAI) {
 		var data = JSON.stringify({
 			'AICommand' : "AskTournament"
 		})
 		setTimeout(function(){ socketConn.send(data); }, 1000);
 		document.getElementById("askTournament").style.display = "none";
-		serverMsg.value = "Wait for other players...";
+		serverMsg.value += "\n> wait for other players...";
 	}
 
 }
 function getSponsor() {
 	document.getElementById('sponsorQuest').style.display = 'block';
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Click to answer below"
+	serverMsg.value += "\n> click to answer below"
 	if (isAI) {
 		var data = JSON.stringify({
 			'AICommand' : "SponsorQuest",
@@ -955,7 +975,7 @@ function getSponsor() {
 		})
 		socketConn.send(data);
 		document.getElementById('sponsorQuest').style.display = 'none';
-		serverMsg.value = "Doing AI stuff";
+		serverMsg.value += "\n> calculating AI moves";
 	}
 }
 
@@ -1038,7 +1058,7 @@ function PickupCards(newCards) {
 	numCards = cardTracker;
 	if (cardTracker > 12) {
 		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value += "Right click to remove extra cards to continue (for discard)";
+		serverMsg.value += "\n> right click to remove extra cards to continue (for discard)";
 		if (isAI == true) {
 			var data = JSON.stringify({
 				'AICommand' : 'DiscardChoice',
@@ -1118,7 +1138,7 @@ function sponsorPickup(cards) {
 	}
 	if (cardTracker > 12) {
 		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value += " Right click extra cards to continue (for discard) ";
+		serverMsg.value += "\n> right click extra cards to continue (for discard) ";
 		discard();
 
 	}
@@ -1139,7 +1159,7 @@ function setupQuestRound() {
 	console.log(totalStages);
 	
 	var serverMsg = document.getElementById('serverMsg');
-    serverMsg.value += "\nChoose foe or test card for stage";	
+    serverMsg.value += "\n> choose foe or test card for stage";	
     
 	$('body').on('click','#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {
 							var cardSrc = this.src.replace('http://localhost:8080', '');
@@ -1169,7 +1189,12 @@ function setupQuestRound() {
 								for(var i=0; i<questSetupCards.length; i++) {
 									if(getBpFromName(tempFoeCard) < getBpFromName(questSetupCards[i])) { 
 										var serverMsg = document.getElementById('serverMsg');
-										serverMsg.value = "Foe battle points must be higher than previous"; 
+										serverMsg.value += "\n> foe battle points must be higher than previous"; 
+										var data = JSON.stringify({ 
+											'logInfo' : "FoePointHigher",
+											'name' : PlayerName
+											});
+										socketConn.send(data);
 										return;
 										}
 								}
@@ -1179,7 +1204,7 @@ function setupQuestRound() {
 										"/resources/images/all.png");
 								var serverMsg = document.getElementById('serverMsg');
 								$('body').off('click');
-								serverMsg.value = "Choose weapons for foe";
+								serverMsg.value += "\n> choose weapons for foe";
 								document.getElementById('doneQuest').style.display = "inline";
 								totalStages--;
 							//	console.log(totalStages);
@@ -1194,7 +1219,12 @@ function setupQuestRound() {
 									for (var i = 0; i < questSetupCards.length; i++) {
 										if (cardName == questSetupCards[i]) {
 											var serverMsg = document.getElementById('serverMsg');
-											serverMsg.value = "\nCannot choose repeat weapons";
+											serverMsg.value += "\n> cannot choose repeat weapons";
+											var data = JSON.stringify({ 
+												'logInfo' : "RepeatWeaponSponsor",
+												'name' : PlayerName
+												});
+											socketConn.send(data);
 											return;
 										}
 									}
@@ -1232,7 +1262,7 @@ function discard() {
 							if(inTournie) document.getElementById("doneTournie").style.display = "inline";
 							if (whichEvent != "" && numCards == 12) {
 
-								document.getElementById("serverMsg").value = "Wait for other players...";
+								document.getElementById("serverMsg").value += "\n> wait for other players...";
 								if (whichEvent == "Prosperity") {
 									//console.log("sending prosperity");
 									var data = JSON.stringify({
@@ -1247,17 +1277,15 @@ function discard() {
 							}
 
 							document.getElementById("doneEquipment").disabled = false;
-							if (PlayerName === sponsor) {
-								document.getElementById("serverMsg").value = "Replacing cards used to sponsor";
-							}
 
 							if (numCards == 12
 									&& document
 											.getElementById("serverMsg").value
-											.startsWith("Replacing cards used to sponsor")) {
+											.includes("replacing cards used to sponsor")) {
+								document.getElementById("doneTournie").style.display = "none";
 								var serverMsg = document
 										.getElementById("serverMsg");
-								serverMsg.value = "Wait for other players...";
+								serverMsg.value += "\n> wait for other players...";
 								var data = JSON.stringify({
 									'incTurnRoundOver' : true
 								});
@@ -1283,7 +1311,7 @@ function acceptQuestParticipate() {
 	});
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = ("Waiting for others to answer...");
+	serverMsg.value += ("\n> waiting for others to answer");
 }
 
 function pickWeapons() {
@@ -1297,7 +1325,7 @@ function dropOutOfTest() {
 	document.getElementById('doneEquipment').style.display = "none";
 	document.getElementById('dropOut').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Dropped out of test, wait for quest to complete";
+	serverMsg.value += "\n> dropped out of test, wait for quest to complete";
 	var oldBids = testBids;
 	testBids = [];
 	var data = JSON.stringify({
@@ -1348,7 +1376,7 @@ function doneTournament() {
 	document.getElementById('doneTournie').style.display = "none";
 	$('body').off('click');
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Sending challenge, please wait for other players...- ";
+	serverMsg.value += "\n> sending challenge, please wait for other players...- ";
 	var data = JSON.stringify({
 		'name' : PlayerName,
 		'tournament_info' : tournieEquipment
@@ -1370,8 +1398,8 @@ function doneEquipment() {
 	//console.log(allBattleEquipment);
 	console.log(stageTracker);
 	if (questSetupCards[stageTracker][0].includes("Test")) {
-		serverMsg.value = "Placing bids, please wait for other players...- ";
-		if(testBids.length == 0) serverMsg.value = "Dropping out of test, please wait for other players";
+		serverMsg.value += "\n> placing bids, please wait for other players...- ";
+		if(testBids.length == 0) serverMsg.value += "\n> dropping out of test, please wait for other players";
 	
 		var data = JSON.stringify({
 			'name' : PlayerName,
@@ -1384,7 +1412,7 @@ function doneEquipment() {
 		arrangeHand();
 
 	} else {
-		serverMsg.value = "Going into battle - wait for other players to finsih for results";
+		serverMsg.value += "\n> going into battle, wait for other players to finish for results";
 		var data = JSON.stringify({
 			'name' : PlayerName,
 			'stages' : stageTracker,
@@ -1409,7 +1437,7 @@ function denyQuestParticipate() {
 	});
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = ("Waiting for other players to finish quest...");
+	serverMsg.value += ("\n> waiting for other players to finish quest");
 }
 
 //accept tournament
@@ -1421,7 +1449,7 @@ function acceptTournament() {
 	});
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = ("Waiting for others to answer...");
+	serverMsg.value += ("\n> waiting for others to answer...");
 	inTournie = true;
 }
 
@@ -1435,7 +1463,7 @@ function denyTournament() {
 	});
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = ("Waiting for other players to finish tournament...");
+	serverMsg.value += ("\n> waiting for other players to finish tournament");
 }
 // finished setting up quest for sponsor
 function doneWeaponsQuestSponsor() {
@@ -1453,7 +1481,7 @@ function doneWeaponsQuestSponsor() {
 
 function doneQuestSetup() {
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Quest setup complete, wait for other players";
+	serverMsg.value = "> quest setup complete, wait for other players";
 	document.getElementById('doneQuest').style.display = "none";
 	console.log(questSetupCards);
 	var data = JSON.stringify({ 'questSetupCards' : questSetupCards});
@@ -1536,7 +1564,7 @@ function acceptSponsorQuest() {
 	allQuestInfo = [];
 	document.getElementById('sponsorQuest').style.display = 'none';
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "You are sponsor, setting up quest...";
+	serverMsg.value += "\n> you are sponsor, setting up quest...";
 	sponsor = PlayerName;
 	var data = JSON.stringify({
 		'name' : PlayerName,
@@ -1553,7 +1581,7 @@ function denySponsorQuest() {
 	});
 	socketConn.send(data);
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Waiting for other players...";
+	serverMsg.value += "\n> waiting for other players";
 }
 
 // static resource test, changes title back and forth from red and black
@@ -1582,7 +1610,7 @@ function setAI() {
 	document.getElementById('nameparagraph').style.display = "none";
 	document.getElementById('send').style.display = "none";
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value = "Waiting for other players...";
+	serverMsg.value += "\n> waiting for other players";
 
 }
 // send name to server -> adds client to player list
@@ -1601,7 +1629,7 @@ function send() {
 		document.getElementById('send').style.display = "none";
 		document.getElementById('rigger').style.display = "none";
 		var serverMsg = document.getElementById('serverMsg');
-		serverMsg.value = "Waiting for other players...(to create AI player(s), open a new browser window and click AI Player button)";
+		serverMsg.value = "> waiting for other players \n> to create AI player(s), open a new browser window and click AI Player button";
 	}
 }
 
@@ -1711,7 +1739,19 @@ function arrangeHand() {
 function riggedGame() {
 	send();
 	document.getElementById('rigger').style.display = "none";
+	document.getElementById('riggerAI').style.display = "none";
 	var version = 42;
+	var data = JSON.stringify({
+		'riggedGame' : version
+	})
+	socketConn.send(data);
+}
+
+function riggedGameAI() {
+	send();
+	document.getElementById('rigger').style.display = "none";
+	document.getElementById('riggerAI').style.display = "none";
+	var version = 43;
 	var data = JSON.stringify({
 		'riggedGame' : version
 	})
@@ -2094,7 +2134,7 @@ function AIRemoveFromScreen(cardNames) {
 			}
 		}
 		var serverMsg = document.getElementById("serverMsg");
-		serverMsg.value = "Going into battle - wait for other players to finsih for results";
+		serverMsg.value += "\n> going into battle - wait for other players to finsih for results";
 		var data = JSON.stringify({
 			'name' : PlayerName,
 			'stages' : stageTracker,
@@ -2189,7 +2229,7 @@ function AIDiscard(cardNames) {
 	
 					'discard' : cardNames[j]
 				});
-				socketConn.send(dataDiscard);
+				setTimeout(function(){ socketConn.send(dataDiscard); }, 1000);	
 				arrangeHand();
 				break;
 			}
@@ -2197,12 +2237,12 @@ function AIDiscard(cardNames) {
 	}
 
 	if (whichEvent != "") {
-		document.getElementById("serverMsg").value = "Wait for other players...";
+		document.getElementById("serverMsg").value += ">\n wait for other players...";
 		if (whichEvent == "Prosperity") {
 			var data = JSON.stringify({
 				'doneEventProsperity' : 0
 			})
-			socketConn.send(data);
+			setTimeout(function(){ socketConn.send(data); }, 1000);	
 			arrangeHand();
 			return;
 		}
@@ -2223,7 +2263,7 @@ function parseAICommand(eventData) {
 function AIDropOut() {
 	console.log("time to drop out");
 	$("#extra1").attr("src", "http://localhost:8080/resources/images/all.png");
-	document.getElementById("serverMsg").value = "Dropped out of test, wait for quest to complete";
+	document.getElementById("serverMsg").value += "\n> dropped out of test, wait for quest to complete";
 }
 
 function AIPlaceBid(eventData) {

@@ -69,14 +69,14 @@ public class Game {
 			add(CardList.MorganTest);
 			add(CardList.Amour);
 			add(CardList.RobberKnight);
-			add(CardList.Merlin);
+			add(CardList.Dragon);
 			add(CardList.Horse);
 			add(CardList.Dagger);
 			add(CardList.Horse);
 			add(CardList.Battleax);
 			add(CardList.GreenKnight);
 			add(CardList.Lance);
-			add(CardList.SirLancelot);
+			add(CardList.Thieves);
 		}
 	};
 	@SuppressWarnings("serial")
@@ -108,10 +108,80 @@ public class Game {
 			add(CardList.Boar);
 			add(CardList.Lance);
 			add(CardList.SirGawain);
+			add(CardList.Sword);
+			add(CardList.Dagger);
+			add(CardList.Sword);
+			add(CardList.Amour);
+			add(CardList.SirLancelot);
+		}
+	};
+	@SuppressWarnings("serial")
+	public ArrayList<AdventureCard> mockHand5 = new ArrayList<AdventureCard>() {
+		{
+			add(CardList.Boar);
+			add(CardList.BlackKnight);
+			add(CardList.BeastTest);
+			add(CardList.Dagger);
+			add(CardList.Amour);
+			add(CardList.Horse);
+			add(CardList.Saxons);
+			add(CardList.Merlin);
+			add(CardList.Sword);
+			add(CardList.TemptationTest);
+			add(CardList.Sword);
+			add(CardList.SirGawain);
+		}
+	};
+	@SuppressWarnings("serial")
+	public ArrayList<AdventureCard> mockHand6 = new ArrayList<AdventureCard>() {
+		{
+			add(CardList.SirTristan);
+			add(CardList.MorganTest);
+			add(CardList.Amour);
+			add(CardList.RobberKnight);
+			add(CardList.Dragon);
+			add(CardList.GreenKnight);
+			add(CardList.Dagger);
+			add(CardList.Horse);
+			add(CardList.Battleax);
+			add(CardList.GreenKnight);
+			add(CardList.Lance);
+			add(CardList.Thieves);
+		}
+	};
+	@SuppressWarnings("serial")
+	public ArrayList<AdventureCard> mockHand7 = new ArrayList<AdventureCard>() {
+		{
 			add(CardList.ValorTest);
+			add(CardList.BlackKnight);
+			add(CardList.Saxons);
+			add(CardList.Sword);
+			add(CardList.KingArthur);
+			add(CardList.Excalibur);
+			add(CardList.Horse);
+			add(CardList.MorganTest);
+			add(CardList.Thieves);
+			add(CardList.Dagger);
+			add(CardList.SirGalahad);
+			add(CardList.Sword);
+		}
+	};
+	@SuppressWarnings("serial")
+	public ArrayList<AdventureCard> mockHand8 = new ArrayList<AdventureCard>() {
+		{
+
+			// add(CardList.Dagger);
+			add(CardList.KingArthur);
+			add(CardList.Thieves);
+			add(CardList.Saxons);
+			add(CardList.Thieves);
+			add(CardList.Boar);
+			add(CardList.QueenIseult);
+			add(CardList.SirGawain);
+			add(CardList.Dagger);
 			add(CardList.Dagger);
 			add(CardList.SirPellinore);
-			add(CardList.Amour);
+			add(CardList.BlackKnight);
 			add(CardList.SirLancelot);
 		}
 	};
@@ -204,6 +274,12 @@ public class Game {
 					this.players.get(2).setHand(this.mockHand3);
 					this.players.get(3).setHand(this.mockHand4);
 				}
+				if (riggedGame == 43) {
+					this.players.get(0).setHand(this.mockHand5); // pickUpNewHand()
+					this.players.get(1).setHand(this.mockHand6);
+					this.players.get(2).setHand(this.mockHand7);
+					this.players.get(3).setHand(this.mockHand8);
+				}
 			} else {
 				for (Player p : this.players) {
 					p.pickupNewHand(this.adventureDeck);
@@ -219,8 +295,8 @@ public class Game {
 			}
 
 			SocketHandler.flipStoryCard();
-			String temp = this.getPlayerStats();
-			SocketHandler.sendToAllSessions(this, "updateStats" + temp);
+			logger.info("Updating GUI stats for all players");
+			this.updateStats();
 
 		}
 	}
@@ -256,6 +332,28 @@ public class Game {
 	public void updateStats() {
 		String update = this.getPlayerStats();
 		SocketHandler.sendToAllSessions(this, "updateStats" + update);
+
+	}
+
+	public void getLogInfo(JsonObject jsonObject) {
+		String playerName = jsonObject.get("name").getAsString();
+		String logInfo = jsonObject.get("logInfo").getAsString();
+		if (logInfo.equals("RepeatWeaponSponsor")) {
+			logger.info("Player {} attempted to choose a repeat weapon during {} quest sponsor", playerName,
+					this.storyDeck.faceUp.getName());
+		}
+		if (logInfo.equals("FoePointHigher")) {
+			logger.info("Player {} attempted to choose a foe higher than ones already chosing during {} quest sponsor",
+					playerName, this.storyDeck.faceUp.getName());
+		}
+		if (logInfo.equals("RepeatWeaponQuestP")) {
+			logger.info("Player {} attempted to choose a repeat weapon during {} quest", playerName,
+					this.storyDeck.faceUp.getName());
+		}
+		if (logInfo.equals("RepeatWeaponTournieP")) {
+			logger.info("Player {} attempted to choose a repeat weapon during Tournament {}", playerName,
+					this.storyDeck.faceUp.getName());
+		}
 
 	}
 

@@ -79,7 +79,7 @@ public class Strategy2 extends AbstractAI {
 			return true;
 		}
 		logger.info("Not enough weapons, checking for amour");
-		if (stageToWeaponRatio + (10 / stages) >= 10) {
+		if (stageToWeaponRatio + (10 / stages) >= 10 && amourList.size() > 0) {
 			logger.info("Player {} can sustain quest {} with weapons & amour played", current_player.getName(),
 					current_quest.getName());
 			return true;
@@ -333,7 +333,7 @@ public class Strategy2 extends AbstractAI {
 			System.out.println(round);
 			System.out.println(minBid);
 			for (int j = 0; j < current_player.getHandSize(); j++) {
-				for (int i = 0; i < minBid; i++) {
+				for (int i = 0; i < minBid + 1; i++) {
 					if (current_player.getHand().get(j) instanceof FoeCard) {
 						FoeCard foe = (FoeCard) current_player.getHand().get(j);
 						if (foe.getBattlePoints() <= 25) {
@@ -350,7 +350,7 @@ public class Strategy2 extends AbstractAI {
 							logger.info("Player {} chose to bid {}", current_player.getName(), foe.getName());
 						}
 						dontAdd = true;
-						if (bids.size() == minBid) {
+						if (bids.size() == minBid + 1) {
 							round++;
 							return bids;
 						}
@@ -369,7 +369,7 @@ public class Strategy2 extends AbstractAI {
 			System.out.println(round);
 			System.out.println(minBid);
 			for (int j = 0; j < current_player.getHandSize(); j++) {
-				for (int i = 0; i < minBid; i++) {
+				for (int i = 0; i < minBid + 1; i++) {
 					if (current_player.getHand().get(j) instanceof FoeCard) {
 						FoeCard foe = (FoeCard) current_player.getHand().get(j);
 						if (foe.getBattlePoints() <= 25) {
@@ -386,7 +386,7 @@ public class Strategy2 extends AbstractAI {
 							logger.info("Player {} chose to bid {}", current_player.getName(), foe.getName());
 						}
 						dontAdd = true;
-						if (bids.size() == minBid) {
+						if (bids.size() == minBid + 1) {
 							round++;
 							return bids;
 						}
@@ -413,8 +413,8 @@ public class Strategy2 extends AbstractAI {
 					duplicate = (AdventureCard) cardFinder.getCardFromName(array[1]);
 					logger.info("Player {} in 3+ round chose to bid {}", current_player.getName(), array[1]);
 				}
+				logger.info("Adding duplicate to bidlist");
 				bids.add(duplicate);
-				System.out.println("UNIQUE CARD STRING.............");
 			} else {
 				logger.info("No duplicates to bid");
 			}
@@ -462,7 +462,7 @@ public class Strategy2 extends AbstractAI {
 		printList();
 		ArrayList<String> toRemove = new ArrayList<String>();
 		if (stage == faceUp.getStages()) {
-			System.out.println("playing strongest");
+			logger.info("Last stage {} choosing strongest hand", player.getName());
 			if (player.getAmourCard() == null) {
 				if (amourList.size() != 0) {
 					// player.setAmourCard(amourList.get(0));
@@ -488,13 +488,14 @@ public class Strategy2 extends AbstractAI {
 				e.printStackTrace();
 			}
 		} else {
+			logger.info("Not last stage, will choose equipment to increment by 10");
 			if (player.getAmourCard() == null) {
-				System.out.println("check to play playing amour");
+				logger.info("Checking for amour");
 				if (player.getAmourCard() == null) {
 					if (amourList.size() != 0) {
 						// player.setAmourCard(amourList.get(0));
 						toRemove.add("Amour");
-						// player.discardPlayer(toRemove);
+						logger.info("{} choosing amour first as per strategy2", player.getName());
 						String aiDiscard = "";
 						for (String s : toRemove)
 							aiDiscard += s + ";";
@@ -509,8 +510,9 @@ public class Strategy2 extends AbstractAI {
 				}
 
 			}
+			logger.info("Checking to see if ally played before choosing weapon");
 			if (allyPlayed) {
-				System.out.println("play weapon");
+				logger.info("Ally has been played (or does not exist), choosing weapon as per strategy2");
 				if (weaponsList.size() != 0) {
 					toRemove.add(weaponsList.get(weaponsList.size() - 1).getName());
 					String aiDiscard = "";
@@ -524,7 +526,7 @@ public class Strategy2 extends AbstractAI {
 					}
 				}
 			} else {
-				System.out.println("play ally");
+				logger.info("Playing ally (has not been chosen) as per strategy2");
 				if (alliesList.size() != 0) {
 					// player.getAllies().add(alliesList.get(alliesList.size() - 1));
 					toRemove.add(alliesList.get(alliesList.size() - 1).getName());
