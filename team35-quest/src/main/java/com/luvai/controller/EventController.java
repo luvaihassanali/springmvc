@@ -45,7 +45,7 @@ public class EventController extends SocketHandler {
 
 		}
 		if (eventCard.getName().equals("Plague")) {
-
+			EventPlague();
 		}
 		if (eventCard.getName().equals("Pox")) {
 			EventPox();
@@ -59,7 +59,28 @@ public class EventController extends SocketHandler {
 
 	}
 
-	public void EventPox() throws IOException {
+	public void EventPlague() {
+		logger.info("If applicable drawer: {} loses 2 shields", current_player.getName());
+		logger.info("Player {} currently has {} shields", current_player.getName(), current_player.getShields());
+		if (current_player.getShields() == 0) {
+			logger.info("No shields to remove for player {}", current_player.getName());
+		}
+		if (current_player.getShields() == 1) {
+			logger.info("Removing the only shield player {} has", current_player.getName());
+			current_player.removeShield();
+		}
+		if (current_player.getShields() >= 2) {
+			logger.info("Removing two shields from player {}", current_player.getName());
+			current_player.removeShield();
+			current_player.removeShield();
+		}
+		logger.info("Player {} left with {} shields", current_player.getName(), current_player.getShields());
+		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+		logger.info("Updating GUI stats for all players");
+		gameEngine.updateStats();
+	}
+
+	public void EventPox() {
 		ArrayList<Player> sortedByShields = new ArrayList<Player>();
 		sortedByShields.addAll(gameEngine.players);
 
@@ -87,6 +108,9 @@ public class EventController extends SocketHandler {
 				logger.info("{} now with {} shields", p.getName(), p.getShields());
 			}
 		}
+		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+		logger.info("Updating GUI stats for all players");
+		gameEngine.updateStats();
 	}
 
 	public void EventChivalrous() throws IOException {
