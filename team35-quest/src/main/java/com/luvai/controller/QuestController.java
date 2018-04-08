@@ -713,6 +713,8 @@ public class QuestController extends SocketHandler {
 							shieldGetter.giveShields(2);
 							Game.KingsRecognition = false;
 						}
+						sponsorPickup();
+						return;
 					}
 				} else {
 					logger.info("Player {} has LOST battle", playerPointsArr.get(i)[0]);
@@ -748,6 +750,7 @@ public class QuestController extends SocketHandler {
 				return;
 			}
 			if (gameEngine.current_quest.currentStage == gameEngine.current_quest.currentQuest.getStages()) {
+				System.out.println("HERE 751");
 				Winning();
 				return;
 			}

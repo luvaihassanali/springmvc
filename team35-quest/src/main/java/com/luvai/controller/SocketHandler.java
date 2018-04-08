@@ -337,9 +337,11 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 
 		// done events
-
+		if (jsonObject.has("doneEventQueensFavor")) {
+			gameEngine.current_event.doneEventQueensFavor();
+		}
 		if (jsonObject.has("doneEventProsperity")) {
-			gameEngine.AIController.doneProsperity();
+			gameEngine.current_event.doneProsperity();
 		}
 		// get tournie info
 		if (jsonObject.has("tournament_info")) {
@@ -493,6 +495,7 @@ public class SocketHandler extends TextWebSocketHandler {
 							temp += newCard.getStringFile() + ";";
 							tempNames += newCard.getName() + " ";
 							gameEngine.current_quest.sponsor.getHand().add(newCard);
+							sendOnce = true;
 						}
 						if (sendOnce) {
 							sentAlready = false;

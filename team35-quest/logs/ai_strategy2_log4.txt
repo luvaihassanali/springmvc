@@ -141,7 +141,7 @@
 2018-Apr-07 20:09:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player1 discarded Thieves
 2018-Apr-07 20:10:02 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
 2018-Apr-07 20:10:09 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player2 discarded Sword
-2018-Apr-07 20:10:09 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 20:10:09 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
 2018-Apr-07 20:10:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: At Camelot
 2018-Apr-07 20:10:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New story card At Camelot is being rendered on player screens
 2018-Apr-07 20:10:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot

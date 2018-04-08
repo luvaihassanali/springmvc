@@ -133,5 +133,5 @@
 2018-Apr-07 14:04:13 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player1 discarded Black Knight
 2018-Apr-07 14:04:24 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player2 discarded Thieves
 2018-Apr-07 14:04:31 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player2 equipped Amour as discard
-2018-Apr-07 14:04:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 14:04:31 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
 2018-Apr-07 14:04:36 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Player4 is flipping new card from story deck: At Camelot

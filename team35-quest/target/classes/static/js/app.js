@@ -1020,18 +1020,22 @@ function PickupCards(newCards) {
 		newCards = newCards.replace("PickupCardsTestBonus","");
 		testBonus = true;
 	}
-	//console.log(newCards)
+	if(newCards.startsWith("PickupCardsQueensFavor")) {
+		whichEvent = "Queens Favor";
+		newCards = newCards.replace("PickupCardsQueensFavor","");
+	}
+	console.log(newCards)
 	if(newCards=="null") return;
 	newCards = newCards.split(";");
 	newCards.pop();
-//	console.log("LINE 585");
-	//console.log(newCards);
+	console.log("LINE 585");
+	console.log(newCards);
 	var numNewCards = newCards.length;
 	console.log(numNewCards);
 	for (var i = 0; i < handCardID.length; i++) {
-		//console.log("begin of loop");
-	//	console.log(newCards.length);
-		//console.log(newCards);
+		console.log("begin of loop");
+		console.log(newCards.length);
+		console.log(newCards);
 		if (handCardSRC[i] == "http://localhost:8080/resources/images/all.png") {
 			var imageId = handCardID[i];
 			if(testBonus) { var tempLink = getLinkFromName(newCards.pop()) } else {
@@ -1040,8 +1044,8 @@ function PickupCards(newCards) {
 			
 			$("#" + imageId).attr("src",
 					"http://localhost:8080" + tempLink);
-		//	console.log(newCards.length);
-		//	console.log(newCards);
+			console.log(newCards.length);
+			console.log(newCards);
 			if (newCards.length == 0)
 				break;
 		}
@@ -1074,7 +1078,16 @@ function PickupCards(newCards) {
 
 		discard();
 	}
+	
+	if(numCards <= 12 && whichEvent == "Queens Favor") {
+		console.log("sending queens favor");
+		var data = JSON.stringify({
 
+			'doneEventQueensFavor' : 0
+		})
+		setTimeout(function(){ socketConn.send(data); }, 1000);
+	}
+	
 	if(numCards <= 12 && whichEvent == "Prosperity") {
 		console.log("sending prosperity");
 		var data = JSON.stringify({
@@ -1271,6 +1284,17 @@ function discard() {
 									var data = JSON.stringify({
 
 										'doneEventProsperity' : 0
+									})
+									socketConn.send(data);
+									arrangeHand();
+									whichEvent = "";
+									return false;
+								}
+								if (whichEvent == "Queens Favor") {
+									//console.log("sending queens favor");
+									var data = JSON.stringify({
+
+										'doneEventQueensFavor' : 0
 									})
 									socketConn.send(data);
 									arrangeHand();
@@ -1633,6 +1657,7 @@ function send() {
 		document.getElementById('nameparagraph').style.display = "none";
 		document.getElementById('send').style.display = "none";
 		document.getElementById('rigger').style.display = "none";
+		document.getElementById('riggerAI').style.display = "none";
 		var serverMsg = document.getElementById('serverMsg');
 		serverMsg.value = "> waiting for other players \n> to create AI player(s), open a new browser window and click AI Player button";
 	}

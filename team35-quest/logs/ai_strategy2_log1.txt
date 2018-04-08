@@ -160,5 +160,5 @@
 2018-Apr-07 19:29:55 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player2 discarded Sword
 2018-Apr-07 19:30:00 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
 2018-Apr-07 19:30:00 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Boar
-2018-Apr-07 19:30:00 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 19:30:00 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
 2018-Apr-07 19:30:08 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt

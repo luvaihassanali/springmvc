@@ -1,0 +1,161 @@
+2018-Apr-08 10:51:57 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 10:51:57 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 10:51:57 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 10:52:03 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 10:52:03 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 10:52:04 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 10:52:04 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-08 10:52:05 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 10:52:05 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-08 10:52:06 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 10:52:06 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-08 10:52:09 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-08 10:52:09 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-08 10:52:09 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-08 10:52:12 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-08 10:52:14 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Test of Morgan Le Fey, Amour, Robber Knight, Dragon, Horse, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Sword, King Arthur, Excalibur, Horse, Test of Morgan Le Fey, Thieves, Dagger, Sir Galahad, Sword, 
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Queen's Favor
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New story card Queen's Favor is being rendered on player screens
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player1 has initiated event Queen's Favor
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player1 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player2 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player3 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player4 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player1 picked up Evil Knight and Amour
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player2 picked up Thieves and Mordred
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player3 picked up Robber Knight and Test of Temptation
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Player Player4 picked up Horse and Sword
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-08 10:52:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-08 10:52:22 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-08 10:52:25 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-08 10:52:29 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
+2018-Apr-08 10:52:29 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player2 discarded Thieves
+2018-Apr-08 10:52:36 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 discarded Dagger
+2018-Apr-08 10:52:36 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player3 discarded Test of Valor
+2018-Apr-08 10:52:39 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player4 discarded Thieves
+2018-Apr-08 10:52:39 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player4 discarded Sword
+2018-Apr-08 10:52:39 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Event Queen's Favor has concluded
+2018-Apr-08 10:52:39 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-08 10:52:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Apr-08 10:52:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New story card Repel the Saxon Raiders is being rendered on player screens
+2018-Apr-08 10:52:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Asking Player Player2 to sponsor quest Repel the Saxon Raiders
+2018-Apr-08 10:52:44 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player2 accepted to sponsor quest Repel the Saxon Raiders
+2018-Apr-08 10:52:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Initiating new quest Repel the Saxon Raiders sponsored by Player2
+2018-Apr-08 10:52:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player2 is setting up stages for Repel the Saxon Raiders quest
+2018-Apr-08 10:52:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Informing players that Player Player2 is sponsor of Repel the Saxon Raiders quest
+2018-Apr-08 10:52:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player2 will now choose cards for 2 stages of quest
+2018-Apr-08 10:52:55 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player2 attempted to choose a foe higher than ones already chosing during Repel the Saxon Raiders quest sponsor
+2018-Apr-08 10:53:00 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Player2 setup Repel the Saxon Raiders quest with ["Robber Knight","Green Knight"]
+2018-Apr-08 10:53:00 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Robber Knight
+2018-Apr-08 10:53:00 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Green Knight
+2018-Apr-08 10:53:00 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-08 10:53:02 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-08 10:53:02 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Repel the Saxon Raiders quest
+2018-Apr-08 10:53:02 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Sir Tristan
+2018-Apr-08 10:53:02 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 10:53:02 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-08 10:53:06 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-08 10:53:06 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Repel the Saxon Raiders quest
+2018-Apr-08 10:53:06 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Test of the Questing Beast
+2018-Apr-08 10:53:06 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 10:53:06 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Asking Player Player1 to participate in quest
+2018-Apr-08 10:53:10 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player1 denied to participate in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-08 10:53:10 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing other players that Player1 has declined to participate in Repel the Saxon Raiders quest
+2018-Apr-08 10:53:10 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Repel the Saxon Raiders quest setup by Player2 is commencing with participant(s): Player3, Player4,  choosing weapons CONCURRENTLY
+2018-Apr-08 10:53:28 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player3 chose Sir Galahad,  for stage 1 of Repel the Saxon Raiders quest
+2018-Apr-08 10:53:28 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player3 used Sir Galahad
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 chose King Arthur,  for stage 1 of Repel the Saxon Raiders quest
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player4 used King Arthur
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Repel the Saxon Raiders quest which is a test: false
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Repel the Saxon Raiders quest stage 1 is a foe battle
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Robber Knight with 15 battle points
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 20 battle points is starting - versus Robber Knight with 15 points
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant Player4 with 15 battle points is starting - versus Robber Knight with 15 points
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 has WON battle
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - All participants are choosing equipment for quest CONCURRENTLY
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Battle-ax
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Test of Valor
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player(s): Player3 has 13 cards in hand, will be prompted to discard Player4 has 13 cards in hand, will be prompted to discard 
+2018-Apr-08 10:53:33 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 10:54:12 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player4 chose Battle-ax,  for stage 2 of Repel the Saxon Raiders quest
+2018-Apr-08 10:54:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player4 used Battle-ax
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player3 chose Excalibur,  for stage 2 of Repel the Saxon Raiders quest
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player3 used Excalibur
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Repel the Saxon Raiders quest which is a test: false
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Repel the Saxon Raiders quest stage 2 is a foe battle
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Green Knight with 25 battle points
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 50 battle points is starting - versus Green Knight with 25 points
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Giving 2 shields to Player3
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player2 who sponsored Repel the Saxon Raiders quest is receiving 4 card (Saxon Knight, Robber Knight, Battle-ax, Sword, ) due to sponsoring quest
+2018-Apr-08 10:54:15 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player2 has 14 cards, will be prompted to discard
+2018-Apr-08 10:54:29 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player2 discarded Thieves
+2018-Apr-08 10:54:30 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player2 discarded Sword
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: Court Called to Camelot
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New story card Court Called to Camelot is being rendered on player screens
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Player3 has initiated event Court Called to Camelot
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - All allies in play will be discarded
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player {} has no allies in play
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player {} has no allies in play
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Player3 ally Sir Galahad has been removed
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Player Player4 ally King Arthur has been removed
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Event Court Called to Camelot has concluded
+2018-Apr-08 10:54:32 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player4 is flipping new card from story deck: Pox
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New story card Pox is being rendered on player screens
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player4 has initiated event Pox
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player3 with 2 shields
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Remove one shield (if applicable) from all players except event initiater
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - No shields to remove for player Player1
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - No shields to remove for player Player2
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Removing shield from player Player3
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player1 now with 0 shields
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player2 now with 0 shields
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player3 now with 1 shields
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Event Pox has concluded
+2018-Apr-08 10:54:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New story card Prosperity Throughout the Realm is being rendered on player screens
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Player1 has initiated event Prosperity Throughout the Realm
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Player1 picked up Lance and Horse
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Player2 picked up Mordred and Green Knight
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Player3 picked up Dagger and Horse
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Player4 picked up Thieves and Saxons
+2018-Apr-08 10:55:03 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-08 10:55:34 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 discarded Boar
+2018-Apr-08 10:55:34 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player1 discarded Saxons
+2018-Apr-08 10:55:38 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player2 discarded Robber Knight
+2018-Apr-08 10:55:41 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Horse
+2018-Apr-08 10:55:42 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player3 discarded Dagger
+2018-Apr-08 10:55:43 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 discarded Horse
+2018-Apr-08 10:55:45 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player4 discarded Dagger
+2018-Apr-08 10:55:46 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player4 discarded Sword
+2018-Apr-08 10:55:46 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-08 10:55:49 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: At Tintagel
+2018-Apr-08 10:55:49 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New story card At Tintagel is being rendered on player screens
+2018-Apr-08 10:55:49 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Tintagel

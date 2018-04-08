@@ -168,7 +168,7 @@
 2018-Apr-07 19:54:31 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
 2018-Apr-07 19:54:31 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
 2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Sword
-2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
 2018-Apr-07 19:54:44 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt-8] INFO  com.luvai.controller.QuestController - Player Player2 dropped out of test in quest Rescue the Fair Maiden
 2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 is calculating what bids to make
 2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 in 2+ round: choosing foes with >= 25 battle points for bids and duplicates
@@ -230,5 +230,5 @@
 2018-Apr-07 19:54:31 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
 2018-Apr-07 19:54:31 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
 2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Sword
-2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
 2018-Apr-07 19:54:44 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt

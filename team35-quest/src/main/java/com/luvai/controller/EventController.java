@@ -20,13 +20,16 @@ public class EventController extends SocketHandler {
 	Player current_player;
 	EventCard eventCard;
 	int prosperityTracker;
+	int queensFavorTracker;
 
 	public EventController(Game g, Player p, EventCard e) throws IOException {
 		gameEngine = g;
 		current_player = p;
 		eventCard = e;
-		executeEvent();
 		prosperityTracker = 0;
+		queensFavorTracker = 0;
+		executeEvent();
+
 	}
 
 	public void executeEvent() throws IOException {
@@ -35,8 +38,8 @@ public class EventController extends SocketHandler {
 		if (eventCard.getName().equals("Chivalrous Deed")) {
 			EventChivalrous();
 		}
-		if (eventCard.getName().equals("Court Called Camelot")) {
-
+		if (eventCard.getName().equals("Court Called to Camelot")) {
+			CourtCalledCamelot();
 		}
 		if (eventCard.getName().equals("King's Call to Arms")) {
 
@@ -54,9 +57,88 @@ public class EventController extends SocketHandler {
 			EventProsperity();
 		}
 		if (eventCard.getName().equals("Queen's Favor")) {
-
+			QueensFavor();
 		}
 
+	}
+
+	int temp_tracker = 0;
+
+	public void doneEventQueensFavor() throws IOException {
+		// System.out.println("done queens f");
+		temp_tracker++;
+		// System.out.println(temp_tracker);
+		/// System.out.println(gameEngine.current_event.queensFavorTracker);
+		if (temp_tracker == gameEngine.current_event.queensFavorTracker) {
+			gameEngine.incTurn();
+			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+			logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+			logger.info("Updating GUI stats for all players");
+			gameEngine.updateStats();
+			temp_tracker = 0;
+		}
+	}
+
+	public void QueensFavor() throws IOException {
+		logger.info("The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many");
+		ArrayList<Player> sortedByShields = new ArrayList<Player>();
+		sortedByShields.addAll(gameEngine.players);
+
+		for (Player p : sortedByShields) {
+
+			logger.info("{} with {} shields", p.getName(), p.getShields());
+
+		}
+		Player lowestRanked = sortedByShields.get(0);
+		ArrayList<Player> lowestRankedList = new ArrayList<Player>();
+		lowestRankedList.add(lowestRanked);
+		sortedByShields.remove(lowestRanked);
+		for (Player p : sortedByShields) {
+			if (p.getShields() == lowestRanked.getShields()) {
+				lowestRankedList.add(p);
+			}
+		}
+		queensFavorTracker = 0;
+		queensFavorTracker = lowestRankedList.size();
+		System.out.println("size lowest ranked: " + lowestRankedList.size());
+		for (Player p : lowestRankedList) {
+			logger.info("Player {} is among lowest ranked, receiving 2 adventure cards", p.getName());
+		}
+		String temp = "";
+		for (Player p : lowestRankedList) {
+			AdventureCard newCard = gameEngine.adventureDeck.flipCard();
+			p.getHand().add(newCard);
+			temp += newCard.getStringFile() + ";";
+			AdventureCard newCard2 = gameEngine.adventureDeck.flipCard();
+			p.getHand().add(newCard2);
+			temp += newCard2.getStringFile() + ";";
+			p.session.sendMessage(new TextMessage("PickupCardsQueensFavor" + temp));
+			temp = "";
+			logger.info("Player {} picked up {} and {}", p.getName(), newCard.getName(), newCard2.getName());
+		}
+
+		logger.info("Updating GUI stats for all players");
+		gameEngine.updateStats();
+
+	}
+
+	public void CourtCalledCamelot() throws IOException {
+		logger.info("All allies in play will be discarded");
+		for (Player p : gameEngine.players) {
+			if (p.getAllies().size() == 0) {
+				logger.info("Player {} has no allies in play");
+			} else {
+				for (int i = 0; i < p.getAllies().size(); i++) {
+					logger.info("Player {} ally {} has been removed", p.getName(), p.getAllies().get(i).getName());
+				}
+				p.getAllies().clear();
+			}
+		}
+		gameEngine.incTurn();
+		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+		logger.info("Updating GUI stats for all players");
+		gameEngine.updateStats();
 	}
 
 	public void EventKingsRecognition() throws IOException {
@@ -64,6 +146,9 @@ public class EventController extends SocketHandler {
 		Game.KingsRecognition = true;
 		gameEngine.incTurn();
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+		logger.info("Updating GUI stats for all players");
+		gameEngine.updateStats();
 	}
 
 	public void EventPlague() throws IOException {
@@ -157,6 +242,20 @@ public class EventController extends SocketHandler {
 		logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
 		logger.info("Updating GUI stats for all players");
 		gameEngine.updateStats();
+	}
+
+	public void doneProsperity() throws IOException {
+		// System.out.println(gameEngine.current_event.eventCard.getName());
+		// System.out.println(gameEngine.current_event.prosperityTracker);
+
+		gameEngine.current_event.prosperityTracker++;
+		if (gameEngine.current_event.prosperityTracker == 4) {
+			logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+			gameEngine.current_event.prosperityTracker = 0;
+
+			gameEngine.incTurn();
+			gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
+		}
 	}
 
 	public void EventProsperity() throws IOException {

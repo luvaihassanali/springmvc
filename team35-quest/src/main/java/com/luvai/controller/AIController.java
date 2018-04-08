@@ -219,18 +219,4 @@ public class AIController extends SocketHandler {
 			sendToAllSessions(gameEngine, "updateStats" + temp);
 		}
 	}
-
-	public void doneProsperity() throws IOException {
-		// System.out.println(gameEngine.current_event.eventCard.getName());
-		// System.out.println(gameEngine.current_event.prosperityTracker);
-
-		gameEngine.current_event.prosperityTracker++;
-		if (gameEngine.current_event.prosperityTracker == 4) {
-			logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
-			gameEngine.current_event.prosperityTracker = 0;
-
-			gameEngine.incTurn();
-			gameEngine.getActivePlayer().session.sendMessage((new TextMessage("undisableFlip")));
-		}
-	}
 }
