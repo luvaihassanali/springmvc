@@ -588,7 +588,10 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("setHand")) {
 		setHand();
 	}
-
+	if(event.data.startsWith("currentRank")) {
+		var rankLink = event.data.replace("currentRank", "");
+		$("#adventureCardDiscard").attr("src", "http://localhost:8080" + rankLink);
+	}
 	// if game is full - deny message
 	if (event.data.startsWith("Too many players")) {
 		serverMsg.value = event.data;
@@ -1499,6 +1502,8 @@ function flipStoryDeck() {
 	})
 	socketConn.send(data); 
 	document.getElementById('flip').disabled = true;
+	console.log("here");
+	$("#storyCardDiscard").attr("src", "http://localhost:8080/resources/images/card-back.png");
 }
 
 // get name from link

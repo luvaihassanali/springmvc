@@ -291,6 +291,7 @@ public class Game {
 				for (AdventureCard a : p.getHand())
 					handString += a.getName() + ", ";
 				p.session.sendMessage(new TextMessage("setHand" + p.getHandString()));
+				p.session.sendMessage(new TextMessage("currentRank" + p.getRank().getStringFile()));
 				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
 

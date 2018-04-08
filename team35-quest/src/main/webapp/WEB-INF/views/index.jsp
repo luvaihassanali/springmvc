@@ -369,7 +369,7 @@ Shields:<label id="p1shields">0</label>
 	<div>
 		<figure><img id="adventureCard" src="/resources/images/card-back.png" height="300"
 			width="200"> <img id="adventureCardDiscard" src="/resources/images/all.png"
-			height="300" width="200"> <figcaption>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdventure Cards</figcaption></figure> 
+			height="300" width="200"> <figcaption>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdventure Cards&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRank</figcaption></figure> 
 
 
 	</div>

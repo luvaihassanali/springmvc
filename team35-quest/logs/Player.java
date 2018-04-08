@@ -1,11 +1,9 @@
 package com.luvai.model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.google.gson.JsonObject;
@@ -95,7 +93,7 @@ public class Player {
 
 	}
 
-	public void giveShields(int numShields) throws IOException {
+	public void giveShields(int numShields) {
 
 		this.addShields(numShields);
 		/*
@@ -107,18 +105,15 @@ public class Player {
 			this.rank = CardList.Knight;
 			this.battlePoints = 10;
 			logger.info("Player {} has advanced rank to {}!", this.getName(), this.rank.getName());
-			this.session.sendMessage(new TextMessage("currentRank" + this.getRank().getStringFile()));
 		}
 		if (this.shields >= 7) {
 			this.rank = CardList.ChampionKnight;
 			logger.info("Player {} has advanced rank to {}!", this.getName(), this.rank.getName());
-			this.session.sendMessage(new TextMessage("currentRank" + this.getRank().getStringFile()));
 			this.battlePoints = 20;
 		}
 		if (this.shields >= 10) {
 			this.rank = CardList.RoundTableKnight;
 			logger.info("Player {} has advanced rank to {}!", this.getName(), this.rank.getName());
-			this.session.sendMessage(new TextMessage("currentRank" + this.getRank().getStringFile()));
 			this.tieCheck = 1;
 			this.battlePoints = 100;
 		}
