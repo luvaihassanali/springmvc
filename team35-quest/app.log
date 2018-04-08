@@ -418,3 +418,142 @@
 2018-Apr-07 21:37:55 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Asking Player Player2 to sponsor quest Boar Hunt
 2018-Apr-07 21:37:55 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player2 has advanced rank to Knight!
 2018-Apr-07 21:37:55 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-08 07:47:28 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 07:47:28 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 07:47:28 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 07:47:47 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 07:47:47 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 07:48:24 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 07:48:24 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-08 07:48:29 AM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-08 07:48:29 AM [http-nio-8080-exec-9] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-08 07:48:29 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - Player AI_Player_989 is enrolled in the game
+2018-Apr-08 07:48:29 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.AIController - There are 3 spots available for AI players
+2018-Apr-08 07:53:00 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 07:53:00 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 07:53:00 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 07:53:28 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 07:53:28 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 08:14:35 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 08:14:35 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 08:14:35 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 08:14:38 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:14:38 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 08:14:42 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:14:42 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-08 08:14:47 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:14:47 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-08 08:14:49 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:14:49 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-08 08:14:51 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player is enrolled in the game
+2018-Apr-08 08:14:51 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-08 08:14:51 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-08 08:14:53 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-08 08:14:56 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Test of Morgan Le Fey, Amour, Robber Knight, Dragon, Horse, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Sword, King Arthur, Excalibur, Horse, Test of Morgan Le Fey, Thieves, Dagger, Sir Galahad, Sword, 
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player is flipping new card from story deck: Boar Hunt
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New story card Boar Hunt is being rendered on player screens
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Asking Player Player to sponsor quest Boar Hunt
+2018-Apr-08 08:14:58 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-08 08:15:26 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 08:15:26 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 08:15:26 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 08:15:29 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:15:29 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 08:15:33 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:15:33 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-08 08:15:34 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:15:34 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-08 08:15:34 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:15:34 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-08 08:15:36 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-08 08:15:36 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-08 08:15:36 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-08 08:15:41 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-08 08:15:43 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player5 is enrolled in the game
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Sir Tristan, Test of Morgan Le Fey, Amour, Robber Knight, Dragon, Horse, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Sword, King Arthur, Excalibur, Horse, Test of Morgan Le Fey, Thieves, Dagger, Sir Galahad, Sword, 
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player5 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Pox
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New story card Pox is being rendered on player screens
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player2 has initiated event Pox
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player5 with 0 shields
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Remove one shield (if applicable) from all players except event initiater
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - No shields to remove for player Player3
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - No shields to remove for player Player4
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - No shields to remove for player Player5
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player3 now with 0 shields
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player4 now with 0 shields
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player5 now with 0 shields
+2018-Apr-08 08:15:45 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-08 08:16:40 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 08:16:40 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 08:16:40 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 08:16:42 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:16:42 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 08:16:43 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:16:43 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-08 08:16:44 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:16:44 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-08 08:16:44 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 08:16:44 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-08 08:16:46 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player is enrolled in the game
+2018-Apr-08 08:16:46 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-08 08:16:46 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-08 08:16:50 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-08 08:16:51 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Test of Morgan Le Fey, Amour, Robber Knight, Dragon, Horse, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Sword, King Arthur, Excalibur, Horse, Test of Morgan Le Fey, Thieves, Dagger, Sir Galahad, Sword, 
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player is flipping new card from story deck: Pox
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New story card Pox is being rendered on player screens
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player has initiated event Pox
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player2 with 3 shields
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Remove one shield (if applicable) from all players except event initiater
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Removing shield from player Player2
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - No shields to remove for player Player3
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - No shields to remove for player Player4
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player2 now with 2 shields
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player3 now with 0 shields
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player4 now with 0 shields
+2018-Apr-08 08:16:53 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Updating GUI stats for all players

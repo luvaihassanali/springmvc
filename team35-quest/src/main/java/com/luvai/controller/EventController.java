@@ -48,7 +48,7 @@ public class EventController extends SocketHandler {
 
 		}
 		if (eventCard.getName().equals("Pox")) {
-
+			EventPox();
 		}
 		if (eventCard.getName().equals("Prosperity Throughout the Realm")) {
 			EventProsperity();
@@ -57,6 +57,36 @@ public class EventController extends SocketHandler {
 
 		}
 
+	}
+
+	public void EventPox() throws IOException {
+		ArrayList<Player> sortedByShields = new ArrayList<Player>();
+		sortedByShields.addAll(gameEngine.players);
+
+		for (Player p : sortedByShields) {
+			if (p.equals(current_player)) {
+			} else {
+				logger.info("{} with {} shields", p.getName(), p.getShields());
+			}
+		}
+		logger.info("Remove one shield (if applicable) from all players except event initiater");
+		for (Player p : gameEngine.players) {
+			if (p.equals(current_player)) {
+			} else {
+				if (p.getShields() == 0) {
+					logger.info("No shields to remove for player {}", p.getName());
+				} else {
+					p.removeShield();
+					logger.info("Removing shield from player {}", p.getName());
+				}
+			}
+		}
+		for (Player p : sortedByShields) {
+			if (p.equals(current_player)) {
+			} else {
+				logger.info("{} now with {} shields", p.getName(), p.getShields());
+			}
+		}
 	}
 
 	public void EventChivalrous() throws IOException {

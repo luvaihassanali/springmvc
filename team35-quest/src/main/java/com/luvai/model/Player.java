@@ -177,89 +177,15 @@ public class Player {
 
 	}
 
-	public void discardSponsor(ArrayList<String> cards) { // adjust for more stages
-
-		ArrayList<String> names1 = new ArrayList<String>();
-		ArrayList<String> names2 = new ArrayList<String>();
-		ArrayList<String> names3 = new ArrayList<String>();
-		ArrayList<String> names4 = new ArrayList<String>();
-		ArrayList<String> names5 = new ArrayList<String>();
-
-		for (int i = 0; i < cards.size(); i++) {
-			if (cards.get(i).endsWith(Integer.toString(0))) {
-
-				names1.add(removeLastChar(cards.get(i)));
-			}
-		}
-		for (int i = 0; i < cards.size(); i++) {
-			if (cards.get(i).endsWith(Integer.toString(1))) {
-
-				names2.add(removeLastChar(cards.get(i)));
-			}
-		}
-
-		for (int i = 0; i < cards.size(); i++) {
-			if (cards.get(i).endsWith(Integer.toString(2))) {
-
-				names3.add(removeLastChar(cards.get(i)));
-			}
-		}
-		for (int i = 0; i < names1.size(); i++) {
-			for (int j = 0; j < this.getHandSize(); j++) {
-				if (this.hand.get(j).getName().equals(names1.get(i))) {
-					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
-					this.hand.remove(j);
-					break;
-				}
-			}
-		}
-
-		for (int i = 0; i < names2.size(); i++) {
-			for (int j = 0; j < this.getHandSize(); j++) {
-				if (this.hand.get(j).getName().equals(names2.get(i))) {
-					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
-					this.hand.remove(j);
-					break;
-				}
-			}
-		}
-
-		for (int i = 0; i < names3.size(); i++) {
-			for (int j = 0; j < this.getHandSize(); j++) {
-				if (this.hand.get(j).getName().equals(names3.get(i))) {
-					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
-					this.hand.remove(j);
-					break;
-				}
-			}
-		}
-
-		for (int i = 0; i < names4.size(); i++) {
-			for (int j = 0; j < this.getHandSize(); j++) {
-				if (this.hand.get(j).getName().equals(names4.get(i))) {
-					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
-					this.hand.remove(j);
-					break;
-				}
-			}
-		}
-
-		for (int i = 0; i < names5.size(); i++) {
-			for (int j = 0; j < this.getHandSize(); j++) {
-				if (this.hand.get(j).getName().equals(names5.get(i))) {
-					logger.info("Player {} used {} in quest setup", this.getName(), this.getHand().get(j).getName());
-					this.hand.remove(j);
-					break;
-				}
-			}
-		}
-	}
-
 	public String removeLastChar(String s) {
 		if (s == null || s.length() == 0) {
 			return s;
 		}
 		return s.substring(0, s.length() - 1);
+	}
+
+	public void removeShield() {
+		shields--;
 	}
 
 	public void addShields(int s) {
