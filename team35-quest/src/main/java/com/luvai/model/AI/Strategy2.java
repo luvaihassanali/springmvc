@@ -408,10 +408,10 @@ public class Strategy2 extends AbstractAI {
 				System.out.println(s);
 			if (array.length != 0) {
 				AdventureCard duplicate = (AdventureCard) cardFinder.getCardFromName(array[0]);
-				logger.info("Player {} in 2+ round chose to bid {}", current_player.getName(), array[1]);
+				logger.info("Player {} in 2+ round chose to bid {}", current_player.getName(), array[0]);
 				if (round >= 2) {
 					duplicate = (AdventureCard) cardFinder.getCardFromName(array[1]);
-					logger.info("Player {} in 3+ round chose to bid {}", current_player.getName(), array[1]);
+					logger.info("Player {} in 3+ round chose to bid {}", current_player.getName(), array[0]);
 				}
 				logger.info("Adding duplicate to bidlist");
 				bids.add(duplicate);
@@ -431,10 +431,12 @@ public class Strategy2 extends AbstractAI {
 
 	}
 
+	boolean allyPlayed = false;
+
 	@Override
 	public void chooseEquipment(JsonObject jsonObject, Player player) {
 		sortCards(player);
-		boolean allyPlayed = false;
+
 		JsonArray x = (JsonArray) jsonObject.get("currHand");
 		ArrayList<String> aiHand = new ArrayList<String>();
 		for (int i = 0; i < x.size(); i++) {

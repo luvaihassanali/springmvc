@@ -1,0 +1,234 @@
+2018-Apr-07 19:53:54 PM [http-nio-8080-exec2018-Apr-07 19:52:35 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-07 19:52:35 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-07 19:52:35 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-07 19:52:40 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-07 19:52:40 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-07 19:52:42 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-07 19:52:42 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-07 19:52:42 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-07 19:52:44 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-07 19:52:44 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-07 19:52:45 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-07 19:52:45 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-07 19:52:45 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - Player AI_Player_6 is enrolled in the game
+2018-Apr-07 19:52:45 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.AIController - There are 2 spots available for AI players
+2018-Apr-07 19:52:46 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-07 19:52:46 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-07 19:52:48 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-07 19:52:49 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-07 19:52:49 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.AbstractAI - Initiating new AI player
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Assigning new AI Player strategy Strategy2
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_559 is enrolled in the game
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - There are 0 spots available for AI players
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - All players have joined, starting game...
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_6 was just dealt a new hand consisting of Sir Tristan, Test of Morgan Le Fey, Amour, Robber Knight, Dragon, Green Knight, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player Player2 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Sword, King Arthur, Excalibur, Horse, Test of Morgan Le Fey, Thieves, Dagger, Sir Galahad, Sword, 
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Player AI_Player_559 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Thieves, Boar, Queen Iseult, Sir Gawain, Dagger, Dagger, King Pellinore, Black Knight, Sir Lancelot, 
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Rescue the Fair Maiden
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New story card Rescue the Fair Maiden is being rendered on player screens
+2018-Apr-07 19:52:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Rescue the Fair Maiden
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player1 declined to sponsor quest Rescue the Fair Maiden
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Informing other players that Player Player1 declined to sponsor Rescue the Fair Maiden quest
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Asking Player AI_Player_6 to sponsor quest Rescue the Fair Maiden
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to sponsor quest
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - No players can evolve if this quest is sponsored
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Requirements to sponsor quest met
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_6 accepted to sponsor quest Rescue the Fair Maiden
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Initiating new quest Rescue the Fair Maiden sponsored by AI_Player_6
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - AI_Player_6 is setting up stages for Rescue the Fair Maiden quest
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Informing players that Player AI_Player_6 is sponsor of Rescue the Fair Maiden quest
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player AI_Player_6 will now choose cards for 3 stages of quest
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - AI_Player_6 setting up Rescue the Fair Maiden quest ensuring last stage battle has at least 40 points
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Strategy2 adding Dagger to foe Dragon
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_6 used test for 2nd last stage of Rescue the Fair Maiden quest setup
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Setting remaning stages to low point foes with no weapons
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.model.AI.Strategy2 - Adding Thieves to quest - strategy2
+2018-Apr-07 19:52:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player AI_Player_6 setup Rescue the Fair Maiden quest with Thieves, Test of Morgan Le Fey, Dragon, Dagger, 
+2018-Apr-07 19:52:59 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player AI_Player_6 discarded Dagger
+2018-Apr-07 19:52:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player2 accepted to participate in Rescue the Fair Maiden quest sponsored by AI_Player_6
+2018-Apr-07 19:52:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has accepted to participate in Rescue the Fair Maiden quest
+2018-Apr-07 19:52:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Saxons
+2018-Apr-07 19:52:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 19:52:59 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Asking Player AI_Player_559 to participate in quest
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Strategy2 calculating whether to participate in quest
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 meet foe requirements (condition 2) to participate in Rescue the Fair Maiden quest
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Not enough weapons, checking for amour
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Not strong enough with weapons and amour, checking for allies
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 can sustain quest Rescue the Fair Maiden with weapons, amour, & allies played
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player AI_Player_559 accepted to participate in Rescue the Fair Maiden quest sponsored by AI_Player_6
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Informing other players that AI_Player_559 has accepted to participate in Rescue the Fair Maiden quest
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player AI_Player_559 getting new card Test of Valor
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 19:53:01 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Asking Player Player1 to participate in quest
+2018-Apr-07 19:53:05 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player1 accepted to participate in Rescue the Fair Maiden quest sponsored by AI_Player_6
+2018-Apr-07 19:53:05 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Informing other players that Player1 has accepted to participate in Rescue the Fair Maiden quest
+2018-Apr-07 19:53:05 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player1 getting new card Test of Valor
+2018-Apr-07 19:53:05 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 19:53:05 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Rescue the Fair Maiden quest setup by AI_Player_6 is commencing, participant(s): Player2, AI_Player_559, Player1,  are choosing equipment CONCURRENTLY
+2018-Apr-07 19:53:07 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Not last stage, will choose equipment to increment by 10
+2018-Apr-07 19:53:07 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Checking for amour
+2018-Apr-07 19:53:07 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Checking to see if ally played before choosing weapon
+2018-Apr-07 19:53:07 PM [http-nio-8080-exec-4] INFO  com.luvai.model.AI.Strategy2 - Playing ally (has not been chosen) as per strategy2
+2018-Apr-07 19:53:08 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player AI_Player_559 chose Sir Lancelot,  for stage 1 of Rescue the Fair Maiden quest
+2018-Apr-07 19:53:08 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_559 used Sir Lancelot
+2018-Apr-07 19:53:16 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player2 chose Sword,  for stage 1 of Rescue the Fair Maiden quest
+2018-Apr-07 19:53:16 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player2 used Sword
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player1 chose Dagger,  for stage 1 of Rescue the Fair Maiden quest
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 used Dagger
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Rescue the Fair Maiden quest which is a test: false
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Rescue the Fair Maiden quest stage 1 is a foe battle
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Thieves with 5 battle points
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Battle against participant Player2 with 15 battle points is starting - versus Thieves with 5 points
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 has WON battle
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Battle against participant AI_Player_559 with 20 battle points is starting - versus Thieves with 5 points
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player AI_Player_559 has WON battle
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Battle against participant Player1 with 10 battle points is starting - versus Thieves with 5 points
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player1 has WON battle
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Saxons
+2018-Apr-07 19:53:19 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 19:53:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player2 bid Test of Valor, Black Knight, Saxons,  for test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Sending Player Player2 bid to sponsor and other participants
+2018-Apr-07 19:53:46 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 is calculating what bids to make
+2018-Apr-07 19:53:46 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 in first round: choosing foes with >= 25 battle points for bids
+2018-Apr-07 19:53:46 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 chose to bid Thieves
+2018-Apr-07 19:53:46 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 chose to bid Saxons
+2018-Apr-07 19:53:46 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 chose to bid Boar
+2018-Apr-07 19:53:46 PM [http-nio-8080-exec-2] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 chose to bid Black Knight
+2018-Apr-07 19:53:48 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player AI_Player_559 bid Thieves, Saxons, Boar, Black Knight,  for test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:48 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Sending Player AI_Player_559 bid to sponsor and other participants
+2018-Apr-07 19:53:52 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player1 bid Boar, Black Knight, Test of the Questing Beast, Test of Valor,  for test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:52 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Sending Player Player1 bid to sponsor and other participants
+2018-Apr-07 19:53:54 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player2 dropped out of test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 is calculating what bids to make
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 in 2+ round: choosing foes with >= 25 battle points for bids and duplicates
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 in 2+ round chose to bid Dagger
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Adding duplicate to bidlist
+2018-Apr-07 19:53:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player AI_Player_559 bid Thieves, Saxons, Boar, Black Knight, Dagger,  for test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Sending Player AI_Player_559 bid to sponsor and other participants
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player1 dropped out of test in quest Rescue the Fair Maiden
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Thieves
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Saxons
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Boar
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Black Knight
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Dagger
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player AI_Player_559 getting new card Dagger
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player AI_Player_559 won test in Rescue the Fair Maiden quest, advancing to stage 3
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Informing players that player AI_Player_559 is winner of test
+2018-Apr-07 19:54:09 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Last stage AI_Player_559 choosing strongest hand
+2018-Apr-07 19:54:09 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_559 used King Pellinore
+2018-Apr-07 19:54:09 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_559 used Dagger
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_559 chose King Pellinore, Dagger,  for stage 3 of Rescue the Fair Maiden quest
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_559 used Dagger
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 3 of Rescue the Fair Maiden quest which is a test: false
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Rescue the Fair Maiden quest stage 3 is a foe battle
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Dragon with 55 battle points
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Battle against participant AI_Player_559 with 35 battle points is starting - versus Dragon with 55 points
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_559 has LOST battle
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Informing players of player AI_Player_559 loss in battle
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_559 has been removed from quest
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Stage 3 is over
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - All players defeated in Rescue the Fair Maiden quest sponsored by AI_Player_6
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_6 who sponsored Rescue the Fair Maiden quest is receiving 4 card (Thieves, Lance, Test of the Questing Beast, Thieves, ) due to sponsoring quest
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_6 has 15 cards, will be prompted to discard
+2018-Apr-07 19:54:13 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_6 discarded Thieves
+2018-Apr-07 19:54:13 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_6 discarded Thieves
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Chivalrous Deed
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New story card Chivalrous Deed is being rendered on player screens
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player2 has initiated event Chivalrous Deed
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - AI_Player_6 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - AI_Player_559 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  Player1 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  AI_Player_6 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  Player2 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  AI_Player_559 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player AI_Player_559 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New story card Prosperity Throughout the Realm is being rendered on player screens
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_559 has initiated event Prosperity Throughout the Realm
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Player1 picked up Amour and Excalibur
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_6 picked up Merlin and Horse
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Player2 picked up Dagger and Mordred
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_559 picked up Giant and Evil Knight
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-07 19:54:31 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
+2018-Apr-07 19:54:31 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
+2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 19:54:44 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt-8] INFO  com.luvai.controller.QuestController - Player Player2 dropped out of test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 is calculating what bids to make
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 in 2+ round: choosing foes with >= 25 battle points for bids and duplicates
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Player AI_Player_559 in 2+ round chose to bid Dagger
+2018-Apr-07 19:53:56 PM [http-nio-8080-exec-7] INFO  com.luvai.model.AI.Strategy2 - Adding duplicate to bidlist
+2018-Apr-07 19:53:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player AI_Player_559 bid Thieves, Saxons, Boar, Black Knight, Dagger,  for test in quest Rescue the Fair Maiden
+2018-Apr-07 19:53:58 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Sending Player AI_Player_559 bid to sponsor and other participants
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player1 dropped out of test in quest Rescue the Fair Maiden
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Thieves
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Saxons
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Boar
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Black Knight
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player AI_Player_559 used Dagger
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player AI_Player_559 getting new card Dagger
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player AI_Player_559 won test in Rescue the Fair Maiden quest, advancing to stage 3
+2018-Apr-07 19:54:07 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Informing players that player AI_Player_559 is winner of test
+2018-Apr-07 19:54:09 PM [http-nio-8080-exec-1] INFO  com.luvai.model.AI.Strategy2 - Last stage AI_Player_559 choosing strongest hand
+2018-Apr-07 19:54:09 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_559 used King Pellinore
+2018-Apr-07 19:54:09 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player AI_Player_559 used Dagger
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_559 chose King Pellinore, Dagger,  for stage 3 of Rescue the Fair Maiden quest
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player AI_Player_559 used Dagger
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 3 of Rescue the Fair Maiden quest which is a test: false
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Rescue the Fair Maiden quest stage 3 is a foe battle
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Dragon with 55 battle points
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Battle against participant AI_Player_559 with 35 battle points is starting - versus Dragon with 55 points
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_559 has LOST battle
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Informing players of player AI_Player_559 loss in battle
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player AI_Player_559 has been removed from quest
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Stage 3 is over
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - All players defeated in Rescue the Fair Maiden quest sponsored by AI_Player_6
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_6 who sponsored Rescue the Fair Maiden quest is receiving 4 card (Thieves, Lance, Test of the Questing Beast, Thieves, ) due to sponsoring quest
+2018-Apr-07 19:54:11 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player AI_Player_6 has 15 cards, will be prompted to discard
+2018-Apr-07 19:54:13 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_6 discarded Thieves
+2018-Apr-07 19:54:13 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player AI_Player_6 discarded Thieves
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Chivalrous Deed
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New story card Chivalrous Deed is being rendered on player screens
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player2 has initiated event Chivalrous Deed
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - AI_Player_6 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - AI_Player_559 with 0 shields
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  Player1 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  AI_Player_6 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  Player2 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController -  AI_Player_559 is awarded with 3 shields for a total of 3
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player AI_Player_559 is flipping new card from story deck: Prosperity Throughout the Realm
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New story card Prosperity Throughout the Realm is being rendered on player screens
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_559 has initiated event Prosperity Throughout the Realm
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Player1 picked up Amour and Excalibur
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_6 picked up Merlin and Horse
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player Player2 picked up Dagger and Mordred
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Player AI_Player_559 picked up Giant and Evil Knight
+2018-Apr-07 19:54:27 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-07 19:54:31 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
+2018-Apr-07 19:54:31 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Saxons
+2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-07 19:54:37 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.AIController - Event Prosperity Throughout the Realm has concluded
+2018-Apr-07 19:54:44 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt
