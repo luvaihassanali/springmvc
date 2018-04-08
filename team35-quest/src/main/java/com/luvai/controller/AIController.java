@@ -21,7 +21,7 @@ public class AIController extends SocketHandler {
 	public AIController() {
 	}
 
-	public void receiveAICommand(JsonObject jsonObject) throws IOException {
+	public void receiveAICommand(JsonObject jsonObject, WebSocketSession session) throws IOException {
 
 		if (jsonObject.get("AICommand").getAsString().equals("AskToParticipateQuest"))
 			AIQuestParticipation(jsonObject);
@@ -42,11 +42,24 @@ public class AIController extends SocketHandler {
 			AIChooseEquipment(jsonObject);
 		}
 
+		if (jsonObject.get("AICommand").getAsString().equals("AskTournament")) {
+			AITournamentParticipation(jsonObject, session);
+		}
+
+		if (jsonObject.get("AICommand").getAsString().equals("chooseEquipmentTournie")) {
+			AIChooseEquipmentTournie(jsonObject);
+		}
+
+	}
+
+	private void AIChooseEquipmentTournie(JsonObject jsonObject) {
+		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
+		currentPlayer.getAI().chooseEquipmentTournie(jsonObject, currentPlayer);
 	}
 
 	private void AIChooseEquipment(JsonObject jsonObject) {
 
-		System.out.println(jsonObject.toString());
+		// System.out.println(jsonObject.toString());
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 		System.out.println(currentPlayer.getName());
 		currentPlayer.getAI().chooseEquipment(jsonObject, currentPlayer);
@@ -155,6 +168,28 @@ public class AIController extends SocketHandler {
 
 		// String update = gameEngine.getPlayerStats();
 		// sendToAllSessions(gameEngine, "updateStats" + update);
+
+	}
+
+	private void AITournamentParticipation(JsonObject jsonObject, WebSocketSession session) throws IOException {
+		boolean answer = gameEngine.getActivePlayer().getAI().doIParticipateTournament();
+		String name = gameEngine.getActivePlayer().getName();
+		System.out.println(answer);
+		if (answer) {
+			logger.info("Player {} accepted to participate in Tournament {}", name,
+					gameEngine.storyDeck.faceUp.getName());
+			gameEngine.current_tournament.acceptParticipation(name);
+			logger.info("Informing other players that {} accepted to participate in Tournament {}", name,
+					gameEngine.storyDeck.faceUp.getName());
+			sendToAllSessionsExceptCurrent(gameEngine, session, "AcceptedTournie" + name);
+		} else {
+			logger.info("Player {} declined to participate in Tournament {}", name,
+					gameEngine.storyDeck.faceUp.getName());
+			gameEngine.current_tournament.denyParticipation(name);
+			logger.info("Informing other players that {} declined to participate in Tournament {}", name,
+					gameEngine.storyDeck.faceUp.getName());
+			sendToAllSessionsExceptCurrent(gameEngine, session, "DeclinedTournie" + name);
+		}
 
 	}
 

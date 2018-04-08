@@ -41,6 +41,11 @@ public class Strategy2 extends AbstractAI {
 	}
 
 	@Override
+	public boolean doIParticipateTournament() {
+		return true;
+	}
+
+	@Override
 	public boolean doIParticipateQuest() {
 		round = 0;
 		logger.info("Strategy2 calculating whether to participate in quest");
@@ -312,7 +317,6 @@ public class Strategy2 extends AbstractAI {
 		try {
 			currentPlayer.session.sendMessage(new TextMessage(message + discards));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -434,6 +438,35 @@ public class Strategy2 extends AbstractAI {
 	boolean allyPlayed = false;
 
 	@Override
+	public void chooseEquipmentTournie(JsonObject jsonObject, Player player) {
+		sortCards(player);
+		sortCards(player);
+
+		JsonArray x = (JsonArray) jsonObject.get("currHand");
+		ArrayList<String> aiHand = new ArrayList<String>();
+		for (int i = 0; i < x.size(); i++) {
+			JsonElement temp = x.get(i);
+			// System.out.println(temp.getAsString());
+			if (temp.getAsString().contains("all.png")) {
+			} else {
+				aiHand.add(temp.getAsString());
+			}
+		}
+		for (String s : aiHand) {
+			s = s.replace("http://localhost:8080/resources/images/", "");
+			System.out.println(s);
+			s = s.replace(".png", "");
+			s = s.replace(".jpg", "");
+			s = s.substring(4);
+			s = s.replace("%20", " ");
+			if (s.equals("r"))
+				s = "Amour";
+			System.out.println(s);
+		}
+
+	}
+
+	@Override
 	public void chooseEquipment(JsonObject jsonObject, Player player) {
 		sortCards(player);
 
@@ -486,7 +519,6 @@ public class Strategy2 extends AbstractAI {
 			try {
 				player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -504,7 +536,6 @@ public class Strategy2 extends AbstractAI {
 						try {
 							player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						return;
@@ -523,7 +554,6 @@ public class Strategy2 extends AbstractAI {
 					try {
 						player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -538,7 +568,6 @@ public class Strategy2 extends AbstractAI {
 					try {
 						player.session.sendMessage(new TextMessage("AIRemoveFromScreenBP" + aiDiscard));
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
