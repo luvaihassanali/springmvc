@@ -93,7 +93,7 @@ public class TournamentController extends SocketHandler {
 		}
 	}
 
-	private void denyParticipation(String n) throws IOException {
+	public void denyParticipation(String n) throws IOException {
 		gameEngine.incTurn();
 		// System.out.println(gameEngine.getActivePlayer().getName());
 		if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
@@ -106,7 +106,7 @@ public class TournamentController extends SocketHandler {
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("participateTournament"));
 	}
 
-	private void acceptParticipation(String n) throws IOException {
+	public void acceptParticipation(String n) throws IOException {
 		String playerName = n;
 		// System.out.println(playerName);
 		Player p = gameEngine.getPlayerFromName(playerName);

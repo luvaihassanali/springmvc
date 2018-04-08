@@ -784,8 +784,19 @@ function getTestBids() {
 }
 
 function chooseEquipmentTournie() {
-	console.log("here");
 	var serverMsg = document.getElementById("serverMsg");
+	if(isAI) {
+		getCurrHand();
+		var data = JSON.stringify({
+			'AICommand' : "chooseEquipmentTournie",
+			'name' : PlayerName,
+			'currHand': handCardSRC,
+		}) 
+		setTimeout(function(){ socketConn.send(data); 
+		serverMsg.value = "\n> choosing equipment, please wait for other players"; 
+		}, 1000);		
+		return;
+	}
 	serverMsg.value = "It is now time to choose equipment for tournament (right-click to discard)";
 	$('body').on('click', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra6, #extra7, #extra8', function() {
 		var cardId = this.src.replace('http://localhost:8080', '');
@@ -981,7 +992,8 @@ function getTournie() {
 	serverMsg.value += "\n> please accept/decline quest by clicking below"
 	if (isAI) {
 		var data = JSON.stringify({
-			'AICommand' : "AskTournament"
+			'AICommand' : "AskTournament",
+			'name': PlayerName
 		})
 		setTimeout(function(){ socketConn.send(data); }, 1000);
 		document.getElementById("askTournament").style.display = "none";

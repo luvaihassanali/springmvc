@@ -50,7 +50,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 		// send ai to controller
 		if (jsonObject.has("AICommand")) {
-			gameEngine.AIController.receiveAICommand(jsonObject);
+			gameEngine.AIController.receiveAICommand(jsonObject, session);
 		}
 		// get player name and set up game players
 		if (jsonObject.has("newName")) {

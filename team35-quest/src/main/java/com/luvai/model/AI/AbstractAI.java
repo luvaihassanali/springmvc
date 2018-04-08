@@ -119,4 +119,8 @@ public abstract class AbstractAI {
 
 	abstract public void chooseEquipment(JsonObject json, Player player);
 
+	abstract public void chooseEquipmentTournie(JsonObject json, Player player);
+
+	abstract public boolean doIParticipateTournament();
+
 }
