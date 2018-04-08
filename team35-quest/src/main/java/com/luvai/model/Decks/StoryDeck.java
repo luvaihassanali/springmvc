@@ -37,8 +37,12 @@ public class StoryDeck extends Decks {
 	}
 
 	public void fillEmptyDeck() {
-		logger.info("Reshuffling story deck...");
-		this.initStoryDeck();
+		logger.info("Story card deck has run out");
+		logger.info("Shuffling story card discard pile and replacing story deck");
+		Collections.shuffle(discardPile);
+		cards.clear();
+		cards.addAll(discardPile);
+		discardPile.clear();
 	}
 
 	public StoryDeck initStoryDeck() {
@@ -117,11 +121,11 @@ public class StoryDeck extends Decks {
 				s_arr2[1] = CardList.Quest6; // tournament 1
 				s_arr2[0] = CardList.Tournament1; // quest7
 			} else {
-				s_arr2[4] = CardList.Event3; // should be 6
-				s_arr2[3] = CardList.Quest5;// should be event 1
-				s_arr2[2] = CardList.Event2;// event 8
+				s_arr2[4] = CardList.Event6; // should be 6
+				s_arr2[3] = CardList.Quest6;// should be event 1
+				s_arr2[2] = CardList.Event6;// event 8
 				s_arr2[1] = CardList.Event4; // tournament 1
-				s_arr2[0] = CardList.Event8; // quest7
+				s_arr2[0] = CardList.Event4; // quest7
 				;
 			}
 			this.fillDeck(s_arr);

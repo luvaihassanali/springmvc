@@ -86,15 +86,15 @@ public class Game {
 			add(CardList.ValorTest);
 			add(CardList.BlackKnight);
 			add(CardList.Saxons);
-			add(CardList.Sword);
+			add(CardList.Thieves);
 			add(CardList.KingArthur);
 			add(CardList.Excalibur);
-			add(CardList.Horse);
+			add(CardList.Amour);
 			add(CardList.MorganTest);
 			add(CardList.Thieves);
-			add(CardList.Dagger);
+			add(CardList.Dragon);
 			add(CardList.SirGalahad);
-			add(CardList.Sword);
+			add(CardList.RobberKnight);
 		}
 	};
 	@SuppressWarnings("serial")
@@ -156,15 +156,15 @@ public class Game {
 			add(CardList.ValorTest);
 			add(CardList.BlackKnight);
 			add(CardList.Saxons);
-			add(CardList.Sword);
+			add(CardList.Thieves);
 			add(CardList.KingArthur);
-			add(CardList.Excalibur);
-			add(CardList.Horse);
+			add(CardList.QueenIseult);
+			add(CardList.Amour);
 			add(CardList.MorganTest);
 			add(CardList.Thieves);
-			add(CardList.Dagger);
+			add(CardList.Dragon);
 			add(CardList.SirGalahad);
-			add(CardList.Sword);
+			add(CardList.RobberKnight);
 		}
 	};
 	@SuppressWarnings("serial")
@@ -295,7 +295,14 @@ public class Game {
 				p.session.sendMessage(new TextMessage("currentRank" + p.getRank().getStringFile()));
 				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
-			SocketHandler.flipStoryCard();
+			setTimeout(() -> {
+				try {
+					SocketHandler.flipStoryCard();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}, 2000);
 			logger.info("Updating GUI stats for all players");
 			this.updateStats();
 
@@ -356,6 +363,17 @@ public class Game {
 					this.storyDeck.faceUp.getName());
 		}
 
+	}
+
+	public static void setTimeout(Runnable runnable, int delay) {
+		new Thread(() -> {
+			try {
+				Thread.sleep(delay);
+				runnable.run();
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}).start();
 	}
 
 }

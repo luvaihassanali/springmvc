@@ -343,6 +343,9 @@ public class SocketHandler extends TextWebSocketHandler {
 		if (jsonObject.has("doneEventProsperity")) {
 			gameEngine.current_event.doneProsperity();
 		}
+		if (jsonObject.has("doneEventKingsCallToArms")) {
+			gameEngine.current_event.doneKingsCallToArms();
+		}
 		// get tournie info
 		if (jsonObject.has("tournament_info")) {
 			gameEngine.current_tournament.parseTournieInfo(jsonObject);
@@ -735,17 +738,6 @@ public class SocketHandler extends TextWebSocketHandler {
 		for (Player p : tempList) {
 			p.session.sendMessage(new TextMessage(message));
 		}
-	}
-
-	public static void setTimeout(Runnable runnable, int delay) {
-		new Thread(() -> {
-			try {
-				Thread.sleep(delay);
-				runnable.run();
-			} catch (Exception e) {
-				System.err.println(e);
-			}
-		}).start();
 	}
 
 }// end of class

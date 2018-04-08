@@ -36,7 +36,8 @@ var allQuestInfo = [];
 var allPlayerPoints = [];
 var inTournie = false;
 var playerTEquipArr;
-// when connection is initiated
+var KingsCallToArms = false;
+
 socketConn.onopen = function(event) {};
 
 var handCardID;
@@ -99,6 +100,27 @@ $( document ).ready(function() {
 socketConn.onmessage = function(event) {
     var serverMsg = document.getElementById('serverMsg');
 	
+    //kings call to arms event
+    if(event.data.startsWith("KingsCallToArms")) {
+    	console.log("event kings call to arms");
+    	KingsCallToArms = true;
+    	numCards = 12;
+
+    	if(event.data.startsWith("KingsCallToArmsWeapon")){
+
+    		serverMsg.value += "\n> must discard 1 weapon card to continue";
+    		numCards++;
+    	}
+   	if(event.data.startsWith("KingsCallToArms1Foe")){
+   		serverMsg.value += "\n> must discard 1 foe card to continue";
+   		numCards++;
+    	}
+   	if(event.data.startsWith("KingsCallToArmsFoes")){
+   		serverMsg.value += "\n> must discard 2 foe cards to continue";
+   		numCards+=2;
+	}
+    	discard();
+    }
     //replace test cards if drop out
     if (event.data.startsWith("replaceTestCards")) {
     	replaceTestCards(event.data.replace("replaceTestCards",""));
@@ -1256,12 +1278,39 @@ function setupQuestRound() {
 // discard function
 function discard() {
 	$('body').on('contextmenu', '#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #extra1, #extra2, #extra3, #extra4, #extra5, #extra7, #extra6, #extra7, #extra8', function() {
-				if (numCards == 12)	return false;
+				if (numCards == 12){	return false; }
 				var cardSrc = this.src.replace('http://localhost:8080',	'');
 				if (cardSrc == "/resources/images/all.png") {
 				} else {
 					cardSrc = cardSrc.split('%20').join(' ');
 					var discardName = getNameFromLink(cardSrc);
+					if(KingsCallToArms) {
+						var serverMsg = document.getElementById("serverMsg");
+						if(serverMsg.value.includes("must discard 1 weapon card")) {
+							if(getTypeFromName(discardName) == "weapon") {
+								
+							} else {
+								serverMsg.value += "\n> must be a weapon";
+								return;
+							}
+						}
+						if(serverMsg.value.includes("must discard 1 foe card")) {
+							if(getTypeFromName(discardName) == "foe") {
+								
+							} else {
+								serverMsg.value += "\n> must be a foe";
+								return;
+							}
+						}
+						if(serverMsg.value.includes("must discard 2 foe cards")) {
+							if(getTypeFromName(discardName) == "foe") {
+								
+							} else {
+								serverMsg.value += "\n> must be a foe";
+								return;
+							}
+						}
+					}
 					var data = JSON.stringify({
 						'discard' : discardName
 					});
@@ -1269,20 +1318,36 @@ function discard() {
 					arrangeHand();
 				}
 				if (this.src != "http://localhost:8080/resources/images/all.png") {
+					console.log(numCards);
 					if (numCards > 12) {
-						$(this)
-								.attr("src",
-										"/resources/images/all.png");
+						$(this).attr("src",	"/resources/images/all.png");
 						numCards--;
 						if (numCards >= 12) {
 							if(inTournie) document.getElementById("doneTournie").style.display = "inline";
+							if(KingsCallToArms && numCards == 12) {
+								var data = JSON.stringify({
+									'doneEventKingsCallToArms' : 0
+								})
+								socketConn.send(data);
+								arrangeHand();
+								KingsCallToArms = false;
+						    	var cardTracker = 0;
+						    	for (var i = 0; i < handCardSRC.length; i++) {
+						    		if(handCardSRC[i].includes("resources/images/all.png")) {} else {
+						    			cardTracker++;
+						    		}
+						    	}
+
+						    	
+						    	numCards = cardTracker;
+								return false;
+							}
 							if (whichEvent != "" && numCards == 12) {
 
 								document.getElementById("serverMsg").value += "\n> wait for other players...";
 								if (whichEvent == "Prosperity") {
 									//console.log("sending prosperity");
 									var data = JSON.stringify({
-
 										'doneEventProsperity' : 0
 									})
 									socketConn.send(data);
@@ -1293,7 +1358,6 @@ function discard() {
 								if (whichEvent == "Queens Favor") {
 									//console.log("sending queens favor");
 									var data = JSON.stringify({
-
 										'doneEventQueensFavor' : 0
 									})
 									socketConn.send(data);

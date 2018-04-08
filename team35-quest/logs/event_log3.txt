@@ -1,0 +1,114 @@
+2018-Apr-08 16:56:42 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-08 16:56:42 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-08 16:56:42 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-Apr-08 16:59:10 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 16:59:10 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-08 16:59:13 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 16:59:13 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-08 16:59:13 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 16:59:13 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-08 16:59:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-08 16:59:14 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-08 16:59:17 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-08 16:59:17 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-08 16:59:17 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-08 16:59:20 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-08 16:59:23 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Test of Morgan Le Fey, Amour, Robber Knight, Dragon, Horse, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Thieves, King Arthur, Excalibur, Amour, Test of Morgan Le Fey, Thieves, Dragon, Sir Galahad, Robber Knight, 
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-08 16:59:26 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-08 16:59:28 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Slay the Dragon
+2018-Apr-08 16:59:28 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Slay the Dragon is being rendered on player screens
+2018-Apr-08 16:59:28 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Slay the Dragon
+2018-Apr-08 16:59:30 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player1 accepted to sponsor quest Slay the Dragon
+2018-Apr-08 16:59:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Slay the Dragon sponsored by Player1
+2018-Apr-08 16:59:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player1 is setting up stages for Slay the Dragon quest
+2018-Apr-08 16:59:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing players that Player Player1 is sponsor of Slay the Dragon quest
+2018-Apr-08 16:59:30 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player1 will now choose cards for 3 stages of quest
+2018-Apr-08 16:59:41 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player Player1 setup Slay the Dragon quest with ["Test of Temptation","Boar","Saxons"]
+2018-Apr-08 16:59:41 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 discarded Test of Temptation
+2018-Apr-08 16:59:41 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 discarded Boar
+2018-Apr-08 16:59:41 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 discarded Saxons
+2018-Apr-08 16:59:41 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Asking Player Player2 to participate in quest
+2018-Apr-08 16:59:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player2 denied to participate in Slay the Dragon quest sponsored by Player1
+2018-Apr-08 16:59:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has declined to participate in Slay the Dragon quest
+2018-Apr-08 16:59:44 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-08 16:59:46 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Slay the Dragon quest sponsored by Player1
+2018-Apr-08 16:59:46 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Slay the Dragon quest
+2018-Apr-08 16:59:46 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Amour
+2018-Apr-08 16:59:46 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 16:59:46 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-08 16:59:47 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player4 denied to participate in Slay the Dragon quest sponsored by Player1
+2018-Apr-08 16:59:47 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has declined to participate in Slay the Dragon quest
+2018-Apr-08 16:59:47 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Slay the Dragon quest setup by Player1 is commencing with participant(s): Player3,  choosing weapons CONCURRENTLY
+2018-Apr-08 16:59:55 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 bid Thieves,  for test in quest Slay the Dragon
+2018-Apr-08 16:59:55 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - There is only one participant left in quest test, automatic minimum bid pass
+2018-Apr-08 16:59:55 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 used Thieves
+2018-Apr-08 16:59:55 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Going to stage 2
+2018-Apr-08 16:59:55 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Sword
+2018-Apr-08 16:59:55 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player3 chose Sword,  for stage 2 of Slay the Dragon quest
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player3 used Sword
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Slay the Dragon quest which is a test: false
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Slay the Dragon quest stage 2 is a foe battle
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 5 battle points
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 15 battle points is starting - versus Boar with 5 points
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Stage 2 is over
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - All participants are choosing equipment for quest CONCURRENTLY
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Amour
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player(s): Player3 has 13 cards in hand, will be prompted to discard 
+2018-Apr-08 17:00:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player3 chose Amour,  for stage 3 of Slay the Dragon quest
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player3 used Amour
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 3 of Slay the Dragon quest which is a test: false
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Slay the Dragon quest stage 3 is a foe battle
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Saxons with 10 battle points
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 15 battle points is starting - versus Saxons with 10 points
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Giving 3 shields to Player3
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player1 who sponsored Slay the Dragon quest is receiving 6 card (Saxon Knight, Test of Morgan Le Fey, Evil Knight, Saxons, Sword, Saxon Knight, ) due to sponsoring quest
+2018-Apr-08 17:00:14 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player1 has 15 cards, will be prompted to discard
+2018-Apr-08 17:00:43 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-08 17:00:44 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-08 17:00:45 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Saxons
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: King's Call to Arms
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New story card King's Call to Arms is being rendered on player screens
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player2 has initiated event King's Call to Arms
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - The highest ranked player(s) must place 1 weapon in the discard pile. If unable to do so, 2 Foe Cards must be discarded
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player3 with 3 shields
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player3 is currently the highest ranked player
+2018-Apr-08 17:00:51 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player3 will now discard 1 weapon
+2018-Apr-08 17:01:07 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 discarded Excalibur
+2018-Apr-08 17:01:07 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Event King's Call to Arms has concluded
+2018-Apr-08 17:01:07 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: Queen's Favor
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New story card Queen's Favor is being rendered on player screens
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player3 has initiated event Queen's Favor
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player3 with 3 shields
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player1 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player2 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player4 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player1 picked up King Arthur and Horse
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player2 picked up Horse and Sword
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player4 picked up Amour and Dagger
+2018-Apr-08 17:01:10 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Updating GUI stats for all players

@@ -12,6 +12,8 @@ import org.springframework.web.socket.TextMessage;
 import com.luvai.model.Game;
 import com.luvai.model.Player;
 import com.luvai.model.AdventureCards.AdventureCard;
+import com.luvai.model.AdventureCards.FoeCard;
+import com.luvai.model.AdventureCards.WeaponCard;
 import com.luvai.model.StoryCards.EventCard;
 
 public class EventController extends SocketHandler {
@@ -21,6 +23,7 @@ public class EventController extends SocketHandler {
 	EventCard eventCard;
 	int prosperityTracker;
 	int queensFavorTracker;
+	int kingsArmsTracker;
 
 	public EventController(Game g, Player p, EventCard e) throws IOException {
 		gameEngine = g;
@@ -28,6 +31,7 @@ public class EventController extends SocketHandler {
 		eventCard = e;
 		prosperityTracker = 0;
 		queensFavorTracker = 0;
+		kingsArmsTracker = 0;
 		executeEvent();
 
 	}
@@ -42,7 +46,7 @@ public class EventController extends SocketHandler {
 			CourtCalledCamelot();
 		}
 		if (eventCard.getName().equals("King's Call to Arms")) {
-
+			KingsCallToArms();
 		}
 		if (eventCard.getName().equals("King's Recognition")) {
 			EventKingsRecognition();
@@ -62,20 +66,102 @@ public class EventController extends SocketHandler {
 
 	}
 
-	int temp_tracker = 0;
+	int temp_tracker_kingsArms = 0;
 
-	public void doneEventQueensFavor() throws IOException {
-		// System.out.println("done queens f");
-		temp_tracker++;
-		// System.out.println(temp_tracker);
-		/// System.out.println(gameEngine.current_event.queensFavorTracker);
-		if (temp_tracker == gameEngine.current_event.queensFavorTracker) {
+	public void doneKingsCallToArms() throws IOException {
+		temp_tracker_kingsArms++;
+		if (temp_tracker_kingsArms == gameEngine.current_event.kingsArmsTracker) {
 			gameEngine.incTurn();
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 			logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
 			logger.info("Updating GUI stats for all players");
 			gameEngine.updateStats();
-			temp_tracker = 0;
+		}
+	}
+
+	public void KingsCallToArms() throws IOException {
+		logger.info(
+				"The highest ranked player(s) must place 1 weapon in the discard pile. If unable to do so, 2 Foe Cards must be discarded");
+		ArrayList<Player> sortedByShields = new ArrayList<Player>();
+		sortedByShields.addAll(gameEngine.players);
+
+		Collections.sort(sortedByShields, new Comparator<Player>() {
+			public int compare(Player p1, Player p2) {
+				return p1.getShields() < p2.getShields() ? -1 : p1.getShields() > p2.getShields() ? 1 : 0;
+			}
+		});
+
+		for (Player p : sortedByShields) {
+
+			logger.info("{} with {} shields", p.getName(), p.getShields());
+
+		}
+		Player highestRanked = sortedByShields.get(sortedByShields.size() - 1);
+		ArrayList<Player> highestRankedList = new ArrayList<Player>();
+		highestRankedList.add(highestRanked);
+		sortedByShields.remove(highestRanked);
+		for (Player p : sortedByShields) {
+			if (p.getShields() == highestRanked.getShields()) {
+				highestRankedList.add(p);
+			}
+		}
+		kingsArmsTracker = 0;
+		kingsArmsTracker = highestRankedList.size();
+		System.out.println("size highest ranked: " + highestRankedList.size());
+		for (Player p : highestRankedList) {
+			int weaponTracker = 0;
+			int foeTracker = 0;
+			for (AdventureCard a : p.getHand()) {
+				if (a instanceof WeaponCard) {
+					weaponTracker++;
+				}
+				if (a instanceof FoeCard) {
+					foeTracker++;
+				}
+			}
+			if (weaponTracker != 0) {
+				logger.info("Player {} will now discard 1 weapon", p.getName());
+				p.session.sendMessage(new TextMessage("KingsCallToArmsWeapon"));
+				continue;
+			}
+			if (foeTracker == 0) {
+				logger.info("Player {} has no foes or weapons for discard, going to next turn");
+				gameEngine.incTurn();
+				gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+				logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+				logger.info("Updating GUI stats for all players");
+				gameEngine.updateStats();
+				continue;
+
+			}
+			if (foeTracker == 1) {
+				logger.info("Player {} will now discard 1 foe (not enough)", p.getName());
+				p.session.sendMessage(new TextMessage("KingsCallToArms1Foe"));
+				continue;
+
+			}
+			if (foeTracker >= 2) {
+				logger.info("Player {} will now discard 2 foes", p.getName());
+				p.session.sendMessage(new TextMessage("KingsCallToArmsFoes"));
+				continue;
+
+			}
+
+		}
+
+	}
+
+	int temp_tracker_queensFavor = 0;
+
+	public void doneEventQueensFavor() throws IOException {
+		temp_tracker_queensFavor++;
+		if (temp_tracker_queensFavor == gameEngine.current_event.queensFavorTracker) {
+			gameEngine.incTurn();
+			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
+			logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
+			logger.info("Updating GUI stats for all players");
+			gameEngine.updateStats();
+			temp_tracker_queensFavor = 0;
 		}
 	}
 
@@ -83,6 +169,12 @@ public class EventController extends SocketHandler {
 		logger.info("The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many");
 		ArrayList<Player> sortedByShields = new ArrayList<Player>();
 		sortedByShields.addAll(gameEngine.players);
+
+		Collections.sort(sortedByShields, new Comparator<Player>() {
+			public int compare(Player p1, Player p2) {
+				return p1.getShields() < p2.getShields() ? -1 : p1.getShields() > p2.getShields() ? 1 : 0;
+			}
+		});
 
 		for (Player p : sortedByShields) {
 
@@ -126,7 +218,7 @@ public class EventController extends SocketHandler {
 		logger.info("All allies in play will be discarded");
 		for (Player p : gameEngine.players) {
 			if (p.getAllies().size() == 0) {
-				logger.info("Player {} has no allies in play");
+				logger.info("Player {} has no allies in play", p.getName());
 			} else {
 				for (int i = 0; i < p.getAllies().size(); i++) {
 					logger.info("Player {} ally {} has been removed", p.getName(), p.getAllies().get(i).getName());
@@ -178,6 +270,12 @@ public class EventController extends SocketHandler {
 		ArrayList<Player> sortedByShields = new ArrayList<Player>();
 		sortedByShields.addAll(gameEngine.players);
 
+		Collections.sort(sortedByShields, new Comparator<Player>() {
+			public int compare(Player p1, Player p2) {
+				return p1.getShields() < p2.getShields() ? -1 : p1.getShields() > p2.getShields() ? 1 : 0;
+			}
+		});
+
 		for (Player p : sortedByShields) {
 			if (p.equals(current_player)) {
 			} else {
@@ -217,7 +315,6 @@ public class EventController extends SocketHandler {
 			logger.info("{} with {} shields", p.getName(), p.getShields());
 		}
 
-		// custom comparator. sorts by increasing shield count;
 		Collections.sort(sortedByShields, new Comparator<Player>() {
 			public int compare(Player p1, Player p2) {
 				return p1.getShields() < p2.getShields() ? -1 : p1.getShields() > p2.getShields() ? 1 : 0;

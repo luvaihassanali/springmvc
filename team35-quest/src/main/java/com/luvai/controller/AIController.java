@@ -214,7 +214,14 @@ public class AIController extends SocketHandler {
 				p.session.sendMessage(new TextMessage("currentRank" + p.getRank().getStringFile()));
 				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
-			flipStoryCard();
+			setTimeout(() -> {
+				try {
+					flipStoryCard();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}, 2000);
 			String temp = gameEngine.getPlayerStats();
 			sendToAllSessions(gameEngine, "updateStats" + temp);
 		}
