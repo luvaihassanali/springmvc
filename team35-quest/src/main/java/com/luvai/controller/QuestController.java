@@ -707,6 +707,12 @@ public class QuestController extends SocketHandler {
 						shieldGetter.giveShields(gameEngine.current_quest.currentQuest.getStages());
 						logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
 								shieldGetter.getName());
+						if (Game.KingsRecognition) {
+							logger.info("Event card King's Recognition is in play, player {} gets 2 extra shields",
+									shieldGetter.getName());
+							shieldGetter.giveShields(2);
+							Game.KingsRecognition = false;
+						}
 					}
 				} else {
 					logger.info("Player {} has LOST battle", playerPointsArr.get(i)[0]);
@@ -726,7 +732,17 @@ public class QuestController extends SocketHandler {
 					p.getWeapons().clear();
 				}
 			}
+			logger.info("Updating GUI stats for all players");
 			gameEngine.updateStats();
+			for (Player p : gameEngine.players) {
+				AdventureCard amour = p.getAmourCard();
+				if (amour == null) {
+				} else {
+
+					p.unequipAmour();
+					logger.info("Player {} is unequipping the amour used in last quest", p.getName());
+				}
+			}
 			if (gameEngine.current_quest.participants.isEmpty()) {
 				Losing();
 				return;

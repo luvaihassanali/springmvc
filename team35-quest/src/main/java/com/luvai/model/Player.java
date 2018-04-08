@@ -98,11 +98,7 @@ public class Player {
 	public void giveShields(int numShields) throws IOException {
 
 		this.addShields(numShields);
-		/*
-		 * if(Controller.isRigged) { if(this.shields>=game.getWinCondition()) {
-		 * System.out.println("RIGGED GAME OVER, player acheived win condition");
-		 * System.exit(0); } }
-		 */
+
 		if (this.shields >= 5) {
 			this.rank = CardList.Knight;
 			this.battlePoints = 10;
@@ -122,7 +118,6 @@ public class Player {
 			this.tieCheck = 1;
 			this.battlePoints = 100;
 		}
-
 	}
 
 	public void discard(String name) {

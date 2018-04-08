@@ -117,11 +117,11 @@ public class StoryDeck extends Decks {
 				s_arr2[1] = CardList.Quest6; // tournament 1
 				s_arr2[0] = CardList.Tournament1; // quest7
 			} else {
-				s_arr2[4] = CardList.Event5; // should be 6
-				s_arr2[3] = CardList.Event1;// should be event 1
-				s_arr2[2] = CardList.Event8;// event 8
-				s_arr2[1] = CardList.Tournament1; // tournament 1
-				s_arr2[0] = CardList.Quest7; // quest7
+				s_arr2[4] = CardList.Event7; // should be 6
+				s_arr2[3] = CardList.Quest6;// should be event 1
+				s_arr2[2] = CardList.Quest7;// event 8
+				s_arr2[1] = CardList.Event5; // tournament 1
+				s_arr2[0] = CardList.Event4; // quest7
 				;
 			}
 			this.fillDeck(s_arr);

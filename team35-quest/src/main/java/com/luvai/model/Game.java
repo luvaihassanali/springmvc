@@ -35,6 +35,7 @@ public class Game {
 	public Player roundInitiater;
 	public int riggedGame = 0;
 	public boolean tournamentInit = false;
+	static public boolean KingsRecognition = false;
 
 	public Game() {
 		logger.info("\n\n\n\n ****************************** Initialising new game ********************************");
@@ -294,7 +295,6 @@ public class Game {
 				p.session.sendMessage(new TextMessage("currentRank" + p.getRank().getStringFile()));
 				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
-			this.players.get(0).giveShields(3);
 			SocketHandler.flipStoryCard();
 			logger.info("Updating GUI stats for all players");
 			this.updateStats();

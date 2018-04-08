@@ -447,6 +447,13 @@ public class SocketHandler extends TextWebSocketHandler {
 								+ gameEngine.current_quest.currentQuest.getStages() + " shields for winning quest"));
 						logger.info("Giving {} shields to {}", gameEngine.current_quest.currentQuest.getStages(),
 								gameEngine.current_quest.participants.get(j).getName());
+						if (Game.KingsRecognition) {
+							logger.info("Event card King's Recognition is in play, player {} gets 2 extra shields",
+									gameEngine.current_quest.participants.get(j).getName());
+							gameEngine.current_quest.participants.get(j).giveShields(2);
+							Game.KingsRecognition = false;
+						}
+
 					}
 
 					// System.out.println("to remove after test: ");
