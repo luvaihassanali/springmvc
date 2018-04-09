@@ -105,7 +105,7 @@ public abstract class AbstractAI {
 	// abstract methods
 	abstract public void setStrategyType();
 
-	abstract public AdventureCard[] getDiscardChoice(Player currentPlayer, int numDiscards);
+	abstract public AdventureCard[] discardAfterWinningTest(Player currentPlayer, int numDiscards);
 
 	abstract public boolean doIParticipateQuest();
 
@@ -114,8 +114,6 @@ public abstract class AbstractAI {
 	abstract public void setupQuest();
 
 	abstract public ArrayList<AdventureCard> nextBid(JsonObject json);
-
-	abstract public void discardAfterWinningTest();
 
 	abstract public void chooseEquipment(JsonObject json, Player player);
 

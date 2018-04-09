@@ -42,6 +42,7 @@ public class Strategy2 extends AbstractAI {
 
 	@Override
 	public boolean doIParticipateTournament() {
+		logger.info("Strategy2 participates in tournament everytime");
 		return true;
 	}
 
@@ -115,7 +116,7 @@ public class Strategy2 extends AbstractAI {
 	}
 
 	@Override
-	public AdventureCard[] getDiscardChoice(Player currentPlayer, int numDiscards) {
+	public AdventureCard[] discardAfterWinningTest(Player currentPlayer, int numDiscards) {
 		AdventureCard[] discards = new AdventureCard[numDiscards];
 		ArrayList<AdventureCard> toDiscard = new ArrayList<AdventureCard>();
 
@@ -429,17 +430,10 @@ public class Strategy2 extends AbstractAI {
 		return bids;
 	}
 
-	@Override
-	public void discardAfterWinningTest() {
-		// TODO Auto-generated method stub
-
-	}
-
 	boolean allyPlayed = false;
 
 	@Override
 	public void chooseEquipmentTournie(JsonObject jsonObject, Player player) {
-		sortCards(player);
 		sortCards(player);
 
 		JsonArray x = (JsonArray) jsonObject.get("currHand");
@@ -454,14 +448,69 @@ public class Strategy2 extends AbstractAI {
 		}
 		for (String s : aiHand) {
 			s = s.replace("http://localhost:8080/resources/images/", "");
-			System.out.println(s);
+			// System.out.println(s);
 			s = s.replace(".png", "");
 			s = s.replace(".jpg", "");
 			s = s.substring(4);
 			s = s.replace("%20", " ");
 			if (s.equals("r"))
 				s = "Amour";
-			System.out.println(s);
+			// System.out.println(s);
+		}
+
+		ArrayList<String> toRemove = new ArrayList<String>();
+		if (player.getAmourCard() == null) {
+			if (amourList.size() != 0) {
+				// player.setAmourCard(amourList.get(0));
+				toRemove.add("Amour");
+			}
+		}
+		if (alliesList.size() != 0) {
+			// player.getAllies().add(alliesList.get(alliesList.size() - 1));
+			toRemove.add(alliesList.get(alliesList.size() - 1).getName());
+		}
+		if (weaponsList.size() != 0) {
+			// player.getWeapons().add(weaponsList.get(weaponsList.size() - 1));
+			toRemove.add(weaponsList.get(weaponsList.size() - 1).getName());
+		}
+		int tempPts = player.getBattlePoints();
+		for (String s : toRemove) {
+			AdventureCard a = (AdventureCard) cardFinder.getCardFromName(s);
+			tempPts += a.getBattlePoints();
+		}
+		int tracker = 2;
+		for (WeaponCard w : weaponsList) {
+			if (tempPts < 50) {
+				logger.info("Hand does not contain 50 points, adding another weapon");
+				for (String s : toRemove) {
+					if (weaponsList.get(weaponsList.size() - tracker).getName().equals(s))
+						continue;
+				}
+				toRemove.add(weaponsList.get(weaponsList.size() - tracker).getName());
+				tempPts += weaponsList.get(weaponsList.size() - tracker).getBattlePoints();
+				tracker++;
+			}
+		}
+		for (AllyCard a : alliesList) {
+			if (tempPts < 50) {
+				for (String s : toRemove) {
+					if (alliesList.get(alliesList.size() - tracker).getName().equals(s))
+						continue;
+				}
+				logger.info("Hand does not contain 50 points, adding another ally");
+				toRemove.add(alliesList.get(alliesList.size() - tracker).getName());
+				tempPts += alliesList.get(alliesList.size() - tracker).getBattlePoints();
+				tracker++;
+			}
+		}
+		logger.info("Choices contain enough points, sending Player {} challenge", player.getName());
+		String aiDiscard = "";
+		for (String s : toRemove)
+			aiDiscard += s + ";";
+		try {
+			player.session.sendMessage(new TextMessage("AIRemoveFromScreenTournament" + aiDiscard));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}

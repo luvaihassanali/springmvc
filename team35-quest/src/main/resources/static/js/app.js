@@ -1479,7 +1479,7 @@ function doneTournament() {
 	document.getElementById('doneTournie').style.display = "none";
 	$('body').off('click');
 	var serverMsg = document.getElementById('serverMsg');
-	serverMsg.value += "\n> sending challenge, please wait for other players...- ";
+	serverMsg.value += "\n> sending challenge, please wait for other players";
 	var data = JSON.stringify({
 		'name' : PlayerName,
 		'tournament_info' : tournieEquipment
@@ -2197,8 +2197,15 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 
 function AIRemoveFromScreen(cardNames) {
 	var send = false;
+	currentCard = "";
 	if(cardNames.startsWith("BP")) {
 		cardNames = cardNames.replace("BP", "");
+		currentCard = "Quest";
+		send = true;
+	}
+	if(cardNames.startsWith("Tournament")) {
+		cardNames = cardNames.replace("Tournament", "");
+		currentCard = "Tournament";
 		send = true;
 	}
 	console.log("Remove from screen: " + cardNames);
@@ -2240,15 +2247,23 @@ function AIRemoveFromScreen(cardNames) {
 			}
 		}
 		var serverMsg = document.getElementById("serverMsg");
-		serverMsg.value += "\n> going into battle - wait for other players to finsih for results";
+		if(currentCard == "Quest") {
+		serverMsg.value += "\n> going into battle, wait for other players to finsih for results";
 		var data = JSON.stringify({
 			'name' : PlayerName,
 			'stages' : stageTracker,
 			'equipment_info' : cardNames,
 			'isTest' : false
 		});
-		
-		console.log("After sending");
+		}
+		if(currentCard == "Tournament") {
+			serverMsg.value += "\n> sending challenge, please wait for other players";
+			var data = JSON.stringify({
+				'name' : PlayerName,
+				'tournament_info' : cardNames,
+			});
+			}
+				console.log("After sending");
 		console.log(cardNames);
 		setTimeout(function(){ socketConn.send(data); }, 1000);	
 		arrangeHand();

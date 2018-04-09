@@ -144,7 +144,7 @@ public class AIController extends SocketHandler {
 		int numCards = jsonObject.get("numCards").getAsInt();
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 
-		AdventureCard[] AIdiscard = currentPlayer.getAI().getDiscardChoice(currentPlayer, numCards);
+		AdventureCard[] AIdiscard = currentPlayer.getAI().discardAfterWinningTest(currentPlayer, numCards);
 		System.out.println(AIdiscard.length);
 		System.out.println("AIDISCARDLENGTH");
 		for (AdventureCard a : AIdiscard) {
@@ -253,7 +253,6 @@ public class AIController extends SocketHandler {
 				try {
 					flipStoryCard();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}, 2000);
