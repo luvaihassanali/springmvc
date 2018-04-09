@@ -67,6 +67,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for quest setup info from sponsor
 		if (jsonObject.has("questSetupCards")) {
+			logger.info("Example of JSON: {}", jsonObject.toString());
 			logger.info("Player {} setup {} quest with {}", gameEngine.current_quest.sponsor.getName(),
 					gameEngine.storyDeck.faceUp.getName(), jsonObject.get("questSetupCards").toString());
 			questInformation.add(jsonObject);
@@ -101,6 +102,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		// json for getting participants battle equipment
 		if (jsonObject.has("equipment_info")) {
+			logger.info("Example of JSON: {}", jsonObject.toString());
 			if (jsonObject.get("isTest").getAsBoolean()) {
 				gameEngine.current_quest.initialStageForTest = gameEngine.current_quest.currentStage;
 				// System.out.println(jsonObject.toString());
