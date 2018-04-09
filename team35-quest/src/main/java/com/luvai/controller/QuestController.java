@@ -713,7 +713,13 @@ public class QuestController extends SocketHandler {
 							shieldGetter.giveShields(2);
 							Game.KingsRecognition = false;
 						}
+						logger.info("Clearing all weapons and amour");
+						for (Player p : gameEngine.players) {
+							p.getWeapons().clear();
+							p.setAmourCard(null);
+						}
 						sponsorPickup();
+						gameEngine.updateStats();
 						return;
 					}
 				} else {
@@ -729,7 +735,7 @@ public class QuestController extends SocketHandler {
 
 			logger.info("Stage {} is over", currentStage + 1);
 			if (currentTest == null) {
-				// System.out.println("this was not a test");
+				logger.info("Clearing all weapons");
 				for (Player p : gameEngine.current_quest.participants) {
 					p.getWeapons().clear();
 				}

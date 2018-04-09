@@ -544,8 +544,8 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 			}
 			gameEngine.current_quest.shieldSent = false;
-			String update = gameEngine.getPlayerStats();
-			sendToAllSessions(gameEngine, "updateStats" + update);
+			logger.info("Updating GUI stats for all players");
+			gameEngine.updateStats();
 			sendOnce = true;
 			return;
 		}
@@ -589,7 +589,8 @@ public class SocketHandler extends TextWebSocketHandler {
 	// flip story deck
 
 	public static void flipStoryCard() throws IOException {
-
+		logger.info("Updating GUI stats for all players");
+		gameEngine.updateStats();
 		gameEngine.storyDeck.flipCard();
 
 		logger.info("Player {} is flipping new card from story deck: {}", gameEngine.getActivePlayer().getName(),

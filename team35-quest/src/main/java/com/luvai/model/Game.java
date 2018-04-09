@@ -71,7 +71,7 @@ public class Game {
 			add(CardList.Amour);
 			add(CardList.RobberKnight);
 			add(CardList.Dragon);
-			add(CardList.Horse);
+			add(CardList.BeastTest);
 			add(CardList.Dagger);
 			add(CardList.Horse);
 			add(CardList.Battleax);
@@ -92,7 +92,7 @@ public class Game {
 			add(CardList.Amour);
 			add(CardList.MorganTest);
 			add(CardList.Thieves);
-			add(CardList.Dragon);
+			add(CardList.Horse);
 			add(CardList.SirGalahad);
 			add(CardList.RobberKnight);
 		}
@@ -129,7 +129,7 @@ public class Game {
 			add(CardList.Merlin);
 			add(CardList.Sword);
 			add(CardList.TemptationTest);
-			add(CardList.Sword);
+			add(CardList.Lance);
 			add(CardList.SirGawain);
 		}
 	};

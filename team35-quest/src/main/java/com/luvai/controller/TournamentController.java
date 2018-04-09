@@ -309,6 +309,10 @@ public class TournamentController extends SocketHandler {
 			gameEngine.incTurn();
 			gameEngine.getActivePlayer().session.sendMessage(new TextMessage("undisableFlip"));
 			logger.info("Removing all amour/weapon equipped during tournament by participants");
+			for (Player p1 : gameEngine.players) {
+				p1.getWeapons().clear();
+				p1.setAmourCard(null);
+			}
 		} else {
 			if (tieBreaker)
 				logger.info("Tie breaker complete - still a tie...");
@@ -344,13 +348,12 @@ public class TournamentController extends SocketHandler {
 				ties.add(p);
 				logString += p.getName() + ", ";
 			}
-			logger.info("Removing all amour/weapon equipped during tournament by participants");
-			tieBreaker(gameEngine, gameEngine.storyDeck.faceUp, ties, logString);
-		}
 
-		for (Player p : gameEngine.players) {
-			p.getWeapons().clear();
-			p.unequipAmour();
+			for (Player p : gameEngine.players) {
+				p.getWeapons().clear();
+
+			}
+			tieBreaker(gameEngine, gameEngine.storyDeck.faceUp, ties, logString);
 		}
 
 	}
