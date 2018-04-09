@@ -45,6 +45,9 @@ public class SocketHandler extends TextWebSocketHandler {
 
 		JsonObject jsonObject = (new JsonParser()).parse(message.getPayload()).getAsJsonObject();
 		// repeat info
+		if (jsonObject.has("hasMerlin")) {
+			gameEngine.execMerlin(jsonObject);
+		}
 		if (jsonObject.has("logInfo")) {
 			gameEngine.getLogInfo(jsonObject);
 		}

@@ -920,6 +920,60 @@ function parseParticipantInfo(event) {
 	//console.log(participantInfo);
 	currentStage = participantInfo.stages;
 }
+
+function showStage(stage) {
+
+	var data = JSON.stringify({
+		'hasMerlin' : 0,
+		'name' : PlayerName,
+		'accepted' : stage
+	})
+	socketConn.send(data);
+	document.getElementById("merlinPrompt").innerText = "";
+	document.getElementById("merlinYes").style.display = "none";
+	for(var i=0; i<5; i++) {
+		var id = "merlin" + (i+1) + "stage";
+		document.getElementById(id).style.display = "none";
+	}
+	console.log("TO REVEAL FOR DISPLAY QUEST CARDS MERLIN PREVIEW");
+	document.getElementById("merlinPreview").style.display="block";
+
+	var revealedStage = orderedQuestCards[stage-1];
+	console.log(revealedStage);
+	for(var i=0; i<revealedStage.length; i++) {
+		var id = "#merlincard" + (i+1);
+		var link = getLinkFromName(revealedStage[i]);
+		$(id).attr("src", "http://localhost:8080" + link);
+	}
+	var data = JSON.stringify({
+		'hasMerlin' : 0,
+		'name' : PlayerName,
+		'revealedCards' : revealedStage
+	})
+	socketConn.send(data);
+	
+	setTimeout(function(){ 
+		document.getElementById("merlinPreview").style.display = "none";
+		console.log("REMOVING MERLIN PREVIEW SCREEN");
+		for(var i=0; i<6; i++) {
+			var id = "#merlincard" + (i+1);
+			$(id).attr("src", "http://localhost:8080/resources/images/all.png");
+		}
+	
+	}, 10000);
+
+}
+
+function execMerlin() {
+	document.getElementById("merlinYes").style.display = "none";
+	document.getElementById("merlinPrompt").innerText = "Choose what stage you want to preview"
+	for(var i=0; i<totalStages; i++) {
+		var id = "merlin" + (i+1) + "stage";
+		document.getElementById(id).style.display = "block";
+
+	}
+}
+
 function getParticipants() {
 	document.getElementById("acceptQuest").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
@@ -932,15 +986,27 @@ function getParticipants() {
 		document.getElementById("acceptQuest").style.display = "none";
 		serverMsg.value += "\n> wait for other players...";
 	}
+	getCurrHand();
+	for(var i=0; i<handCardSRC.length; i++) {
+		if(handCardSRC[i].includes("Merlin")) {
+			document.getElementById("merlin").style.display = "block";
+			document.getElementById("merlinPrompt").innerText = "You have Merlin in hand, preview stage?";
+			var data = JSON.stringify({
+				'hasMerlin' : 0,
+				'name' : PlayerName
+			})
+			socketConn.send(data);
+		}
+	}
 }
-
+var orderedQuestCards; 
 function parseQuestInfo(event) {
 	console.log(event);
 	var temp = event.data.replace("questSetupCards","");
 	console.log(temp);
 	var array = JSON.parse(temp);
 	console.log(array);
-	var orderedQuestCards = [];
+	orderedQuestCards = [];
 	var temp = [];
 	//console.log(allQuestInfo[0]);
 	//console.log(allQuestInfo[0].questSetupCards);
@@ -1414,6 +1480,7 @@ return false;
 
 // accept to participate in quest
 function acceptQuestParticipate() {
+	document.getElementById("merlin").style.display = "none";
 	stageCounter = 0;
 	document.getElementById('acceptQuest').style.display = "none";
 	var data = JSON.stringify({
@@ -1541,6 +1608,7 @@ function doneEquipment() {
 
 // deny participation in quest
 function denyQuestParticipate() {
+	document.getElementById("merlin").style.display = "none";
 	document.getElementById('acceptQuest').style.display = "none";
 	var data = JSON.stringify({
 		'name' : PlayerName,

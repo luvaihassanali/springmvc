@@ -67,7 +67,7 @@ public class Game {
 	public ArrayList<AdventureCard> mockHand2 = new ArrayList<AdventureCard>() {
 		{
 			add(CardList.SirTristan);
-			add(CardList.MorganTest);
+			add(CardList.Merlin);
 			add(CardList.Amour);
 			add(CardList.RobberKnight);
 			add(CardList.Dragon);
@@ -374,6 +374,23 @@ public class Game {
 				System.err.println(e);
 			}
 		}).start();
+	}
+
+	public void execMerlin(JsonObject jsonObject) {
+		Player player = this.getPlayerFromName(jsonObject.get("name").getAsString());
+		if (jsonObject.has("revealedCards")) {
+			logger.info("JSON example: {}", jsonObject.toString());
+			logger.info("Player {} was revealed these cards as part of stage: {}", player.getName(),
+					jsonObject.get("revealedCards").toString());
+			return;
+		}
+		if (jsonObject.has("accepted")) {
+			int stage = jsonObject.get("accepted").getAsInt();
+			logger.info("Player {} chose to preview stage {}", player.getName(), stage);
+			return;
+		}
+		logger.info("Player {} has Merlin in hand, being offered to preview stages", player.getName());
+
 	}
 
 }

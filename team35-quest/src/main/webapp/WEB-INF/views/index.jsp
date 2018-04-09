@@ -84,6 +84,30 @@ Shields:<label id="p1shields">0</label>
 		<button id="acceptQuestParticipate" onclick="acceptQuestParticipate()">Yes</button>
 		<button id="denyQuestParticipate" onclick="denyQuestParticipate()">No</button>
 	</div> 
+		<div id="merlin" style="display: none">
+		<label id="merlinPrompt"><strong>&nbsp&nbsp&nbspYou have Merlin in hand, preview stage?</strong></label>
+		<button id="merlinYes" onclick="execMerlin()">Yes</button>
+		<button style="display:none" id="merlin1stage" onclick="showStage(1)">1</button>
+		<button style="display:none"  id="merlin2stage" onclick="showStage(2)">2</button>
+		<button style="display:none"  id="merlin3stage" onclick="showStage(3)">3</button>
+		<button style="display:none"  id="merlin4stage" onclick="showStage(4)">4</button>
+		<button style="display:none" id="merlin5stage" onclick="showStage(5)">5</button>
+	</div> 
+	<div id="merlinPreview" style="display:none; margin: 0 auto; font-size: 20px; border-style: solid; border-width: thin; position:relative; background-color: white; width: 1200px; height: 350px; z-index: 2; text-align: center;">
+Preview stage - Merlin special 
+		<div style="float:right; padding-right:43px;">
+			<img id="merlincard1" src="/resources/images/all.png" height="250"
+				width="180"> <img id="merlincard2" 
+				src="/resources/images/all.png" height="250" width="180"> <img
+				id="merlincard3"  src="/resources/images/all.png" height="250"
+				width="180"> <img id="merlincard4" 
+				src="/resources/images/all.png" height="250" width="180"> <img
+				id="merlincard5"  src="/resources/images/all.png" height="250"
+				width="180"> <img id="merlincard6" 
+				src="/resources/images/all.png" height="250" width="180">
+		</div>
+
+</div>
 <div id="battleScreen"
 		style="display:none; margin: 0 auto; font-size: 20px; border-style: solid; border-width: thin; position:relative; background-color: white; width: 1200px; height: 750px; z-index: 2; text-align: center;">
 				<strong> Battle Screen </strong><Br><br><br><br>
