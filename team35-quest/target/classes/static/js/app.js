@@ -100,6 +100,14 @@ $( document ).ready(function() {
 socketConn.onmessage = function(event) {
     var serverMsg = document.getElementById('serverMsg');
 	
+    //set back story card
+    if(event.data == "setBack") {
+    	$("#storyCardDiscard").attr("src", "http://localhost:8080/resources/images/card-back.png");
+    }
+    
+    if(event.data == "clearBack") {
+    	$("#storyCardDiscard").attr("src", "http://localhost:8080/resources/images/all.png");
+    }
     //kings call to arms event
     if(event.data.startsWith("KingsCallToArms")) {
     	console.log("event kings call to arms");
@@ -1602,8 +1610,7 @@ function flipStoryDeck() {
 	})
 	socketConn.send(data); 
 	document.getElementById('flip').disabled = true;
-	console.log("here");
-	$("#storyCardDiscard").attr("src", "http://localhost:8080/resources/images/card-back.png");
+	
 }
 
 // get name from link

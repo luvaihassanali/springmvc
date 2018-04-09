@@ -584,7 +584,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	// flip story deck
 
 	public static void flipStoryCard() throws IOException {
-		gameEngine.updateStats();
+
 		gameEngine.storyDeck.flipCard();
 
 		logger.info("Player {} is flipping new card from story deck: {}", gameEngine.getActivePlayer().getName(),

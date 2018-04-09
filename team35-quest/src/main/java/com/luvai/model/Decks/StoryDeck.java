@@ -8,6 +8,7 @@ import java.util.Stack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.luvai.controller.SocketHandler;
 import com.luvai.model.CardList;
 import com.luvai.model.StoryCards.StoryCard;
 
@@ -40,9 +41,20 @@ public class StoryDeck extends Decks {
 		logger.info("Story card deck has run out");
 		logger.info("Shuffling story card discard pile and replacing story deck");
 		Collections.shuffle(discardPile);
-		cards.clear();
+		System.out.println(discardPile.size());
+		System.out.println(cards.size());
 		cards.addAll(discardPile);
 		discardPile.clear();
+		System.out.println(discardPile.size());
+		System.out.println(cards.size());
+		//
+		logger.info("STORY DECK PROOF:");
+		int j = 1;
+		for (StoryCard s : cards) {
+			logger.info("{}. {}", j, s.getName());
+			j++;
+		}
+
 	}
 
 	public StoryDeck initStoryDeck() {
@@ -135,14 +147,23 @@ public class StoryDeck extends Decks {
 		return this;
 	}
 
+	boolean sendOnce = true;
+
 	public void flipCard() {
-		if (this.cards.isEmpty())
-			this.fillEmptyDeck();
 		if (this.faceUp == null) {
 			this.faceUp = this.cards.pop();
 		} else {
-			discardPile.add(faceUp);
-			faceUp = this.cards.pop();
+			this.discardPile.add(this.faceUp);
+			if (sendOnce) {
+				SocketHandler.sendToAllSessions(SocketHandler.gameEngine, "setBack");
+				sendOnce = false;
+			}
+			if (this.cards.isEmpty()) {
+				this.fillEmptyDeck();
+				SocketHandler.sendToAllSessions(SocketHandler.gameEngine, "clearBack");
+				sendOnce = true;
+			}
+			this.faceUp = this.cards.pop();
 		}
 	}
 

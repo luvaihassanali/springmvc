@@ -432,6 +432,7 @@ public class Strategy2 extends AbstractAI {
 
 	boolean allyPlayed = false;
 
+	@SuppressWarnings("unused")
 	@Override
 	public void chooseEquipmentTournie(JsonObject jsonObject, Player player) {
 		sortCards(player);
