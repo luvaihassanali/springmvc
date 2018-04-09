@@ -40,6 +40,7 @@ var KingsCallToArms = false;
 
 socketConn.onopen = function(event) {};
 
+//keep track of current player hand
 var handCardID;
 var handCardSRC;
 
@@ -96,44 +97,28 @@ $( document ).ready(function() {
 			extra5, extra6, extra7, extra8 ];
 	handCardSRC = imageArray;
 });
+
 // messages from server received here
 socketConn.onmessage = function(event) {
     var serverMsg = document.getElementById('serverMsg');
 	
-    //set back story card
+    //set back story card after first discard
     if(event.data == "setBack") {
     	$("#storyCardDiscard").attr("src", "http://localhost:8080/resources/images/card-back.png");
     }
-    
+    //clear back at re-shuffle of story deck
     if(event.data == "clearBack") {
     	$("#storyCardDiscard").attr("src", "http://localhost:8080/resources/images/all.png");
     }
     //kings call to arms event
     if(event.data.startsWith("KingsCallToArms")) {
-    	console.log("event kings call to arms");
-    	KingsCallToArms = true;
-    	numCards = 12;
-
-    	if(event.data.startsWith("KingsCallToArmsWeapon")){
-
-    		serverMsg.value += "\n> must discard 1 weapon card to continue";
-    		numCards++;
-    	}
-   	if(event.data.startsWith("KingsCallToArms1Foe")){
-   		serverMsg.value += "\n> must discard 1 foe card to continue";
-   		numCards++;
-    	}
-   	if(event.data.startsWith("KingsCallToArmsFoes")){
-   		serverMsg.value += "\n> must discard 2 foe cards to continue";
-   		numCards+=2;
-	}
-    	discard();
+    	eventKing(event);
     }
-    //replace test cards if drop out
+    //replace test cards  on screen if drop out
     if (event.data.startsWith("replaceTestCards")) {
     	replaceTestCards(event.data.replace("replaceTestCards",""));
     }
-    //test winner
+    //update console if player won test
     if (event.data.startsWith("testWinner")) {
     	var winner = event.data.replace("testWinner","");
     	if(winner == PlayerName) {
@@ -143,7 +128,7 @@ socketConn.onmessage = function(event) {
     	}
     	
     }
-    //lost battle
+    //update console if player loses battle
     if (event.data.startsWith("LostBattle")) {
     	var loserName = event.data.replace("LostBattle","");
     	if(loserName == PlayerName) {
@@ -154,153 +139,7 @@ socketConn.onmessage = function(event) {
     }
     //get all player points for stage
     if (event.data.startsWith("playerPointString")) {
-    	var temp = event.data.replace("playerPointString","");
-    	console.log("PLAYER POINT STRING-------------------------");
-    	console.log(temp);
-    	temp = temp.split(";");
-    	for(var i=0; i<temp.length; i++) {
-    		temp[i] = temp[i].split("#");
-    	}
-    	 allPlayerPoints = temp;
-    	console.log("SHOWING BATTLE SCREEN");
-    	console.log(stageTracker);
-    	
-		document.getElementById("battleScreen").style.display = "block";
-    	//console.log(storyCardFaceUp);
-    	$("#questPic").attr("src", "http://localhost:8080" + storyCardFaceUp.stringFile);
-    	//console.log(storyCardFaceUp.stringFile);
-    	console.log(questSetupCards);
-    	console.log(stageTracker);
-    	var currFoeName = questSetupCards[stageTracker][0];
-    	console.log(currFoeName);
-    	var currFoePts = 0;
-    	var currFoeLink = getLinkFromName(currFoeName);
-    	//console.log(currFoeLink);
-    	for(var i=0; i<foeInfo.length; i++) {
-    		if(foeInfo[i][0] == currFoeName) {
-    			var currFoePts = foeInfo[i][1];
-    		}
-    	}
-    	document.getElementById("currStageInfo").innerText = "Current stage information: " + currFoeName + " with points: " + currFoePts;
-    	$("#foePic").attr("src", "http://localhost:8080" + currFoeLink);
-    	//console.log("current foe name: " + currFoeName);
-    	//console.log("current foe points: " + currFoePts);
-    	var foeSlot1 =document.getElementById('foeWeaponSpot1').id;
-    	var foeSlot2 = document.getElementById('foeWeaponSpot2').id;
-    	var foeSlot3 = document.getElementById('foeWeaponSpot3').id;
-    	var foeSlot4 = document.getElementById('foeWeaponSpot4').id;
-    	var foeSlot5 = document.getElementById('foeWeaponSpot5').id;
-    	var foeSlot6 = document.getElementById('foeWeaponSpot6').id;
-    	var foeSlots = [foeSlot1, foeSlot2, foeSlot3, foeSlot4, foeSlot5, foeSlot6];
-    	console.log(questSetupCards);
-    	console.log(stageTracker);
-    	if(questSetupCards[stageTracker].length == 1) {
-    		
-    	} else {
-    		var currentFoeWeapons = questSetupCards[stageTracker];
-    		console.log(currentFoeWeapons);
-    	
-    	
-    		var currentFoeWeaponLinks = [];
-    		for(var i=1; i<currentFoeWeapons.length; i++) {
-    			currentFoeWeaponLinks.push(getLinkFromName(currentFoeWeapons[i]));
-    	//		console.log(getLinkFromName(currentFoeWeapons[i]));
-    		}
-    		for(var i=0; i<currentFoeWeaponLinks.length; i++) {
-    			var changeImageId = "#" + foeSlots[i];
-    		//	console.log(changeImageId);
-    			$(changeImageId).attr("src", "http://localhost:8080" + currentFoeWeaponLinks[i]);
-    		}
-    	}
-    	allPlayerPoints.pop();
-    	console.log(allPlayerPoints);
-    	console.log(allPlayerPoints.length);
-    	for(var i=0; i<allPlayerPoints.length; i++) {
-    		console.log("starting loop");
-    		var base_id = "player" + (i+1);
-    		var primitive_id = "p" + (i+1);
-    		var playerDiv = base_id + "Display";
-    		var playerPic = "#" + base_id + "Pic";
-    		var playerPicLink = allPlayerPoints[i][2];
-    		var playerPts = allPlayerPoints[i][1];
-    		var playerName = allPlayerPoints[i][0];
-    		var infoPane = primitive_id + "info";
-    		//console.log(playerDiv);
-    		//console.log(infoPane);
-    		//console.log(playerName);
-    		//console.log(playerPts);
-    		//console.log(playerPicLink);
-    		document.getElementById(playerDiv).style.display = "block";
-    		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
-    		$(playerPic).attr("src", "http://localhost:8080" + playerPicLink);
-    		console.log(allQuestInfo);
-    		var playerInfo = allQuestInfo[i+1];
-    		var playerInfo2;
-    		var a;
-    		if(allQuestInfo[0].hasOwnProperty("questSetupCards")) {
-    			a=0;
-    		} else { var a = -1; }
-    		for(a; a<allQuestInfo.length; a++) {
-    			if(a+1 == allQuestInfo.length) break;
-    			if(allQuestInfo[a+1].name == playerName && allQuestInfo[a+1].stages == stageTracker) {
-    				playerInfo2 = allQuestInfo[a+1];
-    			}
-    		}
-
-    		console.log(playerInfo2);
-    		var weaponArr = playerInfo2.equipment_info;
-    		console.log(weaponArr);
-    		for(var b=0; b<weaponArr.length; b++) {
-    			weaponArr[b] = getLinkFromName(weaponArr[b]);
-    			var picId = "#" + base_id + "WeaponSpot" + (b+1);
-    			$(picId).attr("src", "http://localhost:8080" + weaponArr[b]);
-    			//console.log(picId); console.log(weaponArr[b]);
-    		}
-    		var winid = primitive_id + "_win";
-    		var loseid = primitive_id + "_lose";
-    		console.log(playerName + playerPts); console.log(currFoePts);
-    		if(parseInt(playerPts) >= parseInt(currFoePts)) {
-    			document.getElementById(winid).style.display = "block";
-    			document.getElementById(loseid).style.display = "none";
-    		} else {
-    			document.getElementById(winid).style.display = "none";
-    			document.getElementById(loseid).style.display = "block";
-    			document.getElementById("eliminated").innerText += "\n" + playerName;
-    		}
-    		    		
-    	}
-
-    	setTimeout(function(){ 
-    		document.getElementById("battleScreen").style.display = "none";
-    		console.log("REMOVING BATTLE SCREEN");
-    		var serverMsg = document.getElementById("serverMsg");
-    		//clear images
-    		$("#questPic").attr("src", "http://localhost:8080/resources/images/all.png");
-    		$("#foePic").attr("src", "http://localhost:8080/resources/images/all.png");
-    		for(var i=0; i<foeSlots.length; i++) {
-    			$("#"+foeSlots[i]).attr("src", "http://localhost:8080/resources/images/all.png");
-    		}
-    		document.getElementById("eliminated").innerText = " Players eliminated:";
-    		for(var i=0; i<allPlayerPoints.length; i++) {
-    			var base_id_remove = "player" + (i+1);
-        		var primitive_id_remove = "p" + (i+1);
-        		var playerDiv_remove = base_id_remove + "Display";
-        		document.getElementById(playerDiv_remove).style.display = "none";
-        		
-        		var playerPic_remove = "#" + base_id_remove + "Pic";
-        		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
-        		var playerInfo;
-            	for(var j=0; j<6; j++) { 
-            		var id = "#player" + (i+1) + "WeaponSpot" + (j+1);
-            		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
-            	}
-    		}
-    	}, 10000);
-
-    	console.log(foeInfo);
-    	console.log(testInfo);
-    	console.log("battle screen stage tracker: " + stageTracker);    	
-    	console.log("end battlescreen info");
+    	renderBattleScreen(event);
     }
     // get all player quest info
     if (event.data.startsWith("allPlayerQuestInfo")) {
@@ -308,15 +147,13 @@ socketConn.onmessage = function(event) {
     	temp = JSON.parse(temp);
     	allQuestInfo = temp;
     }
-    // show stages
-    if (event.data == "showStages") {
-    	showStages();
-    }
-	// get AI commands
+
+	// get AI commands 
 	if (event.data.startsWith("AI")) {
 		parseAICommand(event.data);
-	}
-
+	} 
+	
+	//undisable flip button when it is current player's turn
 	if (event.data == "undisableFlip") {
 		document.getElementById('flip').disabled = false;
 		serverMsg.value += "\n> it's your turn, press flip story deck button to continue"
@@ -325,7 +162,6 @@ socketConn.onmessage = function(event) {
 		}
 	}
 	
-
 	//reset stage tracker for new quest
 	if (event.data == "resetStageTracker") {
 		console.log("resetting stage tracker");
@@ -344,9 +180,8 @@ socketConn.onmessage = function(event) {
 	if (event.data == "AskToParticipate") {
 		getParticipants();
 	}
-
 	
-	// let others know of participation
+	// let others know of participation whether quest or tournament 
 	if (event.data.startsWith("AcceptedToParticipate")) {
 		var pName = event.data.replace("AcceptedToParticipate","");
 		serverMsg.value += "\n> player " + pName + " accepted to participate in quest";
@@ -400,96 +235,10 @@ socketConn.onmessage = function(event) {
 	
 	//get tournament information
 	if(event.data.startsWith("tournieInfo")) {
-		console.log(event.data);
-		if(event.data.includes("tournament_info")) {
-			var data = event.data.replace("tournieInfo", "");
-			var data = JSON.parse(data);
-			console.log(data);
-			playerTEquipArr = data;
-		}
-		if(event.data.startsWith("tournieInfoPts")) {
-			var data = event.data.replace("tournieInfoPts", "");
-			var data = data.split(";");
-			for(var i=0; i<data.length; i++) {
-				data[i] = data[i].split("#");
-			}
-			console.log(data);
-		}
+		getTournieInfo(event);
 	}
 	if(event.data.startsWith("contestantInfo")) {
-		var data = event.data.replace("contestantInfo","");
-		data = data.split(";");
-		for(var i=0; i<data.length; i++) {
-			data[i] = data[i].split("#");
-		}
-		console.log(data);
-		data.pop();
-		console.log(data);
-		var playerTournieArr = data;
-    	console.log("SHOWING TOURNAMENT SCREEN");
-		document.getElementById("tournieScreen").style.display = "block";
-		console.log(playerTournieArr.length);
-		for(var i=0; i<playerTournieArr.length; i++) {
-			console.log("starting loop");
-			var base_id = "player" + (i+1);
-    		var primitive_id = "p" + (i+1);
-    		var playerDiv = base_id + "Displayt";
-    		var playerPic = "#" + base_id + "Pict";
-    		var playerPicLink = playerTournieArr[i][2];
-    		var playerPts = playerTournieArr[i][1];
-    		var playerName = playerTournieArr[i][0];
-    		var infoPane = primitive_id + "infot";
-    		document.getElementById(playerDiv).style.display = "block";
-    		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
-    		$(playerPic).attr("src", "http://localhost:8080" + playerPicLink);
-    		console.log(playerTEquipArr);
-    		console.log(playerName);
-    		for(var j=0; j<playerTEquipArr.length; j++) {
-    			if(playerTEquipArr[j].name === playerName) {
-    				var tequip = playerTEquipArr[j].tournament_info;
-    			}
-    		}
-    		console.log(tequip);
-    		for(var k=0; k<tequip.length; k++) {
-    			var weaponLink = getLinkFromName(tequip[k]);
-    			var picId = "#" + base_id + "WeaponSpot" + (k+1) + "t";
-    			$(picId).attr("src", "http://localhost:8080" + weaponLink);
-    		}
-    		var winid = primitive_id + "_wint";
-    		var loseid = primitive_id + "_loset";
-    		if(playerName == playerTournieArr[0][0]) {
-    			document.getElementById(winid).style.display = "block";
-    			document.getElementById(loseid).style.display = "none";
-    		} else {
-    		if(playerPts == playerTournieArr[0][1]) {
-    			document.getElementById(winid).style.display = "block";
-    			document.getElementById(loseid).style.display = "none";
-    		} else {
-    			document.getElementById(winid).style.display = "none";
-    			document.getElementById(loseid).style.display = "block";
-    		}
-    		}
-		}
-		
-		setTimeout(function(){ 
-    		document.getElementById("tournieScreen").style.display = "none";
-    		console.log("REMOVING TOURNAMENT SCREEN");
-    		for(var i=0; i<playerTournieArr.length; i++) {
-    			var base_id_remove = "player" + (i+1);
-        		var primitive_id_remove = "p" + (i+1);
-        		var playerDiv_remove = base_id_remove + "Displayt";
-        		document.getElementById(playerDiv_remove).style.display = "none";
-        		
-        		var playerPic_remove = "#" + base_id_remove + "Pict";
-        		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
-            	for(var j=0; j<6; j++) { 
-            		var id = "#player" + (i+1) + "WeaponSpot" + (j+1) + "t";
-            		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
-            	}
-    		}
-    		var serverMsg = document.getElementById("serverMsg");
-    		serverMsg.value += "\n> tournament over, wait for next player";
-    	}, 10000);
+		setupTournament(event);
 
 	}
 
@@ -507,6 +256,7 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("currentParticipantInfo")) {
 		parseParticipantInfo(event);
 	}
+	//update console with player bids
 	if(event.data.startsWith("whoBidded")) {
 		var bidder = event.data.replace("whoBidded", "");
 		bidder = bidder.split("#");
@@ -521,24 +271,20 @@ socketConn.onmessage = function(event) {
 	if (event.data.startsWith("updateMinBid")) {
 		var newBid = event.data.replace("updateMinBid","");
 		minBid = parseInt(newBid);
-		console.log(storyCardFaceUp);
 		if(minBid == 0) minBid = 3;
 		testInfo[0][1] = minBid;
-		console.log("UPDATING MINI BID" + minBid);
 	}
 	//get current player bids
 	if (event.data.startsWith("currentPlayerBids")) {
 		var bids = event.data.replace("currentPlayerBids","");
 		currentPlayerInfoBids = bids.split(";");
 		currentPlayerBids = currentPlayerInfoBids[0];
-		console.log(currentPlayerBids);
 		if (PlayerName == sponsor) {
 			stageCounter = 0;
 			sponsor = "";
 		}
-
 	}
-	// get current player pts
+	// get current player points for battle screen render
 	if (event.data.startsWith("currentPlayerPoints")) {
 		var pts = event.data.replace("currentPlayerPoints", "");
 		currentPlayerInfo = pts;
@@ -665,6 +411,177 @@ socketConn.onmessage = function(event) {
 	}
 }
 
+function eventKing(event) {
+	var serverMsg = document.getElementById("serverMsg");
+	console.log("event kings call to arms");
+	KingsCallToArms = true;
+	numCards = 12;
+
+	if(event.data.startsWith("KingsCallToArmsWeapon")){
+		serverMsg.value += "\n> must discard 1 weapon card to continue";
+		numCards++;
+	}
+	
+	if(event.data.startsWith("KingsCallToArms1Foe")){
+		serverMsg.value += "\n> must discard 1 foe card to continue";
+		numCards++;
+	}
+	if(event.data.startsWith("KingsCallToArmsFoes")){
+		serverMsg.value += "\n> must discard 2 foe cards to continue";
+		numCards+=2;
+	}
+	discard();
+}
+
+function renderBattleScreen(event) {
+	var temp = event.data.replace("playerPointString","");
+	console.log("PLAYER POINT STRING-------------------------");
+	console.log(temp);
+	temp = temp.split(";");
+	for(var i=0; i<temp.length; i++) {
+		temp[i] = temp[i].split("#");
+	}
+	 allPlayerPoints = temp;
+	console.log("SHOWING BATTLE SCREEN");
+	console.log(stageTracker);
+	
+	document.getElementById("battleScreen").style.display = "block";
+	//console.log(storyCardFaceUp);
+	$("#questPic").attr("src", "http://localhost:8080" + storyCardFaceUp.stringFile);
+	//console.log(storyCardFaceUp.stringFile);
+	console.log(questSetupCards);
+	console.log(stageTracker);
+	var currFoeName = questSetupCards[stageTracker][0];
+	console.log(currFoeName);
+	var currFoePts = 0;
+	var currFoeLink = getLinkFromName(currFoeName);
+	//console.log(currFoeLink);
+	for(var i=0; i<foeInfo.length; i++) {
+		if(foeInfo[i][0] == currFoeName) {
+			var currFoePts = foeInfo[i][1];
+		}
+	}
+	document.getElementById("currStageInfo").innerText = "Current stage information: " + currFoeName + " with points: " + currFoePts;
+	$("#foePic").attr("src", "http://localhost:8080" + currFoeLink);
+	//console.log("current foe name: " + currFoeName);
+	//console.log("current foe points: " + currFoePts);
+	var foeSlot1 =document.getElementById('foeWeaponSpot1').id;
+	var foeSlot2 = document.getElementById('foeWeaponSpot2').id;
+	var foeSlot3 = document.getElementById('foeWeaponSpot3').id;
+	var foeSlot4 = document.getElementById('foeWeaponSpot4').id;
+	var foeSlot5 = document.getElementById('foeWeaponSpot5').id;
+	var foeSlot6 = document.getElementById('foeWeaponSpot6').id;
+	var foeSlots = [foeSlot1, foeSlot2, foeSlot3, foeSlot4, foeSlot5, foeSlot6];
+	console.log(questSetupCards);
+	console.log(stageTracker);
+	if(questSetupCards[stageTracker].length == 1) {
+		
+	} else {
+		var currentFoeWeapons = questSetupCards[stageTracker];
+		console.log(currentFoeWeapons);
+	
+	
+		var currentFoeWeaponLinks = [];
+		for(var i=1; i<currentFoeWeapons.length; i++) {
+			currentFoeWeaponLinks.push(getLinkFromName(currentFoeWeapons[i]));
+	//		console.log(getLinkFromName(currentFoeWeapons[i]));
+		}
+		for(var i=0; i<currentFoeWeaponLinks.length; i++) {
+			var changeImageId = "#" + foeSlots[i];
+		//	console.log(changeImageId);
+			$(changeImageId).attr("src", "http://localhost:8080" + currentFoeWeaponLinks[i]);
+		}
+	}
+	allPlayerPoints.pop();
+	console.log(allPlayerPoints);
+	console.log(allPlayerPoints.length);
+	for(var i=0; i<allPlayerPoints.length; i++) {
+		console.log("starting loop");
+		var base_id = "player" + (i+1);
+		var primitive_id = "p" + (i+1);
+		var playerDiv = base_id + "Display";
+		var playerPic = "#" + base_id + "Pic";
+		var playerPicLink = allPlayerPoints[i][2];
+		var playerPts = allPlayerPoints[i][1];
+		var playerName = allPlayerPoints[i][0];
+		var infoPane = primitive_id + "info";
+		//console.log(playerDiv);
+		//console.log(infoPane);
+		//console.log(playerName);
+		//console.log(playerPts);
+		//console.log(playerPicLink);
+		document.getElementById(playerDiv).style.display = "block";
+		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
+		$(playerPic).attr("src", "http://localhost:8080" + playerPicLink);
+		console.log(allQuestInfo);
+		var playerInfo = allQuestInfo[i+1];
+		var playerInfo2;
+		var a;
+		if(allQuestInfo[0].hasOwnProperty("questSetupCards")) {
+			a=0;
+		} else { var a = -1; }
+		for(a; a<allQuestInfo.length; a++) {
+			if(a+1 == allQuestInfo.length) break;
+			if(allQuestInfo[a+1].name == playerName && allQuestInfo[a+1].stages == stageTracker) {
+				playerInfo2 = allQuestInfo[a+1];
+			}
+		}
+
+		console.log(playerInfo2);
+		var weaponArr = playerInfo2.equipment_info;
+		console.log(weaponArr);
+		for(var b=0; b<weaponArr.length; b++) {
+			weaponArr[b] = getLinkFromName(weaponArr[b]);
+			var picId = "#" + base_id + "WeaponSpot" + (b+1);
+			$(picId).attr("src", "http://localhost:8080" + weaponArr[b]);
+			//console.log(picId); console.log(weaponArr[b]);
+		}
+		var winid = primitive_id + "_win";
+		var loseid = primitive_id + "_lose";
+		console.log(playerName + playerPts); console.log(currFoePts);
+		if(parseInt(playerPts) >= parseInt(currFoePts)) {
+			document.getElementById(winid).style.display = "block";
+			document.getElementById(loseid).style.display = "none";
+		} else {
+			document.getElementById(winid).style.display = "none";
+			document.getElementById(loseid).style.display = "block";
+			document.getElementById("eliminated").innerText += "\n" + playerName;
+		}
+		    		
+	}
+
+	setTimeout(function(){ 
+		document.getElementById("battleScreen").style.display = "none";
+		console.log("REMOVING BATTLE SCREEN");
+		var serverMsg = document.getElementById("serverMsg");
+		//clear images
+		$("#questPic").attr("src", "http://localhost:8080/resources/images/all.png");
+		$("#foePic").attr("src", "http://localhost:8080/resources/images/all.png");
+		for(var i=0; i<foeSlots.length; i++) {
+			$("#"+foeSlots[i]).attr("src", "http://localhost:8080/resources/images/all.png");
+		}
+		document.getElementById("eliminated").innerText = " Players eliminated:";
+		for(var i=0; i<allPlayerPoints.length; i++) {
+			var base_id_remove = "player" + (i+1);
+    		var primitive_id_remove = "p" + (i+1);
+    		var playerDiv_remove = base_id_remove + "Display";
+    		document.getElementById(playerDiv_remove).style.display = "none";
+    		
+    		var playerPic_remove = "#" + base_id_remove + "Pic";
+    		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
+    		var playerInfo;
+        	for(var j=0; j<6; j++) { 
+        		var id = "#player" + (i+1) + "WeaponSpot" + (j+1);
+        		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
+        	}
+		}
+	}, 10000);
+
+	console.log(foeInfo);
+	console.log(testInfo);
+	console.log("battle screen stage tracker: " + stageTracker);    	
+	console.log("end battlescreen info");
+}
 function replaceTestCards(eventData) {
 	var replacementCards = eventData.split(";");
 	console.log(replacementCards);
@@ -687,6 +604,81 @@ function replaceTestCards(eventData) {
 	}
 }
 
+function setupTournament(event) {
+	var data = event.data.replace("contestantInfo","");
+	data = data.split(";");
+	for(var i=0; i<data.length; i++) {
+		data[i] = data[i].split("#");
+	}
+	console.log(data);
+	data.pop();
+	console.log(data);
+	var playerTournieArr = data;
+	console.log("SHOWING TOURNAMENT SCREEN");
+	document.getElementById("tournieScreen").style.display = "block";
+	console.log(playerTournieArr.length);
+	for(var i=0; i<playerTournieArr.length; i++) {
+		console.log("starting loop");
+		var base_id = "player" + (i+1);
+		var primitive_id = "p" + (i+1);
+		var playerDiv = base_id + "Displayt";
+		var playerPic = "#" + base_id + "Pict";
+		var playerPicLink = playerTournieArr[i][2];
+		var playerPts = playerTournieArr[i][1];
+		var playerName = playerTournieArr[i][0];
+		var infoPane = primitive_id + "infot";
+		document.getElementById(playerDiv).style.display = "block";
+		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
+		$(playerPic).attr("src", "http://localhost:8080" + playerPicLink);
+		console.log(playerTEquipArr);
+		console.log(playerName);
+		for(var j=0; j<playerTEquipArr.length; j++) {
+			if(playerTEquipArr[j].name === playerName) {
+				var tequip = playerTEquipArr[j].tournament_info;
+			}
+		}
+		console.log(tequip);
+		for(var k=0; k<tequip.length; k++) {
+			var weaponLink = getLinkFromName(tequip[k]);
+			var picId = "#" + base_id + "WeaponSpot" + (k+1) + "t";
+			$(picId).attr("src", "http://localhost:8080" + weaponLink);
+		}
+		var winid = primitive_id + "_wint";
+		var loseid = primitive_id + "_loset";
+		if(playerName == playerTournieArr[0][0]) {
+			document.getElementById(winid).style.display = "block";
+			document.getElementById(loseid).style.display = "none";
+		} else {
+		if(playerPts == playerTournieArr[0][1]) {
+			document.getElementById(winid).style.display = "block";
+			document.getElementById(loseid).style.display = "none";
+		} else {
+			document.getElementById(winid).style.display = "none";
+			document.getElementById(loseid).style.display = "block";
+		}
+		}
+	}
+	
+	setTimeout(function(){ 
+		document.getElementById("tournieScreen").style.display = "none";
+		console.log("REMOVING TOURNAMENT SCREEN");
+		for(var i=0; i<playerTournieArr.length; i++) {
+			var base_id_remove = "player" + (i+1);
+    		var primitive_id_remove = "p" + (i+1);
+    		var playerDiv_remove = base_id_remove + "Displayt";
+    		document.getElementById(playerDiv_remove).style.display = "none";
+    		
+    		var playerPic_remove = "#" + base_id_remove + "Pict";
+    		$(playerPic_remove).attr("src", "http://localhost:8080/resources/images/all.png");
+        	for(var j=0; j<6; j++) { 
+        		var id = "#player" + (i+1) + "WeaponSpot" + (j+1) + "t";
+        		$(id).attr("src", "http://localhost:8080/resources/images/all.png");
+        	}
+		}
+		var serverMsg = document.getElementById("serverMsg");
+		serverMsg.value += "\n> tournament over, wait for next player";
+	}, 10000);
+}
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value += "\n> it is now time to choose equipment for quest";
@@ -1058,6 +1050,23 @@ function setHand() {
 	$("#card10").attr("src", handStringArray[9]);
 	$("#card11").attr("src", handStringArray[10]);
 	$("#card12").attr("src", handStringArray[11]);
+}
+
+function getTournieInfo(event) {
+
+	if(event.data.includes("tournament_info")) {
+		var data = event.data.replace("tournieInfo", "");
+		var data = JSON.parse(data);
+		console.log(data);
+		playerTEquipArr = data;
+	}
+	if(event.data.startsWith("tournieInfoPts")) {
+		var data = event.data.replace("tournieInfoPts", "");
+		var data = data.split(";");
+		for(var i=0; i<data.length; i++) {
+			data[i] = data[i].split("#");
+		}
+	}
 }
 
 function getTournie() {
@@ -1492,10 +1501,6 @@ function acceptQuestParticipate() {
 	serverMsg.value += ("\n> waiting for others to answer");
 }
 
-function pickWeapons() {
-	
-}
-
 //drop out of test
 function dropOutOfTest() {
 	document.getElementById("minBid").style.display = "none";
@@ -1667,10 +1672,6 @@ function doneQuestSetup() {
 	socketConn.send(data);
 }
 
-function showStages() {
-	console.log(questSetupCards);
-	console.log(allBattleEquipment);
-}
 //flip story card
 function flipStoryDeck() {
 	var data = JSON.stringify({
@@ -2269,6 +2270,9 @@ var cardTypeList = [ back, horse, sword, lance, dagger, battleAx, excalibur,
 		arthurQuest, beastQuest, dragonQuest, forestQuest, grailQuest, gkQuest,
 		honorQuest, maidenQuest, saxonQuest, squire, knight, cKnight, camelot,
 		orkney, tintagel, york ];
+
+
+// ai functions 
 
 function AIRemoveFromScreen(cardNames) {
 	var send = false;

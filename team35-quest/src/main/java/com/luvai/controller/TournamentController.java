@@ -302,7 +302,7 @@ public class TournamentController extends SocketHandler {
 			logger.info("Player {} is the winner of the tournament", winners.get(0).name);
 			logger.info(
 					"Player {} receiving {} shields, {} for # of participants and {} as bonus shields per Tournament {} (tie-breaker)",
-					winners.get(0).name, shieldTotal, participants, bonus);
+					winners.get(0).name, shieldTotal, participants, bonus, gameEngine.storyDeck.faceUp.getName());
 			Player p = gameEngine.getPlayerFromName(winners.get(0).name);
 			p.giveShields(shieldTotal);
 			gameEngine.updateStats();
