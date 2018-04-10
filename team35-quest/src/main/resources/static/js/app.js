@@ -46,8 +46,9 @@ var handCardID;
 var handCardSRC;
 
 $( document ).ready(function() {
-    console.log( "ready!" );
+    console.log( "setting ip address" );
 
+    //set ip to server
 	var id = document.location.href;
 	ip = id;
 	ip = ip.substr(7);

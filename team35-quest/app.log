@@ -1,293 +1,296 @@
-2018-04-10 11:38:02.965  INFO 992 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6e604e73: startup date [Tue Apr 10 11:28:56 EDT 2018]; root of context hierarchy
-2018-04-10 11:38:02.966  INFO 992 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
-2018-04-10 11:38:02.967  INFO 992 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
-2018-04-10 11:38:02.968  INFO 992 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
-2018-04-10 11:38:05.910  INFO 1610 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 1610 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
-2018-04-10 11:38:05.912  INFO 1610 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
-2018-04-10 11:38:05.974  INFO 1610 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Tue Apr 10 11:38:05 EDT 2018]; root of context hierarchy
-2018-04-10 11:38:06.999  INFO 1610 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
-2018-04-10 11:38:07.010  INFO 1610 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-04-10 11:38:07.011  INFO 1610 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
-2018-04-10 11:38:07.200  INFO 1610 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2018-04-10 11:38:07.204  INFO 1610 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-04-10 11:38:07.204  INFO 1610 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1233 ms
-2018-04-10 11:38:07.318  INFO 1610 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
-2018-04-10 11:38:07.322  INFO 1610 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-04-10 11:38:07.322  INFO 1610 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-04-10 11:38:07.322  INFO 1610 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-04-10 11:38:07.323  INFO 1610 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2018-Apr-10 11:38:07 AM [main] INFO  com.luvai.model.Game - 
+2018-04-10 12:13:22.951  INFO 3746 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Tue Apr 10 12:11:38 EDT 2018]; root of context hierarchy
+2018-04-10 12:13:22.955  INFO 3746 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-10 12:13:22.956  INFO 3746 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-10 12:13:22.957  INFO 3746 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-10 12:13:26.142  INFO 3828 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 3828 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-10 12:13:26.145  INFO 3828 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-10 12:13:26.206  INFO 3828 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b2882c7: startup date [Tue Apr 10 12:13:26 EDT 2018]; root of context hierarchy
+2018-04-10 12:13:27.247  INFO 3828 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-10 12:13:27.256  INFO 3828 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-10 12:13:27.258  INFO 3828 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-10 12:13:27.415  INFO 3828 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-10 12:13:27.420  INFO 3828 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-10 12:13:27.421  INFO 3828 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1218 ms
+2018-04-10 12:13:27.513  INFO 3828 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-10 12:13:27.517  INFO 3828 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-10 12:13:27.517  INFO 3828 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-10 12:13:27.517  INFO 3828 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-10 12:13:27.518  INFO 3828 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-10 12:13:27 PM [main] INFO  com.luvai.model.Game - 
 
 
 
  ****************************** Initialising new game ********************************
-2018-Apr-10 11:38:07 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
-2018-Apr-10 11:38:07 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+2018-Apr-10 12:13:27 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-10 12:13:27 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
 
-2018-04-10 11:38:07.630  INFO 1610 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
-2018-04-10 11:38:07.654  INFO 1610 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
-2018-04-10 11:38:07.884  INFO 1610 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Tue Apr 10 11:38:05 EDT 2018]; root of context hierarchy
-2018-04-10 11:38:07.948  INFO 1610 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
-2018-04-10 11:38:07.954  INFO 1610 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2018-04-10 11:38:07.955  INFO 1610 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2018-04-10 11:38:07.983  INFO 1610 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-04-10 11:38:07.983  INFO 1610 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-04-10 11:38:08.016  INFO 1610 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-04-10 11:38:08.191  INFO 1610 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2018-04-10 11:38:08.197  INFO 1610 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
-2018-04-10 11:38:08.255  INFO 1610 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-2018-04-10 11:38:08.262  INFO 1610 --- [main] com.luvai.MainApp                        : Started MainApp in 2.655 seconds (JVM running for 4.739)
-2018-04-10 11:38:15.049  INFO 1610 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
-2018-04-10 11:38:15.049  INFO 1610 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
-2018-04-10 11:38:15.063  INFO 1610 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 14 ms
-2018-Apr-10 11:38:16 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
-2018-Apr-10 11:38:16 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
-2018-Apr-10 11:38:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
-2018-Apr-10 11:38:18 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
-2018-Apr-10 11:38:18 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
-2018-Apr-10 11:38:19 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
-2018-Apr-10 11:38:19 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
-2018-Apr-10 11:38:21 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
-2018-Apr-10 11:38:25 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
-2018-Apr-10 11:38:25 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
-2018-Apr-10 11:38:29 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
-2018-Apr-10 11:38:32 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
-2018-Apr-10 11:38:32 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - All players have joined, starting game...
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Merlin, Amour, Robber Knight, Dragon, Test of the Questing Beast, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Thieves, King Arthur, Excalibur, Amour, Test of Morgan Le Fey, Thieves, Horse, Sir Galahad, Robber Knight, 
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
-2018-Apr-10 11:38:35 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Updating GUI stats for all players
-2018-Apr-10 11:38:37 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:38:37 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt
-2018-Apr-10 11:38:37 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Boar Hunt is being rendered on player screens
-2018-Apr-10 11:38:37 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Boar Hunt
-2018-Apr-10 11:38:43 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player1 accepted to sponsor quest Boar Hunt
-2018-Apr-10 11:38:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Player1
-2018-Apr-10 11:38:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player1 is setting up stages for Boar Hunt quest
-2018-Apr-10 11:38:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing players that Player Player1 is sponsor of Boar Hunt quest
-2018-Apr-10 11:38:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player1 will now choose cards for 2 stages of quest
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Saxons","Boar","Dagger","Sword"]}
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Player1 setup Boar Hunt quest with ["Saxons","Boar","Dagger","Sword"]
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Saxons
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Boar
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Sword
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Asking Player Player2 to participate in quest
-2018-Apr-10 11:38:49 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Player2 has Merlin in hand, being offered to preview stages
-2018-Apr-10 11:38:54 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player2 chose to preview stage 2
-2018-Apr-10 11:38:54 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - JSON example: {"hasMerlin":0,"name":"Player2","revealedCards":["Boar","Dagger","Sword"]}
-2018-Apr-10 11:38:54 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player2 was revealed these cards as part of stage: ["Boar","Dagger","Sword"]
-2018-Apr-10 11:38:56 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player2 accepted to participate in Boar Hunt quest sponsored by Player1
-2018-Apr-10 11:38:56 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has accepted to participate in Boar Hunt quest
-2018-Apr-10 11:38:56 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Amour
-2018-Apr-10 11:38:56 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:38:56 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
-2018-Apr-10 11:39:02 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Boar Hunt quest sponsored by Player1
-2018-Apr-10 11:39:02 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Boar Hunt quest
-2018-Apr-10 11:39:02 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Horse
-2018-Apr-10 11:39:02 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:39:02 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
-2018-Apr-10 11:39:04 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Boar Hunt quest sponsored by Player1
-2018-Apr-10 11:39:04 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Boar Hunt quest
-2018-Apr-10 11:39:04 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Black Knight
-2018-Apr-10 11:39:04 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:39:04 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Player1 is commencing, participant(s): Player2, Player3, Player4,  are choosing equipment CONCURRENTLY
-2018-Apr-10 11:39:08 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
-2018-Apr-10 11:39:10 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player2","stages":0,"equipment_info":[],"isTest":false}
-2018-Apr-10 11:39:10 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player2 chose nothing for stage 1 of Boar Hunt quest
-2018-Apr-10 11:39:20 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":["Horse"],"isTest":false}
-2018-Apr-10 11:39:20 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player3 chose Horse,  for stage 1 of Boar Hunt quest
-2018-Apr-10 11:39:20 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player3 used Horse
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":0,"equipment_info":["Battle-ax"],"isTest":false}
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player4 chose Battle-ax,  for stage 1 of Boar Hunt quest
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player4 used Battle-ax
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Saxons with 10 battle points
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Battle against participant Player2 with 5 battle points is starting - versus Saxons with 10 points
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 has LOST battle
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing players of player Player2 loss in battle
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 has been removed from quest
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 15 battle points is starting - versus Saxons with 10 points
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Battle against participant Player4 with 20 battle points is starting - versus Saxons with 10 points
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player4 has WON battle
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Stage 1 is over
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Clearing all weapons
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - All participants are choosing equipment for quest CONCURRENTLY
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Thieves
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Saxons
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player(s): Player3 has 13 cards in hand, will be prompted to discard Player4 has 13 cards in hand, will be prompted to discard 
-2018-Apr-10 11:39:25 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:39:39 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":1,"equipment_info":["Excalibur"],"isTest":false}
-2018-Apr-10 11:39:39 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 chose Excalibur,  for stage 2 of Boar Hunt quest
-2018-Apr-10 11:39:39 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 used Excalibur
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":1,"equipment_info":["Lance"],"isTest":false}
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player4 chose Lance,  for stage 2 of Boar Hunt quest
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player4 used Lance
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Boar Hunt quest which is a test: false
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 2 is a foe battle
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 30 battle points
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 35 battle points is starting - versus Boar with 30 points
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Giving 2 shields to Player3
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Clearing all weapons and amour
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player1 who sponsored Boar Hunt quest is receiving 6 card (Test of Valor, Queen Iseult, Dagger, Giant, Saxons, Robber Knight, ) due to sponsoring quest
-2018-Apr-10 11:39:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player1 has 14 cards, will be prompted to discard
-2018-Apr-10 11:44:56 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
-2018-Apr-10 11:44:58 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player1 discarded Robber Knight
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Chivalrous Deed
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New story card Chivalrous Deed is being rendered on player screens
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player Player2 has initiated event Chivalrous Deed
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player1 with 0 shields
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player2 with 0 shields
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player3 with 2 shields
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player4 with 0 shields
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController -  Player1 is awarded with 3 shields for a total of 3
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController -  Player2 is awarded with 3 shields for a total of 3
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController -  Player4 is awarded with 3 shields for a total of 3
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
-2018-Apr-10 11:45:00 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: Prosperity Throughout the Realm
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New story card Prosperity Throughout the Realm is being rendered on player screens
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player3 has initiated event Prosperity Throughout the Realm
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - All players draw immediately 2 adventure cards & discard if too many
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player1 picked up Mordred and Test of the Questing Beast
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player2 picked up Robber Knight and Black Knight
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player3 picked up Dagger and Evil Knight
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player4 picked up Horse and Queen Guinevere
-2018-Apr-10 11:45:08 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
-2018-Apr-10 11:45:11 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player3 discarded Dagger
-2018-Apr-10 11:45:12 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player3 discarded Saxons
-2018-Apr-10 11:45:14 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player4 discarded Thieves
-2018-Apr-10 11:45:15 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player4 discarded Dagger
-2018-Apr-10 11:45:22 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player1 discarded Saxons
-2018-Apr-10 11:45:23 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player1 discarded Sword
-2018-Apr-10 11:45:27 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Thieves
-2018-Apr-10 11:45:28 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player2 discarded Robber Knight
-2018-Apr-10 11:45:28 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.EventController - Event Prosperity Throughout the Realm has concluded
-2018-Apr-10 11:45:33 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:45:33 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player4 is flipping new card from story deck: At Camelot
-2018-Apr-10 11:45:33 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New story card At Camelot is being rendered on player screens
-2018-Apr-10 11:45:33 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.TournamentController - Initiating new tournament At Camelot
-2018-Apr-10 11:45:37 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Player4 accepted to participate in Tournament At Camelot
-2018-Apr-10 11:45:37 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Asking Player Player1 to participate in Tournament At Camelot
-2018-Apr-10 11:45:37 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Informing other players that Player4 accepted to participate in Tournament At Camelot
-2018-Apr-10 11:45:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Player1 accepted to participate in Tournament At Camelot
-2018-Apr-10 11:45:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Asking Player Player2 to participate in Tournament At Camelot
-2018-Apr-10 11:45:44 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Informing other players that Player1 accepted to participate in Tournament At Camelot
-2018-Apr-10 11:45:46 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Player Player2 accepted to participate in Tournament At Camelot
-2018-Apr-10 11:45:46 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Asking Player Player3 to participate in Tournament At Camelot
-2018-Apr-10 11:45:46 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.TournamentController - Informing other players that Player2 accepted to participate in Tournament At Camelot
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Player3 declined to participate in Tournament At Camelot
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - All player decisions accepted, starting Tournament At Camelot
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Tournament At Camelot starting with participants: Player4, Player1, Player2, 
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Player4 receiving one card: Thieves before choosing equipment
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Player1 receiving one card: Horse before choosing equipment
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Player Player2 receiving one card: Saxon Knight before choosing equipment
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - All tournament participants are choosing equipment concurrently
-2018-Apr-10 11:45:52 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.TournamentController - Informing other players that Player3 declined to participate in Tournament At Camelot
-2018-Apr-10 11:46:38 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.TournamentController - Player Player1 has equipped Horse,  for Tournament At Camelot
-2018-Apr-10 11:46:38 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 used Horse
-2018-Apr-10 11:46:42 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.TournamentController - Player Player2 has equipped Lance,  for Tournament At Camelot
-2018-Apr-10 11:46:42 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player2 used Lance
-2018-Apr-10 11:46:53 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player4 discarded Thieves
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Player4 has equipped nothing for Tournament At Camelot
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Recieved all tournament challenges
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Player2 has 25 battle points at rank Squire
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Player1 has 15 battle points at rank Squire
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Player4 has 5 battle points at rank Squire
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Displaying tournament screen
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Player2 is the winner of the tournament
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Player Player2 receiving 6 shields, 3 for # of participants and 3 as bonus shields per Tournament At Camelot (tie-breaker)
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 has advanced rank to Knight!
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 has advanced rank to Champion Knight!
-2018-Apr-10 11:46:55 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.TournamentController - Removing all amour/weapon equipped during tournament by participants
-2018-Apr-10 11:47:09 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:47:09 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Slay the Dragon
-2018-Apr-10 11:47:09 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New story card Slay the Dragon is being rendered on player screens
-2018-Apr-10 11:47:09 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Slay the Dragon
-2018-Apr-10 11:47:10 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player1 declined to sponsor quest Slay the Dragon
-2018-Apr-10 11:47:10 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Informing other players that Player Player1 declined to sponsor Slay the Dragon quest
-2018-Apr-10 11:47:10 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Asking Player Player2 to sponsor quest Slay the Dragon
-2018-Apr-10 11:47:12 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player2 accepted to sponsor quest Slay the Dragon
-2018-Apr-10 11:47:12 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Initiating new quest Slay the Dragon sponsored by Player2
-2018-Apr-10 11:47:12 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player2 is setting up stages for Slay the Dragon quest
-2018-Apr-10 11:47:12 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Informing players that Player Player2 is sponsor of Slay the Dragon quest
-2018-Apr-10 11:47:12 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player2 will now choose cards for 3 stages of quest
-2018-Apr-10 11:47:37 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Player2 attempted to choose a foe higher than ones already chosing during Slay the Dragon quest sponsor
-2018-Apr-10 11:47:39 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Test of the Questing Beast","Green Knight","Dragon"]}
-2018-Apr-10 11:47:39 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player2 setup Slay the Dragon quest with ["Test of the Questing Beast","Green Knight","Dragon"]
-2018-Apr-10 11:47:39 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Test of the Questing Beast
-2018-Apr-10 11:47:39 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Green Knight
-2018-Apr-10 11:47:39 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Dragon
-2018-Apr-10 11:47:39 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
-2018-Apr-10 11:47:43 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Slay the Dragon quest sponsored by Player2
-2018-Apr-10 11:47:43 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Slay the Dragon quest
-2018-Apr-10 11:47:43 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Test of Morgan Le Fey
-2018-Apr-10 11:47:43 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:47:43 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
-2018-Apr-10 11:47:45 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Slay the Dragon quest sponsored by Player2
-2018-Apr-10 11:47:45 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Slay the Dragon quest
-2018-Apr-10 11:47:45 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Test of Valor
-2018-Apr-10 11:47:45 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:47:45 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Asking Player Player1 to participate in quest
-2018-Apr-10 11:47:45 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 has Merlin in hand, being offered to preview stages
-2018-Apr-10 11:47:50 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player1 chose to preview stage 3
-2018-Apr-10 11:47:50 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - JSON example: {"hasMerlin":0,"name":"Player1","revealedCards":["Dragon"]}
-2018-Apr-10 11:47:50 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player1 was revealed these cards as part of stage: ["Dragon"]
-2018-Apr-10 11:47:53 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player1 denied to participate in Slay the Dragon quest sponsored by Player2
-2018-Apr-10 11:47:53 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing other players that Player1 has declined to participate in Slay the Dragon quest
-2018-Apr-10 11:47:53 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Slay the Dragon quest setup by Player2 is commencing with participant(s): Player3, Player4,  choosing weapons CONCURRENTLY
-2018-Apr-10 11:48:14 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":["Thieves","Evil Knight","Black Knight","Test of Valor"],"isTest":true}
-2018-Apr-10 11:48:14 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player3 bid Thieves, Evil Knight, Black Knight, Test of Valor,  for test in quest Slay the Dragon
-2018-Apr-10 11:48:14 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Sending Player Player3 bid to sponsor and other participants
-2018-Apr-10 11:48:26 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":0,"equipment_info":["Test of Valor","Sword","Saxons","Horse"],"isTest":true}
-2018-Apr-10 11:48:26 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player4 bid Test of Valor, Sword, Saxons, Horse,  for test in quest Slay the Dragon
-2018-Apr-10 11:48:26 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Sending Player Player4 bid to sponsor and other participants
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":[],"oldBids":["Thieves","Evil Knight","Black Knight","Test of Valor"],"isTest":true}
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player3 dropped out of test in quest Slay the Dragon
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player4 used Test of Valor
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player4 used Sword
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player4 used Saxons
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player4 used Horse
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Battle-ax
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Player4 won test in Slay the Dragon quest, advancing to stage 2
-2018-Apr-10 11:48:35 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Informing players that player Player4 is winner of test
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":1,"equipment_info":["Battle-ax"],"isTest":false}
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 chose Battle-ax,  for stage 2 of Slay the Dragon quest
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player4 used Battle-ax
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Slay the Dragon quest which is a test: false
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Slay the Dragon quest stage 2 is a foe battle
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Green Knight with 25 battle points
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant Player4 with 20 battle points is starting - versus Green Knight with 25 points
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 has LOST battle
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Informing players of player Player4 loss in battle
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 has been removed from quest
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Stage 2 is over
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Clearing all weapons
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - All players defeated in Slay the Dragon quest sponsored by Player2
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player2 who sponsored Slay the Dragon quest is receiving 6 card (Thieves, Dagger, Sir Lancelot, Sword, Mordred, Horse, ) due to sponsoring quest
-2018-Apr-10 11:48:38 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player2 has 15 cards, will be prompted to discard
-2018-Apr-10 11:48:50 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
-2018-Apr-10 11:48:50 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player2 discarded Thieves
-2018-Apr-10 11:48:51 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player2 discarded Robber Knight
-2018-Apr-10 11:48:56 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
-2018-Apr-10 11:48:56 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: Vanquish King Arthur's Enemies
-2018-Apr-10 11:48:56 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New story card Vanquish King Arthur's Enemies is being rendered on player screens
-2018-Apr-10 11:48:56 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Asking Player Player3 to sponsor quest Vanquish King Arthur's Enemies
-2018-04-10 11:50:13.757  INFO 1610 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Tue Apr 10 11:38:05 EDT 2018]; root of context hierarchy
-2018-04-10 11:50:13.763  INFO 1610 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
-2018-04-10 11:50:13.769  INFO 1610 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
-2018-04-10 11:50:13.770  INFO 1610 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-10 12:13:27.749  INFO 3828 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-10 12:13:27.767  INFO 3828 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-10 12:13:27.942  INFO 3828 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b2882c7: startup date [Tue Apr 10 12:13:26 EDT 2018]; root of context hierarchy
+2018-04-10 12:13:27.990  INFO 3828 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-10 12:13:27.999  INFO 3828 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-10 12:13:28.000  INFO 3828 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-10 12:13:28.025  INFO 3828 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 12:13:28.026  INFO 3828 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 12:13:28.055  INFO 3828 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 12:13:28.188  INFO 3828 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-10 12:13:28.194  INFO 3828 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-10 12:13:28.257  INFO 3828 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-10 12:13:28.262  INFO 3828 --- [main] com.luvai.MainApp                        : Started MainApp in 2.419 seconds (JVM running for 4.79)
+2018-04-10 12:13:32.354  INFO 3828 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-10 12:13:32.354  INFO 3828 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-10 12:13:32.374  INFO 3828 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 20 ms
+2018-Apr-10 12:13:33 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:13:33 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-10 12:13:36 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-10 12:13:36 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-10 12:13:36 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-10 12:13:38 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:13:38 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-10 12:13:39 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-10 12:13:40 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:13:40 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-10 12:13:41 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-10 12:13:42 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:13:42 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Lance, Sir Gawain, 
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Sir Galahad, Amour, Robber Knight, Dragon, Green Knight, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Sword, Thieves, King Arthur, Queen Iseult, Amour, Test of Morgan Le Fey, Thieves, Battle-ax, Sir Lancelot, Robber Knight, 
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Thieves, Boar, Queen Iseult, Sir Gawain, Excalibur, Dagger, King Pellinore, Black Knight, Sir Lancelot, 
+2018-Apr-10 12:13:44 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Queen's Favor
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Queen's Favor is being rendered on player screens
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player1 has initiated event Queen's Favor
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player1 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player2 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player3 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player4 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player1 picked up Horse and Sword
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player2 picked up Test of the Questing Beast and Horse
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player3 picked up Sword and Saxon Knight
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player4 picked up Thieves and Mordred
+2018-Apr-10 12:13:46 PM [Thread-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-10 12:13:48 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Boar
+2018-Apr-10 12:13:48 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-10 12:13:52 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player1 discarded Horse
+2018-04-10 12:13:59.813  INFO 3828 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b2882c7: startup date [Tue Apr 10 12:13:26 EDT 2018]; root of context hierarchy
+2018-04-10 12:13:59.820  INFO 3828 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-10 12:13:59.822  INFO 3828 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-10 12:13:59.823  INFO 3828 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-10 12:14:03.623  INFO 3902 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 3902 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-10 12:14:03.626  INFO 3902 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-10 12:14:03.709  INFO 3902 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@24ae665a: startup date [Tue Apr 10 12:14:03 EDT 2018]; root of context hierarchy
+2018-04-10 12:14:05.229  INFO 3902 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-10 12:14:05.238  INFO 3902 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-10 12:14:05.239  INFO 3902 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-10 12:14:05.403  INFO 3902 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-10 12:14:05.407  INFO 3902 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-10 12:14:05.408  INFO 3902 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1703 ms
+2018-04-10 12:14:05.502  INFO 3902 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-10 12:14:05.505  INFO 3902 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-10 12:14:05.506  INFO 3902 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-10 12:14:05.506  INFO 3902 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-10 12:14:05.506  INFO 3902 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-10 12:14:05 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-10 12:14:05 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-10 12:14:05 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-10 12:14:05.760  INFO 3902 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-10 12:14:05.783  INFO 3902 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-10 12:14:05.954  INFO 3902 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@24ae665a: startup date [Tue Apr 10 12:14:03 EDT 2018]; root of context hierarchy
+2018-04-10 12:14:06.003  INFO 3902 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-10 12:14:06.005  INFO 3902 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-10 12:14:06.006  INFO 3902 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-10 12:14:06.031  INFO 3902 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 12:14:06.031  INFO 3902 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 12:14:06.063  INFO 3902 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 12:14:06.193  INFO 3902 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-10 12:14:06.198  INFO 3902 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-10 12:14:06.264  INFO 3902 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-10 12:14:06.269  INFO 3902 --- [main] com.luvai.MainApp                        : Started MainApp in 3.17 seconds (JVM running for 5.95)
+2018-04-10 12:14:06.839  INFO 3902 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-10 12:14:06.841  INFO 3902 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-10 12:14:06.857  INFO 3902 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 15 ms
+2018-Apr-10 12:14:07 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:14:07 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-10 12:14:08 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:14:08 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-10 12:14:09 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:14:09 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-10 12:14:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-10 12:14:10 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-10 12:14:15 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-10 12:14:15 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-10 12:14:15 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-10 12:14:17 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-10 12:14:20 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Lance, Sir Gawain, 
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Sir Galahad, Amour, Robber Knight, Dragon, Green Knight, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Sword, Thieves, King Arthur, Queen Iseult, Amour, Test of Morgan Le Fey, Thieves, Battle-ax, Sir Lancelot, Robber Knight, 
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Thieves, Boar, Queen Iseult, Sir Gawain, Excalibur, Dagger, King Pellinore, Black Knight, Sir Lancelot, 
+2018-Apr-10 12:14:23 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Queen's Favor
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Queen's Favor is being rendered on player screens
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player1 has initiated event Queen's Favor
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player1 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player2 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player3 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player4 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player1 picked up Evil Knight and Sword
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player2 picked up Thieves and Mordred
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player3 picked up Sword and Thieves
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Player Player4 picked up Thieves and Sword
+2018-Apr-10 12:14:25 PM [Thread-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-10 12:14:27 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-10 12:14:27 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-10 12:14:31 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player2 discarded Battle-ax
+2018-Apr-10 12:14:32 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
+2018-Apr-10 12:14:34 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 discarded Thieves
+2018-Apr-10 12:14:34 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player3 discarded Sword
+2018-Apr-10 12:14:36 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player4 discarded Sword
+2018-Apr-10 12:14:37 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player4 discarded Thieves
+2018-Apr-10 12:14:37 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Event Queen's Favor has concluded
+2018-Apr-10 12:14:37 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-10 12:14:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:14:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Repel the Saxon Raiders
+2018-Apr-10 12:14:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New story card Repel the Saxon Raiders is being rendered on player screens
+2018-Apr-10 12:14:42 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Asking Player Player2 to sponsor quest Repel the Saxon Raiders
+2018-Apr-10 12:14:52 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player2 accepted to sponsor quest Repel the Saxon Raiders
+2018-Apr-10 12:14:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Initiating new quest Repel the Saxon Raiders sponsored by Player2
+2018-Apr-10 12:14:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player2 is setting up stages for Repel the Saxon Raiders quest
+2018-Apr-10 12:14:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Informing players that Player Player2 is sponsor of Repel the Saxon Raiders quest
+2018-Apr-10 12:14:52 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player2 will now choose cards for 2 stages of quest
+2018-Apr-10 12:15:12 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Robber Knight","Horse","Green Knight"]}
+2018-Apr-10 12:15:12 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player2 setup Repel the Saxon Raiders quest with ["Robber Knight","Horse","Green Knight"]
+2018-Apr-10 12:15:12 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player2 discarded Robber Knight
+2018-Apr-10 12:15:12 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player2 discarded Horse
+2018-Apr-10 12:15:12 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player2 discarded Green Knight
+2018-Apr-10 12:15:12 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-10 12:15:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-10 12:15:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Repel the Saxon Raiders quest
+2018-Apr-10 12:15:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Thieves
+2018-Apr-10 12:15:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-10 12:15:13 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-10 12:15:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player4 denied to participate in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-10 12:15:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has declined to participate in Repel the Saxon Raiders quest
+2018-Apr-10 12:15:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Asking Player Player1 to participate in quest
+2018-Apr-10 12:15:15 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Player1 has Merlin in hand, being offered to preview stages
+2018-Apr-10 12:15:18 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player1 chose to preview stage 2
+2018-Apr-10 12:15:18 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - JSON example: {"hasMerlin":0,"name":"Player1","revealedCards":["Green Knight"]}
+2018-Apr-10 12:15:18 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player1 was revealed these cards as part of stage: ["Green Knight"]
+2018-Apr-10 12:15:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player1 denied to participate in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-10 12:15:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing other players that Player1 has declined to participate in Repel the Saxon Raiders quest
+2018-Apr-10 12:15:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Repel the Saxon Raiders quest setup by Player2 is commencing with participant(s): Player3,  choosing weapons CONCURRENTLY
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":["Sword"],"isTest":false}
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 chose Sword,  for stage 1 of Repel the Saxon Raiders quest
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player3 used Sword
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Repel the Saxon Raiders quest which is a test: false
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Repel the Saxon Raiders quest stage 1 is a foe battle
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Robber Knight with 25 battle points
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 15 battle points is starting - versus Robber Knight with 25 points
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 has LOST battle
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Informing players of player Player3 loss in battle
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 has been removed from quest
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Clearing all weapons
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - All players defeated in Repel the Saxon Raiders quest sponsored by Player2
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player2 who sponsored Repel the Saxon Raiders quest is receiving 5 card (Dagger, Sir Gawain, Robber Knight, Evil Knight, Dagger, ) due to sponsoring quest
+2018-Apr-10 12:15:27 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player Player2 has 14 cards, will be prompted to discard
+2018-Apr-10 12:15:48 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player2 allied with Sir Galahad as discard, will now have +15 battle points for the rest of game
+2018-Apr-10 12:15:49 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: Court Called to Camelot
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New story card Court Called to Camelot is being rendered on player screens
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player3 has initiated event Court Called to Camelot
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - All allies in play will be discarded
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player1 has no allies in play
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player2 ally Sir Galahad has been removed
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player3 has no allies in play
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Player Player4 has no allies in play
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Event Court Called to Camelot has concluded
+2018-Apr-10 12:16:01 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Player Player4 is flipping new card from story deck: Plague
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - New story card Plague is being rendered on player screens
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player Player4 has initiated event Plague
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - If applicable drawer: Player4 loses 2 shields
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player Player4 currently has 0 shields
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - No shields to remove for player Player4
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Player Player4 left with 0 shields
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Event Plague has concluded
+2018-Apr-10 12:16:09 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: King's Call to Arms
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New story card King's Call to Arms is being rendered on player screens
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player1 has initiated event King's Call to Arms
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - The highest ranked player(s) must place 1 weapon in the discard pile. If unable to do so, 2 Foe Cards must be discarded
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player4 will now discard 1 weapon
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player1 will now discard 1 weapon
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player2 will now discard 1 weapon
+2018-Apr-10 12:16:18 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.EventController - Player Player3 will now discard 1 weapon
+2018-Apr-10 12:16:26 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player1 discarded Sword
+2018-Apr-10 12:16:28 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player2 discarded Dagger
+2018-Apr-10 12:16:31 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player3 discarded Battle-ax
+2018-Apr-10 12:16:35 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player4 discarded Dagger
+2018-Apr-10 12:16:35 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Event King's Call to Arms has concluded
+2018-Apr-10 12:16:35 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-Apr-10 12:16:41 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:16:41 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Rescue the Fair Maiden
+2018-Apr-10 12:16:41 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New story card Rescue the Fair Maiden is being rendered on player screens
+2018-Apr-10 12:16:41 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Asking Player Player2 to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:44 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player2 declined to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:44 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Informing other players that Player Player2 declined to sponsor Rescue the Fair Maiden quest
+2018-Apr-10 12:16:44 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Asking Player Player3 to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:47 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player3 declined to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:47 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Informing other players that Player Player3 declined to sponsor Rescue the Fair Maiden quest
+2018-Apr-10 12:16:47 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Asking Player Player4 to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:49 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player4 declined to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:49 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Informing other players that Player Player4 declined to sponsor Rescue the Fair Maiden quest
+2018-Apr-10 12:16:49 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Asking Player Player1 to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:50 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player1 declined to sponsor quest Rescue the Fair Maiden
+2018-Apr-10 12:16:50 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Informing other players that Player Player1 declined to sponsor Rescue the Fair Maiden quest
+2018-Apr-10 12:16:50 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - No players chose to sponsor Rescue the Fair Maiden quest
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player3 is flipping new card from story deck: Queen's Favor
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New story card Queen's Favor is being rendered on player screens
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player3 has initiated event Queen's Favor
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - The lowest ranked player(s) immediately receieves 2 Adventure Cards & will discard if too many
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player3 with 0 shields
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player1 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player2 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player3 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player4 is among lowest ranked, receiving 2 adventure cards
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player1 picked up Test of the Questing Beast and Mordred
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player2 picked up Horse and Evil Knight
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player3 picked up Sword and Sword
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player4 picked up Lance and Dagger
+2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
