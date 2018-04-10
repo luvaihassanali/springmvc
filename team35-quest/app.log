@@ -153,3 +153,7 @@ java.lang.NullPointerException: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.15.jar:8.5.15]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_162]
 
+2018-04-09 22:02:24.436  INFO 16568 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7042b697: startup date [Mon Apr 09 20:54:53 EDT 2018]; root of context hierarchy
+2018-04-09 22:02:24.443  INFO 16568 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-09 22:02:24.444  INFO 16568 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-09 22:02:24.444  INFO 16568 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
