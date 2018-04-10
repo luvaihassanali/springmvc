@@ -127,7 +127,7 @@ public class AIController extends SocketHandler {
 			sendToAllSessions(gameEngine, "updateStats" + update);
 			return;
 		} else {
-
+			gameEngine.incTurn();
 			if (gameEngine.getActivePlayer().equals(gameEngine.roundInitiater)) {
 				sendToAllSessions(gameEngine, "NoSponsors");
 				logger.info("No players chose to sponsor {} quest", gameEngine.storyDeck.faceUp.getName());

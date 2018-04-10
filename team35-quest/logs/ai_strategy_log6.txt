@@ -121,35 +121,3 @@
 2018-Apr-09 20:57:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_687 picked up Mordred and Thieves
 2018-Apr-09 20:57:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Player AI_Player_150 picked up Sword and Mordred
 2018-Apr-09 20:57:29 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
-2018-04-09 20:57:29.123 ERROR 16568 --- [http-nio-8080-exec-10] w.s.h.ExceptionWebSocketHandlerDecorator : Closing session due to exception for StandardWebSocketSession[id=3, uri=/socketHandler]
-
-java.lang.NullPointerException: null
-	at com.luvai.model.AI.Strategy2.discardAfterWinningTest(Strategy2.java:158) ~[classes/:na]
-	at com.luvai.controller.AIController.AIDiscard(AIController.java:147) ~[classes/:na]
-	at com.luvai.controller.AIController.receiveAICommand(AIController.java:30) ~[classes/:na]
-	at com.luvai.controller.SocketHandler.handleTextMessage(SocketHandler.java:56) ~[classes/:na]
-	at org.springframework.web.socket.handler.AbstractWebSocketHandler.handleMessage(AbstractWebSocketHandler.java:43) ~[spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.handler.WebSocketHandlerDecorator.handleMessage(WebSocketHandlerDecorator.java:75) ~[spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator.handleMessage(LoggingWebSocketHandlerDecorator.java:56) ~[spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator.handleMessage(ExceptionWebSocketHandlerDecorator.java:58) ~[spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter.handleTextMessage(StandardWebSocketHandlerAdapter.java:110) [spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter.access$000(StandardWebSocketHandlerAdapter.java:42) [spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter$3.onMessage(StandardWebSocketHandlerAdapter.java:81) [spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.springframework.web.socket.adapter.standard.StandardWebSocketHandlerAdapter$3.onMessage(StandardWebSocketHandlerAdapter.java:78) [spring-websocket-4.3.9.RELEASE.jar:4.3.9.RELEASE]
-	at org.apache.tomcat.websocket.WsFrameBase.sendMessageText(WsFrameBase.java:388) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.websocket.server.WsFrameServer.sendMessageText(WsFrameServer.java:110) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.websocket.WsFrameBase.processDataText(WsFrameBase.java:489) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.websocket.WsFrameBase.processData(WsFrameBase.java:288) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.websocket.WsFrameBase.processInputBuffer(WsFrameBase.java:127) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:73) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:148) [tomcat-embed-websocket-8.5.15.jar:8.5.15]
-	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:54) [tomcat-embed-core-8.5.15.jar:8.5.15]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:53) [tomcat-embed-core-8.5.15.jar:8.5.15]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861) [tomcat-embed-core-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1455) [tomcat-embed-core-8.5.15.jar:8.5.15]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.15.jar:8.5.15]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_162]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_162]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.15.jar:8.5.15]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_162]
-

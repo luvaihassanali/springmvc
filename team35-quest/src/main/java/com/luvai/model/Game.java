@@ -137,7 +137,7 @@ public class Game {
 	public ArrayList<AdventureCard> mockHand6 = new ArrayList<AdventureCard>() {
 		{
 			add(CardList.SirTristan);
-			add(CardList.MorganTest);
+			add(CardList.SirGalahad);
 			add(CardList.Amour);
 			add(CardList.RobberKnight);
 			add(CardList.Dragon);
@@ -155,15 +155,15 @@ public class Game {
 		{
 			add(CardList.ValorTest);
 			add(CardList.BlackKnight);
-			add(CardList.Saxons);
+			add(CardList.Sword);
 			add(CardList.Thieves);
 			add(CardList.KingArthur);
 			add(CardList.QueenIseult);
 			add(CardList.Amour);
 			add(CardList.MorganTest);
 			add(CardList.Thieves);
-			add(CardList.Dragon);
-			add(CardList.SirGalahad);
+			add(CardList.Battleax);
+			add(CardList.SirLancelot);
 			add(CardList.RobberKnight);
 		}
 	};
@@ -179,7 +179,7 @@ public class Game {
 			add(CardList.Boar);
 			add(CardList.QueenIseult);
 			add(CardList.SirGawain);
-			add(CardList.Dagger);
+			add(CardList.Excalibur);
 			add(CardList.Dagger);
 			add(CardList.SirPellinore);
 			add(CardList.BlackKnight);

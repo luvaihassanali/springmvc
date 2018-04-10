@@ -480,6 +480,7 @@ public class Strategy2 extends AbstractAI {
 			tempPts += a.getBattlePoints();
 		}
 		int tracker = 2;
+
 		for (WeaponCard w : weaponsList) {
 			if (tempPts < 50) {
 				logger.info("Hand does not contain 50 points, adding another weapon");
