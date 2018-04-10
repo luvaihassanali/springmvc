@@ -1,3 +1,5 @@
+com/luvai/controller/EventController$2.class
+com/luvai/model/Game$6.class
 com/luvai/controller/SocketHandler.class
 com/luvai/config/WebConfig.class
 com/luvai/controller/QuestController$4.class
@@ -14,6 +16,7 @@ com/luvai/controller/TournamentController.class
 com/luvai/model/AdventureCards/TestCard.class
 com/luvai/controller/QuestController.class
 com/luvai/model/StoryCards/QuestCard.class
+com/luvai/controller/EventController$4.class
 com/luvai/model/Card.class
 com/luvai/model/Game$4.class
 com/luvai/model/AdventureCards/AdventureCard.class
@@ -30,7 +33,10 @@ com/luvai/model/Decks/AdventureDeck.class
 com/luvai/controller/MainController.class
 com/luvai/model/AI/Strategy2.class
 com/luvai/model/Game$2.class
+com/luvai/model/Game$5.class
+com/luvai/controller/EventController$3.class
 com/luvai/controller/QuestController$2.class
+com/luvai/model/Game$8.class
 com/luvai/model/Shield.class
 com/luvai/config/Initializer.class
 com/luvai/MainApp.class
@@ -39,6 +45,7 @@ com/luvai/controller/StageController.class
 com/luvai/model/PointArray.class
 com/luvai/model/Game$1.class
 com/luvai/controller/EventController$1.class
+com/luvai/model/Game$7.class
 com/luvai/controller/EventController.class
 com/luvai/model/TournamentPlayer.class
 com/luvai/config/SocketConfig.class
