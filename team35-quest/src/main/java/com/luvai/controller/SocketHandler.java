@@ -1,6 +1,8 @@
 package com.luvai.controller;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -613,9 +615,19 @@ public class SocketHandler extends TextWebSocketHandler {
 		}
 	}
 
+	InetAddress ip;
+
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		try {
+			ip = InetAddress.getLocalHost();
+			System.out.println("Current IP address : " + ip.getHostAddress());
 
+		} catch (UnknownHostException e) {
+
+			e.printStackTrace();
+		}
+		session.sendMessage(new TextMessage("currentIP" + ip.getHostAddress()));
 		if (session.getId().equals("0"))
 			session.sendMessage(new TextMessage("showRigger"));
 		logger.info("New player attempting to connect...");

@@ -127,10 +127,10 @@ public class StoryDeck extends Decks {
 			Collections.shuffle(Arrays.asList(s_arr));
 			StoryCard[] s_arr2 = new StoryCard[5];
 			if (deckId == 43) {
-				s_arr2[4] = CardList.Tournament2; // should be 6
-				s_arr2[3] = CardList.Event8;// should be event 1
-				s_arr2[2] = CardList.Quest6;// event 8
-				s_arr2[1] = CardList.Event5; // tournament 1
+				s_arr2[4] = CardList.Quest6; // should be 6
+				s_arr2[3] = CardList.Event1;// should be event 1
+				s_arr2[2] = CardList.Event8;// event 8
+				s_arr2[1] = CardList.Tournament1; // tournament 1
 				s_arr2[0] = CardList.Quest7; // quest7
 			} else {
 				s_arr2[4] = CardList.Quest6; // should be 6

@@ -2,7 +2,7 @@ var isAI = false;
 var strategyType = "";
 var PlayerName = "";
 var serverMsg = document.getElementById('serverMsg');
-var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
+var socketConn = new WebSocket('ws://192.168.0.142:8080/socketHandler');
 var storyCardFaceUp;
 var stageTracker = 0;
 var questSetupCards = [];
