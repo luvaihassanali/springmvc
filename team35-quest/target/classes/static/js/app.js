@@ -7,7 +7,7 @@ var ip;
 var storyCardFaceUp;
 var stageTracker = 0;
 var questSetupCards = [];
-var weapons = [];
+//var weapons = [];
 var tournieEquipment = []
 var battleEquipment = [];
 var testBids = [];

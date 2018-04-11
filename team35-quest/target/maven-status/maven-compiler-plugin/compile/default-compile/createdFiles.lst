@@ -23,7 +23,6 @@ com/luvai/model/AdventureCards/AdventureCard.class
 com/luvai/controller/QuestController$3.class
 com/luvai/controller/AIController.class
 com/luvai/model/StoryCards/StoryCard.class
-com/luvai/model/Decks/RankDeck.class
 com/luvai/model/RankCard.class
 com/luvai/model/Game$3.class
 com/luvai/model/TournamentPlayerComparator.class
@@ -37,11 +36,9 @@ com/luvai/model/Game$5.class
 com/luvai/controller/EventController$3.class
 com/luvai/controller/QuestController$2.class
 com/luvai/model/Game$8.class
-com/luvai/model/Shield.class
 com/luvai/config/Initializer.class
 com/luvai/MainApp.class
 com/luvai/model/Decks/StoryDeck.class
-com/luvai/controller/StageController.class
 com/luvai/model/PointArray.class
 com/luvai/model/Game$1.class
 com/luvai/controller/EventController$1.class

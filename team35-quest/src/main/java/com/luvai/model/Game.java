@@ -26,7 +26,6 @@ public class Game {
 	public ArrayList<Player> players;
 	public StoryDeck storyDeck;
 	public AdventureDeck adventureDeck;
-	private int winCondition;
 	public int numTurns = 0;
 	public QuestController current_quest;
 	public EventController current_event;
@@ -233,14 +232,6 @@ public class Game {
 	// convenience method because I think this will get called a lot
 	public boolean isActiveAI() {
 		return (this.getActivePlayer().isAI());
-	}
-
-	public int getWinCondition() {
-		return winCondition;
-	}
-
-	public void setWinCondition(int winCondition) {
-		this.winCondition = winCondition;
 	}
 
 	public void checkForTie() {

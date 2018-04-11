@@ -1,7 +1,6 @@
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/controller/MainController.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/StoryCards/QuestCard.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/TournamentPlayer.java
-/home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/Decks/RankDeck.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/MainApp.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/RankCard.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/Player.java
@@ -15,14 +14,12 @@
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/TournamentPlayerComparator.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/AdventureCards/AllyCard.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/controller/QuestController.java
-/home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/Shield.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/Decks/StoryDeck.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/controller/SocketHandler.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/Game.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/StoryCards/EventCard.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/AdventureCards/TestCard.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/config/WebConfig.java
-/home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/controller/StageController.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/AI/AbstractAI.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/StoryCards/StoryCard.java
 /home/luvai/GitHub/springmvc/team35-quest/src/main/java/com/luvai/model/AdventureCards/WeaponCard.java

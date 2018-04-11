@@ -9,7 +9,7 @@ public class MainController {
 
 	@GetMapping("/")
 	public String index(ModelMap model) {
-		String message = "Networking ver.";
+		String message = "Networking version";
 		model.addAttribute("message", message);
 		return "index";
 	}

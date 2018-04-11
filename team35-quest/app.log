@@ -294,3 +294,46 @@
 2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player3 picked up Sword and Sword
 2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Player Player4 picked up Lance and Dagger
 2018-Apr-10 12:16:54 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-04-10 21:24:25.550  INFO 3902 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@24ae665a: startup date [Tue Apr 10 12:14:03 EDT 2018]; root of context hierarchy
+2018-04-10 21:24:25.561  INFO 3902 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-10 21:24:25.564  INFO 3902 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-10 21:24:25.565  INFO 3902 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-10 21:24:31.143  INFO 21900 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 21900 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-10 21:24:31.149  INFO 21900 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-10 21:24:31.262  INFO 21900 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@69e4f0f: startup date [Tue Apr 10 21:24:31 EDT 2018]; root of context hierarchy
+2018-04-10 21:24:32.866  INFO 21900 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-10 21:24:32.879  INFO 21900 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-10 21:24:32.880  INFO 21900 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-10 21:24:33.055  INFO 21900 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-10 21:24:33.062  INFO 21900 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-10 21:24:33.063  INFO 21900 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1804 ms
+2018-04-10 21:24:33.185  INFO 21900 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-10 21:24:33.187  INFO 21900 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-10 21:24:33.188  INFO 21900 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-10 21:24:33.188  INFO 21900 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-10 21:24:33.188  INFO 21900 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-10 21:24:33 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-10 21:24:33 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-10 21:24:33 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-10 21:24:33.531  INFO 21900 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-10 21:24:33.561  INFO 21900 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-10 21:24:34.062  INFO 21900 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@69e4f0f: startup date [Tue Apr 10 21:24:31 EDT 2018]; root of context hierarchy
+2018-04-10 21:24:34.148  INFO 21900 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-10 21:24:34.154  INFO 21900 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-10 21:24:34.160  INFO 21900 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-10 21:24:34.194  INFO 21900 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 21:24:34.194  INFO 21900 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 21:24:34.233  INFO 21900 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-10 21:24:34.396  INFO 21900 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-10 21:24:34.402  INFO 21900 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-10 21:24:34.455  INFO 21900 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-10 21:24:34.462  INFO 21900 --- [main] com.luvai.MainApp                        : Started MainApp in 3.719 seconds (JVM running for 8.39)
+2018-04-10 21:24:34.883  INFO 21900 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@69e4f0f: startup date [Tue Apr 10 21:24:31 EDT 2018]; root of context hierarchy
+2018-04-10 21:24:34.889  INFO 21900 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-10 21:24:34.890  INFO 21900 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-10 21:24:34.890  INFO 21900 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
