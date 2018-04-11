@@ -55,6 +55,7 @@ public class TournamentController extends SocketHandler {
 
 	}
 
+	// setup tie breaker if two players had equal points in first round
 	public void tieBreaker(Game g, StoryCard faceUp, ArrayList<Player> participants, String s) throws IOException {
 		logger.info("Initiating tie breaker Tournament {} with {}", faceUp.getName(), s);
 		tieBreaker = true;
@@ -71,6 +72,7 @@ public class TournamentController extends SocketHandler {
 				faceUp.getName());
 	}
 
+	// initialize those players who accept to participate in tournie
 	public void getNewTourniePlayers(JsonObject jsonObject, WebSocketSession session) throws IOException {
 		JsonElement participate_t_answer = jsonObject.get("participate_tournament");
 		JsonElement name = jsonObject.get("name");
@@ -93,6 +95,7 @@ public class TournamentController extends SocketHandler {
 		}
 	}
 
+	// player declines to participate in tournament
 	public void denyParticipation(String n) throws IOException {
 		gameEngine.incTurn();
 		// System.out.println(gameEngine.getActivePlayer().getName());
@@ -106,6 +109,7 @@ public class TournamentController extends SocketHandler {
 		gameEngine.getActivePlayer().session.sendMessage(new TextMessage("participateTournament"));
 	}
 
+	// adding player who accepts to tournament participant list
 	public void acceptParticipation(String n) throws IOException {
 		String playerName = n;
 		// System.out.println(playerName);
@@ -125,6 +129,7 @@ public class TournamentController extends SocketHandler {
 
 	}
 
+	// executes tournaments
 	private void startTournament() throws IOException {
 		if (gameEngine.current_tournament.participants.size() == 0) {
 			logger.info("No players accepted to participate in Tournament {}", gameEngine.storyDeck.faceUp.getName());
@@ -148,15 +153,12 @@ public class TournamentController extends SocketHandler {
 		String loggerPlayers = "";
 
 		for (int i = 0; i < gameEngine.current_tournament.participants.size(); i++) {
-
-			// System.out.println(gameEngine.current_tournament.participants.get(i).getName());
 			loggerPlayers += gameEngine.current_tournament.participants.get(i).getName() + ", ";
 		}
 		logger.info("Tournament {} starting with participants: {}", gameEngine.storyDeck.faceUp.getName(),
 				loggerPlayers);
 		if (roundOne) {
 			gameEngine.current_tournament.og_participant_size = gameEngine.current_tournament.participants.size();
-			// System.out.println("OG SIZE: " + og_participant_size);
 			roundOne = false;
 		}
 		pickUpBeforeTournie();
@@ -164,7 +166,7 @@ public class TournamentController extends SocketHandler {
 		sendToAllParticipants(gameEngine, "ChooseEquipmentTournie");
 	}
 
-	// send to non participants
+	// send to non participants for TOURNAMENT
 	public void sendToNonParticipants(Game gameEngine, String message) throws IOException {
 		ArrayList<Player> temp = new ArrayList<Player>();
 		for (int i = 0; i < gameEngine.players.size(); i++) {
@@ -182,37 +184,38 @@ public class TournamentController extends SocketHandler {
 		}
 
 		for (int i = 0; i < temp.size(); i++) {
-			// System.out.println(temp.get(i).getName());
 			temp.get(i).session.sendMessage(new TextMessage(message));
 		}
 
 	}
 
-	// send to all participants
+	// send to all participants for TOURNAMENT
 	public void sendToAllParticipants(Game gameEngine, String message) throws IOException {
 		for (Player p : gameEngine.current_tournament.participants) {
 			p.session.sendMessage(new TextMessage(message));
 		}
 	}
 
-	// send to current participant
+	// send to current participant for TOURNAMENT
 	public void sendToCurrentParticipant(Game gameEngine, String message) throws IOException {
 		Player player = gameEngine.current_tournament.getCurrentParticipant();
 		player.session.sendMessage((new TextMessage(message)));
 	}
 
+	// get participant for TOURNAMENT
 	private Player getCurrentParticipant() {
 		if (participants.size() == 1)
 			return participants.get(0);
 		return participants.get(participantTurns % participants.size());
 	}
 
-	// send to next participant
+	// send to next participant for TOURNAMENT
 	public void sendToNextParticipant(Game gameEngine, String message) throws IOException {
 		Player player = gameEngine.current_tournament.getCurrentParticipant();
 		player.session.sendMessage(new TextMessage(message));
 	}
 
+	// picks up card before choosing equipment for tournament challenge
 	public void pickUpBeforeTournie() throws IOException {
 		for (Player p : gameEngine.current_tournament.participants) {
 			p.getHand().add(gameEngine.adventureDeck.flipCard());
@@ -225,6 +228,7 @@ public class TournamentController extends SocketHandler {
 		gameEngine.updateStats();
 	}
 
+	// gets tournament choices for players for TOURNAMENT
 	public void parseTournieInfo(JsonObject jsonObject) throws IOException {
 		tournie_info.add(jsonObject);
 		tracker++;
@@ -251,6 +255,7 @@ public class TournamentController extends SocketHandler {
 		}
 	}
 
+	// calculates outcome for stage
 	private void calculateOutcome() throws IOException {
 		if (tieBreaker) {
 			logger.info("calculating outcome of Tie-breaker of Tournament {}", gameEngine.storyDeck.faceUp.getName());
@@ -272,8 +277,6 @@ public class TournamentController extends SocketHandler {
 		Arrays.sort(contestants, new TournamentPlayerComparator());
 		String send = "";
 		for (TournamentPlayer s : contestants) {
-			// System.out.println("TOURNAMENT PLAYER FOR S");
-			// System.out.println(s.toString());
 			String[] logInfo = s.toString().split("#");
 			logger.info("Player {} has {} battle points at rank {}", logInfo[0], logInfo[1],
 					gameEngine.getPlayerFromName(logInfo[0]).getRank().getName());
@@ -358,6 +361,7 @@ public class TournamentController extends SocketHandler {
 
 	}
 
+	// increase tournament player participant point with chosen equipment
 	private void equipTournie(Player currentParticipant, ArrayList<String> tournieEquip) {
 		currentParticipant.discardPlayer(tournieEquip);
 		for (String s : tournieEquip) {
@@ -378,49 +382,32 @@ public class TournamentController extends SocketHandler {
 		calculateTourniePoints();
 	}
 
+	// calculates participant points for tournie
 	private void calculateTourniePoints() {
 		ArrayList<String> p_points = new ArrayList<String>();
 		for (Player p : gameEngine.current_tournament.participants) {
 			int points = p.getBattlePoints();
 			ArrayList<String> removeWeapons = new ArrayList<String>();
-			// String cardNames = "";
+
 			if (p.getAmourCard() != null) {
 				points += 10;
-				// cardNames += p.getAmourCard().getName() + "#";
 				removeWeapons.add("Amour");
 			}
 			for (WeaponCard w : p.getWeapons()) {
 				points += w.getBattlePoints();
-				// cardNames += w.getName() + "#";
 				removeWeapons.add(w.getName());
 			}
 			for (AllyCard a : p.getAllies()) {
 				points += a.getBattlePoints();
-				// cardNames += a.getName() + "#";
-				// ally bonus points
 			}
-			// System.out.println(points);
-			// System.out.println(p.getName());
 			String temp = p.getName() + "#" + points + "#" + p.getRank().getStringFile() + ";";
 			p_points.add(temp);
 		}
 		String send = "";
 		for (String s : p_points) {
-			// System.out.println(s);
 			send += s;
 		}
 		playerTourniePoints = send;
 
-	}
-
-	public static void setTimeout(Runnable runnable, int delay) {
-		new Thread(() -> {
-			try {
-				Thread.sleep(delay);
-				runnable.run();
-			} catch (Exception e) {
-				System.err.println(e);
-			}
-		}).start();
 	}
 }

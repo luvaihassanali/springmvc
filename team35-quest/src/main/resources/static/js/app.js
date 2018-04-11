@@ -7,7 +7,6 @@ var ip;
 var storyCardFaceUp;
 var stageTracker = 0;
 var questSetupCards = [];
-//var weapons = [];
 var tournieEquipment = []
 var battleEquipment = [];
 var testBids = [];
@@ -170,7 +169,6 @@ $( document ).ready(function() {
 		
 		//reset stage tracker for new quest
 		if (event.data == "resetStageTracker") {
-			console.log("resetting stage tracker");
 			stageTracker = 0;
 		}
 		// ask to sponsor quest
@@ -178,7 +176,7 @@ $( document ).ready(function() {
 			getSponsor();
 		}
 
-		//tournament
+		//tournament participation
 		if(event.data == "participateTournament") {
 			getTournie();
 		}
@@ -207,7 +205,7 @@ $( document ).ready(function() {
 		}
 		// ready to start quest
 		if (event.data == "ReadyToStartQuest") {
-			console.log("READY TO START QUEST");
+			console.log("Ready to start quest");
 		}
 
 		// no participants
@@ -294,7 +292,6 @@ $( document ).ready(function() {
 		if (event.data.startsWith("currentPlayerPoints")) {
 			var pts = event.data.replace("currentPlayerPoints", "");
 			currentPlayerInfo = pts;
-			console.log(currentPlayerInfo);
 			currentPlayerInfo = currentPlayerInfo.split(";");
 			currentPlayerInfo[currentPlayerInfo.length-2] = currentPlayerInfo[currentPlayerInfo.length-2].split("#");
 			allBattleEquipment.push(currentPlayerInfo);
@@ -323,13 +320,14 @@ $( document ).ready(function() {
 		// increase stage counter
 		if (event.data == "incStage") {
 			stageTracker++;
-
 		}
 		
+		//get quest info chosen by sponsor
 		if(event.data.startsWith("questSetupCards")) {
 			parseQuestInfo(event);
 		}
-		//get stages
+		
+		//get stages and setup quest round
 		if(event.data.startsWith("questSetupInProgress")) {
 			var tempStages = parseInt(event.data.replace("questSetupInProgress",""));
 			totalStages = tempStages;
@@ -345,10 +343,13 @@ $( document ).ready(function() {
 			var sponsorName = event.data.replace("questIsBeingSetup", "");
 			serverMsg.value += "\n> player " + sponsorName + " is setting up quest, please wait";
 		}
+		
+		//inform player for other players decision to decline sponsoring quest
 		if(event.data.startsWith("declinedToSponsor")) {
 			var notSponsorName = event.data.replace("declinedToSponsor","");
 			serverMsg.value += "\n> player " + notSponsorName + " declined to sponsor quest, please wait";
 		}
+		
 		// pick up x cards
 		if (event.data.startsWith("PickupCards")) {
 			PickupCards(event.data);
@@ -419,14 +420,9 @@ $( document ).ready(function() {
 	
 });
 
-//socketConn.onopen = function(event) {};
-// messages from server received here
-
-
-
+//execute event kings call to arms
 function eventKing(event) {
 	var serverMsg = document.getElementById("serverMsg");
-	console.log("event kings call to arms");
 	KingsCallToArms = true;
 	numCards = 12;
 
@@ -446,29 +442,19 @@ function eventKing(event) {
 	discard();
 }
 
+//show battle screen
 function renderBattleScreen(event) {
 	var temp = event.data.replace("playerPointString","");
-	console.log("PLAYER POINT STRING-------------------------");
-	console.log(temp);
 	temp = temp.split(";");
 	for(var i=0; i<temp.length; i++) {
 		temp[i] = temp[i].split("#");
 	}
 	 allPlayerPoints = temp;
-	console.log("SHOWING BATTLE SCREEN");
-	console.log(stageTracker);
-	
 	document.getElementById("battleScreen").style.display = "block";
-	//console.log(storyCardFaceUp);
 	$("#questPic").attr("src", "http://"+ ip + storyCardFaceUp.stringFile);
-	//console.log(storyCardFaceUp.stringFile);
-	console.log(questSetupCards);
-	console.log(stageTracker);
 	var currFoeName = questSetupCards[stageTracker][0];
-	console.log(currFoeName);
 	var currFoePts = 0;
 	var currFoeLink = getLinkFromName(currFoeName);
-	//console.log(currFoeLink);
 	for(var i=0; i<foeInfo.length; i++) {
 		if(foeInfo[i][0] == currFoeName) {
 			var currFoePts = foeInfo[i][1];
@@ -476,8 +462,6 @@ function renderBattleScreen(event) {
 	}
 	document.getElementById("currStageInfo").innerText = "Current stage information: " + currFoeName + " with points: " + currFoePts;
 	$("#foePic").attr("src", "http://"+ ip + currFoeLink);
-	//console.log("current foe name: " + currFoeName);
-	//console.log("current foe points: " + currFoePts);
 	var foeSlot1 =document.getElementById('foeWeaponSpot1').id;
 	var foeSlot2 = document.getElementById('foeWeaponSpot2').id;
 	var foeSlot3 = document.getElementById('foeWeaponSpot3').id;
@@ -485,31 +469,21 @@ function renderBattleScreen(event) {
 	var foeSlot5 = document.getElementById('foeWeaponSpot5').id;
 	var foeSlot6 = document.getElementById('foeWeaponSpot6').id;
 	var foeSlots = [foeSlot1, foeSlot2, foeSlot3, foeSlot4, foeSlot5, foeSlot6];
-	console.log(questSetupCards);
-	console.log(stageTracker);
 	if(questSetupCards[stageTracker].length == 1) {
 		
 	} else {
 		var currentFoeWeapons = questSetupCards[stageTracker];
-		console.log(currentFoeWeapons);
-	
-	
 		var currentFoeWeaponLinks = [];
 		for(var i=1; i<currentFoeWeapons.length; i++) {
 			currentFoeWeaponLinks.push(getLinkFromName(currentFoeWeapons[i]));
-	//		console.log(getLinkFromName(currentFoeWeapons[i]));
 		}
 		for(var i=0; i<currentFoeWeaponLinks.length; i++) {
 			var changeImageId = "#" + foeSlots[i];
-		//	console.log(changeImageId);
 			$(changeImageId).attr("src", "http://"+ ip + currentFoeWeaponLinks[i]);
 		}
 	}
 	allPlayerPoints.pop();
-	console.log(allPlayerPoints);
-	console.log(allPlayerPoints.length);
 	for(var i=0; i<allPlayerPoints.length; i++) {
-		console.log("starting loop");
 		var base_id = "player" + (i+1);
 		var primitive_id = "p" + (i+1);
 		var playerDiv = base_id + "Display";
@@ -518,15 +492,9 @@ function renderBattleScreen(event) {
 		var playerPts = allPlayerPoints[i][1];
 		var playerName = allPlayerPoints[i][0];
 		var infoPane = primitive_id + "info";
-		//console.log(playerDiv);
-		//console.log(infoPane);
-		//console.log(playerName);
-		//console.log(playerPts);
-		//console.log(playerPicLink);
 		document.getElementById(playerDiv).style.display = "block";
 		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
 		$(playerPic).attr("src", "http://"+ ip + playerPicLink);
-		console.log(allQuestInfo);
 		var playerInfo = allQuestInfo[i+1];
 		var playerInfo2;
 		var a;
@@ -539,19 +507,14 @@ function renderBattleScreen(event) {
 				playerInfo2 = allQuestInfo[a+1];
 			}
 		}
-
-		console.log(playerInfo2);
 		var weaponArr = playerInfo2.equipment_info;
-		console.log(weaponArr);
 		for(var b=0; b<weaponArr.length; b++) {
 			weaponArr[b] = getLinkFromName(weaponArr[b]);
 			var picId = "#" + base_id + "WeaponSpot" + (b+1);
 			$(picId).attr("src", "http://"+ ip + weaponArr[b]);
-			//console.log(picId); console.log(weaponArr[b]);
 		}
 		var winid = primitive_id + "_win";
 		var loseid = primitive_id + "_lose";
-		console.log(playerName + playerPts); console.log(currFoePts);
 		if(parseInt(playerPts) >= parseInt(currFoePts)) {
 			document.getElementById(winid).style.display = "block";
 			document.getElementById(loseid).style.display = "none";
@@ -565,9 +528,7 @@ function renderBattleScreen(event) {
 
 	setTimeout(function(){ 
 		document.getElementById("battleScreen").style.display = "none";
-		console.log("REMOVING BATTLE SCREEN");
 		var serverMsg = document.getElementById("serverMsg");
-		//clear images
 		$("#questPic").attr("src", "http://"+ ip + "/resources/images/all.png");
 		$("#foePic").attr("src", "http://"+ ip + "/resources/images/all.png");
 		for(var i=0; i<foeSlots.length; i++) {
@@ -589,23 +550,15 @@ function renderBattleScreen(event) {
         	}
 		}
 	}, 10000);
-
-	console.log(foeInfo);
-	console.log(testInfo);
-	console.log("battle screen stage tracker: " + stageTracker);    	
-	console.log("end battlescreen info");
 }
+//replace test cards on screen if dropped out
 function replaceTestCards(eventData) {
 	var replacementCards = eventData.split(";");
-	console.log(replacementCards);
 	replacementCards.pop(); replacementCards.shift(); //popping twice to act as discard for given stage card
 	for(var i=0; i<replacementCards.length; i++) {
-		console.log(replacementCards[i]);
 		replacementCards[i] = replacementCards[i].substr(1);
 		replacementCards[i] = replacementCards[i].substr(0, replacementCards[i].length-1);
-		console.log(replacementCards[i]);
 		replacementCards[i] = getLinkFromName(replacementCards[i]);
-		console.log(replacementCards[i]);
 	}
 	for (var i = 0; i < handCardID.length; i++) {
 		if (handCardSRC[i] == "http://"+ ip + "/resources/images/all.png") {
@@ -617,21 +570,17 @@ function replaceTestCards(eventData) {
 	}
 }
 
+//displays tournament on screen
 function setupTournament(event) {
 	var data = event.data.replace("contestantInfo","");
 	data = data.split(";");
 	for(var i=0; i<data.length; i++) {
 		data[i] = data[i].split("#");
 	}
-	console.log(data);
 	data.pop();
-	console.log(data);
 	var playerTournieArr = data;
-	console.log("SHOWING TOURNAMENT SCREEN");
 	document.getElementById("tournieScreen").style.display = "block";
-	console.log(playerTournieArr.length);
 	for(var i=0; i<playerTournieArr.length; i++) {
-		console.log("starting loop");
 		var base_id = "player" + (i+1);
 		var primitive_id = "p" + (i+1);
 		var playerDiv = base_id + "Displayt";
@@ -643,14 +592,11 @@ function setupTournament(event) {
 		document.getElementById(playerDiv).style.display = "block";
 		document.getElementById(infoPane).innerText = playerName + " with points: " + playerPts;
 		$(playerPic).attr("src", "http://"+ ip + playerPicLink);
-		console.log(playerTEquipArr);
-		console.log(playerName);
 		for(var j=0; j<playerTEquipArr.length; j++) {
 			if(playerTEquipArr[j].name === playerName) {
 				var tequip = playerTEquipArr[j].tournament_info;
 			}
 		}
-		console.log(tequip);
 		for(var k=0; k<tequip.length; k++) {
 			var weaponLink = getLinkFromName(tequip[k]);
 			var picId = "#" + base_id + "WeaponSpot" + (k+1) + "t";
@@ -674,7 +620,6 @@ function setupTournament(event) {
 	
 	setTimeout(function(){ 
 		document.getElementById("tournieScreen").style.display = "none";
-		console.log("REMOVING TOURNAMENT SCREEN");
 		for(var i=0; i<playerTournieArr.length; i++) {
 			var base_id_remove = "player" + (i+1);
     		var primitive_id_remove = "p" + (i+1);
@@ -692,21 +637,19 @@ function setupTournament(event) {
 		serverMsg.value += "\n> tournament over, wait for next player";
 	}, 10000);
 }
+//choose equipment for quest - either foe / test
 function chooseEquipment() {
 	var serverMsg = document.getElementById("serverMsg");
 	serverMsg.value += "\n> it is now time to choose equipment for quest";
 	
 	if(totalStages == stageTracker) {
-		console.log("Quest over");
 		var data = JSON.stringify({
 			'outOfStages' : 0
 		})
 		socketConn.send(data);
 		return;
 	}
-	console.log(questSetupCards);
 	if(questSetupCards[stageTracker][0].includes("Test")) {
-		console.log("this is a test: " + questSetupCards[stageTracker]);
 		var oldHandSRC = handCardSRC;
 		getCurrHand();
 		if(isAI) {
@@ -724,9 +667,7 @@ function chooseEquipment() {
 			return;
 		}
 		getTestBids();
-		//displayTest(stageTracker);
 	} else {
-		console.log("this is a battle against " + questSetupCards[stageTracker][0]);
 		if(isAI) {
 			var data = JSON.stringify({
 				'AICommand' : "chooseEquipment",
@@ -741,27 +682,22 @@ function chooseEquipment() {
 			return;
 		}
 		getBattleEquipment();
-		//displayBattle(stageTracker);
 		
 	}
 	
 }
 
+//gather bids during test
 function getTestBids() {
 	var serverMsg = document.getElementById("serverMsg");
 	document.getElementById('doneEquipment').style.display = "inline";
 	document.getElementById('doneEquipment').disabled = false;
-	console.log(TestInfo);
 	minBid = parseInt(testInfo[0][1]);
-	console.log("minBid" + parseInt(minBid));
 	serverMsg.value += "\n> please click on the cards you wish to bid for test (Or right click for discard then done button to drop out)";
-	console.log("SHOW MIN BID")
 	document.getElementById("minBid").style.display = "block";
 	document.getElementById("minBid").innerText = "Current minimum bid: " + minBid;
 	 var x = document.getElementById("doneEquipment").disabled;
-	
 	 testTracker++;
-	 console.log(x);
 	if(x == false) { 
 		document.getElementById('doneEquipment').disabled = true;
 		document.getElementById('dropOut').style.display = "inline";
@@ -780,22 +716,18 @@ function getTestBids() {
 								'http://'+ip, '');
 						cardId = cardId.split('%20').join(' ');
 						if(getNameFromLink(cardId) != "link not found") {
-							console.log("adding to bid array" + getNameFromLink(cardId));
 							testBids.push(getNameFromLink(cardId));
 							var changeImageId = "#" + this.id;
 							numCards--;
 						}
 						$(changeImageId).attr("src",
 								"/resources/images/all.png");
-						console.log(testBids.length);
-						console.log(minBid);
-						console.log("RIGHT BEFORE CHECKING TO UNDISABLE^");
 						if(testBids.length >= minBid ) document.getElementById('doneEquipment').disabled = false;
-						console.log(numCards)
 						
 					})
 }
 
+//gather choices for tournaments
 function chooseEquipmentTournie() {
 	var serverMsg = document.getElementById("serverMsg");
 	if(isAI) {
@@ -839,6 +771,7 @@ function chooseEquipmentTournie() {
 	})
 }
 
+//get equipment for foe battle
 function getBattleEquipment() {
 	document.getElementById('dropOut').style.display = "none";
 	battleEquipment = [];
@@ -873,6 +806,7 @@ function getBattleEquipment() {
 					})
 }
 
+//gets card before quest stage
 function pickupBeforeStage(event) {
 	var pickUpLink = event.data.replace("pickupBeforeStage", "");
 	$("#extra1").attr("src", "http://"+ ip + pickUpLink);
@@ -893,39 +827,35 @@ function pickupBeforeStage(event) {
 	}
 }
 
+//get test cards for current quest
 function parseTestInfo(event) {
 	var temp = event.data.replace("TestInfo", "");
 	TestInfo = temp;
-	//console.log(temp);
 	testInfo = temp.split(";");
 	testInfo.pop();
-	//console.log(testInfo);
 	if(testInfo.length == 0) return;
 	for(var i=0; i<testInfo.length; i++) {
 		testInfo[i] = testInfo[i].split("#");
 	}
 	minBid = testInfo[0][1];
-	//console.log(testInfo);
 }
+
+//get foes from current quest
 function parseCurrentFoeInfo(event) {
 	var temp = event.data.replace("FoeInfo", "");
-	//console.log(temp);
 	foeInfo = temp.split(";");
 	foeInfo.pop();
-	//console.log(foeInfo);
 	for(var i=0; i<foeInfo.length; i++) {
 		foeInfo[i] = foeInfo[i].split("#");
 	}
-	//	console.log(foeInfo);
 }
-
+//get all player choices from choosing quest equipment
 function parseParticipantInfo(event) {
 	participantInfo = event.data.replace("currentParticipantInfo", "");
 	participantInfo = JSON.parse(participantInfo);
-	//console.log(participantInfo);
 	currentStage = participantInfo.stages;
 }
-
+//preview stages with merlin special
 function showStage(stage) {
 
 	var data = JSON.stringify({
@@ -940,11 +870,9 @@ function showStage(stage) {
 		var id = "merlin" + (i+1) + "stage";
 		document.getElementById(id).style.display = "none";
 	}
-	console.log("TO REVEAL FOR DISPLAY QUEST CARDS MERLIN PREVIEW");
 	document.getElementById("merlinPreview").style.display="block";
 
 	var revealedStage = orderedQuestCards[stage-1];
-	console.log(revealedStage);
 	for(var i=0; i<revealedStage.length; i++) {
 		var id = "#merlincard" + (i+1);
 		var link = getLinkFromName(revealedStage[i]);
@@ -968,17 +896,16 @@ function showStage(stage) {
 	}, 10000);
 
 }
-
+//ask player to previe stage if merlin in hand
 function execMerlin() {
 	document.getElementById("merlinYes").style.display = "none";
 	document.getElementById("merlinPrompt").innerText = "Choose what stage you want to preview"
 	for(var i=0; i<totalStages; i++) {
 		var id = "merlin" + (i+1) + "stage";
 		document.getElementById(id).style.display = "block";
-
 	}
 }
-
+//ask player to participate in quest
 function getParticipants() {
 	document.getElementById("acceptQuest").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
@@ -1004,6 +931,7 @@ function getParticipants() {
 		}
 	}
 }
+//parse quest setup information for display
 var orderedQuestCards; 
 function parseQuestInfo(event) {
 	console.log(event);
@@ -1038,14 +966,14 @@ function parseQuestInfo(event) {
 		console.log(questSetupCards);
 	}
 }
-
+//start game when all players joined
 function startGame() {
 	var serverMsg = document.getElementById('serverMsg');
 	document.getElementById('print').disabled = false;
 	serverMsg.value += "\n> all players have joined, starting game, wait for your turn..."
 	document.getElementById('rigger').style.display = "none";
 }
-
+//set dealt hand at beginning of game
 function setHand() {
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value += "\n> setting player hand, flipping story deck, wait for your turn- ";
@@ -1065,8 +993,8 @@ function setHand() {
 	$("#card12").attr("src", handStringArray[11]);
 }
 
+//get all equipment choices for tournaments to display
 function getTournieInfo(event) {
-
 	if(event.data.includes("tournament_info")) {
 		var data = event.data.replace("tournieInfo", "");
 		var data = JSON.parse(data);
@@ -1081,7 +1009,7 @@ function getTournieInfo(event) {
 		}
 	}
 }
-
+//ask player to participate in tournament
 function getTournie() {
 	document.getElementById("askTournament").style.display = "inline";
 	var serverMsg = document.getElementById('serverMsg');
@@ -1097,6 +1025,7 @@ function getTournie() {
 	}
 
 }
+//ask player to sponsor quest
 function getSponsor() {
 	document.getElementById('sponsorQuest').style.display = 'block';
 	var serverMsg = document.getElementById('serverMsg');
@@ -1112,6 +1041,7 @@ function getSponsor() {
 	}
 }
 
+//update stats for pane (shield, cards, rank)
 function getStats() {
 	var temp = event.data.replace("updateStats", "");
 	temp = temp.split("#");
@@ -1137,10 +1067,9 @@ function getStats() {
 	document.getElementById('p4shields').innerText = temp[3][3];
 }
 
-// pick up x cards
+// pick up x cards (foe event concluder)
 function PickupCards(newCards) {
 	var testBonus = false;
-	console.log("PICKING UP NEW CARDS " + PlayerName);
 	getCurrHand();
 	if (newCards.startsWith("PickupCardsProsperity")) {
 		whichEvent = "Prosperity";
@@ -1154,18 +1083,11 @@ function PickupCards(newCards) {
 		whichEvent = "Queens Favor";
 		newCards = newCards.replace("PickupCardsQueensFavor","");
 	}
-	console.log(newCards)
 	if(newCards=="null") return;
 	newCards = newCards.split(";");
 	newCards.pop();
-	console.log("LINE 585");
-	console.log(newCards);
 	var numNewCards = newCards.length;
-	console.log(numNewCards);
 	for (var i = 0; i < handCardID.length; i++) {
-		console.log("begin of loop");
-		console.log(newCards.length);
-		console.log(newCards);
 		if (handCardSRC[i] == "http://"+ip+"/resources/images/all.png") {
 			var imageId = handCardID[i];
 			if(testBonus) { var tempLink = getLinkFromName(newCards.pop()) } else {
@@ -1174,19 +1096,15 @@ function PickupCards(newCards) {
 			
 			$("#" + imageId).attr("src",
 					"http://"+ ip + tempLink);
-			console.log(newCards.length);
-			console.log(newCards);
 			if (newCards.length == 0)
 				break;
 		}
 	}
 
 	var cardTracker = 0;
-	console.log("line 614");
 	for (var i = 0; i < handCardSRC.length; i++) {
 		var tempCardLink = handCardSRC[i].replace("http://"+ip, "");
 		tempCardLink = tempCardLink.split('%20').join(' ');
-	//  console.log(tempCardLink);
 		if (tempCardLink != "/resources/images/all.png")
 			cardTracker++;
 	}
@@ -1228,7 +1146,7 @@ function PickupCards(newCards) {
 	}
 
 }
-// sponsor pickup
+// sponsor pickup after quest conclusion
 function sponsorPickup(cards) {
 	getCurrHand();
 	var pickUpLinks = event.data.replace("SponsorPickup", "");
@@ -1236,7 +1154,6 @@ function sponsorPickup(cards) {
 	var pickUpLinksArr = pickUpLinks.split(";");
 
 	pickUpLinksArr.pop();
-	//console.log(pickUpLinksArr);
 	var numNewCards = pickUpLinksArr.length;
 
 	for (var i = 0; i < handCardID.length; i++) {
@@ -1289,20 +1206,8 @@ function sponsorPickup(cards) {
 
 	}
 }
-
-//display current test
-function displayTest(curr_stage) {
-	//console.log("display test");
-}
-
-// display current battle
-function displayBattle(curr_stage) {
-	//console.log("display battle");
-	
-}
-
+//quest setup for sponsor player
 function setupQuestRound() {
-	console.log(totalStages);
 	
 	var serverMsg = document.getElementById('serverMsg');
     serverMsg.value += "\n> choose foe or test card for stage";	
@@ -1316,7 +1221,6 @@ function setupQuestRound() {
 								var changeImageId = "#" + this.id;
 								$(changeImageId).attr("src", "/resources/images/all.png");
 								totalStages--;
-								console.log(totalStages);
 								if(totalStages == 0) {
 									$('body').off('click');
 									document.getElementById('doneQuest').style.display = "inline";
@@ -1326,12 +1230,6 @@ function setupQuestRound() {
 							}
 							var tempFoeCard = checkForCardType(cardSrc, "foe");
 							if (tempFoeCard != "card not found") {
-								//find a way to stop if card being chosen is not 
-								
-								//get battle points from name
-								//if less don't allot
-								console.log(tempFoeCard);
-								console.log(getBpFromName(tempFoeCard));
 								for(var i=0; i<questSetupCards.length; i++) {
 									if(getBpFromName(tempFoeCard) < getBpFromName(questSetupCards[i])) { 
 										var serverMsg = document.getElementById('serverMsg');
@@ -1353,11 +1251,7 @@ function setupQuestRound() {
 								serverMsg.value += "\n> choose weapons for foe";
 								document.getElementById('doneQuest').style.display = "inline";
 								totalStages--;
-							//	console.log(totalStages);
-								$('body').on('click','#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {
-	
-								
-
+								$('body').on('click','#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12', function() {					
 								var cardSrc = this.src.replace('http://'+ip,'');
 								cardSrc = cardSrc.split('%20').join(' ');
 								var cardName = checkForCardType(cardSrc, "weapon");
@@ -1378,8 +1272,8 @@ function setupQuestRound() {
 									var changeImageId = "#"	+ this.id;
 									$(changeImageId).attr("src","/resources/images/all.png");
 								}
-							})
-							}
+					})
+			}
 	})
 }
 	
@@ -1454,7 +1348,7 @@ function discard() {
 
 								document.getElementById("serverMsg").value += "\n> wait for other players...";
 								if (whichEvent == "Prosperity") {
-									//console.log("sending prosperity");
+
 									var data = JSON.stringify({
 										'doneEventProsperity' : 0
 									})
@@ -1464,7 +1358,7 @@ function discard() {
 									return false;
 								}
 								if (whichEvent == "Queens Favor") {
-									//console.log("sending queens favor");
+
 									var data = JSON.stringify({
 										'doneEventQueensFavor' : 0
 									})
@@ -1500,7 +1394,7 @@ function discard() {
 return false;
 }
 
-// accept to participate in quest
+// player accepted to participate in quest
 function acceptQuestParticipate() {
 	document.getElementById("merlin").style.display = "none";
 	stageCounter = 0;
@@ -1514,7 +1408,7 @@ function acceptQuestParticipate() {
 	serverMsg.value += ("\n> waiting for others to answer");
 }
 
-//drop out of test
+//player drops out of test
 function dropOutOfTest() {
 	document.getElementById("minBid").style.display = "none";
 	$('body').off('click');
@@ -1533,7 +1427,6 @@ function dropOutOfTest() {
 	});
 
 	socketConn.send(data);
-	console.log("figure out way to get cards back");
 	var oldHandSRC = handCardSRC;
 	getCurrHand();
 	console.log(handCardSRC);
@@ -1567,7 +1460,7 @@ function dropOutOfTest() {
 	socketConn.send(data);
 }
 
-//send tournament info
+//send tournament equipment info to server
 function doneTournament() {
 	document.getElementById('doneTournie').style.display = "none";
 	$('body').off('click');
@@ -1581,7 +1474,7 @@ function doneTournament() {
 	socketConn.send(data);
 	arrangeHand();
 }
-// send weapon info - done choosing
+// send equipment info to server for foe battle
 function doneEquipment() {
 	document.getElementById("minBid").style.display = "none";
 	document.getElementById('dropOut').style.display = "none";
@@ -1650,8 +1543,7 @@ function acceptTournament() {
 	inTournie = true;
 }
 
-//dent 
-
+//deny participation in tournament
 function denyTournament() {
 	document.getElementById('askTournament').style.display = "none";
 	var data = JSON.stringify({
@@ -1662,7 +1554,7 @@ function denyTournament() {
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value += ("\n> waiting for other players to finish tournament");
 }
-// finished setting up quest for sponsor
+// finished setting up weapons for foes for sponsor quest
 function doneWeaponsQuestSponsor() {
 	console.log(totalStages);
 	if(totalStages == 0) {
@@ -1675,7 +1567,7 @@ function doneWeaponsQuestSponsor() {
 	setupQuestRound();
 	document.getElementById('doneQuest').style.display = "none";
 }
-
+//finished setting up entire quest
 function doneQuestSetup() {
 	var serverMsg = document.getElementById('serverMsg');
 	serverMsg.value = "> quest setup complete, wait for other players";
@@ -1695,7 +1587,7 @@ function flipStoryDeck() {
 	
 }
 
-// get name from link
+// get name from link for image display
 function getNameFromLink(link) {
 	for (var i = 0; i < cardTypeList.length; i++) {
 		if (cardTypeList[i].link == link) {
@@ -1704,18 +1596,16 @@ function getNameFromLink(link) {
 	}
 	return "link not found";
 }
-// get link from name
+// get link from name fir image to card
 function getLinkFromName(name) {
 	for (var i = 0; i < cardTypeList.length; i++) {
-		// console.log(cardTypeList[i]);
-		// console.log(name);
 		if (cardTypeList[i].name === name)
 			return cardTypeList[i].link;
 	}
 	return "card not found";
 }
 
-//get type 
+//get type of card given name
 function getTypeFromName(name) {
 	for(var i=0; i<cardTypeList.length; i++) {
 		if(cardTypeList[i].name === name) {
@@ -1724,7 +1614,7 @@ function getTypeFromName(name) {
 	}
 	return "card not found";
 }
-//get bp from name
+//get battle points from card given name
 function getBpFromName(name) {
 	console.log(storyCardFaceUp);
 	console.log(storyCardFaceUp.foe);
@@ -1808,7 +1698,7 @@ function setAI() {
 
 }
 // send name to server -> adds client to player list
-function send() {
+function sendName() {
 	var clientMsg = document.getElementById('enterName');
 	if (clientMsg.value) {
 		PlayerName = clientMsg.value;
@@ -1932,7 +1822,7 @@ function arrangeHand() {
 }
 
 function riggedGame() {
-	send();
+	sendName();
 	document.getElementById('rigger').style.display = "none";
 	document.getElementById('riggerAI').style.display = "none";
 	var version = 42;
@@ -1943,7 +1833,7 @@ function riggedGame() {
 }
 
 function riggedGameAI() {
-	send();
+	sendName();
 	document.getElementById('rigger').style.display = "none";
 	document.getElementById('riggerAI').style.display = "none";
 	var version = 43;
@@ -2419,27 +2309,15 @@ function AIDiscard(cardNames) {
 			extra8ai ];
 	cardNames = cardNames.split(";");
 	cardNames.pop();
-	console.log(cardNames);
-	console.log(imageArrayai);
-	//console.log(handCardSRC);
-	console.log("ai discard 1672 changing num cards" + numCards);
+	
 	for (var j = 0; j < cardNames.length; j++) {
 		for (var i = 0; i < imageArrayai.length; i++) {
 			var tempSrc = getLinkFromName(cardNames[j]);
-			console.log(tempSrc);
 			if(imageArrayai[i].includes("%")) imageArrayai[i] = imageArrayai[i].split('%20').join(' ');
-			console.log(imageArrayai[i]);
-	
 			if(imageArrayai[i].startsWith("http")) imageArrayai[i] = imageArrayai[i].replace("http://"+ip,"");
 			if (tempSrc == imageArrayai[i]) {
-		
-				$("#" + imageArrayaiID[i]).attr("src",
-						"http://"+ip+"/resources/images/all.png");
-				console.log(cardNames);
-				console.log(cardNames[j]);
-				console.log(j);
+				$("#" + imageArrayaiID[i]).attr("src","http://"+ip+"/resources/images/all.png");
 				var dataDiscard = JSON.stringify({
-	
 					'discard' : cardNames[j]
 				});
 				setTimeout(function(){ socketConn.send(dataDiscard); }, 1000);	
@@ -2462,6 +2340,7 @@ function AIDiscard(cardNames) {
 	}
 }
 
+//ai stuff
 function parseAICommand(eventData) {
 	if(eventData.startsWith("AIDropOut"))
 		AIDropOut();
@@ -2472,13 +2351,12 @@ function parseAICommand(eventData) {
 	if(eventData.startsWith("AIRemoveFromScreen"))
 		AIRemoveFromScreen(event.data.replace("AIRemoveFromScreen",""))
 }
-
+//drop out of test
 function AIDropOut() {
-	console.log("time to drop out");
 	$("#extra1").attr("src", "http://"+ip+"/resources/images/all.png");
 	document.getElementById("serverMsg").value += "\n> dropped out of test, wait for quest to complete";
 }
-
+//test bids
 function AIPlaceBid(eventData) {
 	console.log(eventData);
 	var bidList = eventData.split(";");
@@ -2493,6 +2371,7 @@ function AIPlaceBid(eventData) {
 
 	setTimeout(function(){ socketConn.send(data); }, 1000);	
 }
+//update hand with new/discarded cards
 function getCurrHand() {
 	var card1id = document.getElementById("card1").id;
 	var card2id = document.getElementById("card2").id;

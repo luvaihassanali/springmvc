@@ -37,6 +37,7 @@ public class StoryDeck extends Decks {
 		}
 	}
 
+	// fill empty deck with full discard pile
 	public void fillEmptyDeck() {
 		logger.info("Story card deck has run out");
 		logger.info("Shuffling story card discard pile and replacing story deck");
@@ -94,6 +95,7 @@ public class StoryDeck extends Decks {
 		return this;
 	}
 
+	// intiate deck for rigged game
 	public StoryDeck initRiggedStoryDeck(int deckId) {
 		logger.info("Initiating rigged story deck");
 		cards.clear();

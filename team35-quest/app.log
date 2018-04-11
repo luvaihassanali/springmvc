@@ -337,3 +337,1012 @@
 2018-04-10 21:24:34.889  INFO 21900 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
 2018-04-10 21:24:34.890  INFO 21900 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 2018-04-10 21:24:34.890  INFO 21900 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 08:16:11.155  INFO 7312 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 7312 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 08:16:11.159  INFO 7312 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 08:16:11.214  INFO 7312 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a288bd2: startup date [Wed Apr 11 08:16:11 EDT 2018]; root of context hierarchy
+2018-04-11 08:16:12.251  INFO 7312 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 08:16:12.261  INFO 7312 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 08:16:12.265  INFO 7312 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 08:16:12.484  INFO 7312 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 08:16:12.488  INFO 7312 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 08:16:12.489  INFO 7312 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1277 ms
+2018-04-11 08:16:12.608  INFO 7312 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 08:16:12.612  INFO 7312 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 08:16:12.613  INFO 7312 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 08:16:12.613  INFO 7312 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 08:16:12.614  INFO 7312 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 08:16:12 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 08:16:12 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 08:16:12 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 08:16:12.906  INFO 7312 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 08:16:12.928  INFO 7312 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 08:16:13.154  INFO 7312 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a288bd2: startup date [Wed Apr 11 08:16:11 EDT 2018]; root of context hierarchy
+2018-04-11 08:16:13.214  INFO 7312 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 08:16:13.217  INFO 7312 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 08:16:13.217  INFO 7312 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 08:16:13.239  INFO 7312 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:16:13.239  INFO 7312 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:16:13.270  INFO 7312 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:16:13.421  INFO 7312 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 08:16:13.426  INFO 7312 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 08:16:13.515  INFO 7312 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 08:16:13.519  INFO 7312 --- [main] com.luvai.MainApp                        : Started MainApp in 2.661 seconds (JVM running for 4.789)
+2018-04-11 08:16:22.874  INFO 7312 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a288bd2: startup date [Wed Apr 11 08:16:11 EDT 2018]; root of context hierarchy
+2018-04-11 08:16:22.883  INFO 7312 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 08:16:22.885  INFO 7312 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 08:16:22.888  INFO 7312 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 08:16:26.502  INFO 7366 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 7366 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 08:16:26.504  INFO 7366 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 08:16:26.580  INFO 7366 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Wed Apr 11 08:16:26 EDT 2018]; root of context hierarchy
+2018-04-11 08:16:27.999  INFO 7366 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 08:16:28.010  INFO 7366 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 08:16:28.011  INFO 7366 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 08:16:28.257  INFO 7366 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 08:16:28.265  INFO 7366 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 08:16:28.266  INFO 7366 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1691 ms
+2018-04-11 08:16:28.416  INFO 7366 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 08:16:28.419  INFO 7366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 08:16:28.420  INFO 7366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 08:16:28.420  INFO 7366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 08:16:28.421  INFO 7366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 08:16:28 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 08:16:28 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 08:16:28 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 08:16:28.779  INFO 7366 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 08:16:28.800  INFO 7366 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 08:16:29.004  INFO 7366 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Wed Apr 11 08:16:26 EDT 2018]; root of context hierarchy
+2018-04-11 08:16:29.051  INFO 7366 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 08:16:29.054  INFO 7366 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 08:16:29.054  INFO 7366 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 08:16:29.074  INFO 7366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:16:29.074  INFO 7366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:16:29.101  INFO 7366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:16:29.236  INFO 7366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 08:16:29.243  INFO 7366 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 08:16:29.309  INFO 7366 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 08:16:29.315  INFO 7366 --- [main] com.luvai.MainApp                        : Started MainApp in 3.22 seconds (JVM running for 5.864)
+2018-04-11 08:16:42.554  INFO 7366 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Wed Apr 11 08:16:26 EDT 2018]; root of context hierarchy
+2018-04-11 08:16:42.559  INFO 7366 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 08:16:42.565  INFO 7366 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 08:16:42.573  INFO 7366 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 08:31:41.604  INFO 7807 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 7807 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 08:31:41.607  INFO 7807 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 08:31:41.663  INFO 7807 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@24ae665a: startup date [Wed Apr 11 08:31:41 EDT 2018]; root of context hierarchy
+2018-04-11 08:31:42.966  INFO 7807 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 08:31:42.975  INFO 7807 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 08:31:42.977  INFO 7807 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 08:31:43.148  INFO 7807 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 08:31:43.152  INFO 7807 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 08:31:43.152  INFO 7807 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1492 ms
+2018-04-11 08:31:43.236  INFO 7807 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 08:31:43.241  INFO 7807 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 08:31:43.242  INFO 7807 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 08:31:43.242  INFO 7807 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 08:31:43.242  INFO 7807 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 08:31:43 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 08:31:43 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 08:31:43 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 08:31:43.487  INFO 7807 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 08:31:43.505  INFO 7807 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 08:31:43.681  INFO 7807 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@24ae665a: startup date [Wed Apr 11 08:31:41 EDT 2018]; root of context hierarchy
+2018-04-11 08:31:43.730  INFO 7807 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 08:31:43.733  INFO 7807 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 08:31:43.734  INFO 7807 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 08:31:43.753  INFO 7807 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:31:43.754  INFO 7807 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:31:43.779  INFO 7807 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:31:43.913  INFO 7807 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 08:31:43.920  INFO 7807 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 08:31:43.944 ERROR 7807 --- [main] o.a.coyote.http11.Http11NioProtocol      : Failed to start end point associated with ProtocolHandler ["http-nio-8080"]
+
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:433) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:425) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74) ~[na:1.8.0_162]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:978) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:628) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1022) [tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) [tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) [tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:250) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:193) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:297) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:145) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) [spring-context-4.3.9.RELEASE.jar:4.3.9.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at com.luvai.MainApp.main(MainApp.java:14) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_162]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_162]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_162]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_162]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:527) [spring-boot-maven-plugin-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_162]
+
+2018-04-11 08:31:43.945 ERROR 7807 --- [main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-8080]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:250) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:193) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:297) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:145) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) [spring-context-4.3.9.RELEASE.jar:4.3.9.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at com.luvai.MainApp.main(MainApp.java:14) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_162]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_162]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_162]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_162]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:527) [spring-boot-maven-plugin-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_162]
+Caused by: org.apache.catalina.LifecycleException: service.getName(): "Tomcat";  Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1029) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	... 19 common frames omitted
+Caused by: java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:433) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:425) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74) ~[na:1.8.0_162]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:978) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:628) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1022) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	... 20 common frames omitted
+
+2018-04-11 08:31:43.959  INFO 7807 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-04-11 08:31:43.970  INFO 7807 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2018-04-11 08:31:43.973 ERROR 7807 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2018-04-11 08:31:43.973  INFO 7807 --- [main] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@24ae665a: startup date [Wed Apr 11 08:31:41 EDT 2018]; root of context hierarchy
+2018-04-11 08:31:43.974  INFO 7807 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 08:31:43.975  INFO 7807 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 08:31:43.975  INFO 7807 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 08:32:06.266  INFO 7836 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 7836 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 08:32:06.274  INFO 7836 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 08:32:06.344  INFO 7836 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16e31967: startup date [Wed Apr 11 08:32:06 EDT 2018]; root of context hierarchy
+2018-04-11 08:32:07.344  INFO 7836 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 08:32:07.354  INFO 7836 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 08:32:07.355  INFO 7836 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 08:32:07.510  INFO 7836 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 08:32:07.515  INFO 7836 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 08:32:07.516  INFO 7836 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1176 ms
+2018-04-11 08:32:07.603  INFO 7836 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 08:32:07.607  INFO 7836 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 08:32:07.608  INFO 7836 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 08:32:07.608  INFO 7836 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 08:32:07.608  INFO 7836 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 08:32:07 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 08:32:07 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 08:32:07 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 08:32:07.841  INFO 7836 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 08:32:07.857  INFO 7836 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 08:32:08.036  INFO 7836 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16e31967: startup date [Wed Apr 11 08:32:06 EDT 2018]; root of context hierarchy
+2018-04-11 08:32:08.088  INFO 7836 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 08:32:08.091  INFO 7836 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 08:32:08.091  INFO 7836 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 08:32:08.111  INFO 7836 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:32:08.112  INFO 7836 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:32:08.140  INFO 7836 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:32:08.278  INFO 7836 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 08:32:08.284  INFO 7836 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 08:32:08.309 ERROR 7836 --- [main] o.a.coyote.http11.Http11NioProtocol      : Failed to start end point associated with ProtocolHandler ["http-nio-8080"]
+
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:433) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:425) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74) ~[na:1.8.0_162]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:978) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:628) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1022) [tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) [tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) [tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:250) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:193) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:297) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:145) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) [spring-context-4.3.9.RELEASE.jar:4.3.9.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at com.luvai.MainApp.main(MainApp.java:14) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_162]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_162]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_162]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_162]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:527) [spring-boot-maven-plugin-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_162]
+
+2018-04-11 08:32:08.310 ERROR 7836 --- [main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-8080]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:250) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:193) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:297) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:145) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) [spring-context-4.3.9.RELEASE.jar:4.3.9.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at com.luvai.MainApp.main(MainApp.java:14) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_162]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_162]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_162]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_162]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:527) [spring-boot-maven-plugin-1.5.4.RELEASE.jar:1.5.4.RELEASE]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_162]
+Caused by: org.apache.catalina.LifecycleException: service.getName(): "Tomcat";  Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1029) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	... 19 common frames omitted
+Caused by: java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:433) ~[na:1.8.0_162]
+	at sun.nio.ch.Net.bind(Net.java:425) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223) ~[na:1.8.0_162]
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74) ~[na:1.8.0_162]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:978) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:628) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1022) ~[tomcat-embed-core-8.5.15.jar:8.5.15]
+	... 20 common frames omitted
+
+2018-04-11 08:32:08.327  INFO 7836 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-04-11 08:32:08.337  INFO 7836 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2018-04-11 08:32:08.340 ERROR 7836 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2018-04-11 08:32:08.340  INFO 7836 --- [main] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16e31967: startup date [Wed Apr 11 08:32:06 EDT 2018]; root of context hierarchy
+2018-04-11 08:32:08.341  INFO 7836 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 08:32:08.343  INFO 7836 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 08:32:08.343  INFO 7836 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 08:32:21.967  INFO 7873 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 7873 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 08:32:21.969  INFO 7873 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 08:32:22.017  INFO 7873 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Wed Apr 11 08:32:22 EDT 2018]; root of context hierarchy
+2018-04-11 08:32:23.174  INFO 7873 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 08:32:23.186  INFO 7873 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 08:32:23.187  INFO 7873 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 08:32:23.398  INFO 7873 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 08:32:23.402  INFO 7873 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 08:32:23.402  INFO 7873 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1394 ms
+2018-04-11 08:32:23.487  INFO 7873 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 08:32:23.490  INFO 7873 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 08:32:23.491  INFO 7873 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 08:32:23.491  INFO 7873 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 08:32:23.491  INFO 7873 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 08:32:23 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 08:32:23 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 08:32:23 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 08:32:23.716  INFO 7873 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 08:32:23.734  INFO 7873 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 08:32:23.914  INFO 7873 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Wed Apr 11 08:32:22 EDT 2018]; root of context hierarchy
+2018-04-11 08:32:23.964  INFO 7873 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 08:32:23.967  INFO 7873 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 08:32:23.968  INFO 7873 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 08:32:23.986  INFO 7873 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:32:23.986  INFO 7873 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:32:24.013  INFO 7873 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:32:24.154  INFO 7873 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 08:32:24.159  INFO 7873 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 08:32:24.229  INFO 7873 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 08:32:24.237  INFO 7873 --- [main] com.luvai.MainApp                        : Started MainApp in 2.549 seconds (JVM running for 4.881)
+2018-04-11 08:32:26.524  INFO 7873 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Wed Apr 11 08:32:22 EDT 2018]; root of context hierarchy
+2018-04-11 08:32:26.534  INFO 7873 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 08:32:26.536  INFO 7873 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 08:32:26.538  INFO 7873 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 08:47:00.684  INFO 8448 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 8448 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 08:47:00.694  INFO 8448 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 08:47:00.750  INFO 8448 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16e31967: startup date [Wed Apr 11 08:47:00 EDT 2018]; root of context hierarchy
+2018-04-11 08:47:01.938  INFO 8448 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 08:47:01.947  INFO 8448 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 08:47:01.948  INFO 8448 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 08:47:02.147  INFO 8448 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 08:47:02.150  INFO 8448 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 08:47:02.150  INFO 8448 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1403 ms
+2018-04-11 08:47:02.239  INFO 8448 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 08:47:02.241  INFO 8448 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 08:47:02.242  INFO 8448 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 08:47:02.243  INFO 8448 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 08:47:02.243  INFO 8448 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 08:47:02 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 08:47:02 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 08:47:02 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 08:47:02.559  INFO 8448 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 08:47:02.578  INFO 8448 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 08:47:02.798  INFO 8448 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16e31967: startup date [Wed Apr 11 08:47:00 EDT 2018]; root of context hierarchy
+2018-04-11 08:47:02.892  INFO 8448 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 08:47:02.895  INFO 8448 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 08:47:02.896  INFO 8448 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 08:47:02.926  INFO 8448 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:47:02.926  INFO 8448 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:47:02.965  INFO 8448 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 08:47:03.157  INFO 8448 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 08:47:03.164  INFO 8448 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 08:47:03.232  INFO 8448 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 08:47:03.237  INFO 8448 --- [main] com.luvai.MainApp                        : Started MainApp in 2.924 seconds (JVM running for 5.119)
+2018-04-11 08:48:58.604  INFO 8448 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-11 08:48:58.604  INFO 8448 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-11 08:48:58.623  INFO 8448 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+2018-Apr-11 08:48:59 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 08:48:59 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-11 08:49:01 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-11 08:49:01 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-11 08:49:01 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-11 08:49:02 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 08:49:02 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-11 08:49:04 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-11 08:49:05 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 08:49:05 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-11 08:49:06 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-11 08:49:08 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 08:49:08 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player 5 is enrolled in the game
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Merlin, Amour, Robber Knight, Dragon, Test of the Questing Beast, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Thieves, King Arthur, Excalibur, Amour, Test of Morgan Le Fey, Thieves, Horse, Sir Galahad, Robber Knight, 
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Player 5 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-11 08:49:12 AM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-11 08:49:14 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 08:49:14 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt
+2018-Apr-11 08:49:14 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Boar Hunt is being rendered on player screens
+2018-Apr-11 08:49:14 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Boar Hunt
+2018-Apr-11 08:49:15 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player1 accepted to sponsor quest Boar Hunt
+2018-Apr-11 08:49:15 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Player1
+2018-Apr-11 08:49:15 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player1 is setting up stages for Boar Hunt quest
+2018-Apr-11 08:49:15 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Informing players that Player Player1 is sponsor of Boar Hunt quest
+2018-Apr-11 08:49:15 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player1 will now choose cards for 2 stages of quest
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Boar","Dagger","Horse","Black Knight"]}
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player Player1 setup Boar Hunt quest with ["Boar","Dagger","Horse","Black Knight"]
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Boar
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Horse
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player1 discarded Black Knight
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Asking Player Player2 to participate in quest
+2018-Apr-11 08:49:22 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Player2 has Merlin in hand, being offered to preview stages
+2018-Apr-11 08:49:32 AM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Player2 chose to preview stage 1
+2018-Apr-11 08:49:32 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - JSON example: {"hasMerlin":0,"name":"Player2","revealedCards":["Boar","Dagger","Horse"]}
+2018-Apr-11 08:49:32 AM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player2 was revealed these cards as part of stage: ["Boar","Dagger","Horse"]
+2018-Apr-11 08:49:44 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player2 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 08:49:44 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has accepted to participate in Boar Hunt quest
+2018-Apr-11 08:49:44 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Amour
+2018-Apr-11 08:49:44 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 08:49:44 AM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-11 08:49:46 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 08:49:46 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Boar Hunt quest
+2018-Apr-11 08:49:46 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Amour
+2018-Apr-11 08:49:46 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 08:49:46 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Asking Player 5 to participate in quest
+2018-Apr-11 08:49:49 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player 5 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 08:49:49 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing other players that 5 has accepted to participate in Boar Hunt quest
+2018-Apr-11 08:49:49 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player 5 getting new card Giant
+2018-Apr-11 08:49:49 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 08:49:49 AM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Player1 is commencing, participant(s): Player2, Player4, 5,  are choosing equipment CONCURRENTLY
+2018-Apr-11 08:49:54 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"5","stages":0,"equipment_info":["Battle-ax","Sword"],"isTest":false}
+2018-Apr-11 08:49:54 AM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player 5 chose Battle-ax, Sword,  for stage 1 of Boar Hunt quest
+2018-Apr-11 08:49:54 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player 5 used Battle-ax
+2018-Apr-11 08:49:54 AM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player 5 used Sword
+2018-Apr-11 08:49:58 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":0,"equipment_info":["Excalibur"],"isTest":false}
+2018-Apr-11 08:49:58 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player4 chose Excalibur,  for stage 1 of Boar Hunt quest
+2018-Apr-11 08:49:58 AM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player4 used Excalibur
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player2","stages":0,"equipment_info":["Amour","Battle-ax"],"isTest":false}
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player2 chose Amour, Battle-ax,  for stage 1 of Boar Hunt quest
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player2 used Amour
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player2 used Battle-ax
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 30 battle points
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant Player2 with 30 battle points is starting - versus Boar with 30 points
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player2 has WON battle
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant Player4 with 35 battle points is starting - versus Boar with 30 points
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 has WON battle
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Battle against participant 5 with 30 battle points is starting - versus Boar with 30 points
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player 5 has WON battle
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Clearing all weapons
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player2 is unequipping the amour used in last quest
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - All participants are choosing equipment for quest CONCURRENTLY
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Lance
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Amour
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player 5 getting new card Black Knight
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player(s): Player2 has 12 cards in handPlayer4 has 13 cards in hand, will be prompted to discard 5 has 12 cards in hand
+2018-Apr-11 08:50:03 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-04-11 08:53:01.973  INFO 8448 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16e31967: startup date [Wed Apr 11 08:47:00 EDT 2018]; root of context hierarchy
+2018-04-11 08:53:01.980  INFO 8448 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 08:53:01.981  INFO 8448 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 08:53:01.982  INFO 8448 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 10:55:13.832  INFO 13131 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 13131 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 10:55:13.854  INFO 13131 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 10:55:13.907  INFO 13131 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@12c0d27f: startup date [Wed Apr 11 10:55:13 EDT 2018]; root of context hierarchy
+2018-04-11 10:55:15.120  INFO 13131 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 10:55:15.131  INFO 13131 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 10:55:15.133  INFO 13131 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 10:55:15.299  INFO 13131 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 10:55:15.308  INFO 13131 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 10:55:15.310  INFO 13131 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1406 ms
+2018-04-11 10:55:15.404  INFO 13131 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 10:55:15.408  INFO 13131 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 10:55:15.409  INFO 13131 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 10:55:15.409  INFO 13131 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 10:55:15.409  INFO 13131 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 10:55:15 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 10:55:15 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 10:55:15 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 10:55:15.644  INFO 13131 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 10:55:15.662  INFO 13131 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 10:55:15.840  INFO 13131 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@12c0d27f: startup date [Wed Apr 11 10:55:13 EDT 2018]; root of context hierarchy
+2018-04-11 10:55:15.890  INFO 13131 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 10:55:15.893  INFO 13131 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 10:55:15.894  INFO 13131 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 10:55:15.915  INFO 13131 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 10:55:15.915  INFO 13131 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 10:55:15.941  INFO 13131 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 10:55:16.084  INFO 13131 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 10:55:16.090  INFO 13131 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 10:55:16.156  INFO 13131 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 10:55:16.165  INFO 13131 --- [main] com.luvai.MainApp                        : Started MainApp in 2.77 seconds (JVM running for 5.115)
+2018-04-11 11:58:28.386  INFO 13131 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@12c0d27f: startup date [Wed Apr 11 10:55:13 EDT 2018]; root of context hierarchy
+2018-04-11 11:58:28.387  INFO 13131 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 11:58:28.388  INFO 13131 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 11:58:28.401  INFO 13131 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 11:58:31.749  INFO 15777 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 15777 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 11:58:31.752  INFO 15777 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 11:58:31.838  INFO 15777 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7c57c36f: startup date [Wed Apr 11 11:58:31 EDT 2018]; root of context hierarchy
+2018-04-11 11:58:33.025  INFO 15777 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 11:58:33.035  INFO 15777 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 11:58:33.036  INFO 15777 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 11:58:33.206  INFO 15777 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 11:58:33.213  INFO 15777 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 11:58:33.213  INFO 15777 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1379 ms
+2018-04-11 11:58:33.297  INFO 15777 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 11:58:33.302  INFO 15777 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 11:58:33.303  INFO 15777 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 11:58:33.303  INFO 15777 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 11:58:33.303  INFO 15777 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 11:58:33 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 11:58:33 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 11:58:33 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 11:58:33.544  INFO 15777 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 11:58:33.562  INFO 15777 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 11:58:33.737  INFO 15777 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7c57c36f: startup date [Wed Apr 11 11:58:31 EDT 2018]; root of context hierarchy
+2018-04-11 11:58:33.786  INFO 15777 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 11:58:33.789  INFO 15777 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 11:58:33.789  INFO 15777 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 11:58:33.812  INFO 15777 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 11:58:33.812  INFO 15777 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 11:58:33.851  INFO 15777 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 11:58:34.120  INFO 15777 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 11:58:34.127  INFO 15777 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 11:58:34.202  INFO 15777 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 11:58:34.208  INFO 15777 --- [main] com.luvai.MainApp                        : Started MainApp in 2.84 seconds (JVM running for 5.312)
+2018-04-11 11:58:41.363  INFO 15777 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-11 11:58:41.363  INFO 15777 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-11 11:58:41.387  INFO 15777 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 24 ms
+2018-Apr-11 11:58:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:58:43 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-11 11:58:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:58:43 AM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-11 11:58:45 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:58:45 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-11 11:58:46 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:58:46 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-11 11:58:48 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-11 11:58:48 AM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-11 11:58:48 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-11 11:58:51 AM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-04-11 11:58:54.190  INFO 15777 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7c57c36f: startup date [Wed Apr 11 11:58:31 EDT 2018]; root of context hierarchy
+2018-04-11 11:58:54.194  INFO 15777 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 11:58:54.195  INFO 15777 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 11:58:54.195  INFO 15777 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 11:58:57.554  INFO 15936 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 15936 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 11:58:57.556  INFO 15936 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 11:58:57.612  INFO 15936 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Wed Apr 11 11:58:57 EDT 2018]; root of context hierarchy
+2018-04-11 11:58:58.573  INFO 15936 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 11:58:58.583  INFO 15936 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 11:58:58.584  INFO 15936 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 11:58:58.736  INFO 15936 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 11:58:58.741  INFO 15936 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 11:58:58.742  INFO 15936 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1133 ms
+2018-04-11 11:58:58.831  INFO 15936 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 11:58:58.834  INFO 15936 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 11:58:58.835  INFO 15936 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 11:58:58.835  INFO 15936 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 11:58:58.836  INFO 15936 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 11:58:59 AM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 11:58:59 AM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 11:58:59 AM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 11:58:59.067  INFO 15936 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 11:58:59.085  INFO 15936 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 11:58:59.278  INFO 15936 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Wed Apr 11 11:58:57 EDT 2018]; root of context hierarchy
+2018-04-11 11:58:59.326  INFO 15936 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 11:58:59.328  INFO 15936 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 11:58:59.329  INFO 15936 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 11:58:59.349  INFO 15936 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 11:58:59.349  INFO 15936 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 11:58:59.377  INFO 15936 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 11:58:59.499  INFO 15936 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 11:58:59.506  INFO 15936 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 11:58:59.569  INFO 15936 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 11:58:59.576  INFO 15936 --- [main] com.luvai.MainApp                        : Started MainApp in 2.363 seconds (JVM running for 4.867)
+2018-04-11 11:59:05.926  INFO 15936 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-11 11:59:05.927  INFO 15936 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-11 11:59:05.947  INFO 15936 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2018-Apr-11 11:59:07 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:59:07 AM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-11 11:59:08 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-11 11:59:08 AM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-11 11:59:08 AM [http-nio-8080-exec-3] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-11 11:59:10 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:59:10 AM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-11 11:59:11 AM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-11 11:59:13 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:59:13 AM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-11 11:59:14 AM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-11 11:59:16 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 11:59:16 AM [http-nio-8080-exec-6] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Merlin, Amour, Robber Knight, Dragon, Test of the Questing Beast, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Thieves, King Arthur, Excalibur, Amour, Test of Morgan Le Fey, Thieves, Horse, Sir Galahad, Robber Knight, 
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-11 11:59:17 AM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-11 11:59:19 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 11:59:19 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt
+2018-Apr-11 11:59:19 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Boar Hunt is being rendered on player screens
+2018-Apr-11 11:59:19 AM [Thread-5] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Boar Hunt
+2018-Apr-11 12:00:06 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player1 accepted to sponsor quest Boar Hunt
+2018-Apr-11 12:00:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Player1
+2018-Apr-11 12:00:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player1 is setting up stages for Boar Hunt quest
+2018-Apr-11 12:00:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Informing players that Player Player1 is sponsor of Boar Hunt quest
+2018-Apr-11 12:00:06 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player1 will now choose cards for 2 stages of quest
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Saxons","Dagger","Boar"]}
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player1 setup Boar Hunt quest with ["Saxons","Dagger","Boar"]
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player1 discarded Saxons
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player Player1 discarded Boar
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Asking Player Player2 to participate in quest
+2018-Apr-11 12:00:12 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player2 has Merlin in hand, being offered to preview stages
+2018-Apr-11 12:00:16 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Player2 chose to preview stage 1
+2018-Apr-11 12:00:16 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - JSON example: {"hasMerlin":0,"name":"Player2","revealedCards":["Saxons","Dagger"]}
+2018-Apr-11 12:00:16 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Player2 was revealed these cards as part of stage: ["Saxons","Dagger"]
+2018-Apr-11 12:00:18 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 12:00:18 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:00:18 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Lance
+2018-Apr-11 12:00:18 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:00:18 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-11 12:00:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 12:00:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:00:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Battle-ax
+2018-Apr-11 12:00:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:00:20 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-11 12:00:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 12:00:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:00:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Lance
+2018-Apr-11 12:00:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:00:21 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Player1 is commencing, participant(s): Player2, Player3, Player4,  are choosing equipment CONCURRENTLY
+2018-Apr-11 12:00:23 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":0,"equipment_info":["Lance"],"isTest":false}
+2018-Apr-11 12:00:23 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player4 chose Lance,  for stage 1 of Boar Hunt quest
+2018-Apr-11 12:00:23 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Player - Player Player4 used Lance
+2018-Apr-11 12:00:25 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":["Battle-ax"],"isTest":false}
+2018-Apr-11 12:00:25 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player3 chose Battle-ax,  for stage 1 of Boar Hunt quest
+2018-Apr-11 12:00:25 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Player - Player Player3 used Battle-ax
+2018-Apr-11 12:00:27 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Player - Player Player2 discarded Lance
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player2","stages":0,"equipment_info":[],"isTest":false}
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player2 chose nothing for stage 1 of Boar Hunt quest
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Saxons with 15 battle points
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Battle against participant Player2 with 5 battle points is starting - versus Saxons with 15 points
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player2 has LOST battle
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Informing players of player Player2 loss in battle
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player2 has been removed from quest
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 20 battle points is starting - versus Saxons with 15 points
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Battle against participant Player4 with 25 battle points is starting - versus Saxons with 15 points
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player4 has WON battle
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Clearing all weapons
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - All participants are choosing equipment for quest CONCURRENTLY
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Dagger
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Sword
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player(s): Player3 has 13 cards in hand, will be prompted to discard Player4 has 13 cards in hand, will be prompted to discard 
+2018-Apr-11 12:00:28 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:00:43 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":1,"equipment_info":["Excalibur"],"isTest":false}
+2018-Apr-11 12:00:43 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.QuestController - Player Player3 chose Excalibur,  for stage 2 of Boar Hunt quest
+2018-Apr-11 12:00:43 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Player - Player Player3 used Excalibur
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":1,"equipment_info":["Sword"],"isTest":false}
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player4 chose Sword,  for stage 2 of Boar Hunt quest
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player4 used Sword
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Boar Hunt quest which is a test: false
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 2 is a foe battle
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 15 battle points
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 35 battle points is starting - versus Boar with 15 points
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Giving 2 shields to Player3
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Clearing all weapons and amour
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player1 who sponsored Boar Hunt quest is receiving 5 card (Amour, Dagger, Excalibur, Amour, Dagger, ) due to sponsoring quest
+2018-Apr-11 12:00:46 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player1 has 14 cards, will be prompted to discard
+2018-Apr-11 12:00:58 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-11 12:00:58 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player1 discarded Dagger
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Chivalrous Deed
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - New story card Chivalrous Deed is being rendered on player screens
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player Player2 has initiated event Chivalrous Deed
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player1 with 0 shields
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player3 with 2 shields
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  Player1 is awarded with 3 shields for a total of 3
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  Player2 is awarded with 3 shields for a total of 3
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController -  Player4 is awarded with 3 shields for a total of 3
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Apr-11 12:01:00 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-04-11 12:05:08.260  INFO 15936 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@362477c2: startup date [Wed Apr 11 11:58:57 EDT 2018]; root of context hierarchy
+2018-04-11 12:05:08.261  INFO 15936 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 12:05:08.262  INFO 15936 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 12:05:08.266  INFO 15936 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 12:05:11.315  INFO 16110 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 16110 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 12:05:11.318  INFO 16110 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 12:05:11.381  INFO 16110 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b2882c7: startup date [Wed Apr 11 12:05:11 EDT 2018]; root of context hierarchy
+2018-04-11 12:05:12.447  INFO 16110 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 12:05:12.457  INFO 16110 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 12:05:12.458  INFO 16110 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 12:05:12.602  INFO 16110 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 12:05:12.606  INFO 16110 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 12:05:12.606  INFO 16110 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1229 ms
+2018-04-11 12:05:12.700  INFO 16110 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 12:05:12.703  INFO 16110 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 12:05:12.703  INFO 16110 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 12:05:12.704  INFO 16110 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 12:05:12.704  INFO 16110 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 12:05:12 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 12:05:12 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 12:05:12 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 12:05:12.928  INFO 16110 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 12:05:12.943  INFO 16110 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 12:05:13.125  INFO 16110 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b2882c7: startup date [Wed Apr 11 12:05:11 EDT 2018]; root of context hierarchy
+2018-04-11 12:05:13.172  INFO 16110 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 12:05:13.175  INFO 16110 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 12:05:13.175  INFO 16110 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 12:05:13.195  INFO 16110 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 12:05:13.195  INFO 16110 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 12:05:13.224  INFO 16110 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 12:05:13.355  INFO 16110 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 12:05:13.361  INFO 16110 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 12:05:13.420  INFO 16110 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 12:05:13.424  INFO 16110 --- [main] com.luvai.MainApp                        : Started MainApp in 2.423 seconds (JVM running for 4.651)
+2018-04-11 12:05:27.079  INFO 16110 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-11 12:05:27.080  INFO 16110 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-11 12:05:27.099  INFO 16110 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2018-Apr-11 12:05:28 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:05:28 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-11 12:05:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:05:29 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-11 12:05:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:05:29 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-11 12:05:30 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:05:30 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-11 12:05:32 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Game - Player 1Player is enrolled in the game
+2018-Apr-11 12:05:32 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-11 12:05:32 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-11 12:05:36 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-11 12:05:38 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player 1Player was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Merlin, Amour, Robber Knight, Dragon, Test of the Questing Beast, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Thieves, King Arthur, Excalibur, Amour, Test of Morgan Le Fey, Thieves, Horse, Sir Galahad, Robber Knight, 
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-11 12:05:54 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-11 12:05:56 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:05:56 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player 1Player is flipping new card from story deck: Boar Hunt
+2018-Apr-11 12:05:56 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Boar Hunt is being rendered on player screens
+2018-Apr-11 12:05:56 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Asking Player 1Player to sponsor quest Boar Hunt
+2018-Apr-11 12:05:58 PM [http-nio-8080-exec-1] INFO  com.luvai.model.Game - 1Player accepted to sponsor quest Boar Hunt
+2018-Apr-11 12:05:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by 1Player
+2018-Apr-11 12:05:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - 1Player is setting up stages for Boar Hunt quest
+2018-Apr-11 12:05:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Informing players that Player 1Player is sponsor of Boar Hunt quest
+2018-Apr-11 12:05:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player 1Player will now choose cards for 2 stages of quest
+2018-Apr-11 12:06:04 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player 1Player attempted to choose a repeat weapon during Boar Hunt quest sponsor
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Saxons","Boar","Dagger","Sword"]}
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.SocketHandler - Player 1Player setup Boar Hunt quest with ["Saxons","Boar","Dagger","Sword"]
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player 1Player discarded Saxons
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player 1Player discarded Boar
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player 1Player discarded Dagger
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Player - Player 1Player discarded Sword
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-4] INFO  com.luvai.controller.QuestController - Asking Player Player2 to participate in quest
+2018-Apr-11 12:06:05 PM [http-nio-8080-exec-3] INFO  com.luvai.model.Game - Player Player2 has Merlin in hand, being offered to preview stages
+2018-Apr-11 12:06:08 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player2 denied to participate in Boar Hunt quest sponsored by 1Player
+2018-Apr-11 12:06:08 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has declined to participate in Boar Hunt quest
+2018-Apr-11 12:06:08 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-11 12:06:10 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Boar Hunt quest sponsored by 1Player
+2018-Apr-11 12:06:10 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:06:10 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Battle-ax
+2018-Apr-11 12:06:10 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:06:10 PM [http-nio-8080-exec-6] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-11 12:06:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Boar Hunt quest sponsored by 1Player
+2018-Apr-11 12:06:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:06:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Battle-ax
+2018-Apr-11 12:06:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:06:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by 1Player is commencing, participant(s): Player3, Player4,  are choosing equipment CONCURRENTLY
+2018-Apr-11 12:06:15 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player Player4 attempted to choose a repeat weapon during Boar Hunt quest
+2018-Apr-11 12:06:17 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":0,"equipment_info":["Battle-ax","Lance"],"isTest":false}
+2018-Apr-11 12:06:17 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player4 chose Battle-ax, Lance,  for stage 1 of Boar Hunt quest
+2018-Apr-11 12:06:17 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player4 used Battle-ax
+2018-Apr-11 12:06:17 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player Player4 used Lance
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":["Battle-ax"],"isTest":false}
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player3 chose Battle-ax,  for stage 1 of Boar Hunt quest
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player3 used Battle-ax
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 1 of Boar Hunt quest which is a test: false
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 1 is a foe battle
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Saxons with 10 battle points
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 20 battle points is starting - versus Saxons with 10 points
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Battle against participant Player4 with 40 battle points is starting - versus Saxons with 10 points
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player4 has WON battle
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Stage 1 is over
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Clearing all weapons
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - All participants are choosing equipment for quest CONCURRENTLY
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Test of Morgan Le Fey
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Mordred
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player(s): Player3 has 13 cards in hand, will be prompted to discard Player4 has 12 cards in hand
+2018-Apr-11 12:06:19 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:06:34 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":1,"equipment_info":["Excalibur"],"isTest":false}
+2018-Apr-11 12:06:34 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Player Player3 chose Excalibur,  for stage 2 of Boar Hunt quest
+2018-Apr-11 12:06:34 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player3 used Excalibur
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":1,"equipment_info":["Battle-ax"],"isTest":false}
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player4 chose Battle-ax,  for stage 2 of Boar Hunt quest
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Player - Player Player4 used Battle-ax
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - All players have chosen equipment for stage 2 of Boar Hunt quest which is a test: false
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Boar Hunt quest stage 2 is a foe battle
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Participant battles commencing against foe Boar with 30 battle points
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Battle against participant Player3 with 35 battle points is starting - versus Boar with 30 points
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player3 has WON battle
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Giving 2 shields to Player3
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Clearing all weapons and amour
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player 1Player who sponsored Boar Hunt quest is receiving 6 card (Dagger, Dagger, Thieves, Sword, Lance, Horse, ) due to sponsoring quest
+2018-Apr-11 12:06:36 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player 1Player has 14 cards, will be prompted to discard
+2018-Apr-11 12:06:45 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Player - Player 1Player discarded Dagger
+2018-Apr-11 12:06:46 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player 1Player discarded Dagger
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player Player2 is flipping new card from story deck: Chivalrous Deed
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New story card Chivalrous Deed is being rendered on player screens
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player Player2 has initiated event Chivalrous Deed
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - 1Player with 0 shields
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player2 with 0 shields
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player3 with 2 shields
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Player4 with 0 shields
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController -  1Player is awarded with 3 shields for a total of 3
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController -  Player2 is awarded with 3 shields for a total of 3
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController -  Player4 is awarded with 3 shields for a total of 3
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Event Chivalrous Deed has concluded
+2018-Apr-11 12:06:50 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.EventController - Updating GUI stats for all players
+2018-04-11 12:08:32.405  INFO 16110 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b2882c7: startup date [Wed Apr 11 12:05:11 EDT 2018]; root of context hierarchy
+2018-04-11 12:08:32.408  INFO 16110 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 12:08:32.409  INFO 16110 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 12:08:32.410  INFO 16110 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+2018-04-11 12:08:35.298  INFO 16249 --- [main] com.luvai.MainApp                        : Starting MainApp on archlinux with PID 16249 (/home/luvai/GitHub/springmvc/team35-quest/target/classes started by luvai in /home/luvai/GitHub/springmvc/team35-quest)
+2018-04-11 12:08:35.300  INFO 16249 --- [main] com.luvai.MainApp                        : No active profile set, falling back to default profiles: default
+2018-04-11 12:08:35.340  INFO 16249 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Wed Apr 11 12:08:35 EDT 2018]; root of context hierarchy
+2018-04-11 12:08:36.676  INFO 16249 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-11 12:08:36.686  INFO 16249 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-11 12:08:36.687  INFO 16249 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2018-04-11 12:08:36.843  INFO 16249 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-04-11 12:08:36.846  INFO 16249 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-11 12:08:36.847  INFO 16249 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1510 ms
+2018-04-11 12:08:36.934  INFO 16249 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-11 12:08:36.937  INFO 16249 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-11 12:08:36.938  INFO 16249 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-11 12:08:36.938  INFO 16249 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-11 12:08:36.939  INFO 16249 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-Apr-11 12:08:37 PM [main] INFO  com.luvai.model.Game - 
+
+
+
+ ****************************** Initialising new game ********************************
+2018-Apr-11 12:08:37 PM [main] INFO  com.luvai.model.Decks.AdventureDeck - Shuffling adventure deck...
+2018-Apr-11 12:08:37 PM [main] INFO  com.luvai.model.Decks.StoryDeck - Shuffling story deck...
+
+2018-04-11 12:08:37.182  INFO 16249 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2018-04-11 12:08:37.199  INFO 16249 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/socketHandler] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2018-04-11 12:08:37.374  INFO 16249 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Wed Apr 11 12:08:35 EDT 2018]; root of context hierarchy
+2018-04-11 12:08:37.420  INFO 16249 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String com.luvai.controller.MainController.index(org.springframework.ui.ModelMap)
+2018-04-11 12:08:37.423  INFO 16249 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-11 12:08:37.423  INFO 16249 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-11 12:08:37.444  INFO 16249 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 12:08:37.444  INFO 16249 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 12:08:37.470  INFO 16249 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-11 12:08:37.612  INFO 16249 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-11 12:08:37.620  INFO 16249 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-04-11 12:08:37.683  INFO 16249 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-11 12:08:37.689  INFO 16249 --- [main] com.luvai.MainApp                        : Started MainApp in 2.675 seconds (JVM running for 4.805)
+2018-04-11 12:08:55.182  INFO 16249 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-11 12:08:55.182  INFO 16249 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-11 12:08:55.199  INFO 16249 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2018-Apr-11 12:08:56 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:08:56 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Player from session#0 connected
+2018-Apr-11 12:08:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:08:57 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player from session#1 connected
+2018-Apr-11 12:08:57 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:08:57 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player from session#2 connected
+2018-Apr-11 12:08:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - New player attempting to connect...
+2018-Apr-11 12:08:58 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Player from session#3 connected
+2018-Apr-11 12:09:01 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Game - Player Player1 is enrolled in the game
+2018-Apr-11 12:09:01 PM [http-nio-8080-exec-2] INFO  com.luvai.controller.SocketHandler - Setting up rigged game
+2018-Apr-11 12:09:01 PM [http-nio-8080-exec-2] INFO  com.luvai.model.Decks.StoryDeck - Initiating rigged story deck
+2018-Apr-11 12:09:03 PM [http-nio-8080-exec-4] INFO  com.luvai.model.Game - Player Player2 is enrolled in the game
+2018-Apr-11 12:09:06 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Game - Player Player3 is enrolled in the game
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player4 is enrolled in the game
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - All players have joined, starting game...
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player1 was just dealt a new hand consisting of Boar, Black Knight, Test of the Questing Beast, Dagger, Amour, Horse, Saxons, Merlin, Sword, Test of Temptation, Sword, Sir Gawain, 
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player2 was just dealt a new hand consisting of Sir Tristan, Merlin, Amour, Robber Knight, Dragon, Test of the Questing Beast, Dagger, Horse, Battle-ax, Green Knight, Lance, Thieves, 
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player3 was just dealt a new hand consisting of Test of Valor, Black Knight, Saxons, Thieves, King Arthur, Excalibur, Amour, Test of Morgan Le Fey, Thieves, Horse, Sir Galahad, Robber Knight, 
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Player Player4 was just dealt a new hand consisting of King Arthur, Thieves, Saxons, Battle-ax, Boar, Lance, Sir Gawain, Sword, Dagger, Sword, Amour, Sir Lancelot, 
+2018-Apr-11 12:09:08 PM [http-nio-8080-exec-6] INFO  com.luvai.model.Game - Updating GUI stats for all players
+2018-Apr-11 12:09:10 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Updating GUI stats for all players
+2018-Apr-11 12:09:10 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Player Player1 is flipping new card from story deck: Boar Hunt
+2018-Apr-11 12:09:10 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - New story card Boar Hunt is being rendered on player screens
+2018-Apr-11 12:09:10 PM [Thread-5] INFO  com.luvai.controller.SocketHandler - Asking Player Player1 to sponsor quest Boar Hunt
+2018-Apr-11 12:09:11 PM [http-nio-8080-exec-7] INFO  com.luvai.model.Game - Player1 accepted to sponsor quest Boar Hunt
+2018-Apr-11 12:09:11 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Initiating new quest Boar Hunt sponsored by Player1
+2018-Apr-11 12:09:11 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player1 is setting up stages for Boar Hunt quest
+2018-Apr-11 12:09:11 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Informing players that Player Player1 is sponsor of Boar Hunt quest
+2018-Apr-11 12:09:11 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player1 will now choose cards for 2 stages of quest
+2018-Apr-11 12:09:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"questSetupCards":["Test of the Questing Beast","Boar"]}
+2018-Apr-11 12:09:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.SocketHandler - Player Player1 setup Boar Hunt quest with ["Test of the Questing Beast","Boar"]
+2018-Apr-11 12:09:13 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player1 discarded Test of the Questing Beast
+2018-Apr-11 12:09:13 PM [http-nio-8080-exec-8] INFO  com.luvai.model.Player - Player Player1 discarded Boar
+2018-Apr-11 12:09:13 PM [http-nio-8080-exec-8] INFO  com.luvai.controller.QuestController - Asking Player Player2 to participate in quest
+2018-Apr-11 12:09:13 PM [http-nio-8080-exec-9] INFO  com.luvai.model.Game - Player Player2 has Merlin in hand, being offered to preview stages
+2018-Apr-11 12:09:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player2 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 12:09:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Informing other players that Player2 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:09:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Player Player2 getting new card Sword
+2018-Apr-11 12:09:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:09:15 PM [http-nio-8080-exec-10] INFO  com.luvai.controller.QuestController - Asking Player Player3 to participate in quest
+2018-Apr-11 12:09:16 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player3 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 12:09:16 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Informing other players that Player3 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:09:16 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player3 getting new card Battle-ax
+2018-Apr-11 12:09:16 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:09:16 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Asking Player Player4 to participate in quest
+2018-Apr-11 12:09:18 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player4 accepted to participate in Boar Hunt quest sponsored by Player1
+2018-Apr-11 12:09:18 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Informing other players that Player4 has accepted to participate in Boar Hunt quest
+2018-Apr-11 12:09:18 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Saxon Knight
+2018-Apr-11 12:09:18 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:09:18 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Boar Hunt quest setup by Player1 is commencing, participant(s): Player2, Player3, Player4,  are choosing equipment CONCURRENTLY
+2018-Apr-11 12:09:30 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player2","stages":0,"equipment_info":["Sword","Sir Tristan","Amour","Merlin"],"isTest":true}
+2018-Apr-11 12:09:30 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.QuestController - Player Player2 bid Sword, Sir Tristan, Amour, Merlin,  for test in quest Boar Hunt
+2018-Apr-11 12:09:30 PM [http-nio-8080-exec-9] INFO  com.luvai.controller.SocketHandler - Sending Player Player2 bid to sponsor and other participants
+2018-Apr-11 12:09:34 PM [http-nio-8080-exec-10] INFO  com.luvai.model.Player - Player Player3 discarded Battle-ax
+2018-Apr-11 12:09:35 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player3","stages":0,"equipment_info":[],"isTest":true}
+2018-Apr-11 12:09:35 PM [http-nio-8080-exec-1] INFO  com.luvai.controller.QuestController - Player Player3 dropped out of test in quest Boar Hunt
+2018-Apr-11 12:09:46 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player2","stages":0,"equipment_info":["Sword","Sir Tristan","Amour","Merlin","Dagger"],"isTest":true}
+2018-Apr-11 12:09:46 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.QuestController - Player Player2 bid Sword, Sir Tristan, Amour, Merlin, Dagger,  for test in quest Boar Hunt
+2018-Apr-11 12:09:46 PM [http-nio-8080-exec-3] INFO  com.luvai.controller.SocketHandler - Sending Player Player2 bid to sponsor and other participants
+2018-Apr-11 12:09:59 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player4","stages":0,"equipment_info":["Battle-ax","Saxons","Thieves","Saxon Knight","King Arthur"],"isTest":true}
+2018-Apr-11 12:09:59 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.QuestController - Player Player4 bid Battle-ax, Saxons, Thieves, Saxon Knight, King Arthur,  for test in quest Boar Hunt
+2018-Apr-11 12:10:00 PM [http-nio-8080-exec-7] INFO  com.luvai.controller.SocketHandler - Sending Player Player4 bid to sponsor and other participants
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Example of JSON: {"name":"Player2","stages":0,"equipment_info":[],"oldBids":["Sword","Sir Tristan","Amour","Merlin","Dagger"],"isTest":true}
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player2 dropped out of test in quest Boar Hunt
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player4 used Thieves
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player4 used Saxon Knight
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.model.Player - Player Player4 used King Arthur
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Player Player4 getting new card Amour
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.QuestController - Updating GUI stats for all players
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Player Player4 won test in Boar Hunt quest, advancing to stage 2
+2018-Apr-11 12:10:03 PM [http-nio-8080-exec-5] INFO  com.luvai.controller.SocketHandler - Informing players that player Player4 is winner of test
+2018-04-11 13:03:05.840  INFO 16249 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@719dc532: startup date [Wed Apr 11 12:08:35 EDT 2018]; root of context hierarchy
+2018-04-11 13:03:05.844  INFO 16249 --- [Thread-3] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-11 13:03:05.845  INFO 16249 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-11 13:03:05.846  INFO 16249 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'

@@ -51,7 +51,7 @@ Shields:<label id="p1shields">0</label>
 	<p id="nameparagraph">
 		Enter name: <input type="text" id="enterName" value="Player"> <button id="setAI" onclick="setAI()">AI Player</button>
 	</p>
-	<button id="send" onclick="send()">Send</button>
+	<button id="send" onclick="sendName()">Send</button>
 	<button id="print" disabled onclick="print()">Print all
 		players</button>
 	<button id="proof" onclick="proof()">Proof</button>
@@ -70,22 +70,22 @@ Shields:<label id="p1shields">0</label>
 			style="display: none">Done</button>
 			<button id="dropOut" onclick="dropOutOfTest()" style="display: none"> Drop out</button>
         <div id="sponsorQuest" style="display: none">
-		<label><strong>&nbsp&nbsp&nbspDo you want to sponsor quest?</strong></label>
+		<label><strong>&nbsp;&nbsp;&nbsp;Do you want to sponsor quest?</strong></label>
 		<button id="acceptQuestSponsor" onclick="acceptSponsorQuest()">Yes</button>
 		<button id="denySponsorQuest" onclick="denySponsorQuest()">No</button>
 	</div>
 	<div id="askTournament" style="display: none">
-		<label><strong>&nbsp&nbsp&nbspDo you want to participate in tournament?</strong></label>
+		<label><strong>&nbsp;&nbsp;&nbsp;Do you want to participate in tournament?</strong></label>
 		<button id="acceptTournament" onclick="acceptTournament()">Yes</button>
 		<button id="denyTournament" onclick="denyTournament()">No</button>
 	</div>
 	<div id="acceptQuest" style="display: none">
-		<label><strong>&nbsp&nbsp&nbspDo you want to participate in quest?</strong></label>
+		<label><strong>&nbsp;&nbsp;&nbsp;Do you want to participate in quest?</strong></label>
 		<button id="acceptQuestParticipate" onclick="acceptQuestParticipate()">Yes</button>
 		<button id="denyQuestParticipate" onclick="denyQuestParticipate()">No</button>
 	</div> 
 		<div id="merlin" style="display: none">
-		<label id="merlinPrompt"><strong>&nbsp&nbsp&nbspYou have Merlin in hand, preview stage?</strong></label>
+		<label id="merlinPrompt"><strong>&nbsp;&nbsp;&nbsp;You have Merlin in hand, preview stage?</strong></label>
 		<button id="merlinYes" onclick="execMerlin()">Yes</button>
 		<button style="display:none" id="merlin1stage" onclick="showStage(1)">1</button>
 		<button style="display:none"  id="merlin2stage" onclick="showStage(2)">2</button>
@@ -387,13 +387,13 @@ Preview stage - Merlin special
 	<div>
 		<figure><img id="storyCard"  src="/resources/images/card-back.png"
 			height="300" width="200"> <img id="storyCardDiscard"
-			src="/resources/images/all.png" height="300" width="200"> <figcaption>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspStory Cards</figcaption></figure> 
+			src="/resources/images/all.png" height="300" width="200"> <figcaption>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Story Cards</figcaption></figure> 
 	</div>
 	
 	<div>
 		<figure><img id="adventureCard" src="/resources/images/card-back.png" height="300"
 			width="200"> <img id="adventureCardDiscard" src="/resources/images/all.png"
-			height="300" width="200"> <figcaption>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdventure Cards&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRank</figcaption></figure> 
+			height="300" width="200"> <figcaption>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adventure Cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rank</figcaption></figure> 
 
 
 	</div>

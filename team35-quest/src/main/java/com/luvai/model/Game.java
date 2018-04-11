@@ -45,6 +45,7 @@ public class Game {
 
 	}
 
+	// collection of mock hands used for rigged games
 	@SuppressWarnings("serial")
 	public ArrayList<AdventureCard> mockHand1 = new ArrayList<AdventureCard>() {
 		{
@@ -194,26 +195,32 @@ public class Game {
 		current_event = new EventController(g, s, e);
 	}
 
+	// increase turns - > goes to next player for getActivePlayer()
 	public void incTurn() {
 		this.numTurns++;
 	}
 
+	// set player name
 	public void setName(Player p, String s) {
 		p.setName(s);
 	}
 
+	// get next player in line
 	public Player getNextPlayer() {
 		return players.get((numTurns + 1) % players.size());
 	}
 
+	// get player whose turn is currently is
 	public Player getActivePlayer() {
 		return players.get(numTurns % players.size());
 	}
 
+	// get previous player in turn
 	public Player getPrevPlayer() {
 		return players.get(((numTurns - 1) % players.size()));
 	}
 
+	// return player object from given name
 	public Player getPlayerFromName(String name) {
 		for (int i = 0; i < this.players.size(); i++) {
 			if (name.equals(this.players.get(i).getName())) {
@@ -223,24 +230,27 @@ public class Game {
 		return null;
 	}
 
+	// get current participant in current QUEST
 	public Player getCurrentParticipant() {
 		if (current_quest.participants.size() == 1)
 			return current_quest.participants.get(0);
 		return current_quest.participants.get(current_quest.participantTurns % current_quest.participants.size());
 	}
 
-	// convenience method because I think this will get called a lot
+	// check if current player is actually AI
 	public boolean isActiveAI() {
 		return (this.getActivePlayer().isAI());
 	}
 
+	// not implemented - check for tie if 2+ players achieve final rank at same time
 	public void checkForTie() {
 		// loop through player list checking for tieCheck = 1 (player var set after
-		// champ knight achieved)
+		// champion knight achieved)
 		// keep track of # of tieCheck and if 1 ---> end of game screen sole winner
 		// if +1 then ---> end of game screen tie?
 	}
 
+	// collect all player information for display
 	public String getPlayerStats() {
 		String temp = "";
 		for (int i = 0; i < players.size(); i++) {
@@ -251,6 +261,7 @@ public class Game {
 		return temp;
 	}
 
+	// sets up new connected player
 	public void setupNewPlayer(JsonObject jsonObject, WebSocketSession session) throws IOException {
 		JsonElement playerName = jsonObject.get("newName");
 		Player newPlayer = new Player(playerName.getAsString(), session);
@@ -286,6 +297,7 @@ public class Game {
 				p.session.sendMessage(new TextMessage("currentRank" + p.getRank().getStringFile()));
 				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
+			// adds 2 second delay before flipping first card
 			setTimeout(() -> {
 				try {
 					SocketHandler.flipStoryCard();
@@ -300,6 +312,7 @@ public class Game {
 		}
 	}
 
+	// initializes sponsor from player who accepts, if not ask next player
 	public void getSponsor(JsonObject jsonObject) throws IOException {
 		JsonElement sponsor_quest_answer = jsonObject.get("sponsor_quest");
 		JsonElement name = jsonObject.get("name");
@@ -328,12 +341,14 @@ public class Game {
 
 	}
 
+	// updates all stats for players in stat pane display (shields, rank, cards)
 	public void updateStats() {
 		String update = this.getPlayerStats();
 		SocketHandler.sendToAllSessions(this, "updateStats" + update);
 
 	}
 
+	// get repeated weapons/foe log information
 	public void getLogInfo(JsonObject jsonObject) {
 		String playerName = jsonObject.get("name").getAsString();
 		String logInfo = jsonObject.get("logInfo").getAsString();
@@ -356,6 +371,7 @@ public class Game {
 
 	}
 
+	// used for 2 second delay with first story card flip
 	public static void setTimeout(Runnable runnable, int delay) {
 		new Thread(() -> {
 			try {
@@ -367,6 +383,7 @@ public class Game {
 		}).start();
 	}
 
+	// used to gather information from player who previewed stage with merlin
 	public void execMerlin(JsonObject jsonObject) {
 		Player player = this.getPlayerFromName(jsonObject.get("name").getAsString());
 		if (jsonObject.has("revealedCards")) {

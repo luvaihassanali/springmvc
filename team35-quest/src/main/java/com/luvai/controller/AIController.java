@@ -21,6 +21,7 @@ public class AIController extends SocketHandler {
 	public AIController() {
 	}
 
+	// parses commands from ai to execute certain game moves
 	public void receiveAICommand(JsonObject jsonObject, WebSocketSession session) throws IOException {
 
 		if (jsonObject.get("AICommand").getAsString().equals("AskToParticipateQuest"))
@@ -52,45 +53,36 @@ public class AIController extends SocketHandler {
 
 	}
 
+	// gets tournament equipment
 	private void AIChooseEquipmentTournie(JsonObject jsonObject) {
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 		currentPlayer.getAI().chooseEquipmentTournie(jsonObject, currentPlayer);
 	}
 
+	// gets equipment for foe battles
 	private void AIChooseEquipment(JsonObject jsonObject) {
-
-		// System.out.println(jsonObject.toString());
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
-		System.out.println(currentPlayer.getName());
 		currentPlayer.getAI().chooseEquipment(jsonObject, currentPlayer);
 
 	}
 
+	// ai bids for test
 	private void AIMakeBid(JsonObject jsonObject) throws IOException {
-
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
-		System.out.println("from json: " + currentPlayer.getName());
-		System.out.println("from getcurrp: " + gameEngine.getCurrentParticipant().getName());
 		ArrayList<AdventureCard> AIBids = currentPlayer.getAI().nextBid(jsonObject);
 		String bidList = "";
 		for (AdventureCard a : AIBids) {
-			System.out.println(a.getName());
 			bidList += a.getName() + ";";
 		}
-		System.out.println("sending bid list");
-		System.out.println(gameEngine.current_quest.currentMinBid);
 		int bidToCompare = gameEngine.current_quest.currentMinBid;
 		if (bidToCompare == 0)
 			bidToCompare = gameEngine.current_quest.originalBid;
 		if (AIBids.size() < bidToCompare + 1) {
 			gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIDropOut"));
-			System.out.println("AI DROPOUT " + gameEngine.current_quest.getCurrentParticipant().getName());
+
 			gameEngine.current_quest.getCurrentParticipant().getHand()
 					.remove(gameEngine.current_quest.getCurrentParticipant().getHand().size() - 1);
-			System.out.println(gameEngine.getCurrentParticipant().getHandSize());
-			for (int i = 0; i < gameEngine.getCurrentParticipant().getHandSize(); i++) {
-				System.out.println(gameEngine.getCurrentParticipant().getHand().get(i).getName());
-			}
+
 			if (gameEngine.current_quest.participants.size() == 1) {
 				gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
 				Losing();
@@ -108,12 +100,12 @@ public class AIController extends SocketHandler {
 			}
 			return;
 		}
-		System.out.println("sending bid list");
-		System.out.println(bidList);
+
 		gameEngine.getCurrentParticipant().session.sendMessage(new TextMessage("AIBidList" + bidList));
 
 	}
 
+	// get answer from ai to sponsor quest
 	public void AIQuestSponsor(JsonObject jsonObject) throws IOException {
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 		boolean sponsorAnswer = currentPlayer.getAI().doISponsorQuest();
@@ -140,16 +132,13 @@ public class AIController extends SocketHandler {
 
 	}
 
+	// execute AI discards
 	public void AIDiscard(JsonObject jsonObject) throws IOException {
 		int numCards = jsonObject.get("numCards").getAsInt();
 		Player currentPlayer = gameEngine.getPlayerFromName(jsonObject.get("name").getAsString());
 
 		AdventureCard[] AIdiscard = currentPlayer.getAI().discardAfterWinningTest(currentPlayer, numCards);
-		System.out.println(AIdiscard.length);
-		System.out.println("AIDISCARDLENGTH");
-		for (AdventureCard a : AIdiscard) {
-			System.out.println(a.getName());
-		}
+
 		String discards = "";
 
 		for (AdventureCard a : AIdiscard) {
@@ -162,19 +151,16 @@ public class AIController extends SocketHandler {
 		int value = rand.nextInt(2000 - 1000) + 1000;
 
 		setTimeout(() -> {
-			// System.out.println("getting prosperity discards");
+
 		}, value);
 		currentPlayer.session.sendMessage(new TextMessage(message + discards));
 
-		// String update = gameEngine.getPlayerStats();
-		// sendToAllSessions(gameEngine, "updateStats" + update);
-
 	}
 
+	// get ai tournament participation answer
 	private void AITournamentParticipation(JsonObject jsonObject, WebSocketSession session) throws IOException {
 		boolean answer = gameEngine.getActivePlayer().getAI().doIParticipateTournament();
 		String name = gameEngine.getActivePlayer().getName();
-		System.out.println(answer);
 		if (answer) {
 			logger.info("Player {} accepted to participate in Tournament {}", name,
 					gameEngine.storyDeck.faceUp.getName());
@@ -193,6 +179,7 @@ public class AIController extends SocketHandler {
 
 	}
 
+	// get ai quest participation answer
 	public void AIQuestParticipation(JsonObject jsonObject) throws IOException {
 		if (gameEngine.getActivePlayer().getAI().doIParticipateQuest()) {
 			gameEngine.current_quest.acceptParticipation(gameEngine.getActivePlayer().getName());
@@ -202,6 +189,7 @@ public class AIController extends SocketHandler {
 		}
 	}
 
+	// used to space out ai messages -> seg fault if two recieved at same time
 	public static void setTimeout(Runnable runnable, int delay) {
 		new Thread(() -> {
 			try {
@@ -213,6 +201,7 @@ public class AIController extends SocketHandler {
 		}).start();
 	}
 
+	// initializes new AI player
 	public void setupNewAIPlayer(JsonObject jsonObject, WebSocketSession session) throws IOException {
 		JsonElement playerName = jsonObject.get("AI");
 		Player newPlayer = new Player(playerName.getAsString(), session, 2);
@@ -249,6 +238,7 @@ public class AIController extends SocketHandler {
 				p.session.sendMessage(new TextMessage("currentRank" + p.getRank().getStringFile()));
 				logger.info("Player {} was just dealt a new hand consisting of {}", p.getName(), handString);
 			}
+			// adds 2 second delay before flipping first card
 			setTimeout(() -> {
 				try {
 					flipStoryCard();

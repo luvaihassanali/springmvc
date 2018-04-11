@@ -1,4 +1,4 @@
-COPY & PASTED FROM: scenario1,2,3(continuos).txt
+COPY & PASTED FROM: scenario1,2,3(continuous).txt
 ------------------------------------------------
 
 2018-04-09 17:53:27.486  INFO 9381 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15e97d5a: startup date [Mon Apr 09 17:52:27 EDT 2018]; root of context hierarchy

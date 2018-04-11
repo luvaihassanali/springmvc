@@ -36,6 +36,8 @@ public class EventController extends SocketHandler {
 
 	}
 
+	// each event corresponds to specific function named after event
+	// any event requiring participation concludes with done*event*() function
 	public void executeEvent() throws IOException {
 		logger.info("Player {} has initiated event {}", current_player.getName(), eventCard.getName());
 
@@ -107,7 +109,6 @@ public class EventController extends SocketHandler {
 		}
 		kingsArmsTracker = 0;
 		kingsArmsTracker = highestRankedList.size();
-		System.out.println("size highest ranked: " + highestRankedList.size());
 		for (Player p : highestRankedList) {
 			int weaponTracker = 0;
 			int foeTracker = 0;
@@ -192,7 +193,6 @@ public class EventController extends SocketHandler {
 		}
 		queensFavorTracker = 0;
 		queensFavorTracker = lowestRankedList.size();
-		System.out.println("size lowest ranked: " + lowestRankedList.size());
 		for (Player p : lowestRankedList) {
 			logger.info("Player {} is among lowest ranked, receiving 2 adventure cards", p.getName());
 		}
@@ -342,9 +342,6 @@ public class EventController extends SocketHandler {
 	}
 
 	public void doneProsperity() throws IOException {
-		// System.out.println(gameEngine.current_event.eventCard.getName());
-		// System.out.println(gameEngine.current_event.prosperityTracker);
-
 		gameEngine.current_event.prosperityTracker++;
 		if (gameEngine.current_event.prosperityTracker == 4) {
 			logger.info("Event {} has concluded", gameEngine.storyDeck.faceUp.getName());
