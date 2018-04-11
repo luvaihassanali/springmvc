@@ -17,3 +17,11 @@ Through eclipse:
 5. Enter 'clean package' as Goals parameter. 
 6. Follow the instructions listed above to run .war file but instead navigate to the project 
 folder /team35-iteration2/team35-quest/target/ and replace QuestOfTheRoundTable.war with spring-quest-0.0.1-SNAPSHOT.war.
+
+LAST STEP FOR ANY METHOD:
+Depending on your native screen resolution the game might load with the story deck appearing at the bottom of the screen. The intended view
+is to have the story deck adjacent to the player hand so there is no need for scrolling.
+1. When game has loaded zoom out on the screen using your browser if applicable so that the story deck is adjacent to player hand.
+In chrome: click the three dots to the right of url bar right next to the favourite star. Adjust the zoom in this menu.
+See file 'Main Screen.jpg' to get a visual of the intended main screen.
+

@@ -119,7 +119,7 @@ public class Game {
 	@SuppressWarnings("serial")
 	public ArrayList<AdventureCard> mockHand5 = new ArrayList<AdventureCard>() {
 		{
-			add(CardList.Boar);
+			add(CardList.SirPellinore);
 			add(CardList.BlackKnight);
 			add(CardList.BeastTest);
 			add(CardList.Dagger);
@@ -136,12 +136,12 @@ public class Game {
 	@SuppressWarnings("serial")
 	public ArrayList<AdventureCard> mockHand6 = new ArrayList<AdventureCard>() {
 		{
-			add(CardList.SirTristan);
-			add(CardList.SirGalahad);
+			add(CardList.BeastTest);
+			add(CardList.SirPercival);
 			add(CardList.Amour);
 			add(CardList.RobberKnight);
 			add(CardList.Dragon);
-			add(CardList.GreenKnight);
+			add(CardList.QueenIseult);
 			add(CardList.Dagger);
 			add(CardList.Horse);
 			add(CardList.Battleax);
@@ -153,14 +153,14 @@ public class Game {
 	@SuppressWarnings("serial")
 	public ArrayList<AdventureCard> mockHand7 = new ArrayList<AdventureCard>() {
 		{
-			add(CardList.ValorTest);
+			add(CardList.MorganTest);
 			add(CardList.BlackKnight);
 			add(CardList.Sword);
 			add(CardList.Thieves);
 			add(CardList.KingArthur);
 			add(CardList.QueenIseult);
 			add(CardList.Amour);
-			add(CardList.MorganTest);
+			add(CardList.SirTristan);
 			add(CardList.Thieves);
 			add(CardList.Battleax);
 			add(CardList.SirLancelot);
@@ -172,18 +172,18 @@ public class Game {
 		{
 
 			// add(CardList.Dagger);
-			add(CardList.KingArthur);
+			add(CardList.TemptationTest);
 			add(CardList.Thieves);
 			add(CardList.Saxons);
 			add(CardList.Thieves);
 			add(CardList.Boar);
-			add(CardList.QueenIseult);
+			add(CardList.Dagger);
 			add(CardList.SirGawain);
 			add(CardList.Excalibur);
 			add(CardList.Dagger);
 			add(CardList.SirPellinore);
 			add(CardList.BlackKnight);
-			add(CardList.SirLancelot);
+			add(CardList.QueenGuinevere);
 		}
 	};
 

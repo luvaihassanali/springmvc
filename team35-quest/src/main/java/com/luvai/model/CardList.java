@@ -193,17 +193,19 @@ public class CardList {
 	public static FoeCard Giant = new FoeCard("Giant", giantImage, 40, 0, null);
 	public static FoeCard Mordred = new FoeCard("Mordred", mordredImage, 30, 0, null); // special
 	public static FoeCard All = new FoeCard("All", allImage, 0, 0, null); // todo: work on implementation of all foes
-	public static AllyCard SirGawain = new AllyCard("Sir Gawain", sirGImage, 10, 20, 0, 0);
-	public static AllyCard SirPellinore = new AllyCard("King Pellinore", sirPeImage, 10, 0, 0, 4); // card says king, //
-																									// rules say sir
-	public static AllyCard SirPercival = new AllyCard("Sir Percival", sirPImage, 5, 20, 0, 0);
-	public static AllyCard SirTristan = new AllyCard("Sir Tristan", sirTImage, 10, 20, 0, 0);
-	public static AllyCard KingArthur = new AllyCard("King Arthur", arthurImage, 10, 0, 2, 0);
-	public static AllyCard QueenGuinevere = new AllyCard("Queen Guinevere", queenGImage, 0, 0, 3, 0);
-	public static AllyCard Merlin = new AllyCard("Merlin", merlinImage, 0, 0, 0, 0); // special
-	public static AllyCard QueenIseult = new AllyCard("Queen Iseult", queenIImage, 0, 0, 2, 4);
-	public static AllyCard SirLancelot = new AllyCard("Sir Lancelot", sirLImage, 15, 25, 0, 0);
-	public static AllyCard SirGalahad = new AllyCard("Sir Galahad", sirGaImage, 15, 0, 0, 0);
+	public static AllyCard SirGawain = new AllyCard("Sir Gawain", sirGImage, 10, 20, 0, 0, "Test of the Green Knight");
+	public static AllyCard SirPellinore = new AllyCard("King Pellinore", sirPeImage, 10, 0, 0, 4,
+			"Search for the Questing Beast"); // card says king,
+	public static AllyCard SirPercival = new AllyCard("Sir Percival", sirPImage, 5, 20, 0, 0,
+			"Search for the Holy Grail");
+	public static AllyCard SirTristan = new AllyCard("Sir Tristan", sirTImage, 10, 20, 0, 0, "");
+	public static AllyCard KingArthur = new AllyCard("King Arthur", arthurImage, 10, 0, 2, 0, "");
+	public static AllyCard QueenGuinevere = new AllyCard("Queen Guinevere", queenGImage, 0, 0, 3, 0, "");
+	public static AllyCard Merlin = new AllyCard("Merlin", merlinImage, 0, 0, 0, 0, ""); // special
+	public static AllyCard QueenIseult = new AllyCard("Queen Iseult", queenIImage, 0, 0, 2, 4, "");
+	public static AllyCard SirLancelot = new AllyCard("Sir Lancelot", sirLImage, 15, 25, 0, 0,
+			"Defend the Queen's Honor");
+	public static AllyCard SirGalahad = new AllyCard("Sir Galahad", sirGaImage, 15, 0, 0, 0, "");
 	public static AmourCard Amour = new AmourCard("Amour", amourImage, 10, 1);
 	public static TestCard BeastTest = new TestCard("Test of the Questing Beast", testBeastImage, 4);
 	public static TestCard TemptationTest = new TestCard("Test of Temptation", testTempImage, 0);

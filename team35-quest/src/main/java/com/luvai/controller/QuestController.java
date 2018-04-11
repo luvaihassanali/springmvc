@@ -98,9 +98,30 @@ public class QuestController extends SocketHandler {
 			if (tempCard instanceof AllyCard) {
 				AllyCard current_ally = (AllyCard) tempCard;
 				bonusBids += current_ally.getBid();
+				if (current_ally.getSpecialQuest().equals(gameEngine.storyDeck.faceUp.getName())) {
+					logger.info(
+							"Player {} chose ally {} whose special is activated during quest {}, increasing bonus bids from {} to {}",
+							gameEngine.current_quest.getCurrentParticipant().getName(), current_ally.getName(),
+							gameEngine.storyDeck.faceUp.getName(), current_ally.getBid(), current_ally.getBonusBid());
+					bonusBids += (current_ally.getBonusBid() - current_ally.getBid());
+				}
+				if (current_ally.getName().equals("Queen Iseult")) {
+					for (Player p : gameEngine.players) {
+						for (AllyCard a : p.getAllies()) {
+							if (a.getName().equals(("Sir Tristan"))) {
+								logger.info(
+										"Player {} chose ally Queen Iseult while Player {} has Sir Tristan in play, increasing bonus bids from 2 to 4",
+										gameEngine.current_quest.getCurrentParticipant().getName(), p.getName());
+								bonusBids += 2;
+							}
+						}
+					}
+				}
 			}
 		}
 		for (int i = 0; i < bonusBids; i++) {
+			if (toDiscardAfterTest.isEmpty())
+				break;
 			String temp = toDiscardAfterTest.remove(0);
 			gameEngine.current_quest.getCurrentParticipant().replaceBonusBidsList.add(temp);
 		}
@@ -241,7 +262,27 @@ public class QuestController extends SocketHandler {
 			removeWeapons.add(w.getName());
 		}
 		for (AllyCard a : currentPlayer.getAllies()) {
-			tempPts += a.getBattlePoints();
+			if (a.getSpecialQuest().equals(gameEngine.storyDeck.faceUp.getName())) {
+				logger.info(
+						"Player {} chose ally {} whose special is activated during quest {}, increasing battle points from {} to {}",
+						currentPlayer.getName(), a.getName(), gameEngine.storyDeck.faceUp.getName(),
+						a.getBattlePoints(), a.getBonusBattlePoints());
+				tempPts += a.getBonusBattlePoints();
+			} else {
+				tempPts += a.getBattlePoints();
+				if (a.getName().equals("Sir Tristan")) {
+					for (Player p : gameEngine.players) {
+						for (AllyCard ally : p.getAllies()) {
+							if (ally.getName().equals("Queen Iseult")) {
+								logger.info(
+										"Player {} played ally Sir Tristan while Player {} has Queen Iseult in play, increasing battle points from 10 to 20",
+										currentPlayer.getName(), p.getName());
+								tempPts += 10;
+							}
+						}
+					}
+				}
+			}
 
 		}
 		return tempPts;

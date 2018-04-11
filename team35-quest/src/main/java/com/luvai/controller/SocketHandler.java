@@ -192,7 +192,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			if (gameEngine.current_quest.participants.size() == 1) {
 				if (gameEngine.current_quest.toDiscardAfterTest.size() == 0) {
 					logger.info("Player {} dropped out of {} test",
-							gameEngine.current_quest.getCurrentParticipant().getName());
+							gameEngine.current_quest.getCurrentParticipant().getName(),
+							gameEngine.storyDeck.faceUp.getName());
 					gameEngine.current_quest.participants.remove(gameEngine.current_quest.getCurrentParticipant());
 					Losing();
 					return;

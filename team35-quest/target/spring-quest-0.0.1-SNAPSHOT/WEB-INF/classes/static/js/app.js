@@ -1499,6 +1499,7 @@ function doneEquipment() {
 
 		socketConn.send(data);
 		arrangeHand();
+		testBids = [];
 
 	} else {
 		serverMsg.value += "\n> going into battle, wait for other players to finish for results";
@@ -1512,6 +1513,7 @@ function doneEquipment() {
 		socketConn.send(data);
 		arrangeHand();
 		battleEquipment = [];
+		
 		
 	}
 
