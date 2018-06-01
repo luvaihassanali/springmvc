@@ -2,7 +2,7 @@ How to build and run:
 
 Through .war file on desktop environment:
 
-1. Navigate to the folder team35-iteration2/executable in your terminal. (Will contain QuestOfTheRoundTable.war)
+1. Navigate to the folder springmvc/team35-quest/target/ in your terminal. (Will contain QuestOfTheRoundTable.war)
 2. Run the command 'java -jar QuestOfTheRoundTable.war'
 3. After the server has finished setting up the last line printed will be the current IP address of host.
 4. For players to enter game, it is very important they enter the correct IP address in url bar followed by the port 8080.
