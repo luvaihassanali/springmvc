@@ -1,8 +1,6 @@
-COMP3004 - Iteration 2 
-Team 35 
-Luvai Hassanali 100923952
+Luvai Hassanali
 
-Networking quest is working* (for all human players)
+Networking quest is working (for all human players)
 
 To run in eclipse:
 
