@@ -2,8 +2,8 @@ How to build and run:
 
 Through .war file on desktop environment:
 
-1. Navigate to the folder springmvc/team35-quest/target/ in your terminal. (Will contain QuestOfTheRoundTable.war)
-2. Run the command 'java -jar QuestOfTheRoundTable.war'
+1. Navigate to the folder springmvc/team35-quest/target/ in your terminal. (Will contain spring-quest-0.0.1-SNAPSHOT.war)
+2. Run the command 'java -jar spring-quest-0.0.1-SNAPSHOT.war'
 3. After the server has finished setting up the last line printed will be the current IP address of host.
 4. For players to enter game, it is very important they enter the correct IP address in url bar followed by the port 8080.
 Example: http://127.0.0.1:8080 where 127.0.0.1 is replaced with the IP printed after server initialization. 
@@ -15,12 +15,10 @@ Through eclipse:
 3. Right click Maven and select New. Enter a name, and ensure base directory is pointing to team35-quest workspace.
 4. You can run the project directly in eclipse by entering 'spring-boot:run' as Goals parameter OR to create a packaged .war executable:
 5. Enter 'clean package' as Goals parameter. 
-6. Follow the instructions listed above to run .war file but instead navigate to the project 
-folder /team35-iteration2/team35-quest/target/ and replace QuestOfTheRoundTable.war with spring-quest-0.0.1-SNAPSHOT.war.
+6. Follow the instructions listed above to run .war file.
 
 LAST STEP FOR ANY METHOD:
-Depending on your native screen resolution the game might load with the story deck appearing at the bottom of the screen. The intended view
-is to have the story deck adjacent to the player hand so there is no need for scrolling.
+Depending on your native screen resolution the game might load with the story deck appearing at the bottom of the screen. The intended view is to have the story deck adjacent to the player hand so there is no need for scrolling.
 1. When game has loaded zoom out on the screen using your browser if applicable so that the story deck is adjacent to player hand.
 In chrome: click the three dots to the right of url bar right next to the favourite star. Adjust the zoom in this menu.
 See file 'Main Screen.jpg' to get a visual of the intended main screen.
