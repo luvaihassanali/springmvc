@@ -1,5 +1,3 @@
-Luvai Hassanali
-
 Networking quest is working (for all human players).
 
 *See GUIShots folder for screenshots of gameplay.*
